@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+
+  http-bo:
+    container_name: http-bo
+    build: http/
+    working_dir: ${WORKING_DIR}
+    volumes:
+      - ../public:${WORKING_DIR}
+      - ./http/connect.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - ${PORT_LOCAL_HTTP}:80

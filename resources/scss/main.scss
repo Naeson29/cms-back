@@ -1,0 +1,47 @@
+// Import Bootstrap source files
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+// Import React Toastify
+@import '../../node_modules/react-toastify/dist/ReactToastify.css';
+
+//Google Fonts
+@import url('http://fonts.googleapis.com/css?family=Roboto');
+
+//variables
+@import "variables";
+
+//Mixins
+@import "mixins";
+
+// commons
+@import "commons";
+
+//login
+@import "login";
+
+//sidebar
+@import "sidebar";
+
+// header
+@import "header";
+
+//Forms
+@import "forms";
+
+//List
+@import "list";
+
+//Panel
+@import "panels";
+
+//Dashboard
+@import "dashboard";
+
+//Users
+@import "users";
+
+//Slider
+@import "slider";
+
+//News
+@import "news";

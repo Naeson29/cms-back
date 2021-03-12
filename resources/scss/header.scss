@@ -1,0 +1,87 @@
+.header-app {
+  position   : fixed;
+  z-index    : 100;
+  top        : 0;
+  left       : 0;
+  width      : 100%;
+  height     : $header-height;
+  background : $header-bg;
+
+  -webkit-box-shadow : 0 2px 5px rgba(57, 63, 72, 0.2);
+  -moz-box-shadow    : 0 2px 5px rgba(57, 63, 72, 0.2);
+  box-shadow         : 0 2px 5px rgba(57, 63, 72, 0.2);
+
+  .navbar {
+    padding         : 0;
+    border-radius   : initial;
+    justify-content : space-between;
+    height          : inherit;
+
+    .navbar-brand {
+      height       : 100%;
+      padding-left : 0.8rem;
+      color        : $primary-color;
+      @media (min-width: 1024px) {
+        width : $sidebar-width;
+      }
+      @media (max-width: 1024px) {
+        width : $sidebar-width-small;
+      }
+
+      background   : rgba(0,0,0,0.8);
+
+      &:before {
+        content        : '';
+        display        : inline-block;
+        height         : 100%;
+        vertical-align : middle;
+      }
+
+      img {
+        @media (min-width: 1024px) {
+          height : 80%;
+        }
+        @media (max-width: 1024px) {
+          height : 90%;
+        }
+
+        display        : inline-block;
+        vertical-align : middle;
+        margin-right   : 0.8rem;
+      }
+
+      span {
+        font-size:16px;
+        @media (min-width: 1024px) {
+          display: inline-block;
+        }
+        @media (max-width: 1024px) {
+          display: none;
+        }
+      }
+    }
+
+    .navbar-nav-right {
+      margin-right : 1rem;
+      display      : flex;
+      align-items  : center;
+
+      span, a {
+        color       : $primary-color;
+        transition  : color 0.15s ease-in-out;
+        cursor      : pointer;
+        margin-left : 1.2rem;
+
+        &:hover {
+          color : $primary-color-light;
+        }
+      }
+
+      .svg-inline--fa {
+        vertical-align: top;
+        width  : 20px;
+        height : 20px;
+      }
+    }
+  }
+}
