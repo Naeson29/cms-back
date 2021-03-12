@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {  TransitionGroup, CSSTransition } from 'react-transition-group';
-import {ACTIONS} from '../../utils/Actions';
+import {Action} from '../../utils/Action';
 
 //Panels
 import PanelEvent  from '../../containers/Screens/Dashboard/Panel';
@@ -21,12 +21,12 @@ class Panel extends Component {
         let component = null;
 
         switch(panel.label) {
-            case ACTIONS.PANEL_EVENT:
+            case Action.PANEL_EVENT:
                 component = (<PanelEvent {...panel.parameters} />);
                 panel.title = panel.parameters ? 'Modification d\'un évènement' : 'Ajout d\'un évènement';
             break;
 
-            case ACTIONS.PANEL_USER:
+            case Action.PANEL_USER:
                 component = (<PanelUser {...panel.parameters} />);
                 panel.title = panel.parameters ? 'Modification d\'un utilisateur' : 'Ajout d\'un utilisateur';
                 break;

@@ -4,7 +4,7 @@ import Login      from "../../../components/Screens/Authentication/Login";
 import {creators} from "../../../actions/Authentication";
 
 // Utils
-import {LOGIN} from "../../../utils/model";
+import {LOGIN} from "../../../utils/Model";
 
 const mapStateToProps = () => {
     return {

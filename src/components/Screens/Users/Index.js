@@ -3,12 +3,13 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import {withTranslation} from "react-i18next";
 import {ReactSVG} from "react-svg";
-import {ACTIONS} from "../../../utils/Actions";
+import {Action} from "../../../utils/Action";
 import {connect} from "react-redux";
 import Functions from "../../../containers/Features/PanelFunction";
 import Loader from "../../Features/Loading";
-import {MODALS} from "../../../utils/Modals";
-import {roles} from "../../../utils/const";
+import {deleteUser} from "../../../utils/Modal";
+import {getRoles} from "../../../utils/Role";
+import {AllowUser} from "../../../utils/Allow";
 
 // Components
 
@@ -21,9 +22,6 @@ class Index extends Component {
 
     render() {
     	const {open, users, loading, deleteModal, current} = this.props;
-    	const isAdmin = roles.admin === current.role;
-		const isSuperUser = roles.superUser === current.role;
-		const isUser = roles.user === current.role;
 
         return (
 			<div className={'fragment users'}>
@@ -37,21 +35,10 @@ class Index extends Component {
 						{
 							users.map((key, index)=> {
 
-								const paramsModal = {
-									type : MODALS.DELETE,
-									params : {
-										message : 'Confirmer la suppression de l\'utilisateur',
-										complement : `${key.first_name} ${key.last_name}`,
-										destroy : {
-											action : 'User',
-											id : key.id
-										}
-									}
-								}
-
-								const isMe = current.id === key.id;
-								const allowEdit = isAdmin || isSuperUser || (isUser && isMe);
-								const allowTrash = (isAdmin && !isMe) || (isSuperUser && !isMe);
+								const {edit, trash} = AllowUser({
+									...getRoles(current),
+									isMe : current.id === key.id
+								});
 
 								return (
 									<div
@@ -64,13 +51,13 @@ class Index extends Component {
 											<div className={'action'}>
 												<ReactSVG
 													src="./img/pencil.svg"
-													onClick={() => allowEdit && {}}
-													className={`button edit ${!allowEdit && 'disabled'}`}
+													onClick={() => edit && {}}
+													className={`button edit ${!edit && 'disabled'}`}
 												/>
 												<ReactSVG
 													src="./img/trash.svg"
-													onClick={() => allowTrash && deleteModal(paramsModal)}
-													className={`button trash ${!allowTrash && 'disabled'}`}
+													onClick={() => trash && deleteModal(deleteUser(key))}
+													className={`button trash ${!trash && 'disabled'}`}
 												/>
 											</div>
 										</div>
@@ -80,7 +67,7 @@ class Index extends Component {
 						}
 						<ReactSVG
 							src="./img/add.svg"
-							onClick={() => open(ACTIONS.PANEL_USER)}
+							onClick={() => open(Action.PANEL_USER)}
 							className={'add'}
 						/>
 					</div>

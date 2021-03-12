@@ -6,7 +6,7 @@ import {creators} from "../../../actions/User";
 import {creators as ModalCreators} from "../../../actions/Modal";
 
 import {current, list, loadingDestroy, loadingList} from "../../../selectors/User";
-import {defaultLoadParams} from "../../../utils/const";
+import {defaultLoadParams} from "../../../utils/Const";
 
 const mapStateToProps = (state, { match: { params: { id }}}) => {
     return {

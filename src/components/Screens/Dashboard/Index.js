@@ -3,7 +3,7 @@ import {connect}           from 'react-redux';
 import PropTypes           from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as IconSolid      from '@fortawesome/free-solid-svg-icons/index';
-import {ACTIONS}           from '../../../utils/Actions';
+import {Action}           from '../../../utils/Action';
 import Functions from "../../../containers/Features/PanelFunction";
 import { ReactSVG } from 'react-svg'
 import Loader from "../../Features/Loading";
@@ -31,7 +31,7 @@ class Index extends Component {
                             </div>
                             <ReactSVG
                                 src="./img/add.svg"
-                                onClick={() => open(ACTIONS.PANEL_EVENT)}
+                                onClick={() => open(Action.PANEL_EVENT)}
                                 className={'add'}
                             />
                         </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import PropTypes from "prop-types";
-import {MODALS} from "../../utils/Modals";
+import {Modal} from "../../utils/Modal";
 
 class Modals extends Component {
 
@@ -10,7 +10,7 @@ class Modals extends Component {
         let component;
 
         switch(type) {
-            case MODALS.DELETE:
+            case Modal.DELETE:
                 component = (
                     <div className={'card-content'}>
                         <div className={'card-text'}>
@@ -42,7 +42,7 @@ class Modals extends Component {
 
 
         return (
-            <Modal
+            <ReactModal
                 isOpen={open}
                 onAfterOpen={()=>{}}
                 onRequestClose={()=>{}}
@@ -56,7 +56,7 @@ class Modals extends Component {
                         {component}
                     </div>
                 </div>
-            </Modal>
+            </ReactModal>
         );
     }
 }

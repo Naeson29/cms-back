@@ -1,10 +1,7 @@
 import i18n from '../locales/i18n';
 
-export const roles = {
-    admin : 1,
-    superUser : 2,
-    user : 3
-}
+
+
 
 export const colors = {
     primary_color : '#3765af'
