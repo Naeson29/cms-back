@@ -52,7 +52,7 @@ export const searchFailure = defaultFailure;
 /* CREATE START */
 export const createRequest = defaultRequest;
 
-export const createSuccess = (state, { data }, section) => ({
+export const createSuccess = (state, data, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -75,7 +75,7 @@ export const createFailure = defaultFailure;
 export const readRequest = defaultRequest;
 export const readFailure = defaultFailure;
 
-export const readSuccess = (state, { data }, section) => ({
+export const readSuccess = (state, data, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -98,7 +98,7 @@ export const readSuccess = (state, { data }, section) => ({
 /* UPDATE START */
 export const updateRequest = defaultRequest;
 
-export const updateSuccess = (state, { data }, section) => ({
+export const updateSuccess = (state, data, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -123,24 +123,30 @@ export const updateFailure = defaultFailure;
 /* DESTROY START */
 export const destroyRequest = defaultRequest;
 
-export const destroySuccess = (state, { data }, section) => ({
-    ...state,
-    data: {
-        ...state.data,
-        [data.id]: {
-            ...state.data[data.id],
-            ...data,
+export const destroySuccess = (state, data, section) => {
+    const {views} = state;
+    delete state.data[data.id];
+    const results = views.index.results.filter(key => key !== data.id);
+
+    return {
+        ...state,
+        data: {
+            ...state.data
         },
-    },
-    views: {
-        ...state.views,
-        [section]: {
-            ...state.views[section],
-            error: null,
-            loading: false,
+        views: {
+            ...views,
+            [section]: {
+                ...views[section],
+                error: null,
+                loading: false,
+            },
+            index : {
+                ...views.index,
+                results : [...results]
+            }
         },
-    },
-});
+    }
+};
 
 export const destroyFailure = defaultFailure;
 /* DESTROY END */

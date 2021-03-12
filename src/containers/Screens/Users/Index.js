@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 
 import Index  from "../../../components/Screens/Users/Index";
 import {creators} from "../../../actions/User";
+import {creators as ModalCreators} from "../../../actions/Modal";
 
 import {getUsersData, getUsersLoading, getUsersPagination} from "../../../selectors/User";
 import {defaultLoadParams} from "../../../utils/const";
@@ -16,7 +17,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        load: () => { dispatch(creators.search.request(defaultLoadParams)) },
+        load: () => {
+            dispatch(creators.search.request(defaultLoadParams))
+        },
+        deleteModal : (params) => {
+            dispatch(ModalCreators.open.do(params))
+        }
     };
 };
 

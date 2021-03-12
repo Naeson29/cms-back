@@ -8,7 +8,6 @@ export const initialState = {
 const standardReducer = createModelReducer(initialState, types);
 
 export const reducer = (state = initialState, action) => {
-    
     const {payload} = action;
 
     switch (action.type) {
@@ -23,7 +22,7 @@ export const reducer = (state = initialState, action) => {
         case types.GET_ME.SUCCESS: {
             return {
                 ...state,
-                current: payload.data
+                current: payload
             };
         }
 

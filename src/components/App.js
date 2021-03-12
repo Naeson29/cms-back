@@ -1,5 +1,5 @@
 // Library
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes          from 'prop-types';
 import { ToastContainer } from 'react-toastify';
 
@@ -11,6 +11,7 @@ import routes from '../routes/Routes';
 import Header from "../containers/Features/Header";
 import Sidebar from "./Features/Sidebar";
 import Panel from "../containers/Features/Panel";
+import Modal from "../containers/Features/Modal";
 
 class App extends Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class App extends Component {
                         }
                     </Switch>
                     <Panel/>
+                    <Modal/>
                 </div>
             </div>
         );

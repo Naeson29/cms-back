@@ -2,6 +2,13 @@ body {
   font-family : 'Roboto', cursive;
   font-size   :14px;
 
+  button {
+    &:focus {
+      box-shadow : none;
+      outline    : 0
+    }
+  }
+
   #root {
 
     .Toastify {

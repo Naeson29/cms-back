@@ -7,6 +7,7 @@ import {ACTIONS} from "../../../utils/Actions";
 import {connect} from "react-redux";
 import Functions from "../../../containers/Features/PanelFunction";
 import Loader from "../../Features/Loading";
+import {MODALS} from "../../../utils/Modals";
 
 // Components
 
@@ -18,7 +19,7 @@ class Index extends Component {
     }
 
     render() {
-    	const {open, users, loading} = this.props;
+    	const {open, users, loading, deleteModal} = this.props;
 
         return (
 			<div className={'fragment users'}>
@@ -31,6 +32,19 @@ class Index extends Component {
 					<div className={'list-card'}>
 						{
 							users.map((key, index)=> {
+
+								const paramsModal = {
+									type : MODALS.DELETE,
+									params : {
+										message : 'Confirmer la suppression de l\'utilisateur',
+										complement : `${key.first_name} ${key.last_name}`,
+										destroy : {
+											action : 'User',
+											id : key.id
+										}
+									}
+								}
+
 								return (
 									<div
 										className={'card-container'}
@@ -47,7 +61,7 @@ class Index extends Component {
 												/>
 												<ReactSVG
 													src="./img/trash.svg"
-													onClick={() => {}}
+													onClick={() => deleteModal(paramsModal)}
 													className={'button trash'}
 												/>
 											</div>
@@ -70,12 +84,14 @@ class Index extends Component {
 
 Index.propTypes = {
 	open: PropTypes.func,
+	deleteModal: PropTypes.func,
 	users : PropTypes.array,
 	loading : PropTypes.bool,
 };
 
 Index.defaultProps = {
 	open : ()=> {},
+	deleteModal : ()=> {},
 	users : [],
 	loading : false,
 };

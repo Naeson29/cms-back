@@ -14,4 +14,8 @@ export default class userApi extends createModelApiClass(Base, '/') {
     search = (params) => {
         return this.get({url :`${this.path}users`, params});
     }
+
+    destroy = (params) => {
+        return this.delete({url :`${this.path}users/${params.id}`});
+    }
 }
