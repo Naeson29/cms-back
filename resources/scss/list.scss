@@ -71,6 +71,11 @@
             background-color: $primary_color_trash;
           }
 
+          &.disabled {
+            cursor: default;
+            opacity: .2;
+          }
+
           svg {
             width : 45%;
             height : auto;

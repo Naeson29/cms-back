@@ -5,13 +5,14 @@ import Index  from "../../../components/Screens/Users/Index";
 import {creators} from "../../../actions/User";
 import {creators as ModalCreators} from "../../../actions/Modal";
 
-import {getUsersData, getUsersLoading, getUsersPagination} from "../../../selectors/User";
+import {current, list, loadingDestroy, loadingList} from "../../../selectors/User";
 import {defaultLoadParams} from "../../../utils/const";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, { match: { params: { id }}}) => {
     return {
-        users : getUsersData(state),
-        loading : getUsersLoading(state)
+        users : list(state),
+        loading : loadingList(state) || loadingDestroy(id)(state),
+        current : current(state)
     };
 };
 

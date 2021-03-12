@@ -6,11 +6,11 @@ import App from "../components/App";
 // Actions
 import {creators as AuthenticationCreators} from "../actions/Authentication"
 import {creators as usersCreators} from "../actions/User"
-import {getCurrentUserSubscription} from "../selectors/User";
+import {current} from "../selectors/User";
 
 const mapStateToProps = (state) => {
     return {
-        current: getCurrentUserSubscription(state)
+        current: current(state)
     }
 };
 

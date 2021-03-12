@@ -3,7 +3,7 @@ import { createModelReducer } from '../../react-core'
 export const initialState = {
     data: {},
     views: {},
-    current: null
+    current: {}
 };
 const standardReducer = createModelReducer(initialState, types);
 
@@ -15,21 +15,21 @@ export const reducer = (state = initialState, action) => {
         case types.GET_ME.REQUEST: {
             return {
                 ...state,
-                current: null
+                current: {}
             };
         }
 
         case types.GET_ME.SUCCESS: {
             return {
                 ...state,
-                current: payload
+                current: payload.data
             };
         }
 
         case types.GET_ME.FAILURE: {
             return {
                 ...state,
-                current: null
+                current: {}
             };
         }
 

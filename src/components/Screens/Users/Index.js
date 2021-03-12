@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import Functions from "../../../containers/Features/PanelFunction";
 import Loader from "../../Features/Loading";
 import {MODALS} from "../../../utils/Modals";
+import {roles} from "../../../utils/const";
 
 // Components
 
@@ -19,7 +20,10 @@ class Index extends Component {
     }
 
     render() {
-    	const {open, users, loading, deleteModal} = this.props;
+    	const {open, users, loading, deleteModal, current} = this.props;
+    	const isAdmin = roles.admin === current.role;
+		const isSuperUser = roles.superUser === current.role;
+		const isUser = roles.user === current.role;
 
         return (
 			<div className={'fragment users'}>
@@ -45,6 +49,10 @@ class Index extends Component {
 									}
 								}
 
+								const isMe = current.id === key.id;
+								const allowEdit = isAdmin || isSuperUser || (isUser && isMe);
+								const allowTrash = (isAdmin && !isMe) || (isSuperUser && !isMe);
+
 								return (
 									<div
 										className={'card-container'}
@@ -56,13 +64,13 @@ class Index extends Component {
 											<div className={'action'}>
 												<ReactSVG
 													src="./img/pencil.svg"
-													onClick={() => {}}
-													className={'button edit'}
+													onClick={() => allowEdit && {}}
+													className={`button edit ${!allowEdit && 'disabled'}`}
 												/>
 												<ReactSVG
 													src="./img/trash.svg"
-													onClick={() => deleteModal(paramsModal)}
-													className={'button trash'}
+													onClick={() => allowTrash && deleteModal(paramsModal)}
+													className={`button trash ${!allowTrash && 'disabled'}`}
 												/>
 											</div>
 										</div>
@@ -87,6 +95,7 @@ Index.propTypes = {
 	deleteModal: PropTypes.func,
 	users : PropTypes.array,
 	loading : PropTypes.bool,
+	current : PropTypes.object
 };
 
 Index.defaultProps = {
@@ -94,6 +103,7 @@ Index.defaultProps = {
 	deleteModal : ()=> {},
 	users : [],
 	loading : false,
+	current : {}
 };
 
 export default connect(() => {return {}}, Functions)(Index);
