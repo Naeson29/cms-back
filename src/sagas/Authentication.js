@@ -17,15 +17,14 @@ const AuthenticationSaga = () => {
     const login = createHttpSaga(creators.login, AuthenticationApi.login);
     const logout = createHttpApiSaga(creators.logout, UserApi, 'revoke');
 
-    const navigationAfterLogin = function* () {
+    function* navigationAfterLogin() {
         yield put(navigationCreators.push.do('/'));
-    };
+    }
 
-    const clear = function* () {
+    function* clear() {
         yield call(() => AuthenticationService.logout());
         yield put(navigationCreators.push.do('/login'));
-    };
-
+    }
 
     function* root() {
         yield takeEvery(types.LOGIN.REQUEST, login);

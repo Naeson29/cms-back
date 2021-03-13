@@ -12,7 +12,6 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            formErrors: {},
             parameters: {
                 username: '',
                 password: '',
@@ -20,55 +19,29 @@ class Login extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.hasError = this.hasError.bind(this);
         this.login = this.login.bind(this);
     }
 
     handleChange(attribute, value) {
-        const newItem = { ...this.state.parameters };
+        const { parameters } = this.state;
+        const newItem = { ...parameters };
         newItem[attribute] = value;
 
         this.setState({
-            parameters: { ...newItem }, formErrors: {},
+            parameters: { ...newItem },
         });
-    }
-
-    checkForm() {
-        const { parameters } = this.state;
-        const errors = {};
-
-        Object.keys(parameters).map((key) => {
-            if (!parameters[key]) {
-                errors[key] = true;
-            }
-        });
-
-        this.setState({ formErrors: errors });
-        return Object.keys(errors).length === 0;
-    }
-
-    hasError() {
-        const { formErrors } = this.state;
-        if (!Object.keys(formErrors).length && !this.props.error) {
-            return;
-        }
-        return (
-            <span className="error">Utilisateur et/ou mot de passe incorrect(s)</span>
-        );
     }
 
     login(event) {
+        const { actionForm } = this.props;
+        const { parameters } = this.state;
         event.preventDefault();
-
-        if (!this.checkForm()) {
-            return;
-        }
-
-        this.props.actionForm(this.state.parameters);
+        actionForm(parameters);
     }
 
     render() {
-        const { username, password } = this.state.parameters;
+        const { parameters } = this.state;
+        const { username, password } = parameters;
 
         return (
             <div className="container-app-login">
@@ -81,7 +54,6 @@ class Login extends Component {
                                     id="email"
                                     name="email"
                                     type="text"
-                                    autoFocus
                                     className="input"
                                     placeholder="Adresse email"
                                     value={username}
@@ -98,7 +70,6 @@ class Login extends Component {
                                     value={password}
                                     onChange={event => this.handleChange('password', event.target.value)}
                                 />
-                                {this.hasError()}
                             </div>
                             <div className="submit-button">
                                 <Button color="primary">Connexion</Button>
