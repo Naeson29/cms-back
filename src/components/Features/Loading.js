@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Loading from 'react-loading-components';
 import colors from '../../utils/Color';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Loader extends Component {
     render() {
         return (

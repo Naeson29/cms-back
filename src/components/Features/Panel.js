@@ -9,32 +9,32 @@ import Action from '../../utils/Action';
 
 // Panels
 import PanelEvent from '../../containers/Screens/Dashboard/Panel';
-import PanelUser from '../../containers/Screens/Dashboard/Panel';
+import PanelUser from '../../containers/Screens/Users/Panel';
 import Functions from '../../containers/Features/PanelFunction';
 
 
 class Panel extends Component {
     constructor(props) {
         super(props);
-        this._render = this._render.bind(this);
+        this.renderPanel = this.renderPanel.bind(this);
     }
 
-    _render(panel) {
-        let component = null;
+    renderPanel(panel) {
+        const { close } = this.props;
+
+        let component;
 
         switch (panel.label) {
         case Action.PANEL_EVENT:
             component = (<PanelEvent {...panel.parameters} />);
-            panel.title = panel.parameters ? 'Modification d\'un évènement' : 'Ajout d\'un évènement';
             break;
 
         case Action.PANEL_USER:
             component = (<PanelUser {...panel.parameters} />);
-            panel.title = panel.parameters ? 'Modification d\'un utilisateur' : 'Ajout d\'un utilisateur';
             break;
 
         default:
-            console.error('Invalid panel action', panel.label);
+            component = (<div />);
             break;
         }
 
@@ -44,12 +44,17 @@ class Panel extends Component {
                     <div className="vertical-center">
                         <ReactSVG
                             src="./img/left.svg"
-                            onClick={() => this.props.close()}
+                            onClick={() => close()}
                             className="close-panel"
                         />
                     </div>
                     <div className="vertical-center">
-                        <button className="btn">Ajouter</button>
+                        <button
+                            className="btn"
+                            type="button"
+                        >
+                            Ajouter
+                        </button>
                         {/* {
                         !create &&
                         <span className={'btn delete'} onClick={this._deleteEvent}>{'Supprimer'}</span>
@@ -78,7 +83,7 @@ class Panel extends Component {
                             }}
                         >
                             <div className="panel-container right">
-                                {this._render(panel)}
+                                {this.renderPanel(panel)}
                             </div>
                         </CSSTransition>
                     )
@@ -89,7 +94,13 @@ class Panel extends Component {
 }
 
 Panel.propTypes = {
-    panel: PropTypes.object,
+    panel: PropTypes.oneOfType([PropTypes.object]),
+    close: PropTypes.func,
+};
+
+Panel.defaultProps = {
+    panel: {},
+    close: () => {},
 };
 
 export default connect(() => ({}), Functions)(Panel);

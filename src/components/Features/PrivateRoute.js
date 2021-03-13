@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import {
     Route, Redirect,
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { authentication } from '../../routes/Routes';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class PrivateRoute extends Component {
     render() {
-        const { component: Component, token, ...rest } = this.props;
+        const { Fragment, token, ...rest } = this.props;
 
         return (
             <Route
                 {...rest}
-
                 render={props => (token ? (
-                    <Component {...props} />
+                    <Fragment {...props} />
                 ) : (
                     <Redirect
                         to={{
@@ -26,5 +27,15 @@ class PrivateRoute extends Component {
         );
     }
 }
+
+PrivateRoute.propTypes = {
+    token: PropTypes.string,
+    Fragment: PropTypes.func,
+};
+
+PrivateRoute.defaultProps = {
+    token: '',
+    Fragment: () => {},
+};
 
 export default PrivateRoute;

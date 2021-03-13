@@ -1,7 +1,6 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ToastContainer } from 'react-toastify';
 
 // Routes
 import {
@@ -31,9 +30,9 @@ class App extends Component {
                 <div className="content-app">
                     <Switch>
                         {
-                            routes.map((route, index) => (
+                            routes.map(route => (
                                 <Route
-                                    key={index}
+                                    key={route.id}
                                     exact={route.exact}
                                     path={route.path}
                                     name={route.name}
@@ -52,6 +51,10 @@ class App extends Component {
 
 App.propTypes = {
     load: PropTypes.func,
+};
+
+App.defaultProps = {
+    load: () => {},
 };
 
 export default App;

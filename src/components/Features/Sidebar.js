@@ -5,6 +5,7 @@ import {
     Navs, isRoot, isRootPath,
 } from '../../utils/Sidebar';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Sidebar extends Component {
     render() {
         return (
@@ -13,11 +14,11 @@ class Sidebar extends Component {
                     <nav className="navbar">
                         <ul className="nav navbar-nav">
                             {
-                                Navs.map((key, index) => {
+                                Navs.map((key) => {
                                     const isActive = () => isRootPath(this.props);
 
                                     return (
-                                        <li className="nav-item" key={index}>
+                                        <li className="nav-item" key={key.id}>
                                             <NavLink
                                                 to={key.path}
                                                 isActive={isRoot(key.path) ? isActive : undefined}

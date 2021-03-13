@@ -13,8 +13,4 @@ class PanelEvent extends Component {
     }
 }
 
-PanelEvent.propTypes = {
-
-};
-
 export default connect(() => ({}), Functions)(PanelEvent);

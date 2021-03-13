@@ -4,15 +4,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as IconSolid from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Header extends Component {
     constructor(props) {
         super(props);
+
+        this.logout = this.logout.bind(this);
     }
 
+    logout() {
+        const { logout } = this.props;
+        logout();
+    }
 
     render() {
-        const { logout } = this.props;
-
         return (
             <nav className="navbar">
                 <NavLink to="/" className="navbar-brand" replace>
@@ -23,17 +28,27 @@ class Header extends Component {
                     <NavLink to="/parameters" replace>
                         <FontAwesomeIcon icon={IconSolid.faCog} />
                     </NavLink>
-                    <span onClick={() => logout()}>
+                    <div
+                        role="button"
+                        onClick={this.logout}
+                        onKeyDown={this.logout}
+                        tabIndex={0}
+                    >
                         <FontAwesomeIcon icon={IconSolid.faSignOutAlt} />
-                    </span>
+                    </div>
                 </div>
             </nav>
         );
     }
 }
 
-export default Header;
-
 Header.propTypes = {
-    logout: PropTypes.func.isRequired,
+    logout: PropTypes.func,
 };
+
+Header.defaultProps = {
+    logout: () => {},
+};
+
+
+export default Header;

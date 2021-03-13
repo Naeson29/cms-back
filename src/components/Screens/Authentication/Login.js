@@ -19,12 +19,12 @@ class Login extends Component {
             },
         };
 
-        this._handleChange = this._handleChange.bind(this);
-        this._hasError = this._hasError.bind(this);
-        this._login = this._login.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.hasError = this.hasError.bind(this);
+        this.login = this.login.bind(this);
     }
 
-    _handleChange(attribute, value) {
+    handleChange(attribute, value) {
         const newItem = { ...this.state.parameters };
         newItem[attribute] = value;
 
@@ -33,7 +33,7 @@ class Login extends Component {
         });
     }
 
-    _checkForm() {
+    checkForm() {
         const { parameters } = this.state;
         const errors = {};
 
@@ -47,7 +47,7 @@ class Login extends Component {
         return Object.keys(errors).length === 0;
     }
 
-    _hasError() {
+    hasError() {
         const { formErrors } = this.state;
         if (!Object.keys(formErrors).length && !this.props.error) {
             return;
@@ -57,10 +57,10 @@ class Login extends Component {
         );
     }
 
-    _login(event) {
+    login(event) {
         event.preventDefault();
 
-        if (!this._checkForm()) {
+        if (!this.checkForm()) {
             return;
         }
 
@@ -68,14 +68,13 @@ class Login extends Component {
     }
 
     render() {
-        const { t } = this.props;
         const { username, password } = this.state.parameters;
 
         return (
             <div className="container-app-login">
                 <div className="form-login">
                     <h1>Se connecter</h1>
-                    <form className="forms" onSubmit={this._login}>
+                    <form className="forms" onSubmit={this.login}>
                         <fieldset>
                             <div className="bloc-form">
                                 <input
@@ -86,7 +85,7 @@ class Login extends Component {
                                     className="input"
                                     placeholder="Adresse email"
                                     value={username}
-                                    onChange={event => this._handleChange('username', event.target.value)}
+                                    onChange={event => this.handleChange('username', event.target.value)}
                                 />
                             </div>
                             <div className="bloc-form">
@@ -97,9 +96,9 @@ class Login extends Component {
                                     className="input"
                                     placeholder="Mot de passe"
                                     value={password}
-                                    onChange={event => this._handleChange('password', event.target.value)}
+                                    onChange={event => this.handleChange('password', event.target.value)}
                                 />
-                                {this._hasError()}
+                                {this.hasError()}
                             </div>
                             <div className="submit-button">
                                 <Button color="primary">Connexion</Button>
@@ -113,7 +112,11 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    t: PropTypes.func,
+    actionForm: PropTypes.func,
+};
+
+Login.defaultProps = {
+    actionForm: () => {},
 };
 
 const LoginScreen = withTranslation('LoginScreen')(Login);

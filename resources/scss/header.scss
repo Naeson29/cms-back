@@ -66,7 +66,7 @@
       display      : flex;
       align-items  : center;
 
-      span, a {
+      div, a {
         color       : $primary-color;
         transition  : color 0.15s ease-in-out;
         cursor      : pointer;
@@ -74,6 +74,10 @@
 
         &:hover {
           color : $primary-color-light;
+        }
+        &:focus {
+          box-shadow : none;
+          outline    : 0
         }
       }
 

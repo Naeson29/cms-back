@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
 import { Modal } from '../../utils/Modal';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Modals extends Component {
     render() {
         const { open, type, params, close, destroy } = this.props;
@@ -20,12 +21,14 @@ class Modals extends Component {
                         <button
                             className="button yes"
                             onClick={() => destroy(params.destroy)}
+                            type="button"
                         >
                             Oui
                         </button>
                         <button
                             className="button no"
                             onClick={() => close()}
+                            type="button"
                         >
                             Non
                         </button>
@@ -60,7 +63,7 @@ class Modals extends Component {
 Modals.propTypes = {
     open: PropTypes.bool,
     type: PropTypes.string,
-    params: PropTypes.object,
+    params: PropTypes.oneOfType([PropTypes.object]),
     close: PropTypes.func,
     destroy: PropTypes.func,
 };

@@ -37,7 +37,7 @@ function App() {
                     <Router history={history}>
                         <Switch>
                             <Route exact path={authentication.login.path} name={authentication.login.name} component={AuthenticationContainer} />
-                            <PrivateRoute path="/" name="App" component={AppContainer} />
+                            <PrivateRoute path="/" name="App" Fragment={AppContainer} />
                         </Switch>
                     </Router>
                 </PersistGate>
