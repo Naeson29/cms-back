@@ -1,7 +1,6 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
 import { ReactSVG } from 'react-svg';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -22,7 +21,7 @@ class Index extends Component {
     }
 
     render() {
-    	const { open, users, loading, deleteModal, current, pagination, more } = this.props;
+        const { open, users, loading, deleteModal, current, pagination, more } = this.props;
 
         return (
             <div className="fragment users">
@@ -36,7 +35,9 @@ class Index extends Component {
                             <InfiniteScroll
                                 dataLength={users.length} // This is important field to render the next data
                                 className="list-card"
-                                next={() => { pagination.current_page < pagination.last_page && more(pagination.current_page + 1); }}
+                                next={() => {
+                                    if (pagination.current_page < pagination.last_page) more(pagination.current_page + 1);
+                                }}
                                 hasMore={pagination.current_page < pagination.last_page}
                                 loader={null}
                                 refreshFunction={() => {}}
@@ -44,7 +45,7 @@ class Index extends Component {
                                 pullDownToRefreshThreshold={50}
                             >
                                 {
-                                    users.map((key, index) => {
+                                    users.map((key) => {
                                         const { edit, trash } = AllowUser({
                                             ...getRoles(current),
                                             isMe: current.id === key.id,
@@ -53,7 +54,7 @@ class Index extends Component {
                                         return (
                                             <div
                                                 className="card-container"
-                                                key={index}
+                                                key={key.id}
                                             >
                                                 <div className="card">
                                                     <p className="name">{`${key.first_name} ${key.last_name}`}</p>
@@ -89,16 +90,18 @@ class Index extends Component {
 }
 
 Index.propTypes = {
+    load: PropTypes.func,
     open: PropTypes.func,
     more: PropTypes.func,
     deleteModal: PropTypes.func,
-    users: PropTypes.array,
+    users: PropTypes.oneOfType([PropTypes.array]),
     loading: PropTypes.bool,
-    current: PropTypes.object,
-    pagination: PropTypes.object,
+    current: PropTypes.oneOfType([PropTypes.object]),
+    pagination: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Index.defaultProps = {
+    load: () => {},
     open: () => {},
     more: () => {},
     deleteModal: () => {},

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 export const getPanelSubState = ({ Panel = {} }) => Panel;
 
-export const panel = createSelector(
+export const getPanel = createSelector(
     getPanelSubState,
     ({ panel }) => panel,
 );

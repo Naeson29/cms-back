@@ -22,7 +22,6 @@ const mapDispatchToProps = dispatch => ({
         dispatch(creators.search.request(paramUser));
     },
     more: (page) => {
-        console.log('ici');
         dispatch(creators.more.request({
             ...paramUser,
             page,

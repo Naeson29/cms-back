@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as IconSolid from '@fortawesome/free-solid-svg-icons/index';
 import { ReactSVG } from 'react-svg';
 import Action from '../../../utils/Action';
 import Functions from '../../../containers/Features/PanelFunction';
@@ -42,8 +40,15 @@ class Index extends Component {
 
 
 Index.propTypes = {
+    load: PropTypes.func,
     open: PropTypes.func,
     loading: PropTypes.bool,
+};
+
+Index.defaultProps = {
+    load: () => {},
+    open: () => {},
+    loading: false,
 };
 
 export default connect(() => ({}), Functions)(Index);

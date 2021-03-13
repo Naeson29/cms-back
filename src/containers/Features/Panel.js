@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import Panel from '../../components/Features/Panel';
-import { panel } from '../../selectors/Panel';
+import { getPanel } from '../../selectors/Panel';
 
 const mapStateToProps = state => ({
-    panel: panel(state),
+    panel: getPanel(state),
 });
 
 const mapDispatchToProps = () => ({
