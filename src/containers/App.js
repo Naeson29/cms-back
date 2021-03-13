@@ -4,7 +4,6 @@ import {withRouter}  from 'react-router-dom';
 import App from "../components/App";
 
 // Actions
-import {creators as AuthenticationCreators} from "../actions/Authentication"
 import {creators as usersCreators} from "../actions/User"
 import {current} from "../selectors/User";
 

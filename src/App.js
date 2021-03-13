@@ -18,7 +18,7 @@ import PrivateRoute            from "./containers/Features/PrivateRoute";
 import AppContainer            from "./containers/App";
 import moment                  from "moment";
 
-const history = createBrowserHistory();
+const history = createBrowserHistory({}, store);
 
 export { history };
 

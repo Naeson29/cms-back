@@ -1,6 +1,6 @@
 import { types } from '../actions/Navigation';
 import { takeEvery } from 'redux-saga/effects';
-import { history } from "../App";
+import { history } from '../App';
 
 export function NavigationSaga() {
 
