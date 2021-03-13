@@ -19,10 +19,7 @@ class App extends Component {
         props.load();
     }
 
-
     render() {
-        const { current } = this.props;
-
         return (
             <div className="container-app">
                 <div className="header-app">
@@ -52,8 +49,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    load: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired
+    load: PropTypes.func,
 };
 
 export default App;

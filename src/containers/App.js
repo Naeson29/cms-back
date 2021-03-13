@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch) => {
         load: () => {
             dispatch(usersCreators.getMe.request())
         },
-        logout: () => { dispatch(AuthenticationCreators.logout.do()) },
     };
 };
 
