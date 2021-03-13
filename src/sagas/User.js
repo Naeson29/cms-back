@@ -12,7 +12,7 @@ import {
 import { creators as ModalCreators } from '../actions/Modal';
 import { creators as navigationCreators } from '../actions/Navigation';
 
-export function UserSaga() {
+const UserSaga = () => {
     const defaultSagas = createModelApiSagas(types, creators, UserApi);
     const getMe = createHttpApiSaga(creators.getMe, UserApi, 'getMe');
 
@@ -34,6 +34,6 @@ export function UserSaga() {
     return {
         root,
     };
-}
+};
 
-export default UserSaga().root;
+export default UserSaga;

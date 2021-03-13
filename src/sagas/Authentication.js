@@ -11,10 +11,9 @@ import {
     types, creators,
 } from '../actions/Authentication';
 import { creators as navigationCreators } from '../actions/Navigation';
-
 import AuthenticationService from '../services/AuthenticationService';
 
-export function AuthenticationSaga() {
+const AuthenticationSaga = () => {
     const login = createHttpSaga(creators.login, AuthenticationApi.login);
     const logout = createHttpApiSaga(creators.logout, UserApi, 'revoke');
 
@@ -39,5 +38,5 @@ export function AuthenticationSaga() {
     return {
         root,
     };
-}
-export default AuthenticationSaga().root;
+};
+export default AuthenticationSaga;

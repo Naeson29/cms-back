@@ -1,3 +1,7 @@
 {
-  "extends": ["@beable_fr"]
+  "extends": ["@beable_fr"],
+  "plugins": [
+    "html",
+    "react"
+  ]
 }

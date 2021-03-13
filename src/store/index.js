@@ -13,6 +13,6 @@ export const persist = persistStore(store);
 export default store;
 
 // run Sagas listeners
-sagaMiddleware.run(AuthenticationSaga);
-sagaMiddleware.run(NavigationSaga);
-sagaMiddleware.run(UserSaga);
+sagaMiddleware.run(AuthenticationSaga().root);
+sagaMiddleware.run(NavigationSaga().root);
+sagaMiddleware.run(UserSaga().root);
