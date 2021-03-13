@@ -23,6 +23,29 @@ export const createDefaultModelActionCreators = types => ({
             };
         },
     },
+    more: {
+        request(data, meta = null) {
+            return {
+                type: types.MORE.REQUEST,
+                payload: data,
+                meta,
+            };
+        },
+        success(data, meta = null) {
+            return {
+                type: types.MORE.SUCCESS,
+                payload: data,
+                meta,
+            };
+        },
+        failure(data, meta = null) {
+            return {
+                type: types.MORE.FAILURE,
+                payload: data,
+                meta,
+            };
+        },
+    },
     create: {
         request(data, meta = null) {
             return {

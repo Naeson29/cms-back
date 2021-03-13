@@ -18,6 +18,46 @@ const expectNoStateMutation = fn => () => {
 
 describe('ModelReducerFunctions', () => {
     /* DEFAULT START */
+    describe('.defaultNone', () => {
+        it('is provided', () => {
+            expect(ModelReducerFunctions.defaultNone).toBeDefined();
+        });
+
+        it('is a function', () => {
+            expect(ModelReducerFunctions.defaultNone).toBeInstanceOf(Function);
+        });
+
+        it('does not mutate the state', expectNoStateMutation(ModelReducerFunctions.defaultNone));
+
+        it('disables any error and enables loading on the passed views section without any other changes', () => {
+            const state = {
+                additionalStateFieldKey: 'additionalStateFieldValue',
+                views: {
+                    additionalViewsFieldKey: 'additionalViewsFieldValue',
+                    spec: {
+                        additionalSectionFieldKey: 'additionalSectionFieldValue',
+                        error: 'specError',
+                        loading: false,
+                    },
+                },
+            };
+
+            const expectedState = {
+                additionalStateFieldKey: 'additionalStateFieldValue',
+                views: {
+                    additionalViewsFieldKey: 'additionalViewsFieldValue',
+                    spec: {
+                        additionalSectionFieldKey: 'additionalSectionFieldValue',
+                        error: null,
+                        loading: true,
+                    },
+                },
+            };
+
+            expect(ModelReducerFunctions.defaultNone(state, 'spec')).toStrictEqual(expectedState);
+        });
+    });
+
     describe('.defaultRequest', () => {
         it('is provided', () => {
             expect(ModelReducerFunctions.defaultRequest).toBeDefined();
@@ -170,6 +210,7 @@ and disables loading on the passed views section without any other changes', () 
                         results: ['key'],
                         pagination: {
                             current_page: 'current_page',
+                            last_page: 'last_page',
                             per_page: 'per_page',
                             total: 'total',
                         },
@@ -180,6 +221,7 @@ and disables loading on the passed views section without any other changes', () 
             const payload = {
                 data: [{ id: 'key', value: 'spec' }],
                 current_page: 'current_page',
+                last_page: 'last_page',
                 per_page: 'per_page',
                 total: 'total',
             };
@@ -218,6 +260,127 @@ and disables loading on the passed views section without any other changes', () 
         });
     });
     /* SEARCH END */
+
+    /* MORE START */
+    describe('.moreRequest', () => {
+        it('is provided', () => {
+            expect(ModelReducerFunctions.moreRequest()).toBeDefined();
+        });
+
+        it('is a function', () => {
+            expect(ModelReducerFunctions.moreRequest()).toBeInstanceOf(Function);
+        });
+
+        it('does not mutate the state', expectNoStateMutation(ModelReducerFunctions.moreRequest()));
+
+        it('is an alias for .defaultRequest', () => {
+            const state = {
+                additionalStateFieldKey: 'additionalStateFieldValue',
+                views: {
+                    additionalViewsFieldKey: 'additionalViewsFieldValue',
+                    spec: {
+                        additionalSectionFieldKey: 'additionalSectionFieldValue',
+                        error: 'specError',
+                        loading: false,
+                    },
+                },
+            };
+            expect(ModelReducerFunctions.moreRequest(state, 'spec'))
+                .toStrictEqual(ModelReducerFunctions.defaultNone(state, 'spec'));
+        });
+    });
+
+    describe('.moreSuccess', () => {
+        it('is provided', () => {
+            expect(ModelReducerFunctions.moreSuccess()).toBeDefined();
+        });
+
+        it('is a function', () => {
+            expect(ModelReducerFunctions.moreSuccess()).toBeInstanceOf(Function);
+        });
+
+        it('does not mutate the state', expectNoStateMutation(ModelReducerFunctions.moreSuccess()));
+
+        it('adds the fetched models data, updates the pagination, disables the error value \
+and disables loading on the passed views section without any other changes', () => {
+            const state = {
+                additionalStateFieldKey: 'additionalStateFieldValue',
+                data: { originalKey: 'originalValue' },
+                views: {
+                    additionalViewsFieldKey: 'additionalViewsFieldValue',
+                    spec: {
+                        additionalSectionFieldKey: 'additionalSectionFieldValue',
+                        error: 'specError',
+                        loading: true,
+                    },
+                },
+            };
+
+            const expectedState = {
+                additionalStateFieldKey: 'additionalStateFieldValue',
+                data: {
+                    key: { id: 'key', value: 'spec' },
+                    originalKey: 'originalValue',
+                },
+                views: {
+                    additionalViewsFieldKey: 'additionalViewsFieldValue',
+                    spec: {
+                        additionalSectionFieldKey: 'additionalSectionFieldValue',
+                        error: null,
+                        loading: false,
+                        results: ['key'],
+                        pagination: {
+                            current_page: 'current_page',
+                            last_page: 'last_page',
+                            per_page: 'per_page',
+                            total: 'total',
+                        },
+                    },
+                },
+            };
+
+            const payload = {
+                data: [{ id: 'key', value: 'spec' }],
+                current_page: 'current_page',
+                last_page: 'last_page',
+                per_page: 'per_page',
+                total: 'total',
+            };
+
+            expect(ModelReducerFunctions.moreSuccess(state, payload, 'spec'))
+                .toStrictEqual(expectedState);
+        });
+    });
+
+    describe('.moreFailure', () => {
+        it('is provided', () => {
+            expect(ModelReducerFunctions.moreFailure()).toBeDefined();
+        });
+
+        it('is a function', () => {
+            expect(ModelReducerFunctions.moreFailure()).toBeInstanceOf(Function);
+        });
+
+        it('does not mutate the state', expectNoStateMutation(ModelReducerFunctions.moreFailure()));
+
+        it('is an alias for .defaultFailure', () => {
+            const state = {
+                additionalStateFieldKey: 'additionalStateFieldValue',
+                views: {
+                    additionalViewsFieldKey: 'additionalViewsFieldValue',
+                    spec: {
+                        additionalSectionFieldKey: 'additionalSectionFieldValue',
+                        error: null,
+                        loading: true,
+                    },
+                },
+            };
+
+            expect(ModelReducerFunctions.moreFailure(state, 'specError', 'spec'))
+                .toStrictEqual(ModelReducerFunctions.defaultFailure(state, 'specError', 'spec'));
+        });
+    });
+    /* MORE END */
 
     /* CREATE START */
     describe('.createRequest', () => {

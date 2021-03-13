@@ -12,6 +12,7 @@ describe('createDefaultModelActionCreators', () => {
     it('creates the usual actions creators tree', () => {
         const types = {
             SEARCH: { REQUEST: 'spec/SEARCH_REQUEST', SUCCESS: 'spec/SEARCH_SUCCESS', FAILURE: 'spec/SEARCH_FAILURE' },
+            MORE: { REQUEST: 'spec/MORE_REQUEST', SUCCESS: 'spec/MORE_SUCCESS', FAILURE: 'spec/MORE_FAILURE' },
             CREATE: { REQUEST: 'spec/CREATE_REQUEST', SUCCESS: 'spec/CREATE_SUCCESS', FAILURE: 'spec/CREATE_FAILURE' },
             READ: { REQUEST: 'spec/READ_REQUEST', SUCCESS: 'spec/READ_SUCCESS', FAILURE: 'spec/READ_FAILURE' },
             UPDATE: { REQUEST: 'spec/UPDATE_REQUEST', SUCCESS: 'spec/UPDATE_SUCCESS', FAILURE: 'spec/UPDATE_FAILURE' },
@@ -22,6 +23,11 @@ describe('createDefaultModelActionCreators', () => {
 
         expect(creators).toMatchObject({
             search: {
+                request: expect.any(Function),
+                success: expect.any(Function),
+                failure: expect.any(Function),
+            },
+            more: {
                 request: expect.any(Function),
                 success: expect.any(Function),
                 failure: expect.any(Function),
@@ -54,6 +60,10 @@ describe('createDefaultModelActionCreators', () => {
         expect(creators.search.request(data)).toStrictEqual({ type: types.SEARCH.REQUEST, payload: data, meta: null });
         expect(creators.search.success(data)).toStrictEqual({ type: types.SEARCH.SUCCESS, payload: data, meta: null });
         expect(creators.search.failure(data)).toStrictEqual({ type: types.SEARCH.FAILURE, payload: data, meta: null });
+
+        expect(creators.more.request(data)).toStrictEqual({ type: types.MORE.REQUEST, payload: data, meta: null });
+        expect(creators.more.success(data)).toStrictEqual({ type: types.MORE.SUCCESS, payload: data, meta: null });
+        expect(creators.more.failure(data)).toStrictEqual({ type: types.MORE.FAILURE, payload: data, meta: null });
 
         expect(creators.create.request(data)).toStrictEqual({ type: types.CREATE.REQUEST, payload: { data }, meta: null });
         expect(creators.create.success(data)).toStrictEqual({ type: types.CREATE.SUCCESS, payload: data, meta: null });

@@ -6,6 +6,11 @@ const types = {
         SUCCESS: 'spec/SEARCH_SUCCESS',
         FAILURE: 'spec/SEARCH_FAILURE',
     },
+    MORE: {
+        REQUEST: 'spec/MORE_REQUEST',
+        SUCCESS: 'spec/MORE_SUCCESS',
+        FAILURE: 'spec/MORE_FAILURE',
+    },
     CREATE: {
         REQUEST: 'spec/CREATE_REQUEST',
         SUCCESS: 'spec/CREATE_SUCCESS',
@@ -32,6 +37,9 @@ const functions = {
     searchRequest: jest.fn(),
     searchSuccess: jest.fn(),
     searchFailure: jest.fn(),
+    moreRequest: jest.fn(),
+    moreSuccess: jest.fn(),
+    moreFailure: jest.fn(),
     createRequest: jest.fn(),
     createSuccess: jest.fn(),
     createFailure: jest.fn(),
@@ -66,6 +74,9 @@ describe('DEFAULT_MODEL_REDUCER_FUNCTIONS', () => {
             searchRequest: expect.any(Function),
             searchSuccess: expect.any(Function),
             searchFailure: expect.any(Function),
+            moreRequest: expect.any(Function),
+            moreSuccess: expect.any(Function),
+            moreFailure: expect.any(Function),
             createRequest: expect.any(Function),
             createSuccess: expect.any(Function),
             createFailure: expect.any(Function),
@@ -107,6 +118,10 @@ describe('createModelReducer', () => {
         functions.searchRequest.mockImplementation(() => expectedState);
         expect(modelReducer('state', { type: types.SEARCH.REQUEST })).toBe(expectedState);
         expect(functions.searchRequest).toBeCalled();
+
+        functions.moreRequest.mockImplementation(() => expectedState);
+        expect(modelReducer('state', { type: types.MORE.REQUEST })).toBe(expectedState);
+        expect(functions.moreRequest).toBeCalled();
     });
 
     it('allows to fully omit the types (resulting in a dummy reducer behavior))', () => {
@@ -123,7 +138,7 @@ describe('createModelReducer', () => {
         const initialState = 'initialState';
         const state = 'state';
         const expectedState = 'spec';
-        const modelReducer = createModelReducer(initialState, { SEARCH: types.SEARCH }, functions);
+        const modelReducer = createModelReducer(initialState, { SEARCH: types.SEARCH, MORE: types.MORE }, functions);
 
         expect(modelReducer).toBeInstanceOf(Function);
         expect(modelReducer(state)).toBe(state);
@@ -131,6 +146,10 @@ describe('createModelReducer', () => {
 
         functions.searchRequest.mockImplementation(() => expectedState);
         expect(modelReducer(state, { type: types.SEARCH.REQUEST })).toBe(expectedState);
+        expect(functions.searchRequest).toBeCalled();
+
+        functions.moreRequest.mockImplementation(() => expectedState);
+        expect(modelReducer(state, { type: types.MORE.REQUEST })).toBe(expectedState);
         expect(functions.searchRequest).toBeCalled();
 
         expect(modelReducer(state, { type: types.CREATE.REQUEST })).toBe(state);
@@ -172,6 +191,10 @@ describe('ModelReducer', () => {
     it('calls the searchRequest function on SEARCH.REQUEST action', expectFunctionCallOnActionType('searchRequest', types.SEARCH.REQUEST));
     it('calls the searchSuccess function on SEARCH.SUCCESS action', expectFunctionCallOnActionType('searchSuccess', types.SEARCH.SUCCESS));
     it('calls the searchFailure function on SEARCH.FAILURE action', expectFunctionCallOnActionType('searchFailure', types.SEARCH.FAILURE));
+
+    it('calls the searchRequest function on MORE.REQUEST action', expectFunctionCallOnActionType('moreRequest', types.MORE.REQUEST));
+    it('calls the searchSuccess function on MORE.SUCCESS action', expectFunctionCallOnActionType('moreSuccess', types.MORE.SUCCESS));
+    it('calls the searchFailure function on MORE.FAILURE action', expectFunctionCallOnActionType('moreFailure', types.MORE.FAILURE));
 
     it('calls the createRequest function on CREATE.REQUEST action', expectFunctionCallOnActionType('createRequest', types.CREATE.REQUEST));
     it('calls the createSuccess function on CREATE.SUCCESS action', expectFunctionCallOnActionType('createSuccess', types.CREATE.SUCCESS));

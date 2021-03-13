@@ -73,6 +73,22 @@ describe('ModelApi', () => {
         });
     });
 
+    describe('.more', () => {
+        it('is provided', () => {
+            expect(apiInstance.more).toBeDefined();
+        });
+
+        it('is a function', () => {
+            expect(apiInstance.more).toBeInstanceOf(Function);
+        });
+
+        it('sends a valid GET / request and receives a valid response', async () => {
+            const { data: response, status } = (await apiInstance.more());
+            expect(status).toBe(200);
+            expect(typeof response).toBe(typeof {});
+        });
+    });
+
     describe('.create', () => {
         it('is provided', () => {
             expect(apiInstance.create).toBeDefined();

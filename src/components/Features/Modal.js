@@ -44,9 +44,6 @@ class Modals extends Component {
         return (
             <ReactModal
                 isOpen={open}
-                onAfterOpen={()=>{}}
-                onRequestClose={()=>{}}
-                contentLabel="Example Modal"
                 appElement={document.getElementById('root')}
                 className={'modal'}
                 overlayClassName={'overlay'}

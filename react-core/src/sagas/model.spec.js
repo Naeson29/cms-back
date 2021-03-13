@@ -12,6 +12,11 @@ const types = {
         SUCCESS: 'spec/SEARCH_SUCCESS',
         FAILURE: 'spec/SEARCH_FAILURE',
     },
+    MORE: {
+        REQUEST: 'spec/MORE_REQUEST',
+        SUCCESS: 'spec/MORE_SUCCESS',
+        FAILURE: 'spec/MORE_FAILURE',
+    },
     CREATE: {
         REQUEST: 'spec/CREATE_REQUEST',
         SUCCESS: 'spec/CREATE_SUCCESS',
@@ -51,6 +56,26 @@ const creators = {
         failure(data) {
             return {
                 type: types.SEARCH.FAILURE,
+                payload: data,
+            };
+        },
+    },
+    more: {
+        request() {
+            return {
+                type: types.MORE.REQUEST,
+                payload: {},
+            };
+        },
+        success(data) {
+            return {
+                type: types.MORE.SUCCESS,
+                payload: data,
+            };
+        },
+        failure(data) {
+            return {
+                type: types.MORE.FAILURE,
                 payload: data,
             };
         },
@@ -139,6 +164,7 @@ const creators = {
 
 const api = {
     search: jest.fn(),
+    more: jest.fn(),
     create: jest.fn(),
     read: jest.fn(),
     update: jest.fn(),
@@ -147,6 +173,8 @@ const api = {
 
 class ApiClass extends createModelApiClass(createHttpApiClass(), '/spec') {
     search = api.search
+
+    more = api.search
 
     create = api.create
 
@@ -244,6 +272,7 @@ describe('ModelSagas', () => {
         const Generator = (function* generator() { yield undefined; }).constructor;
         expect(sagas).toMatchObject({
             search: expect.any(Generator),
+            more: expect.any(Generator),
             create: expect.any(Generator),
             read: expect.any(Generator),
             update: expect.any(Generator),
@@ -255,6 +284,22 @@ describe('ModelSagas', () => {
     it('allows to provide partial creators', async () => {
         const partialCreators = { search: { ...(creators.search) } };
         const expectedProvidedSagaName = 'search';
+        const expectedNotProvidedSagaName = 'create';
+
+        const {
+            [expectedProvidedSagaName]: expectedProvidedSaga,
+            [expectedNotProvidedSagaName]: expectedNotProvidedSaga,
+        } = createModelSagas(types, partialCreators, api);
+
+        expect(expectedProvidedSaga).toBeDefined();
+        expect(expectedProvidedSaga).not.toBeNull();
+        expect(expectedNotProvidedSaga).toBeDefined();
+        expect(expectedNotProvidedSaga).toBeNull();
+    });
+
+    it('allows to provide partial creators', async () => {
+        const partialCreators = { more: { ...(creators.more) } };
+        const expectedProvidedSagaName = 'more';
         const expectedNotProvidedSagaName = 'create';
 
         const {
@@ -288,6 +333,10 @@ describe('ModelSagas', () => {
         it('dispatches the right SEARCH actions on API success/failure', expectModelSagasDispatchesToMatchCrudActionAndApiResponse('search'));
     });
 
+    describe('.more', () => {
+        it('dispatches the right MORE actions on API success/failure', expectModelSagasDispatchesToMatchCrudActionAndApiResponse('more'));
+    });
+
     describe('.create', () => {
         it('dispatches the right CREATE actions on API success/failure', expectModelSagasDispatchesToMatchCrudActionAndApiResponse('create'));
     });
@@ -307,6 +356,8 @@ describe('ModelSagas', () => {
     describe('.root', () => {
         it('listens on SEARCH_REQUEST action to launch the search saga',
             expectModelSagasCrudActionRequestNonBlockingListenerToBeCreated(types.SEARCH.REQUEST, 'search'));
+        it('listens on MORE_REQUEST action to launch the more saga',
+            expectModelSagasCrudActionRequestNonBlockingListenerToBeCreated(types.MORE.REQUEST, 'more'));
         it('listens on CREATE_REQUEST action to launch the create saga',
             expectModelSagasCrudActionRequestNonBlockingListenerToBeCreated(types.CREATE.REQUEST, 'create'));
         it('listens on READ_REQUEST action to launch the read saga',
@@ -318,7 +369,7 @@ describe('ModelSagas', () => {
 
         it('is resilient to empty or partial types declaration', async () => {
             const emptyTypes = {};
-            const partialTypes = { SEARCH: { ...(types.SEARCH) } };
+            const partialTypes = { SEARCH: { ...(types.SEARCH) }, MORE: { ...(types.MORE) } };
             const expectedProvidedSagaName = 'search';
 
             const triggered = [];
@@ -330,6 +381,7 @@ describe('ModelSagas', () => {
             const { root: partialRoot, [expectedProvidedSagaName]: expectedProvidedSaga } = createModelSagas(partialTypes, creators, api);
             expect(() => runSaga(runOptions, partialRoot)).not.toThrow();
             expect(triggered).toContainEqual(takeEvery(partialTypes.SEARCH.REQUEST, expectedProvidedSaga));
+            expect(triggered).toContainEqual(takeEvery(partialTypes.MORE.REQUEST, expectedProvidedSaga));
         });
     });
 });
@@ -345,6 +397,7 @@ describe('ModelApiSagas', () => {
         const Generator = (function* generator() { yield undefined; }).constructor;
         expect(sagas).toMatchObject({
             search: expect.any(Generator),
+            more: expect.any(Generator),
             create: expect.any(Generator),
             read: expect.any(Generator),
             update: expect.any(Generator),
@@ -373,6 +426,8 @@ describe('ModelApiSagas', () => {
         class PartialApiClass extends ApiClass {
             search = null
 
+            more = null
+
             read = null
 
             update = null
@@ -398,6 +453,10 @@ describe('ModelApiSagas', () => {
         it('dispatches the right SEARCH actions on API success/failure', expectModelApiSagasDispatchesToMatchCrudActionAndApiResponse('search'));
     });
 
+    describe('.more', () => {
+        it('dispatches the right MORE actions on API success/failure', expectModelApiSagasDispatchesToMatchCrudActionAndApiResponse('more'));
+    });
+
     describe('.create', () => {
         it('dispatches the right CREATE actions on API success/failure', expectModelApiSagasDispatchesToMatchCrudActionAndApiResponse('create'));
     });
@@ -417,6 +476,8 @@ describe('ModelApiSagas', () => {
     describe('.root', () => {
         it('listens on SEARCH_REQUEST action to launch the search saga',
             expectModelApiSagasCrudActionRequestNonBlockingListenerToBeCreated(types.SEARCH.REQUEST, 'search'));
+        it('listens on MORE_REQUEST action to launch the more saga',
+            expectModelApiSagasCrudActionRequestNonBlockingListenerToBeCreated(types.MORE.REQUEST, 'more'));
         it('listens on CREATE_REQUEST action to launch the create saga',
             expectModelApiSagasCrudActionRequestNonBlockingListenerToBeCreated(types.CREATE.REQUEST, 'create'));
         it('listens on READ_REQUEST action to launch the read saga',
@@ -428,7 +489,7 @@ describe('ModelApiSagas', () => {
 
         it('is resilient to empty or partial types declaration', async () => {
             const emptyTypes = {};
-            const partialTypes = { SEARCH: { ...(types.SEARCH) } };
+            const partialTypes = { SEARCH: { ...(types.SEARCH) }, MORE: { ...(types.MORE) } };
             const expectedProvidedSagaName = 'search';
 
             const triggered = [];
@@ -440,6 +501,7 @@ describe('ModelApiSagas', () => {
             const { root: partialRoot, [expectedProvidedSagaName]: expectedProvidedSaga } = createModelApiSagas(partialTypes, creators, ApiClass);
             expect(() => runSaga(runOptions, partialRoot)).not.toThrow();
             expect(triggered).toContainEqual(takeEvery(partialTypes.SEARCH.REQUEST, expectedProvidedSaga));
+            expect(triggered).toContainEqual(takeEvery(partialTypes.MORE.REQUEST, expectedProvidedSaga));
         });
     });
 });

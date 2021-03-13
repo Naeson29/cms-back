@@ -41,6 +41,14 @@ export const createModelApiClass = (HttpApi, path) => {
 
         /**
          *
+         * @method ModelApi#search
+         * @param {object} [params={}]
+         * @return {AxiosPromise}
+         */
+        more = ({ params = {}, ...options } = {}) => this.get({ url: this.path, params, options });
+
+        /**
+         *
          * @method ModelApi#read
          * @param {string} id
          * @return {AxiosPromise}

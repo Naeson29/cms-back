@@ -10,6 +10,7 @@ import Loader from "../../Features/Loading";
 import {deleteUser} from "../../../utils/Modal";
 import {getRoles} from "../../../utils/Role";
 import {AllowUser} from "../../../utils/Allow";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Components
 
@@ -21,7 +22,7 @@ class Index extends Component {
     }
 
     render() {
-    	const {open, users, loading, deleteModal, current} = this.props;
+    	const {open, users, loading, deleteModal, current, pagination, more} = this.props;
 
         return (
 			<div className={'fragment users'}>
@@ -31,46 +32,55 @@ class Index extends Component {
 				{
 					loading ? <Loader /> :
 
-					<div className={'list-card'}>
-						{
-							users.map((key, index)=> {
+						<InfiniteScroll
+							dataLength={users.length} //This is important field to render the next data
+							className={'list-card'}
+							next={()=> { pagination.current_page < pagination.last_page && more(pagination.current_page + 1)}}
+							hasMore={pagination.current_page < pagination.last_page}
+							loader={<h4>Loading...</h4>}
+							refreshFunction={()=>{} }
+							pullDownToRefresh
+							pullDownToRefreshThreshold={50}
+						>
+							{
+								users.map((key, index)=> {
 
-								const {edit, trash} = AllowUser({
-									...getRoles(current),
-									isMe : current.id === key.id
-								});
+									const {edit, trash} = AllowUser({
+										...getRoles(current),
+										isMe : current.id === key.id
+									});
 
-								return (
-									<div
-										className={'card-container'}
-										key={index}
-									>
-										<div className={'card'}>
-											<p className={'name'}>{`${key.first_name} ${key.last_name}`}</p>
-											<p className={'email'}>{key.email}</p>
-											<div className={'action'}>
-												<ReactSVG
-													src="./img/pencil.svg"
-													onClick={() => edit && {}}
-													className={`button edit ${!edit && 'disabled'}`}
-												/>
-												<ReactSVG
-													src="./img/trash.svg"
-													onClick={() => trash && deleteModal(deleteUser(key))}
-													className={`button trash ${!trash && 'disabled'}`}
-												/>
+									return (
+										<div
+											className={'card-container'}
+											key={index}
+										>
+											<div className={'card'}>
+												<p className={'name'}>{`${key.first_name} ${key.last_name}`}</p>
+												<p className={'email'}>{key.email}</p>
+												<div className={'action'}>
+													<ReactSVG
+														src="./img/pencil.svg"
+														onClick={() => edit && {}}
+														className={`button edit ${!edit && 'disabled'}`}
+													/>
+													<ReactSVG
+														src="./img/trash.svg"
+														onClick={() => trash && deleteModal(deleteUser(key))}
+														className={`button trash ${!trash && 'disabled'}`}
+													/>
+												</div>
 											</div>
 										</div>
-									</div>
-								)
-							})
-						}
-						<ReactSVG
-							src="./img/add.svg"
-							onClick={() => open(Action.PANEL_USER)}
-							className={'add'}
-						/>
-					</div>
+									)
+								})
+							}
+							<ReactSVG
+								src="./img/add.svg"
+								onClick={() => open(Action.PANEL_USER)}
+								className={'add'}
+							/>
+						</InfiniteScroll>
 				}
 			</div>
         );
@@ -79,18 +89,22 @@ class Index extends Component {
 
 Index.propTypes = {
 	open: PropTypes.func,
+	more: PropTypes.func,
 	deleteModal: PropTypes.func,
 	users : PropTypes.array,
 	loading : PropTypes.bool,
-	current : PropTypes.object
+	current : PropTypes.object,
+	pagination : PropTypes.object,
 };
 
 Index.defaultProps = {
 	open : ()=> {},
+	more : ()=> {},
 	deleteModal : ()=> {},
 	users : [],
 	loading : false,
-	current : {}
+	current : {},
+	pagination : {},
 };
 
 export default connect(() => {return {}}, Functions)(Index);

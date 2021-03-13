@@ -1,4 +1,8 @@
 /* DEFAULT START */
+export const defaultNone = (state) => ({
+    ...state
+});
+
 export const defaultRequest = (state, section) => ({
     ...state,
     views: {
@@ -27,7 +31,7 @@ export const defaultFailure = (state, payload, section) => ({
 /* SEARCH START */
 export const searchRequest = defaultRequest;
 
-export const searchSuccess = (state, { data, current_page, per_page, total }, section) => ({ // eslint-disable-line camelcase
+export const searchSuccess = (state, { data, current_page, per_page, total, last_page }, section) => ({ // eslint-disable-line camelcase
     ...state,
     data: { ...state.data, ...data.reduce((acc, current) => ({ ...acc, [current.id]: current }), {}) },
     views: {
@@ -37,6 +41,7 @@ export const searchSuccess = (state, { data, current_page, per_page, total }, se
             results: data.map(({ id }) => id),
             pagination: {
                 current_page,
+                last_page,
                 per_page,
                 total,
             },
@@ -49,10 +54,42 @@ export const searchSuccess = (state, { data, current_page, per_page, total }, se
 export const searchFailure = defaultFailure;
 /* SEARCH END */
 
+/* MORE START */
+export const moreRequest = defaultNone;
+
+export const moreSuccess = (state, { data, current_page, per_page, total, last_page }, section) => ({ // eslint-disable-line camelcase
+    ...state,
+    data : {
+        ...state.data,
+        ...data.reduce((acc, current) => ({ ...acc, [current.id]: current }), {})
+    },
+    views: {
+        ...state.views,
+        [section]: {
+            ...state.views[section],
+            results: [
+                ...state.views[section].results,
+                ...data.map(({id}) => id)
+            ],
+            pagination: {
+                current_page,
+                last_page,
+                per_page,
+                total,
+            },
+            loading: false,
+            error: null,
+        }
+    }
+});
+
+export const moreFailure = defaultFailure;
+/* MORE END */
+
 /* CREATE START */
 export const createRequest = defaultRequest;
 
-export const createSuccess = (state, data, section) => ({
+export const createSuccess = (state, {data}, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -75,7 +112,7 @@ export const createFailure = defaultFailure;
 export const readRequest = defaultRequest;
 export const readFailure = defaultFailure;
 
-export const readSuccess = (state, data, section) => ({
+export const readSuccess = (state, {data}, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -98,7 +135,7 @@ export const readSuccess = (state, data, section) => ({
 /* UPDATE START */
 export const updateRequest = defaultRequest;
 
-export const updateSuccess = (state, data, section) => ({
+export const updateSuccess = (state, {data}, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -123,7 +160,7 @@ export const updateFailure = defaultFailure;
 /* DESTROY START */
 export const destroyRequest = defaultRequest;
 
-export const destroySuccess = (state, data, section) => {
+export const destroySuccess = (state, {data}, section) => {
     const {views} = state;
     delete state.data[data.id];
     const results = views.index.results.filter(key => key !== data.id);
