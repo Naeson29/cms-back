@@ -37,8 +37,8 @@ class Index extends Component {
 							className={'list-card'}
 							next={()=> { pagination.current_page < pagination.last_page && more(pagination.current_page + 1)}}
 							hasMore={pagination.current_page < pagination.last_page}
-							loader={<h4>Loading...</h4>}
-							refreshFunction={()=>{} }
+							loader={null}
+							refreshFunction={()=>{}}
 							pullDownToRefresh
 							pullDownToRefreshThreshold={50}
 						>
