@@ -1,4 +1,6 @@
-import { createDefaultModelActionTypes, createDefaultModelActionCreators, createDefaultHttpActionTypes} from '../../react-core';
+import {
+    createDefaultModelActionTypes, createDefaultModelActionCreators, createDefaultHttpActionTypes,
+} from '../../react-core';
 
 export const types = {
     ...createDefaultModelActionTypes('user'),
@@ -8,17 +10,17 @@ export const types = {
 export const creators = {
     ...createDefaultModelActionCreators(types),
     getMe: {
-        request : payload => ({
+        request: payload => ({
             type: types.GET_ME.REQUEST,
-            payload
+            payload,
         }),
-        success : payload => ({
+        success: payload => ({
             type: types.GET_ME.SUCCESS,
-            payload
+            payload,
         }),
-        failure : payload => ({
+        failure: payload => ({
             type: types.GET_ME.FAILURE,
-            payload
-        })
-    }
+            payload,
+        }),
+    },
 };

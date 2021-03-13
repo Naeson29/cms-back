@@ -11,18 +11,18 @@ export const creators = {
             return {
                 type: types.PUSH.DO,
                 payload: {
-                    path: path,
-                }
+                    path,
+                },
             };
-        }
+        },
     },
     back: {
         do() {
             return {
                 type: types.BACK.DO,
                 payload: {
-                }
+                },
             };
-        }
+        },
     },
 };

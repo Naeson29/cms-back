@@ -1,8 +1,8 @@
-import {createDefaultHttpActionTypes} from '../../react-core';
+import { createDefaultHttpActionTypes } from '../../react-core';
 
 export const types = {
     LOGIN: createDefaultHttpActionTypes('authentication', 'LOGIN'),
-    LOGOUT: createDefaultHttpActionTypes('authentication', 'LOGOUT')
+    LOGOUT: createDefaultHttpActionTypes('authentication', 'LOGOUT'),
 };
 
 export const creators = {
@@ -10,40 +10,40 @@ export const creators = {
         request(payload) {
             return {
                 type: types.LOGIN.REQUEST,
-                payload
+                payload,
             };
         },
         success(data) {
             return {
                 type: types.LOGIN.SUCCESS,
-                payload: data
+                payload: data,
             };
         },
         failure(data) {
             return {
                 type: types.LOGIN.FAILURE,
-                payload: data
+                payload: data,
             };
-        }
+        },
     },
     logout: {
         request(payload) {
             return {
                 type: types.LOGOUT.REQUEST,
-                payload
+                payload,
             };
         },
         success(data) {
             return {
                 type: types.LOGOUT.SUCCESS,
-                payload: data
+                payload: data,
             };
         },
         failure(data) {
             return {
                 type: types.LOGOUT.FAILURE,
-                payload: data
+                payload: data,
             };
-        }
-    }
+        },
+    },
 };

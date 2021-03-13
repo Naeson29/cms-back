@@ -1,17 +1,19 @@
 // Library
-import React, {Component} from 'react';
-import PropTypes          from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ToastContainer } from 'react-toastify';
 
 // Routes
-import { Route, Switch } from 'react-router-dom';
+import {
+    Route, Switch,
+} from 'react-router-dom';
 import routes from '../routes/Routes';
 
 // Components
-import Header from "../containers/Features/Header";
-import Sidebar from "../containers/Features/Sidebar";
-import Panel from "../containers/Features/Panel";
-import Modal from "../containers/Features/Modal";
+import Header from '../containers/Features/Header';
+import Sidebar from '../containers/Features/Sidebar';
+import Panel from '../containers/Features/Panel';
+import Modal from '../containers/Features/Modal';
 
 class App extends Component {
     constructor(props) {
@@ -23,10 +25,10 @@ class App extends Component {
         return (
             <div className="container-app">
                 <div className="header-app">
-                    <Header/>
+                    <Header />
                 </div>
-                <Sidebar/>
-                <div className={'content-app'}>
+                <Sidebar />
+                <div className="content-app">
                     <Switch>
                         {
                             routes.map((route, index) => (
@@ -40,8 +42,8 @@ class App extends Component {
                             ))
                         }
                     </Switch>
-                    <Panel/>
-                    <Modal/>
+                    <Panel />
+                    <Modal />
                 </div>
             </div>
         );

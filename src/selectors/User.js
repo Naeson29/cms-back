@@ -1,39 +1,38 @@
+import { createSelector } from 'reselect';
 import {
     createModelDestroyViewSelector,
     createModelIndexViewSelector,
-    createModelShowViewSelector
-} from "../../react-core";
-import { createSelector } from 'reselect';
+    createModelShowViewSelector,
+} from '../../react-core';
 
 export const list = createSelector(
     createModelIndexViewSelector('User'),
-    ({ content = [] }) =>  content
+    ({ content = [] }) => content,
 );
 
 export const loadingList = createSelector(
     createModelIndexViewSelector('User'),
-    ({ loading = true }) =>  loading
+    ({ loading = true }) => loading,
 );
 
 export const paginationList = createSelector(
     createModelIndexViewSelector('User'),
-    ({ pagination = {} }) =>  pagination
+    ({ pagination = {} }) => pagination,
 );
 
-export const detail = (id) => createSelector(
+export const detail = id => createSelector(
     createModelShowViewSelector('User', id),
-    ({ content = {} }) =>  content
+    ({ content = {} }) => content,
 );
 
-export const loadingDestroy = (id) => createSelector(
+export const loadingDestroy = id => createSelector(
     createModelDestroyViewSelector('User', id),
-    ({ loading = false }) =>  loading
+    ({ loading = false }) => loading,
 );
 
 export const getUserSubState = ({ User = {} }) => User;
 
-export const current = createSelector(
+export const getCurrent = createSelector(
     getUserSubState,
-    ({current}) => current
+    ({ current }) => current,
 );
-

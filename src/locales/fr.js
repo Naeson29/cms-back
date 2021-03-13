@@ -1,6 +1,6 @@
 export default {
-    Default:{
-        tables:{
+    Default: {
+        tables: {
             id: 'Identifiant',
             first_name: 'Prénom',
             last_name: 'Nom',
@@ -100,9 +100,9 @@ export default {
             id_customer: 'ID Pharm.',
             subscription_renew_at: 'Proch. CDE',
             number_product: 'Nb rouleaux',
-            timezone: 'Zone horaire'
+            timezone: 'Zone horaire',
         },
-        cards:{
+        cards: {
             id: 'Identifiant : ',
             subscription_renew_at: 'Prochaine commande : ',
             first_name: 'Nom : ',
@@ -189,9 +189,9 @@ export default {
             id_customer: 'ID Pharmacie : ',
             number_product: 'Nombre de rouleaux : ',
             timezone: 'Zone horaire : ',
-            deleted_or_not: 'Données Actives/Inactives'
+            deleted_or_not: 'Données Actives/Inactives',
         },
-        forms:{
+        forms: {
             id: 'Identifiant ',
             first_name: 'Prénom* ',
             last_name: 'Nom* ',
@@ -269,7 +269,7 @@ export default {
             weight: 'Poids',
             end_license: 'Fin de la licence',
             number_product: 'Nombre de rouleaux',
-            timezone: 'Zone horaire'
+            timezone: 'Zone horaire',
         },
         labels: {
             create: 'Création',
@@ -285,7 +285,7 @@ export default {
             maximize: 'Agrandir',
             more: 'Plus de paramètres',
             less: 'Moins de paramètres',
-            downloadIban: 'Télécharger IBAN manquants'
+            downloadIban: 'Télécharger IBAN manquants',
         },
         actions: {
             logout: 'Se déconnecter',
@@ -301,133 +301,133 @@ export default {
         restore_label: 'Êtes-vous sûr de vouloir le réhabiliter ?',
         validate_label: 'Êtes-vous sûr de vouloir valider cette commande ?',
         none: 'Aucun',
-        pagination: 'Nombre d\'éléments par page : '
+        pagination: 'Nombre d\'éléments par page : ',
     },
-    Errors:{
+    Errors: {
         first_name: {
-            required: 'Le prénom est requis'
+            required: 'Le prénom est requis',
         },
         last_name: {
-            required: 'Le nom est requis'
+            required: 'Le nom est requis',
         },
         email: {
-            required: 'L\'email est requis'
+            required: 'L\'email est requis',
         },
         register_at: {
-            required: 'La date d\'enregistrement est requise'
+            required: 'La date d\'enregistrement est requise',
         },
         company_id: {
-            required: 'Le groupe est requis'
+            required: 'Le groupe est requis',
         },
         title_id: {
-            required: 'Le titre est requis'
+            required: 'Le titre est requis',
         },
         manager: {
-            required: 'Le responsable est requis'
+            required: 'Le responsable est requis',
         },
         city: {
-            required: 'La ville est requise'
+            required: 'La ville est requise',
         },
         postal_code: {
-            required: 'Le code postal est requis'
+            required: 'Le code postal est requis',
         },
         address: {
-            required: 'L\'adresse est requise'
+            required: 'L\'adresse est requise',
         },
         country: {
-            required: 'Le pays est requis'
+            required: 'Le pays est requis',
         },
         software_name: {
-            required: 'Le nom du logiciel est requis'
+            required: 'Le nom du logiciel est requis',
         },
         geolocation: {
-            required: 'La géolocalisation est requise'
+            required: 'La géolocalisation est requise',
         },
         software_company_id: {
-            required: 'Le distributeur est requis'
+            required: 'Le distributeur est requis',
         },
         area_id: {
-            required: 'La pays est requis'
+            required: 'La pays est requis',
         },
         laboratory: {
-            required: 'Le laboratoire est requis'
+            required: 'Le laboratoire est requis',
         },
         company_name: {
-            required: 'Le nom de la pharmacie est requis'
+            required: 'Le nom de la pharmacie est requis',
         },
         touchscreen: {
-            required: 'Le mode écran tactile est requis'
+            required: 'Le mode écran tactile est requis',
         },
         payment_type_id: {
-            required: 'Le type de paiement est requis'
+            required: 'Le type de paiement est requis',
         },
         month_recurrence: {
-            required: 'Le mois de récurrence est requis'
+            required: 'Le mois de récurrence est requis',
         },
         status: {
-            required: 'Le statut est requis'
+            required: 'Le statut est requis',
         },
         customer_id: {
-            required: 'La pharmacie est requise'
+            required: 'La pharmacie est requise',
         },
         subscription_type_id: {
             required: 'Le type d\'approvisionnement est requis',
-            invalid: 'Veuillez renseigner un approvisionnement'
+            invalid: 'Veuillez renseigner un approvisionnement',
         },
         price: {
-            required: 'Le prix unitaire TTC est requis'
+            required: 'Le prix unitaire TTC est requis',
         },
         vat_id: {
-            required: 'La TVA est requise'
+            required: 'La TVA est requise',
         },
         label: {
-            required: 'Le label est requis'
+            required: 'Le label est requis',
         },
         provider_id: {
-            required: 'Le fournisseur est requis'
+            required: 'Le fournisseur est requis',
         },
         name: {
-            required: 'Le nom est requis'
+            required: 'Le nom est requis',
         },
         phone: {
-            required: 'Le téléphone est requis'
+            required: 'Le téléphone est requis',
         },
         order_id: {
-            required: 'La commande est requise'
+            required: 'La commande est requise',
         },
         reference: {
-            required: 'La référence est requise'
+            required: 'La référence est requise',
         },
         seller_id: {
-            required: 'Le commercial est requis'
+            required: 'Le commercial est requis',
         },
         value: {
-            required: 'La valeur est requise'
+            required: 'La valeur est requise',
         },
         dosage_id: {
-            required: 'La posologie est requise'
+            required: 'La posologie est requise',
         },
         cip: {
-            required: 'Le code CIP est requis'
+            required: 'Le code CIP est requis',
         },
         registered_at: {
-            required: 'La date d\'enregistrement est requise'
+            required: 'La date d\'enregistrement est requise',
         },
         user_id: {
-            required: 'La nom de l\'admin responsable est requis'
+            required: 'La nom de l\'admin responsable est requis',
         },
         computer_number: {
-            required: 'La nombre de poste est requis'
+            required: 'La nombre de poste est requis',
         },
         iban: {
-            invalid: 'Veuillez écrire un IBAN valide'
+            invalid: 'Veuillez écrire un IBAN valide',
         },
         bic: {
-            invalid: 'Veuillez écrire un BIC'
+            invalid: 'Veuillez écrire un BIC',
         },
         printers: {
             invalid: 'Veuillez renseigner une quantité',
-            typeInvalid: 'Veuillez renseigner le type d\'imprimante'
+            typeInvalid: 'Veuillez renseigner le type d\'imprimante',
         },
     },
     Users: {
@@ -436,8 +436,8 @@ export default {
         edit_title: 'Modficiation d\'un administrateur',
         list_title: 'Liste des administrateurs',
     },
-    LoginForm:{
+    LoginForm: {
         username: 'Email',
-        password: 'Mot de passe'
-    }
+        password: 'Mot de passe',
+    },
 };

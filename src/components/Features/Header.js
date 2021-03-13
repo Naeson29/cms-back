@@ -1,27 +1,26 @@
-import React, {Component}  from 'react';
-import {NavLink}           from 'react-router-dom';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as IconSolid      from '@fortawesome/free-solid-svg-icons';
-import PropTypes           from 'prop-types';
+import * as IconSolid from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
-
     constructor(props) {
         super(props);
     }
 
 
     render() {
-        const {logout} = this.props;
+        const { logout } = this.props;
 
         return (
             <nav className="navbar">
-                <NavLink to={'/'} className="navbar-brand" replace>
-                    <img src={'./img/logo.png'} alt={'Logo'} />
-                    <span>{'Backoffice'}</span>
+                <NavLink to="/" className="navbar-brand" replace>
+                    <img src="./img/logo.png" alt="Logo" />
+                    <span>Backoffice</span>
                 </NavLink>
-                <div className={'navbar-nav-right'}>
-                    <NavLink to={'/parameters'} replace>
+                <div className="navbar-nav-right">
+                    <NavLink to="/parameters" replace>
                         <FontAwesomeIcon icon={IconSolid.faCog} />
                     </NavLink>
                     <span onClick={() => logout()}>
@@ -36,6 +35,5 @@ class Header extends Component {
 export default Header;
 
 Header.propTypes = {
-    logout : PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
 };
-

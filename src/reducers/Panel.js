@@ -1,5 +1,5 @@
 import { types } from '../actions/Panel';
-import { createModelReducer } from '../../react-core'
+import { createModelReducer } from '../../react-core';
 
 export const initialState = {
     panel: {},
@@ -8,24 +8,22 @@ export const initialState = {
 const standardReducer = createModelReducer(initialState, types);
 
 export const reducer = (state = initialState, action) => {
-
-    const {payload} = action;
+    const { payload } = action;
 
     switch (action.type) {
+    case types.CLOSE.DO:
+    case '@@router/LOCATION_CHANGE': {
+        return { ...initialState };
+    }
 
-        case types.CLOSE.DO:
-        case '@@router/LOCATION_CHANGE': {
-            return {...initialState};
-        }
+    case types.OPEN.DO: {
+        return {
+            panel: payload,
+        };
+    }
 
-        case types.OPEN.DO:{
-            return {
-                panel : payload
-            }
-        }
-
-        default:
-            return standardReducer(state, action);
+    default:
+        return standardReducer(state, action);
     }
 };
 

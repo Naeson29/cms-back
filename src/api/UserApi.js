@@ -1,21 +1,14 @@
-import { createModelApiClass } from '../../react-core'
-import Base from './Base'
+import { createModelApiClass } from '../../react-core';
+import Base from './Base';
 
 export default class userApi extends createModelApiClass(Base, '/') {
+    getMe = () => this.get({ url: `${this.path}me` });
 
-    getMe = () => {
-        return this.get({url : `${this.path}me`});
-    };
+    revoke = () => this.post({ url: `${this.path}revoke` });
 
-    revoke = () => {
-        return this.post({url :`${this.path}revoke`});
-    };
+    search = params => this.get({
+        url: `${this.path}users`, params,
+    })
 
-    search = (params) => {
-        return this.get({url :`${this.path}users`, params});
-    }
-
-    destroy = (params) => {
-        return this.delete({url :`${this.path}users/${params.id}`});
-    }
+    destroy = params => this.delete({ url: `${this.path}users/${params.id}` })
 }

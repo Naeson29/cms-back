@@ -1,13 +1,12 @@
-import {creators as PanelCreators} from "../../actions/Panel"
+import { creators as PanelCreators } from '../../actions/Panel';
 
-export default function(dispatch) {
-
+export default function (dispatch) {
     return {
         close: () => {
-            dispatch(PanelCreators.close.do())
+            dispatch(PanelCreators.close.do());
         },
         open: (panel, parameters, callbacks) => {
-            dispatch(PanelCreators.open.do(panel, parameters, callbacks))
-        }
+            dispatch(PanelCreators.open.do(panel, parameters, callbacks));
+        },
     };
 }

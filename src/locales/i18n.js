@@ -5,11 +5,11 @@ import fr from './fr';
 i18n
     .use(initReactI18next)
     .init({
-        resources: {fr},
+        resources: { fr },
         lng: 'fr',
         fallbackLng: 'fr',
         debug: true,
-        interpolation: {escapeValue: false},
+        interpolation: { escapeValue: false },
     });
 
 export default i18n;

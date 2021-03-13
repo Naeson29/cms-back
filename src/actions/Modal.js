@@ -7,15 +7,15 @@ export const types = {
 
 export const creators = {
     close: {
-        do : payload => ({
+        do: payload => ({
             type: types.CLOSE.DO,
-            payload
-        })
+            payload,
+        }),
     },
     open: {
-        do : payload => ({
+        do: payload => ({
             type: types.OPEN.DO,
-            payload
-        })
+            payload,
+        }),
     },
 };

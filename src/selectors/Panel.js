@@ -4,6 +4,5 @@ export const getPanelSubState = ({ Panel = {} }) => Panel;
 
 export const panel = createSelector(
     getPanelSubState,
-    ({panel}) => panel
+    ({ panel }) => panel,
 );
-

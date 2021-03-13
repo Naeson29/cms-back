@@ -9,9 +9,9 @@ export const creators = {
     close: {
         do() {
             return {
-                type: types.CLOSE.DO
+                type: types.CLOSE.DO,
             };
-        }
+        },
     },
     open: {
         do(panel, parameters, callbacks) {
@@ -19,10 +19,10 @@ export const creators = {
                 type: types.OPEN.DO,
                 payload: {
                     label: panel,
-                    parameters: parameters,
-                    callbacks: callbacks,
-                }
+                    parameters,
+                    callbacks,
+                },
             };
-        }
+        },
     },
 };

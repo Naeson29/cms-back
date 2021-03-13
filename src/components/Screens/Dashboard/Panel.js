@@ -1,30 +1,26 @@
-import React, { Component }  from 'react';
-import {connect}             from 'react-redux';
-import Functions        from '../../../containers/Features/PanelFunction';
-import {Button}              from 'reactstrap';
-import PropTypes             from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
+import PropTypes from 'prop-types';
+import Functions from '../../../containers/Features/PanelFunction';
 import 'react-datetime/css/react-datetime.css';
 
-class PanelEvent extends Component
-{
-    constructor(props){
+class PanelEvent extends Component {
+    constructor(props) {
         super(props);
     }
 
-    render(){
-
+    render() {
         return (
             <div className="content-panel" ref={(el) => { this.content = el; }}>
-                <div className="content">
-
-                </div>
+                <div className="content" />
             </div>
         );
     }
 }
 
 PanelEvent.propTypes = {
-    close : PropTypes.func,
+    close: PropTypes.func,
 };
 
-export default connect(() => {return {};}, Functions)(PanelEvent);
+export default connect(() => ({}), Functions)(PanelEvent);

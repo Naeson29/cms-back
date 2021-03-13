@@ -1,14 +1,13 @@
-import { types } from '../actions/Navigation';
 import { takeEvery } from 'redux-saga/effects';
+import { types } from '../actions/Navigation';
 import { history } from '../App';
 
 export function NavigationSaga() {
-
-    function* push(data){
+    function* push(data) {
         yield history.push(data.payload.path);
     }
 
-    function* back(){
+    function* back() {
         yield history.goBack();
     }
 
@@ -18,8 +17,7 @@ export function NavigationSaga() {
     }
 
     return {
-        root
+        root,
     };
-
 }
 export default NavigationSaga().root;

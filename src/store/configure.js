@@ -1,9 +1,10 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import createSagaMiddleware     from 'redux-saga';
-import { persistReducer }       from 'redux-persist';
+import {
+    createStore, compose, applyMiddleware,
+} from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { persistReducer } from 'redux-persist';
 
 export default function configure(rootReducer, persistConfig) {
-
     const persistedReducer = persistReducer(persistConfig, rootReducer);
     const sagaMiddleware = createSagaMiddleware();
 
@@ -19,5 +20,7 @@ export default function configure(rootReducer, persistConfig) {
         compose(...enhancers),
     );
 
-    return { store, sagaMiddleware};
+    return {
+        store, sagaMiddleware,
+    };
 }

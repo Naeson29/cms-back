@@ -1,6 +1,4 @@
 class AuthenticationService {
-    constructor() { }
-
     static logout() {
         localStorage.clear();
     }
