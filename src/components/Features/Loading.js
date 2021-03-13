@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Loading from 'react-loading-components';
-import {colors} from "../../utils/Const";
+import {colors} from "../../utils/Color";
 
 class Loader extends Component {
 

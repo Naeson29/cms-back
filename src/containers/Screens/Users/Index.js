@@ -6,7 +6,7 @@ import {creators} from "../../../actions/User";
 import {creators as ModalCreators} from "../../../actions/Modal";
 
 import {current, list, loadingDestroy, loadingList, paginationList} from "../../../selectors/User";
-import {defaultLoadParams} from "../../../utils/Const";
+import {paramUser} from "../../../utils/Param";
 
 const mapStateToProps = (state, { match: { params: { id }}}) => {
     return {
@@ -20,12 +20,12 @@ const mapStateToProps = (state, { match: { params: { id }}}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         load: () => {
-            dispatch(creators.search.request(defaultLoadParams))
+            dispatch(creators.search.request(paramUser))
         },
         more: (page) => {
             console.log('ici')
             dispatch(creators.more.request({
-                ...defaultLoadParams,
+                ...paramUser,
                 page : page
             }))
         },
