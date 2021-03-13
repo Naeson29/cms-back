@@ -1,40 +1,42 @@
 import React, { Component } from 'react';
 import { NavLink }          from 'react-router-dom';
 import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome';
-import * as IconSolid       from '@fortawesome/free-solid-svg-icons';
-import * as IconRegular     from '@fortawesome/free-regular-svg-icons';
+import {Navs} from "../../utils/Sidebar";
 
 class Sidebar extends Component {
     render() {
+        const { match, location } = this.props;
+        const root = '/';
+
+        const isRoot = () => {
+            if(!location) return false;
+            const {pathname} = location;
+            return (pathname === root) && (location.pathname === match.url);
+        }
+
         return (
             <div className={'sidebar'}>
                 <div className={'sidebar-nav'}>
                     <nav className="navbar">
                         <ul className="nav navbar-nav">
-                            <li className="nav-item">
-                                <NavLink to={'/'} className="nav-link" activeClassName="active" replace>
-                                    <FontAwesomeIcon icon={IconSolid.faHome} />
-                                    <span>{'Dashboard'}</span>
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to={'/user'} className="nav-link" activeClassName="active" replace>
-                                    <FontAwesomeIcon icon={IconSolid.faUser} />
-                                    <span>{'Utilisateurs'}</span>
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to={'/slider'} className="nav-link" activeClassName="active" replace>
-                                    <FontAwesomeIcon icon={IconSolid.faImages} />
-                                    <span>{'Slider'}</span>
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to={'/news'} className="nav-link" activeClassName="active" replace>
-                                    <FontAwesomeIcon icon={IconRegular.faNewspaper} />
-                                    <span>{'Actualités'}</span>
-                                </NavLink>
-                            </li>
+                            {
+                                Navs.map((key, index) => {
+                                    return (
+                                        <li className="nav-item" key={index}>
+                                            <NavLink
+                                                to={key.path}
+                                                isActive={key.path === root ? isRoot : undefined}
+                                                className="nav-link"
+                                                activeClassName="active"
+                                                replace
+                                            >
+                                                <FontAwesomeIcon icon={key.icon} />
+                                                <span>{key.label}</span>
+                                            </NavLink>
+                                        </li>
+                                    )
+                                })
+                            }
                         </ul>
                     </nav>
                 </div>

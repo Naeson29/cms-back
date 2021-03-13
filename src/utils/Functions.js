@@ -39,23 +39,3 @@ export function uuid() {
         return v.toString(16);
     });
 }
-
-export function formatSearchLimit(data){
-    if (data.params.limit === undefined){
-        data.params = {
-            ...data.params,
-            limit: 40,
-        }
-    }
-
-    return data;
-}
-
-export function getPaginationFormatted(pagination, goTo, t){
-    return { paginate: {
-            ...pagination,
-            numberByPage: [20,40,60,80,100,250,500,1000],
-            labelNumberItems: t('Default:pagination')
-        },
-        actions: goTo }
-}

@@ -9,7 +9,7 @@ import routes from '../routes/Routes';
 
 // Components
 import Header from "../containers/Features/Header";
-import Sidebar from "./Features/Sidebar";
+import Sidebar from "../containers/Features/Sidebar";
 import Panel from "../containers/Features/Panel";
 import Modal from "../containers/Features/Modal";
 
