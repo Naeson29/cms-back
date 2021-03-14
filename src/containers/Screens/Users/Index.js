@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 
 import Index from '../../../components/Screens/Users/Index';
 import { creators } from '../../../actions/User';
-import { creators as ModalCreators } from '../../../actions/Modal';
 
 import {
     getCurrent, list, loadingDestroy, loadingList, paginationList,
@@ -26,9 +25,6 @@ const mapDispatchToProps = dispatch => ({
             ...paramUser,
             page,
         }));
-    },
-    deleteModal: (params) => {
-        dispatch(ModalCreators.open.do(params));
     },
 });
 

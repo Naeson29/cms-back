@@ -1,5 +1,5 @@
 import {
-    HiHome, HiUser, HiPhotograph, HiNewspaper
+    HiHome, HiUser, HiPhotograph, HiNewspaper,
 } from 'react-icons/hi';
 
 export const rootPath = '/';
