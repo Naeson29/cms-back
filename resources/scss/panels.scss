@@ -15,7 +15,7 @@
   top: $header-height;
 
   @media (min-width: 1025px) {
-    padding-left : $sidebar-width;
+    left : $sidebar-width;
     width : 100%;
 
     &.right {
@@ -25,12 +25,12 @@
     }
   }
   @media (max-width: 1024px) {
-    padding-left : $sidebar-width-small;
+    left : $sidebar-width-small;
     width        : 100%;
   }
 
   @media (max-width: 768px) {
-    padding-left : 0;
+    left : 0;
   }
 
   &.right {

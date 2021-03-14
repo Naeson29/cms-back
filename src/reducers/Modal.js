@@ -1,5 +1,6 @@
 import { types } from '../actions/Modal';
 import { createModelReducer } from '../../react-core';
+import scrollBody from "../utils/Functions";
 
 export const initialState = {
     open: false,
@@ -15,10 +16,12 @@ export const reducer = (state = initialState, action) => {
     switch (action.type) {
     case types.CLOSE.DO:
     case '@@router/LOCATION_CHANGE': {
+        scrollBody(false);
         return { ...initialState };
     }
 
     case types.OPEN.DO: {
+        scrollBody(true);
         return {
             open: true,
             type: payload.type,

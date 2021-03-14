@@ -5,6 +5,7 @@ import {
 } from '../../selectors/Modal';
 import { creators } from '../../actions/Modal';
 import { creators as UserCreators } from '../../actions/User';
+import scrollBody from "../../utils/Functions";
 
 const mapStateToProps = state => ({
     open: getOpen(state),

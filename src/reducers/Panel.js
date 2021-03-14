@@ -1,5 +1,6 @@
 import { types } from '../actions/Panel';
 import { createModelReducer } from '../../react-core';
+import scrollBody from "../utils/Functions";
 
 export const initialState = {
     panel: {},
@@ -13,10 +14,12 @@ export const reducer = (state = initialState, action) => {
     switch (action.type) {
     case types.CLOSE.DO:
     case '@@router/LOCATION_CHANGE': {
+        scrollBody(false);
         return { ...initialState };
     }
 
     case types.OPEN.DO: {
+        scrollBody(true);
         return {
             panel: payload,
         };

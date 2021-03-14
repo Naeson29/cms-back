@@ -2,7 +2,7 @@ body {
   font-family : 'Roboto', cursive;
   font-size   :14px;
 
-  &.ReactModal__Body--open, &.lock {
+  &.lock {
     overflow: hidden;
   }
 
