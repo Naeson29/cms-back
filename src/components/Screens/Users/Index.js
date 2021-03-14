@@ -58,8 +58,10 @@ class Index extends Component {
                                                 key={key.id}
                                             >
                                                 <div className="card">
-                                                    <p className="name">{`${key.first_name} ${key.last_name}`}</p>
-                                                    <p className="email">{key.email}</p>
+                                                    <div>
+                                                        <p className="name">{`${key.first_name} ${key.last_name}`}</p>
+                                                        <p className="email">{key.email}</p>
+                                                    </div>
                                                     <div className="action">
                                                         <button
                                                             onClick={() => edit && {}}
