@@ -7,7 +7,6 @@ import {
 } from 'react-icons/hi';
 import Functions from '../../containers/Features/PanelFunction';
 import { getRoles } from '../../utils/Role';
-// import Loading from './Loading';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class List extends Component {
