@@ -78,10 +78,11 @@
 
       .close-panel {
         cursor: pointer;
-        svg {
-          fill : $primary_color;
-          height:1.5rem;
-          width: auto;
+        background-color: transparent;
+        .icon {
+          color : $primary_color;
+          height:2.2rem;
+          width:2.2rem;
         }
       }
 

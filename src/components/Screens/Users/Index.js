@@ -1,7 +1,9 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ReactSVG } from 'react-svg';
+import {
+    HiPencil, HiTrash, HiPlusCircle,
+} from 'react-icons/hi';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Action from '../../../utils/Action';
@@ -41,7 +43,6 @@ class Index extends Component {
                                 hasMore={pagination.current_page < pagination.last_page}
                                 loader={null}
                                 refreshFunction={() => {}}
-                                pullDownToRefresh
                                 pullDownToRefreshThreshold={50}
                             >
                                 {
@@ -60,27 +61,33 @@ class Index extends Component {
                                                     <p className="name">{`${key.first_name} ${key.last_name}`}</p>
                                                     <p className="email">{key.email}</p>
                                                     <div className="action">
-                                                        <ReactSVG
-                                                            src="./img/pencil.svg"
+                                                        <button
                                                             onClick={() => edit && {}}
                                                             className={`button edit ${!edit && 'disabled'}`}
-                                                        />
-                                                        <ReactSVG
-                                                            src="./img/trash.svg"
+                                                            type="button"
+                                                        >
+                                                            <HiPencil className="icon" />
+                                                        </button>
+                                                        <button
                                                             onClick={() => trash && deleteModal(deleteUser(key))}
                                                             className={`button trash ${!trash && 'disabled'}`}
-                                                        />
+                                                            type="button"
+                                                        >
+                                                            <HiTrash className="icon" />
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         );
                                     })
                                 }
-                                <ReactSVG
-                                    src="./img/add.svg"
+                                <button
                                     onClick={() => open(Action.PANEL_USER)}
                                     className="add"
-                                />
+                                    type="button"
+                                >
+                                    <HiPlusCircle className="icon" />
+                                </button>
                             </InfiniteScroll>
                         )
                 }

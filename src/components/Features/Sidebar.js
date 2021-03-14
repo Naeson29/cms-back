@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
     Navs, isRoot, isRootPath,
 } from '../../utils/Sidebar';
@@ -16,6 +17,7 @@ class Sidebar extends Component {
                             {
                                 Navs.map((key) => {
                                     const isActive = () => isRootPath(this.props);
+                                    const Icon = key.icon;
 
                                     return (
                                         <li className="nav-item" key={key.id}>
@@ -25,7 +27,7 @@ class Sidebar extends Component {
                                                 className="nav-link"
                                                 activeClassName="active"
                                             >
-                                                <FontAwesomeIcon icon={key.icon} />
+                                                <Icon className="icon" />
                                                 <span>{key.label}</span>
                                             </NavLink>
                                         </li>

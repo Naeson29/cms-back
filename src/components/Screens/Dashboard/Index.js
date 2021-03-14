@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ReactSVG } from 'react-svg';
-import Action from '../../../utils/Action';
 import Functions from '../../../containers/Features/PanelFunction';
 import Loader from '../../Features/Loading';
 
@@ -13,7 +11,7 @@ class Index extends Component {
     }
 
     render() {
-        const { loading, open } = this.props;
+        const { loading } = this.props;
 
         return (
             <div className="fragment dashboard">
@@ -25,11 +23,6 @@ class Index extends Component {
                         : (
                             <div>
                                 <div />
-                                <ReactSVG
-                                    src="./img/add.svg"
-                                    onClick={() => open(Action.PANEL_EVENT)}
-                                    className="add"
-                                />
                             </div>
                         )
                 }
@@ -41,13 +34,11 @@ class Index extends Component {
 
 Index.propTypes = {
     load: PropTypes.func,
-    open: PropTypes.func,
     loading: PropTypes.bool,
 };
 
 Index.defaultProps = {
     load: () => {},
-    open: () => {},
     loading: false,
 };
 

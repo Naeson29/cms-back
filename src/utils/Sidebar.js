@@ -1,5 +1,6 @@
-import * as IconSolid from '@fortawesome/free-solid-svg-icons';
-import * as IconRegular from '@fortawesome/free-regular-svg-icons';
+import {
+    HiHome, HiUser, HiPhotograph, HiNewspaper
+} from 'react-icons/hi';
 
 export const rootPath = '/';
 
@@ -8,25 +9,25 @@ export const Navs = [
         id: 1,
         path: '/',
         label: 'Dashboard',
-        icon: IconSolid.faHome,
+        icon: HiHome,
     },
     {
         id: 2,
         path: '/user',
         label: 'Utilisateurs',
-        icon: IconSolid.faUser,
+        icon: HiUser,
     },
     {
         id: 3,
         path: '/slider',
         label: 'Medias',
-        icon: IconSolid.faImages,
+        icon: HiPhotograph,
     },
     {
         id: 4,
         path: '/news',
         label: 'News',
-        icon: IconRegular.faNewspaper,
+        icon: HiNewspaper,
     },
 ];
 

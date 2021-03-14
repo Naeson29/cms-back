@@ -4,7 +4,7 @@ import {
     TransitionGroup, CSSTransition,
 } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { ReactSVG } from 'react-svg';
+import { HiOutlineChevronLeft } from 'react-icons/hi';
 import Action from '../../utils/Action';
 
 // Panels
@@ -42,11 +42,13 @@ class Panel extends Component {
             <div className="panel">
                 <div className="action">
                     <div className="vertical-center">
-                        <ReactSVG
-                            src="./img/left.svg"
+                        <button
                             onClick={() => close()}
                             className="close-panel"
-                        />
+                            type="button"
+                        >
+                            <HiOutlineChevronLeft className="icon" />
+                        </button>
                     </div>
                     <div className="vertical-center">
                         <button
