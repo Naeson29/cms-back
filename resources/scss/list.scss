@@ -4,19 +4,19 @@
   flex-wrap: wrap;
 
   @media (min-width: 1025px) {
-    padding : 2% .5% 5.5rem .5%;
+    padding : 1.8rem .8rem 5.5rem .8rem;
   }
 
   @media (max-width: 1024px) {
-    padding : 3% .5% 5rem .5%;
+    padding : 1.8rem .8rem 5rem .8rem;
   }
 
   @media (max-width: 768px) {
-    padding : 5% .5% 7rem .5%;
+    padding : 1.8rem .8rem 7rem .8rem;
   }
 
   .card-container {
-    margin-bottom: 2%;
+    margin-bottom: 1.5rem;
     display: flex;
     min-height : 10rem;
 
@@ -35,7 +35,7 @@
     .card {
       flex:1;
       justify-content: space-between;
-      margin:0 3%;
+      margin:0 .8rem;
       padding: 1.8rem;
       background-color: #fbfbfb;
 
