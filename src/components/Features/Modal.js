@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
 import { Modal } from '../../utils/Modal';
+import {
+    HiCheck, HiX
+} from 'react-icons/hi';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Modals extends Component {
@@ -23,14 +26,14 @@ class Modals extends Component {
                             onClick={() => destroy(params.destroy)}
                             type="button"
                         >
-                            Oui
+                            <HiCheck className={'icon'} />
                         </button>
                         <button
                             className="button no"
                             onClick={() => close()}
                             type="button"
                         >
-                            Non
+                            <HiX className={'icon'}/>
                         </button>
                     </div>
                 </div>
