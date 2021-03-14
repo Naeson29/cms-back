@@ -66,25 +66,22 @@
       display      : flex;
       align-items  : center;
 
-      div, a {
-        color       : $primary-color;
-        transition  : color 0.15s ease-in-out;
+      .button, a {
         cursor      : pointer;
-        margin-left : 1.2rem;
+        margin-left : .5rem;
+        padding: .4rem;
+        background-color: transparent;
 
-        &:hover {
-          color : $primary-color-light;
-        }
         &:focus {
           box-shadow : none;
           outline    : 0
         }
       }
 
-      .svg-inline--fa {
-        vertical-align: top;
-        width  : 20px;
-        height : 20px;
+      .icon {
+        color : $primary-color;
+        width  : 25px;
+        height : 25px;
       }
     }
   }

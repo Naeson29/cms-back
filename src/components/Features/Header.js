@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as IconSolid from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import {HiLogout, HiCog} from "react-icons/hi";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Header extends Component {
-    constructor(props) {
-        super(props);
-
-        this.logout = this.logout.bind(this);
-    }
-
-    logout() {
-        const { logout } = this.props;
-        logout();
-    }
 
     render() {
+        const { logout } = this.props;
+
         return (
             <nav className="navbar">
                 <NavLink to="/" className="navbar-brand" replace>
@@ -26,16 +17,15 @@ class Header extends Component {
                 </NavLink>
                 <div className="navbar-nav-right">
                     <NavLink to="/parameters" replace>
-                        <FontAwesomeIcon icon={IconSolid.faCog} />
+                        <HiCog className="icon" />
                     </NavLink>
-                    <div
-                        role="button"
-                        onClick={this.logout}
-                        onKeyDown={this.logout}
-                        tabIndex={0}
+                    <button
+                        onClick={() => logout()}
+                        className={'button'}
+                        type="button"
                     >
-                        <FontAwesomeIcon icon={IconSolid.faSignOutAlt} />
-                    </div>
+                        <HiLogout className="icon" />
+                    </button>
                 </div>
             </nav>
         );
