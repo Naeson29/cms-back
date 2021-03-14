@@ -18,36 +18,33 @@
     height          : inherit;
 
     .navbar-brand {
+      display: flex;
       height       : 100%;
-      padding-left : 0.8rem;
       color        : $primary-color;
       @media (min-width: 1024px) {
         width : $sidebar-width;
+        justify-content: flex-start;
+        align-items: center;
+
       }
       @media (max-width: 1024px) {
         width : $sidebar-width-small;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
 
       background   : rgba(0,0,0,0.8);
 
-      &:before {
-        content        : '';
-        display        : inline-block;
-        height         : 100%;
-        vertical-align : middle;
-      }
-
       img {
         @media (min-width: 1024px) {
           height : 80%;
+          margin-left: 1rem;
+          margin-right: .5rem;
         }
         @media (max-width: 1024px) {
           height : 90%;
         }
-
-        display        : inline-block;
-        vertical-align : middle;
-        margin-right   : 0.8rem;
       }
 
       span {

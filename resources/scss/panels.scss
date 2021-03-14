@@ -6,7 +6,7 @@
   display : flex;
 
   @media (min-width: 768px) {
-    height: calc(100% - 40px);
+    height: calc(100% - 50px);
   }
 
   @media (max-width: 768px) {
@@ -15,7 +15,9 @@
   top: $header-height;
 
   @media (min-width: 1025px) {
-    width: calc(100% - 250px);
+    padding-left : $sidebar-width;
+    width : 100%;
+
     &.right {
       box-shadow: -2px 0px 10px 0px rgba(0, 0, 0, 0.2);
       -moz-box-shadow: -2px 0px 10px 0px rgba(0, 0, 0, 0.2);

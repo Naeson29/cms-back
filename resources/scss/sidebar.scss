@@ -67,10 +67,25 @@
     .navbar {
 
       @media (min-width: 1025px) {
+        padding: 0.5rem 1rem;
+
         .nav-link {
+          justify-content: flex-start;
           border-bottom : 1px solid $border-sidebar;
           .icon {
             margin-right : 1.4rem;
+          }
+        }
+      }
+
+      @media (max-width: 1024px) {
+        padding: .5rem;
+        .navbar-nav {
+
+          .nav-item {
+            .nav-link {
+              justify-content: center;
+            }
           }
         }
       }
@@ -111,6 +126,7 @@
           .nav-item {
             display         : flex;
             .nav-link {
+              justify-content: center;
               .icon {
                 margin : 0 1.2rem;
               }
@@ -122,6 +138,8 @@
       .navbar-nav {
         .nav-item {
           .nav-link {
+            display: flex;
+            align-content: center;
             color : $color-sidebar;
 
             &.active {
