@@ -4,19 +4,19 @@
   flex-wrap: wrap;
 
   @media (min-width: 1025px) {
-    padding : 1.8rem .8rem 5.5rem .8rem;
+    padding : 1.5rem .8rem 0 .8rem;
   }
 
   @media (max-width: 1024px) {
-    padding : 1.8rem .8rem 5rem .8rem;
+    padding : 1.8rem .8rem 0 .8rem;
   }
 
   @media (max-width: 768px) {
-    padding : 1.8rem .8rem 7rem .8rem;
+    padding : 1.5rem .8rem 50px .8rem;
   }
 
   .loading-list {
-    width:100%;
+    flex-basis: 100%;
   }
 
   .card-container {
