@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import List from '../../../containers/Features/List';
 import Action from '../../../utils/Action';
-import Loader from '../../Features/Loading';
+import Loading from '../../Features/Loading';
 import { deleteUser } from '../../../utils/Modal';
 import { AllowUser } from '../../../utils/Allow';
 
@@ -25,7 +25,7 @@ class Index extends Component {
                     <span>Utilisateurs</span>
                 </h1>
                 {
-                    loading ? <Loader />
+                    loading ? <Loading/>
 
                         : (
                             <List

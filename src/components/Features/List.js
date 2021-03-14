@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi';
 import Functions from '../../containers/Features/PanelFunction';
 import { getRoles } from '../../utils/Role';
+import Loading from "./Loading";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class List extends Component {
@@ -20,7 +21,7 @@ class List extends Component {
                     if (pagination.current_page < pagination.last_page) more(pagination.current_page + 1);
                 }}
                 hasMore={pagination.current_page < pagination.last_page}
-                loader={null}
+                loader={<Loading  contextClass={'loading-list'}/>}
                 refreshFunction={() => {}}
                 pullDownToRefreshThreshold={50}
                 className="list-card"

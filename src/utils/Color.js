@@ -1,5 +1,5 @@
 const colors = {
-    primary_color: '#3765af',
+    loadingColor: '#aab4bf',
 };
 
 export default colors;
