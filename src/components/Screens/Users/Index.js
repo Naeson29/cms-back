@@ -6,6 +6,7 @@ import Action from '../../../utils/Action';
 import Loading from '../../Features/Loading';
 import { deleteUser } from '../../../utils/Modal';
 import { AllowUser } from '../../../utils/Allow';
+import { getImage } from '../../../utils/Functions';
 
 // Components
 
@@ -25,10 +26,11 @@ class Index extends Component {
                     <span>Utilisateurs</span>
                 </h1>
                 {
-                    loading ? <Loading/>
+                    loading ? <Loading />
 
                         : (
                             <List
+                                type="small"
                                 data={users}
                                 pagination={pagination}
                                 more={more}
@@ -36,11 +38,17 @@ class Index extends Component {
                                 allow={AllowUser}
                                 deleteAction={deleteUser}
                                 content={key => (
-                                    <div>
+                                    <div className="card-user">
+                                        <div
+                                            style={{
+                                                backgroundImage: `url(${key.image ? getImage(key.image, 'thumb') : './img/avatar.png'})`,
+                                            }}
+                                            className="image"
+                                        />
                                         <p className="name">{`${key.first_name} ${key.last_name}`}</p>
-                                        <p className="email">{key.email}</p>
                                     </div>
                                 )}
+                                loading={() => <Loading contextClass="loading-list" />}
                             />
                         )
                 }

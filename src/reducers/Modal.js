@@ -1,6 +1,6 @@
 import { types } from '../actions/Modal';
 import { createModelReducer } from '../../react-core';
-import scrollBody from "../utils/Functions";
+import { scrollBody } from '../utils/Functions';
 
 export const initialState = {
     open: false,

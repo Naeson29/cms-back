@@ -22,75 +22,94 @@
   .card-container {
     margin-bottom: 1.5rem;
     display: flex;
-    min-height : 10rem;
+    min-height : 12rem;
+    background-color: transparent;
 
-    @media (min-width: 1025px) {
-      width : 25%;
+    @media (min-width: 1451px) {
+      &.small {
+        width : 25%;
+      }
+    }
+
+    @media (max-width: 1450px) {
+      &.small {
+        width : 50%;
+      }
     }
 
     @media (max-width: 1024px) {
-      width : 50%;
+      &.small {
+        width : 50%;
+      }
     }
 
     @media (max-width: 768px) {
-      width : 100%;
+      &.small {
+        width : 100%;
+      }
     }
 
     .card {
       flex:1;
       justify-content: space-between;
       margin:0 .8rem;
-      padding: 1.8rem;
+      padding: 1.5rem;
       background-color: #fbfbfb;
-
-      .name {
-        color : $primary_color;
-        font-size: 14px;
-        margin-bottom: .5rem;
-      }
-
-      .email {
-        color : $black_text;
-        font-size: 13px;
-      }
 
       .action {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
+        margin-top: 1.5rem;
 
-        .button {
-          padding: .3rem;
-          border-radius: 5px;
-          cursor: pointer;
+        .button-container {
           display: flex;
-          justify-content: center;
           align-items: center;
-          margin-left: 1rem;
-          background-color: $h1-bg;
-          border: 1px solid rgba(0, 0, 0, 0.125);
 
-
-          &.edit {
-            .icon {
-              color: $primary_color;
+          &.left {
+            .button {
+              margin-right: 1.2rem;
             }
           }
 
-          &.trash {
-            .icon {
-              color: $primary_color_trash;
+          &.right {
+            .button {
+              margin-left: 1.2rem;
             }
           }
 
-          &.disabled {
-            cursor: default;
-            opacity: .2;
-          }
+          .button {
+            padding: .3rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $h1-bg;
+            border: 1px solid rgba(0, 0, 0, 0.125);
 
-          .icon {
-            width: 1.4rem;
-            height: 1.4rem;
+
+            &.edit, &.show {
+              .icon {
+                color: $primary_color;
+              }
+            }
+
+            &.trash {
+              .icon {
+                color: $primary_color_trash;
+              }
+            }
+
+            &.disabled {
+              cursor: default;
+              opacity: .2;
+            }
+
+            .icon {
+              width: 1.4rem;
+              height: 1.4rem;
+            }
           }
         }
       }

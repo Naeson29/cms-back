@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {HiLogout, HiCog} from "react-icons/hi";
+import {
+    HiLogout, HiCog,
+} from 'react-icons/hi';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Header extends Component {
-
     render() {
         const { logout } = this.props;
 
@@ -21,7 +22,7 @@ class Header extends Component {
                     </NavLink>
                     <button
                         onClick={() => logout()}
-                        className={'button'}
+                        className="button"
                         type="button"
                     >
                         <HiLogout className="icon" />

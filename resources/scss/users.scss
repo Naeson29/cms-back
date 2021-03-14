@@ -1,3 +1,25 @@
 .users {
+  .card-user {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 
+    .image {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 4rem;
+      background-repeat:no-repeat;
+      background-position: center center;
+      background-size: cover;
+      margin-right: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .name {
+      color : $primary_color;
+      font-size: 14px;
+      margin-bottom: .5rem;
+      word-break: break-word;
+    }
+  }
 }

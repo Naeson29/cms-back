@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import Loader from "react-loader-spinner";
+import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import colors from '../../utils/Color';
-import PropTypes from "prop-types";
-import Index from "../Screens/Users/Index";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Loading extends Component {
     render() {
-        const {contextClass='loading-fragment'} = this.props;
+        const { contextClass } = this.props;
         return (
             <div className={`loading ${contextClass}`}>
                 <Loader
@@ -21,12 +20,12 @@ class Loading extends Component {
     }
 }
 
-Index.propTypes = {
+Loading.propTypes = {
     contextClass: PropTypes.string,
 };
 
-Index.defaultProps = {
-    contextClass: ''
+Loading.defaultProps = {
+    contextClass: 'loading-fragment',
 };
 
 export default Loading;

@@ -16,7 +16,7 @@
 
   @media (min-width: 1025px) {
     left : $sidebar-width;
-    width : 100%;
+    width : calc(100% - 250px);
 
     &.right {
       box-shadow: -2px 0px 10px 0px rgba(0, 0, 0, 0.2);
@@ -26,11 +26,12 @@
   }
   @media (max-width: 1024px) {
     left : $sidebar-width-small;
-    width        : 100%;
+    width : calc(100% - 50px);
   }
 
   @media (max-width: 768px) {
     left : 0;
+    width: 100%;
   }
 
   &.right {

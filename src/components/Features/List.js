@@ -3,16 +3,17 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-    HiPencil, HiPlusCircle, HiTrash,
+    HiPencil, HiPlusCircle, HiTrash, HiSearch,
 } from 'react-icons/hi';
 import Functions from '../../containers/Features/PanelFunction';
 import { getRoles } from '../../utils/Role';
-import Loading from "./Loading";
+// import Loading from './Loading';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class List extends Component {
     render() {
-        const { current, data, pagination, more, open, panel, allow, deleteModal, deleteAction, content } = this.props;
+        const { type, current, data, pagination, more, open, panel, allow, deleteModal, deleteAction, content, loading } = this.props;
+        const Loading = loading;
 
         return (
             <InfiniteScroll
@@ -21,7 +22,7 @@ class List extends Component {
                     if (pagination.current_page < pagination.last_page) more(pagination.current_page + 1);
                 }}
                 hasMore={pagination.current_page < pagination.last_page}
-                loader={<Loading  contextClass={'loading-list'}/>}
+                loader={<Loading />}
                 refreshFunction={() => {}}
                 pullDownToRefreshThreshold={50}
                 className="list-card"
@@ -35,26 +36,37 @@ class List extends Component {
 
                         return (
                             <div
-                                className="card-container"
+                                className={`card-container ${type}`}
                                 key={key.id}
                             >
                                 <div className="card">
                                     {content(key)}
                                     <div className="action">
-                                        <button
-                                            onClick={() => edit && {}}
-                                            className={`button edit ${!edit && 'disabled'}`}
-                                            type="button"
-                                        >
-                                            <HiPencil className="icon" />
-                                        </button>
-                                        <button
-                                            onClick={() => trash && deleteModal(deleteAction(key))}
-                                            className={`button trash ${!trash && 'disabled'}`}
-                                            type="button"
-                                        >
-                                            <HiTrash className="icon" />
-                                        </button>
+                                        <div className="button-container left">
+                                            <button
+                                                onClick={() => edit && {}}
+                                                className={`button edit ${!edit && 'disabled'}`}
+                                                type="button"
+                                            >
+                                                <HiPencil className="icon" />
+                                            </button>
+                                            <button
+                                                onClick={() => trash && deleteModal(deleteAction(key))}
+                                                className={`button trash ${!trash && 'disabled'}`}
+                                                type="button"
+                                            >
+                                                <HiTrash className="icon" />
+                                            </button>
+                                        </div>
+                                        <div className="button-container right">
+                                            <button
+                                                onClick={() => {}}
+                                                className="button show"
+                                                type="button"
+                                            >
+                                                <HiSearch className="icon" />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -80,10 +92,12 @@ List.propTypes = {
     open: PropTypes.func,
     more: PropTypes.func,
     allow: PropTypes.func,
+    loading: PropTypes.func,
     deleteModal: PropTypes.func,
     deleteAction: PropTypes.func,
     content: PropTypes.func,
     panel: PropTypes.string,
+    type: PropTypes.string,
 };
 
 List.defaultProps = {
@@ -93,10 +107,12 @@ List.defaultProps = {
     open: () => {},
     more: () => {},
     allow: () => {},
+    loading: () => {},
     deleteModal: () => {},
     deleteAction: () => {},
     content: () => {},
     panel: '',
+    type: '',
 };
 
 
