@@ -1,18 +1,11 @@
 .panel-container {
 
-  background : none;
+  background  : #fff;
   position : fixed;
-  z-index : 10;
+  z-index : 20;
   display : flex;
   top: 0;
-
-  @media (min-width: 768px) {
-    height: 100%;
-  }
-
-  @media (max-width: 768px) {
-    height: calc(100% - 50px);
-  }
+  height: 100%;
 
   @media (min-width: 1025px) {
     left : $sidebar-width;
@@ -64,44 +57,20 @@
   }
 
   .panel {
-    background  : #fff;
     flex : 1;
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
-    overflow-y: auto;
-
-    .action {
-      color : $primary-color;
-      display: flex;
-      align-items: center;
-      padding : 0 0.8rem;
-      height : 50px;
-      background-color: $h1-bg;
-
-
-    }
 
     .content-panel {
       flex : 1;
       display : flex;
       flex-direction: column;
       justify-content: space-between;
+      margin-top: 100px;
+      overflow-y: auto;
 
-      &::-webkit-scrollbar-track
-      {
-        background-color: $h1-bg;
-      }
-
-      &::-webkit-scrollbar
-      {
-        width: 15px;
-        background-color: #FAFAFA;
-      }
-
-      &::-webkit-scrollbar-thumb
-      {
-        background: $primary-color;
+      @media (max-width: 768px) {
+        margin-bottom : 50px;
       }
 
       h2 {
