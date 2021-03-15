@@ -8,6 +8,7 @@ import Loading from '../../Features/Loading';
 import { deleteUser } from '../../../utils/Modal';
 import { AllowUser } from '../../../utils/Allow';
 import { getImage } from '../../../utils/Functions';
+import HeaderScreen from "../../../containers/Features/HeaderScreen";
 
 // Components
 
@@ -19,21 +20,15 @@ class Index extends Component {
     }
 
     render() {
-        const { users, loading, pagination, more, openModal } = this.props;
+        const { users, loading, pagination, more } = this.props;
 
         return (
             <div className="fragment users">
-                <div className="header.list">
-                    <p>Utilisateurs</p>
-                    <button
-                        onClick={() => openModal(Action.PANEL_USER)}
-                        className="add"
-                        type="button"
-                    >
-                        <HiPlusCircle className="icon" />
-                    </button>
-                    <div />
-                </div>
+                <HeaderScreen
+                    type={'list'}
+                    panel={Action.PANEL_USER}
+                    title={'Utilisateurs'}
+                />
                 {
                     loading ? <Loading />
 
@@ -43,7 +38,6 @@ class Index extends Component {
                                 data={users}
                                 pagination={pagination}
                                 more={more}
-                                panel={Action.PANEL_USER}
                                 allow={AllowUser}
                                 deleteAction={deleteUser}
                                 content={key => (

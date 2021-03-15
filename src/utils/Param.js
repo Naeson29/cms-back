@@ -1,8 +1,10 @@
 const paramUser = {
-    limit: 50,
-    order: {
-        column: 'first_name',
-    },
+    params : {
+        limit: 50,
+        order: {
+            column: 'first_name',
+        }
+    }
 };
 
 const paramSlider = {

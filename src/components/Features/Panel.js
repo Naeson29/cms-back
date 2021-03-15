@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import {
     TransitionGroup, CSSTransition,
 } from 'react-transition-group';
-import {
-    HiOutlineChevronLeft, HiPlusCircle,
-} from 'react-icons/hi';
 import Action from '../../utils/Action';
+import HeaderScreen from "../../containers/Features/HeaderScreen";
 
 // Panels
 import PanelEvent from '../../containers/Screens/Dashboard/Panel';
@@ -19,8 +17,6 @@ class Panel extends Component {
     }
 
     renderPanel(panel) {
-        const { closeModal } = this.props;
-
         let component;
 
         switch (panel.label) {
@@ -39,21 +35,9 @@ class Panel extends Component {
 
         return (
             <div className="panel">
-                <div className="action">
-                    <button
-                        className="add"
-                        type="button"
-                    >
-                        <HiPlusCircle className="icon" />
-                    </button>
-                    <button
-                        onClick={() => closeModal()}
-                        className="close-panel"
-                        type="button"
-                    >
-                        <HiOutlineChevronLeft className="icon" />
-                    </button>
-                </div>
+                <HeaderScreen
+                    type={'panel'}
+                />
                 {component}
             </div>
         );
@@ -88,12 +72,12 @@ class Panel extends Component {
 
 Panel.propTypes = {
     panel: PropTypes.oneOfType([PropTypes.object]),
-    closeModal: PropTypes.func,
+    closePanel: PropTypes.func,
 };
 
 Panel.defaultProps = {
     panel: {},
-    closeModal: () => {},
+    closePanel: () => {},
 };
 
 export default Panel;

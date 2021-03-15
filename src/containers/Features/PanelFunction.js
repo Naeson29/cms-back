@@ -2,10 +2,10 @@ import { creators as PanelCreators } from '../../actions/Panel';
 
 export default function (dispatch) {
     return {
-        closeModal: () => {
+        closePanel: () => {
             dispatch(PanelCreators.close.do());
         },
-        openModal: (panel, parameters, callbacks) => {
+        openPanel: (panel, parameters, callbacks) => {
             dispatch(PanelCreators.open.do(panel, parameters, callbacks));
         },
     };
