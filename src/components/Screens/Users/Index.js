@@ -1,6 +1,7 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { HiPlusCircle } from 'react-icons/hi';
 import List from '../../../containers/Features/List';
 import Action from '../../../utils/Action';
 import Loading from '../../Features/Loading';
@@ -18,13 +19,21 @@ class Index extends Component {
     }
 
     render() {
-        const { users, loading, pagination, more } = this.props;
+        const { users, loading, pagination, more, openModal } = this.props;
 
         return (
             <div className="fragment users">
-                <h1>
-                    <span>Utilisateurs</span>
-                </h1>
+                <div className="header.list">
+                    <p>Utilisateurs</p>
+                    <button
+                        onClick={() => openModal(Action.PANEL_USER)}
+                        className="add"
+                        type="button"
+                    >
+                        <HiPlusCircle className="icon" />
+                    </button>
+                    <div />
+                </div>
                 {
                     loading ? <Loading />
 
@@ -59,6 +68,7 @@ class Index extends Component {
 
 Index.propTypes = {
     load: PropTypes.func,
+    openModal: PropTypes.func,
     more: PropTypes.func,
     users: PropTypes.oneOfType([PropTypes.array]),
     loading: PropTypes.bool,
@@ -67,6 +77,7 @@ Index.propTypes = {
 
 Index.defaultProps = {
     load: () => {},
+    openModal: () => {},
     more: () => {},
     users: [],
     loading: false,

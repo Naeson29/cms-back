@@ -8,6 +8,7 @@ import {
     getCurrent, list, loadingDestroy, loadingList, paginationList,
 } from '../../../selectors/User';
 import { paramUser } from '../../../utils/Param';
+import PanelFunction from '../../Features/PanelFunction';
 
 const mapStateToProps = (state, { match: { params: { id } } }) => ({
     users: list(state),
@@ -26,6 +27,7 @@ const mapDispatchToProps = dispatch => ({
             page,
         }));
     },
+    ...PanelFunction(dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Index));

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Functions from '../../../containers/Features/PanelFunction';
 import 'react-datetime/css/react-datetime.css';
 
 class PanelEvent extends Component {
@@ -13,4 +11,4 @@ class PanelEvent extends Component {
     }
 }
 
-export default connect(() => ({}), Functions)(PanelEvent);
+export default PanelEvent;

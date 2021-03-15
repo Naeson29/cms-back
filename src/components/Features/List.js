@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import {
-    HiPencil, HiPlusCircle, HiTrash, HiSearch,
+    HiPencil, HiTrash, HiSearch,
 } from 'react-icons/hi';
-import Functions from '../../containers/Features/PanelFunction';
 import { getRoles } from '../../utils/Role';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class List extends Component {
     render() {
-        const { type, current, data, pagination, more, open, panel, allow, deleteModal, deleteAction, content, loading } = this.props;
+        const { type, current, data, pagination, more, allow, deleteModal, deleteAction, content, loading } = this.props;
         const Loading = loading;
 
         return (
@@ -27,7 +25,7 @@ class List extends Component {
                 className="list-card"
             >
                 {
-                    data.map((key) => {
+                    data.map((key, index) => {
                         const { edit, trash } = allow({
                             ...getRoles(current),
                             isMe: current.id === key.id,
@@ -36,7 +34,7 @@ class List extends Component {
                         return (
                             <div
                                 className={`card-container ${type}`}
-                                key={key.id}
+                                key={index.toString()}
                             >
                                 <div className="card">
                                     {content(key)}
@@ -72,13 +70,6 @@ class List extends Component {
                         );
                     })
                 }
-                <button
-                    onClick={() => open(panel)}
-                    className="add"
-                    type="button"
-                >
-                    <HiPlusCircle className="icon" />
-                </button>
             </InfiniteScroll>
         );
     }
@@ -88,14 +79,12 @@ List.propTypes = {
     data: PropTypes.oneOfType([PropTypes.array]),
     pagination: PropTypes.oneOfType([PropTypes.object]),
     current: PropTypes.oneOfType([PropTypes.object]),
-    open: PropTypes.func,
     more: PropTypes.func,
     allow: PropTypes.func,
     loading: PropTypes.func,
     deleteModal: PropTypes.func,
     deleteAction: PropTypes.func,
     content: PropTypes.func,
-    panel: PropTypes.string,
     type: PropTypes.string,
 };
 
@@ -103,16 +92,14 @@ List.defaultProps = {
     data: [],
     pagination: {},
     current: {},
-    open: () => {},
     more: () => {},
     allow: () => {},
     loading: () => {},
     deleteModal: () => {},
     deleteAction: () => {},
     content: () => {},
-    panel: '',
     type: '',
 };
 
 
-export default connect(() => ({}), Functions)(List);
+export default List;

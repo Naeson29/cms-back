@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import {
     TransitionGroup, CSSTransition,
 } from 'react-transition-group';
-import { connect } from 'react-redux';
-import { HiOutlineChevronLeft } from 'react-icons/hi';
+import {
+    HiOutlineChevronLeft, HiPlusCircle,
+} from 'react-icons/hi';
 import Action from '../../utils/Action';
 
 // Panels
 import PanelEvent from '../../containers/Screens/Dashboard/Panel';
 import PanelUser from '../../containers/Screens/Users/Panel';
-import Functions from '../../containers/Features/PanelFunction';
-
 
 class Panel extends Component {
     constructor(props) {
@@ -20,7 +19,7 @@ class Panel extends Component {
     }
 
     renderPanel(panel) {
-        const { close } = this.props;
+        const { closeModal } = this.props;
 
         let component;
 
@@ -41,27 +40,19 @@ class Panel extends Component {
         return (
             <div className="panel">
                 <div className="action">
-                    <div className="vertical-center">
-                        <button
-                            onClick={() => close()}
-                            className="close-panel"
-                            type="button"
-                        >
-                            <HiOutlineChevronLeft className="icon" />
-                        </button>
-                    </div>
-                    <div className="vertical-center">
-                        <button
-                            className="btn"
-                            type="button"
-                        >
-                            Ajouter
-                        </button>
-                        {/* {
-                        !create &&
-                        <span className={'btn delete'} onClick={this._deleteEvent}>{'Supprimer'}</span>
-                    } */}
-                    </div>
+                    <button
+                        className="add"
+                        type="button"
+                    >
+                        <HiPlusCircle className="icon" />
+                    </button>
+                    <button
+                        onClick={() => closeModal()}
+                        className="close-panel"
+                        type="button"
+                    >
+                        <HiOutlineChevronLeft className="icon" />
+                    </button>
                 </div>
                 {component}
             </div>
@@ -97,12 +88,12 @@ class Panel extends Component {
 
 Panel.propTypes = {
     panel: PropTypes.oneOfType([PropTypes.object]),
-    close: PropTypes.func,
+    closeModal: PropTypes.func,
 };
 
 Panel.defaultProps = {
     panel: {},
-    close: () => {},
+    closeModal: () => {},
 };
 
-export default connect(() => ({}), Functions)(Panel);
+export default Panel;

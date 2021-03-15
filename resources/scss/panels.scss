@@ -72,11 +72,9 @@
     .action {
       color : $primary-color;
       display: flex;
-      justify-content: space-between;
       align-items: center;
       padding : 0 0.8rem;
       height : 50px;
-      min-height : 50px;
       background-color: $h1-bg;
 
       .close-panel {
@@ -87,21 +85,6 @@
           height:2.2rem;
           width:2.2rem;
         }
-      }
-
-      .btn {
-        border : none;
-        font-size : 13px;
-        color : #fff;
-
-        &:focus {
-          box-shadow : none;
-        }
-      }
-
-      .vertical-center {
-        display: flex;
-        align-items: center;
       }
     }
 

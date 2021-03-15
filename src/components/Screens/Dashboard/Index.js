@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Functions from '../../../containers/Features/PanelFunction';
 import Loader from '../../Features/Loading';
 
 class Index extends Component {
@@ -42,4 +40,4 @@ Index.defaultProps = {
     loading: false,
 };
 
-export default connect(() => ({}), Functions)(Index);
+export default Index;
