@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../../Features/Loading';
+import Loading from '../../Features/Loading';
 import HeaderScreen from '../../../containers/Features/HeaderScreen';
 
 class Index extends Component {
@@ -19,7 +19,7 @@ class Index extends Component {
                     title="Tableau de bord"
                 />
                 {
-                    loading ? <Loader />
+                    loading ? <Loading />
                         : (
                             <div>
                                 <div />
