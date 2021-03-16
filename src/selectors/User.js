@@ -5,28 +5,35 @@ import {
     createModelShowViewSelector,
 } from '../../react-core';
 
+const model = 'User';
+
 export const list = createSelector(
-    createModelIndexViewSelector('User'),
+    createModelIndexViewSelector(model),
     ({ content = [] }) => content,
 );
 
 export const loadingList = createSelector(
-    createModelIndexViewSelector('User'),
+    createModelIndexViewSelector(model),
     ({ loading = true }) => loading,
 );
 
 export const paginationList = createSelector(
-    createModelIndexViewSelector('User'),
+    createModelIndexViewSelector(model),
     ({ pagination = {} }) => pagination,
 );
 
 export const detail = id => createSelector(
-    createModelShowViewSelector('User', id),
+    createModelShowViewSelector(model, id),
     ({ content = {} }) => content,
 );
 
+export const loadingDetail = id => createSelector(
+    createModelShowViewSelector(model, id),
+    ({ loading = false }) => loading,
+);
+
 export const loadingDestroy = id => createSelector(
-    createModelDestroyViewSelector('User', id),
+    createModelDestroyViewSelector(model, id),
     ({ loading = false }) => loading,
 );
 

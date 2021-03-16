@@ -5,13 +5,14 @@ import Index from '../../../components/Screens/Users/Index';
 import { creators } from '../../../actions/User';
 
 import {
-    getCurrent, list, loadingDestroy, loadingList, paginationList,
+    getCurrent, list, loadingDestroy, loadingList, paginationList, loadingDetail, detail,
 } from '../../../selectors/User';
 import { paramUser } from '../../../utils/Param';
 
 const mapStateToProps = (state, { match: { params: { id } } }) => ({
     users: list(state),
-    loading: loadingList(state) || loadingDestroy(id)(state),
+    detail : detail(id)(state),
+    loading: loadingList(state) || loadingDestroy(id)(state) || loadingDetail(id)(state),
     current: getCurrent(state),
     pagination: paginationList(state),
 });

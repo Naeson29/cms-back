@@ -1,7 +1,7 @@
 import React from 'react';
 
 // User
-import PanelUser from '../containers/Screens/Users/Panel';
+import PanelUser from '../components/Screens/Users/Panel';
 import EditUser from '../components/Screens/Users/Edit';
 import ShowUser from '../components/Screens/Users/Show';
 
@@ -24,13 +24,13 @@ const Type = {
     USER: 'user',
 };
 
-const PanelContainer = (panel) => {
+const PanelContainer = (panel, detail) => {
     const Panel = Panels[panel.label].panel;
     const Component = Panels[panel.label][panel.action];
 
     return (
         <Panel {...panel}>
-            <Component />
+            <Component {...detail} />
         </Panel>
     );
 };

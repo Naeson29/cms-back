@@ -9,7 +9,6 @@ import { getRoles } from '../../utils/Role';
 const List = (props) => {
     const { type, current, data, pagination, more, allow, deleteModal, deleteAction, content, loading, panel, openPanel } = props;
     const { label, actions } = panel;
-    const Loading = loading;
 
     return (
         <InfiniteScroll
@@ -18,7 +17,7 @@ const List = (props) => {
                 if (pagination.current_page < pagination.last_page) more(pagination.current_page + 1);
             }}
             hasMore={pagination.current_page < pagination.last_page}
-            loader={<Loading />}
+            loader={loading}
             refreshFunction={() => {}}
             pullDownToRefreshThreshold={50}
             className="list-card"
@@ -86,7 +85,7 @@ List.propTypes = {
     panel: PropTypes.oneOfType([PropTypes.object]),
     more: PropTypes.func,
     allow: PropTypes.func,
-    loading: PropTypes.func,
+    loading: PropTypes.element,
     openPanel: PropTypes.func,
     deleteModal: PropTypes.func,
     deleteAction: PropTypes.func,
@@ -101,7 +100,7 @@ List.defaultProps = {
     panel: {},
     more: () => {},
     allow: () => {},
-    loading: () => {},
+    loading: (<div />),
     openPanel: () => {},
     deleteModal: () => {},
     deleteAction: () => {},

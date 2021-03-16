@@ -4,7 +4,7 @@ import { PanelContainer } from '../../utils/Panel';
 import HeaderScreen from '../../containers/Features/HeaderScreen';
 
 const Panel = (props) => {
-    const { panel } = props;
+    const { panel, loading, loadingComponent, detail } = props;
 
     return (
         <div>
@@ -17,7 +17,7 @@ const Panel = (props) => {
                                 type="panel"
                             />
                             <div className="content-panel">
-                                { PanelContainer(panel) }
+                                { loading ? loadingComponent : PanelContainer(panel, detail) }
                             </div>
                         </div>
                     </div>
@@ -29,10 +29,16 @@ const Panel = (props) => {
 
 Panel.propTypes = {
     panel: PropTypes.oneOfType([PropTypes.object]),
+    detail: PropTypes.oneOfType([PropTypes.object]),
+    loading: PropTypes.bool,
+    loadingComponent: PropTypes.element,
 };
 
 Panel.defaultProps = {
     panel: {},
+    detail: {},
+    loading: false,
+    loadingComponent: (<div />),
 };
 
 export default Panel;

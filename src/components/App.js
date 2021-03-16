@@ -11,8 +11,6 @@ import routes from '../routes/Routes';
 // Components
 import Header from '../containers/Features/Header';
 import Sidebar from '../containers/Features/Sidebar';
-import Panel from '../containers/Features/Panel';
-import Modal from '../containers/Features/Modal';
 
 class App extends Component {
     constructor(props) {
@@ -41,8 +39,6 @@ class App extends Component {
                             ))
                         }
                     </Switch>
-                    <Panel />
-                    <Modal />
                 </div>
             </div>
         );
