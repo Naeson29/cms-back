@@ -7,8 +7,45 @@ import {
 import { getRoles } from '../../utils/Role';
 
 const List = (props) => {
-    const { type, current, data, pagination, more, allow, deleteModal, deleteAction, content, loading, panel, openPanel } = props;
+    const {
+        type,
+        current,
+        data,
+        pagination,
+        more,
+        allow,
+        deleteModal,
+        deleteAction,
+        content,
+        loading,
+        panel,
+        openPanel,
+        detail,
+    } = props;
+
     const { label, actions } = panel;
+
+    const show = (id) => {
+        detail(id);
+        openPanel({
+            label,
+            action: actions.SHOW,
+        });
+    };
+
+    const remove = (permission, key) => {
+        if (permission) deleteModal(deleteAction(key));
+    };
+
+    const update = (permission, id) => {
+        if (permission) {
+            detail(id);
+            openPanel({
+                label,
+                action: actions.UPDATE,
+            });
+        }
+    };
 
     return (
         <InfiniteScroll
@@ -39,17 +76,14 @@ const List = (props) => {
                                 <div className="action">
                                     <div className="button-container left">
                                         <button
-                                            onClick={() => edit && openPanel({
-                                                label,
-                                                action: actions.UPDATE,
-                                            })}
+                                            onClick={() => update(edit, key.id)}
                                             className={`button edit ${!edit && 'disabled'}`}
                                             type="button"
                                         >
                                             <HiPencil className="icon" />
                                         </button>
                                         <button
-                                            onClick={() => trash && deleteModal(deleteAction(key))}
+                                            onClick={() => remove(trash, key)}
                                             className={`button trash ${!trash && 'disabled'}`}
                                             type="button"
                                         >
@@ -58,10 +92,7 @@ const List = (props) => {
                                     </div>
                                     <div className="button-container right">
                                         <button
-                                            onClick={() => openPanel({
-                                                label,
-                                                action: actions.SHOW,
-                                            })}
+                                            onClick={() => show(key.id)}
                                             className="button show"
                                             type="button"
                                         >
@@ -89,6 +120,7 @@ List.propTypes = {
     openPanel: PropTypes.func,
     deleteModal: PropTypes.func,
     deleteAction: PropTypes.func,
+    detail: PropTypes.func,
     content: PropTypes.func,
     type: PropTypes.string,
 };
@@ -104,6 +136,7 @@ List.defaultProps = {
     openPanel: () => {},
     deleteModal: () => {},
     deleteAction: () => {},
+    detail: () => {},
     content: () => {},
     type: '',
 };

@@ -5,6 +5,7 @@ import PanelFunction from './PanelFunction';
 
 // Actions
 import { creators as ModalCreators } from '../../actions/Modal';
+import { creators as UserCreators } from '../../actions/User';
 // Selectors
 import { getCurrent } from '../../selectors/User';
 
@@ -17,6 +18,10 @@ const mapDispatchToProps = dispatch => ({
 
     deleteModal: (params) => {
         dispatch(ModalCreators.open.do(params));
+    },
+
+    detail: (params) => {
+        dispatch(UserCreators.read.request(params));
     },
 });
 

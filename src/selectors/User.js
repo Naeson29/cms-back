@@ -22,19 +22,19 @@ export const paginationList = createSelector(
     ({ pagination = {} }) => pagination,
 );
 
-export const detail = id => createSelector(
-    createModelShowViewSelector(model, id),
+export const detail = createSelector(
+    createModelShowViewSelector(model),
     ({ content = {} }) => content,
 );
 
-export const loadingDetail = id => createSelector(
-    createModelShowViewSelector(model, id),
-    ({ loading = false }) => loading,
+export const loadingDetail = createSelector(
+    createModelShowViewSelector(model),
+    ({ loading }) => loading,
 );
 
-export const loadingDestroy = id => createSelector(
-    createModelDestroyViewSelector(model, id),
-    ({ loading = false }) => loading,
+export const loadingDestroy = createSelector(
+    createModelDestroyViewSelector(model),
+    ({ loading }) => loading,
 );
 
 export const getUserSubState = ({ User = {} }) => User;

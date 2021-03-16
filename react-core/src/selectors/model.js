@@ -15,17 +15,26 @@ export const createModelNewViewSelector = model => createSelector(
     selectedModel => ({ ...selectedModel?.views?.new }),
 );
 
-export const createModelShowViewSelector = (model, id) => createSelector(
+export const createModelShowViewSelector = model => createSelector(
     createModelSelector(model),
-    selectedModel => ({ ...selectedModel?.views?.show, content: selectedModel.data[id] }),
+    selectedModel => ({
+        ...selectedModel?.views?.show,
+        content: selectedModel.data[selectedModel?.views?.show?.result],
+    }),
 );
 
-export const createModelEditViewSelector = (model, id) => createSelector(
+export const createModelEditViewSelector = model => createSelector(
     createModelSelector(model),
-    selectedModel => ({ ...selectedModel?.views?.edit, content: selectedModel.data[id] }),
+    selectedModel => ({
+        ...selectedModel?.views?.edit,
+        content: selectedModel.data[selectedModel?.views?.edit?.result],
+    }),
 );
 
-export const createModelDestroyViewSelector = (model, id) => createSelector(
+export const createModelDestroyViewSelector = model => createSelector(
     createModelSelector(model),
-    selectedModel => ({ ...selectedModel?.views?.destroy, content: selectedModel.data[id] }),
+    selectedModel => ({
+        ...selectedModel?.views?.destroy,
+        content: selectedModel.data[selectedModel?.views?.destroy?.result],
+    }),
 );

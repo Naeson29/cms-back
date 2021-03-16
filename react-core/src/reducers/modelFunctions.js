@@ -99,6 +99,7 @@ export const createSuccess = (state, {data}, section) => ({
         ...state.views,
         [section]: {
             ...state.views[section],
+            result: data.id,
             error: null,
             loading: false,
         },
@@ -125,6 +126,7 @@ export const readSuccess = (state, {data}, section) => ({
         ...state.views,
         [section]: {
             ...state.views[section],
+            result: data.id,
             error: null,
             loading: false,
         },
@@ -148,6 +150,7 @@ export const updateSuccess = (state, {data}, section) => ({
         ...state.views,
         [section]: {
             ...state.views[section],
+            result: data.id,
             error: null,
             loading: false,
         },
@@ -174,6 +177,7 @@ export const destroySuccess = (state, {data}, section) => {
             ...views,
             [section]: {
                 ...views[section],
+                result: data.id,
                 error: null,
                 loading: false,
             },

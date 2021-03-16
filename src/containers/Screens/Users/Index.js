@@ -9,10 +9,10 @@ import {
 } from '../../../selectors/User';
 import { paramUser } from '../../../utils/Param';
 
-const mapStateToProps = (state, { match: { params: { id } } }) => ({
+const mapStateToProps = state => ({
     users: list(state),
-    detail : detail(id)(state),
-    loading: loadingList(state) || loadingDestroy(id)(state) || loadingDetail(id)(state),
+    detail: detail(state),
+    loading: loadingList(state) || loadingDestroy(state) || loadingDetail(state),
     current: getCurrent(state),
     pagination: paginationList(state),
 });

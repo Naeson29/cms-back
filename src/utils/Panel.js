@@ -30,7 +30,7 @@ const PanelContainer = (panel, detail) => {
 
     return (
         <Panel {...panel}>
-            <Component {...detail} />
+            <Component {...panel.action !== Actions.CREATE && detail} />
         </Panel>
     );
 };
