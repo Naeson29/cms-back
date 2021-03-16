@@ -5,7 +5,6 @@ import Header from '../../components/Features/Header';
 // Actions
 import { creators as AuthenticationCreators } from '../../actions/Authentication';
 
-
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({

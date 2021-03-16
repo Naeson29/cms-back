@@ -17,19 +17,17 @@ const mapDispatchToProps = dispatch => ({
         dispatch(creators.close.do());
     },
     destroy: (params) => {
-        let creator;
-        switch (params.action) {
-        case 'User':
-            creator = UserCreators;
-            break;
+        const creator = () => {
+            switch (params.action) {
+            case 'User': {
+                return UserCreators;
+            }
+            default:
+                return undefined;
+            }
+        };
 
-        default:
-            creator = null;
-        }
-
-        if (creator === null) return;
-
-        dispatch(creator.destroy.request(params.id));
+        if (creator) dispatch(creator().destroy.request(params.id));
     },
 });
 

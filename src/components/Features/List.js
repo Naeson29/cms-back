@@ -26,11 +26,11 @@ const List = (props) => {
     const { label, actions } = panel;
 
     const show = (id) => {
-        detail(id);
         openPanel({
             label,
             action: actions.SHOW,
         });
+        detail(id);
     };
 
     const remove = (permission, key) => {
@@ -39,11 +39,11 @@ const List = (props) => {
 
     const update = (permission, id) => {
         if (permission) {
-            detail(id);
             openPanel({
                 label,
                 action: actions.UPDATE,
             });
+            detail(id);
         }
     };
 

@@ -4,7 +4,6 @@ import Sidebar from '../../components/Features/Sidebar';
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = () => ({
-});
+const mapDispatchToProps = () => ({});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar));

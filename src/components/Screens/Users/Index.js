@@ -19,7 +19,6 @@ import Loading from '../../Features/Loading';
 class Index extends Component {
     constructor(props) {
         super(props);
-
         props.load();
     }
 

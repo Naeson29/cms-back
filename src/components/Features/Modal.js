@@ -8,40 +8,39 @@ import { Modal } from '../../utils/Modal';
 
 const Modals = (props) => {
     const { open, type, params, close, destroy } = props;
-    let component;
 
-    switch (type) {
-    case Modal.DELETE:
-        component = (
-            <div className="card-content">
-                <div className="card-text">
-                    <p className="message">{params.message}</p>
-                    <p className="complement">{params.complement}</p>
+    const Component = () => {
+        switch (type) {
+        case Modal.DELETE: {
+            return (
+                <div className="card-content">
+                    <div className="card-text">
+                        <p className="message">{params.message}</p>
+                        <p className="complement">{params.complement}</p>
+                    </div>
+                    <div className="action">
+                        <button
+                            className="button yes"
+                            onClick={() => destroy(params.destroy)}
+                            type="button"
+                        >
+                            <HiCheck className="icon" />
+                        </button>
+                        <button
+                            className="button no"
+                            onClick={() => close()}
+                            type="button"
+                        >
+                            <HiX className="icon" />
+                        </button>
+                    </div>
                 </div>
-                <div className="action">
-                    <button
-                        className="button yes"
-                        onClick={() => destroy(params.destroy)}
-                        type="button"
-                    >
-                        <HiCheck className="icon" />
-                    </button>
-                    <button
-                        className="button no"
-                        onClick={() => close()}
-                        type="button"
-                    >
-                        <HiX className="icon" />
-                    </button>
-                </div>
-            </div>
-        );
-        break;
-
-    default:
-        component = (<div />);
-        break;
-    }
+            );
+        }
+        default:
+            return (<div />);
+        }
+    };
 
 
     return (
@@ -53,7 +52,7 @@ const Modals = (props) => {
         >
             <div className="content-modal">
                 <div className="card">
-                    {component}
+                    <Component />
                 </div>
             </div>
         </ReactModal>

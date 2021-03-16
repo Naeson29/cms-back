@@ -2,9 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Index from '../../../components/Screens/Dashboard/Index';
 
-const mapStateToProps = () => ({
-
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = () => ({
     load: () => {},
