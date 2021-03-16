@@ -4,7 +4,7 @@
  * @returns {{edit: *, trash: boolean}}
  * @constructor
  */
-const AllowUser = (roles) => {
+const AllowUserButton = (roles) => {
     const { isAdmin, isSuperUser, isUser, isMe } = roles;
     return {
         edit: isAdmin || isSuperUser || (isUser && isMe),
@@ -17,5 +17,5 @@ const AllowSlider = () => {
 };
 
 export {
-    AllowUser, AllowSlider,
+    AllowUserButton, AllowSlider,
 };

@@ -8,7 +8,7 @@ import {
 
 // Utils
 import { deleteUser } from '../../../utils/Modal';
-import { AllowUser } from '../../../utils/Allow';
+import { AllowUserButton } from '../../../utils/Allow';
 import { getImage } from '../../../utils/Functions';
 
 // Components
@@ -24,7 +24,7 @@ class Index extends Component {
     }
 
     render() {
-        const { users, loading, pagination, more, detail } = this.props;
+        const { list, loadingList, loadingDetail, pagination, more, detail } = this.props;
         const panel = {
             type: Type.USER,
             actions: Actions,
@@ -43,16 +43,16 @@ class Index extends Component {
                     title="Utilisateurs"
                 />
                 {
-                    loading ? <Loading />
+                    loadingList ? <Loading />
 
                         : (
                             <List
                                 type="small"
-                                data={users}
+                                data={list}
                                 pagination={pagination}
                                 more={more}
                                 panel={panel}
-                                allow={AllowUser}
+                                allow={AllowUserButton}
                                 deleteAction={deleteUser}
                                 content={(key) => {
                                     const { firstName, lastName, image } = key;
@@ -73,7 +73,7 @@ class Index extends Component {
                         )
                 }
                 <Panel
-                    loading={loading}
+                    loading={loadingDetail}
                     loadingComponent={<Loading />}
                     detail={detail}
                 />
@@ -86,18 +86,22 @@ class Index extends Component {
 Index.propTypes = {
     load: PropTypes.func,
     more: PropTypes.func,
-    users: PropTypes.oneOfType([PropTypes.array]),
+    list: PropTypes.oneOfType([PropTypes.array]),
     detail: PropTypes.oneOfType([PropTypes.object]),
-    loading: PropTypes.bool,
+    loadingList: PropTypes.bool,
+    loadingDetail: PropTypes.bool,
+    loadingDestroy: PropTypes.bool,
     pagination: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Index.defaultProps = {
     load: () => {},
     more: () => {},
-    users: [],
+    list: [],
     detail: {},
-    loading: false,
+    loadingList: false,
+    loadingDetail: false,
+    loadingDestroy: false,
     pagination: {},
 };
 

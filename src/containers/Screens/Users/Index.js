@@ -4,17 +4,11 @@ import { withRouter } from 'react-router-dom';
 import Index from '../../../components/Screens/Users/Index';
 import { creators } from '../../../actions/User';
 
-import {
-    getCurrent, list, loadingDestroy, loadingList, paginationList, loadingDetail, detail,
-} from '../../../selectors/User';
+import {userState} from "../../../utils/State";
 import { paramUser } from '../../../utils/Param';
 
 const mapStateToProps = state => ({
-    users: list(state),
-    detail: detail(state),
-    loading: loadingList(state) || loadingDestroy(state) || loadingDetail(state),
-    current: getCurrent(state),
-    pagination: paginationList(state),
+    ...userState(state)
 });
 
 const mapDispatchToProps = dispatch => ({
