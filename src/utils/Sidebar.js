@@ -2,9 +2,9 @@ import {
     HiHome, HiUser, HiPhotograph, HiNewspaper,
 } from 'react-icons/hi';
 
-export const rootPath = '/';
+const rootPath = '/';
 
-export const Navs = [
+const Navs = [
     {
         id: 1,
         path: '/',
@@ -31,12 +31,18 @@ export const Navs = [
     },
 ];
 
-export const isRoot = path => (path === rootPath);
+const isRoot = path => (path === rootPath);
 
-export const isRootPath = (props) => {
+const isRootPath = (props) => {
     const { match, location } = props;
 
     if (!location) return false;
     const { pathname } = location;
     return (pathname === rootPath) && (location.pathname === match.url);
+};
+
+export {
+    Navs,
+    isRoot,
+    isRootPath,
 };

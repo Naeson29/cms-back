@@ -53,17 +53,20 @@ class Index extends Component {
                                 panel={panel}
                                 allow={AllowUser}
                                 deleteAction={deleteUser}
-                                content={key => (
-                                    <div className="card-user">
-                                        <div
-                                            style={{
-                                                backgroundImage: `url(${key.image ? getImage(key.image, 'thumb') : './img/avatar.png'})`,
-                                            }}
-                                            className="image"
-                                        />
-                                        <p className="name">{`${key.first_name} ${key.last_name}`}</p>
-                                    </div>
-                                )}
+                                content={key => {
+                                    const {firstName, lastName, image} = key;
+                                    return (
+                                        <div className="card-user">
+                                            <div
+                                                style={{
+                                                    backgroundImage: `url(${image ? getImage(image, 'thumb') : './img/avatar.png'})`,
+                                                }}
+                                                className="image"
+                                            />
+                                            <p className="name">{`${firstName} ${lastName}`}</p>
+                                        </div>
+                                    )
+                                }}
                                 loading={Loading({ contextClass: 'loading-list' })}
                             />
                         )

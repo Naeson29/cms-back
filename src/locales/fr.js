@@ -2,7 +2,7 @@ export default {
     Default: {
         tables: {
             id: 'Identifiant',
-            first_name: 'Prénom',
+            firstName: 'Prénom',
             last_name: 'Nom',
             email: 'Email',
             register_at: 'Enregistré à',
@@ -105,7 +105,7 @@ export default {
         cards: {
             id: 'Identifiant : ',
             subscription_renew_at: 'Prochaine commande : ',
-            first_name: 'Nom : ',
+            firstName: 'Nom : ',
             last_name: 'Prénom : ',
             email: 'Email: ',
             register_at: 'Enregistré à : ',
@@ -193,7 +193,7 @@ export default {
         },
         forms: {
             id: 'Identifiant ',
-            first_name: 'Prénom* ',
+            firstName: 'Prénom* ',
             last_name: 'Nom* ',
             email: 'Email* ',
             email_not_required: 'Email ',
@@ -304,7 +304,7 @@ export default {
         pagination: 'Nombre d\'éléments par page : ',
     },
     Errors: {
-        first_name: {
+        firstName: {
             required: 'Le prénom est requis',
         },
         last_name: {

@@ -1,5 +1,3 @@
-const colors = {
+export default {
     loadingColor: '#aab4bf',
 };
-
-export default colors;

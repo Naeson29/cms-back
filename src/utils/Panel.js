@@ -26,7 +26,7 @@ const PanelComponents = {
 };
 
 const PanelContainer = (panel, detail) => {
-    const {type, action} = panel;
+    const { type, action } = panel;
     const Component = PanelComponents[type][action];
 
     return (

@@ -22,20 +22,19 @@ require('moment/locale/fr.js');
 
 moment.locale('fr');
 
-function App() {
-    return (
-        <I18nextProvider i18n={i18n}>
-            <Provider store={store}>
-                <PersistGate persistor={persist}>
-                    <Router history={history}>
-                        <Switch>
-                            <Route exact path={authentication.login.path} name={authentication.login.name} component={AuthenticationContainer} />
-                            <PrivateRoute path="/" name="App" Fragment={AppContainer} />
-                        </Switch>
-                    </Router>
-                </PersistGate>
-            </Provider>
-        </I18nextProvider>
-    );
-}
+const App = () => (
+    <I18nextProvider i18n={i18n}>
+        <Provider store={store}>
+            <PersistGate persistor={persist}>
+                <Router history={history}>
+                    <Switch>
+                        <Route exact path={authentication.login.path} name={authentication.login.name} component={AuthenticationContainer} />
+                        <PrivateRoute path="/" name="App" Fragment={AppContainer} />
+                    </Switch>
+                </Router>
+            </PersistGate>
+        </Provider>
+    </I18nextProvider>
+);
+
 export default App;

@@ -4,7 +4,7 @@ export const LOGIN = {
 };
 
 export const USER = {
-    first_name: '',
+    firstName: '',
     last_name: '',
     email: '',
 };
