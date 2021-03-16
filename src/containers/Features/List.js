@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import List from '../../components/Features/List';
+import PanelFunction from './PanelFunction';
 
 // Actions
 import { creators as ModalCreators } from '../../actions/Modal';
@@ -12,6 +13,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    ...PanelFunction(dispatch),
+
     deleteModal: (params) => {
         dispatch(ModalCreators.open.do(params));
     },

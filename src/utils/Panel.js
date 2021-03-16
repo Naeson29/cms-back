@@ -1,18 +1,18 @@
 import React from 'react';
 
-// Panels & Actions
+// User
 import PanelUser from '../containers/Screens/Users/Panel';
 import EditUser from '../components/Screens/Users/Edit';
+import ShowUser from '../components/Screens/Users/Show';
 
 const Panels = {
     user: {
         panel: PanelUser,
-        show: '',
+        show: ShowUser,
         create: EditUser,
         update: EditUser,
     },
 };
-
 
 const Actions = {
     SHOW: 'show',

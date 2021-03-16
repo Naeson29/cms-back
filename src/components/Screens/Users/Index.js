@@ -22,14 +22,20 @@ class Index extends Component {
 
     render() {
         const { users, loading, pagination, more } = this.props;
+        const panel = {
+            label: Type.USER,
+            actions: Actions,
+        };
+
+        const { label, actions } = panel;
 
         return (
             <div className="fragment users">
                 <HeaderScreen
                     type="list"
                     panel={{
-                        label: Type.USER,
-                        action: Actions.CREATE,
+                        label,
+                        action: actions.CREATE,
                     }}
                     title="Utilisateurs"
                 />
@@ -42,6 +48,7 @@ class Index extends Component {
                                 data={users}
                                 pagination={pagination}
                                 more={more}
+                                panel={panel}
                                 allow={AllowUser}
                                 deleteAction={deleteUser}
                                 content={key => (
