@@ -119,6 +119,10 @@ body {
           display : flex;
           align-items : center;
 
+          box-shadow: 0 -1px 5px 1px rgba(0,0,0,0.3);
+          -webkit-box-shadow: 0 -1px 5px 1px rgba(0,0,0,0.3);
+          -moz-box-shadow: 0 -1px 5px 1px rgba(0,0,0,0.3);
+
           @media (min-width: 1025px) {
             padding : 0 1%;
             width:calc(100% - 250px);
@@ -150,34 +154,19 @@ body {
             &.left {
               justify-content: flex-start;
             }
-
-            .close-panel {
-              cursor: pointer;
-              background-color: transparent;
-              .icon {
-                color : $primary_color;
-                height:40px;
-                width:40px;
-              }
-            }
           }
         }
       }
 
-      .add {
+      .add, .close-panel {
         cursor: pointer;
         background-color: transparent;
-        opacity: .8;
-        transition : all 0.3s ease 0s;
+        margin-right: 15px;
 
         svg {
           fill : $primary-color;
           height: 40px;
           width: 40px;
-        }
-
-        &:hover {
-          opacity: 1;
         }
       }
     }
