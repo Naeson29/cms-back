@@ -23,12 +23,10 @@ const List = (props) => {
         detail,
     } = props;
 
-    const { label, actions } = panel;
-
     const show = (id) => {
         openPanel({
-            label,
-            action: actions.SHOW,
+            type: panel.type,
+            action: panel.actions.SHOW,
         });
         detail(id);
     };
@@ -40,8 +38,8 @@ const List = (props) => {
     const update = (permission, id) => {
         if (permission) {
             openPanel({
-                label,
-                action: actions.UPDATE,
+                type: panel.type,
+                action: panel.actions.UPDATE,
             });
             detail(id);
         }

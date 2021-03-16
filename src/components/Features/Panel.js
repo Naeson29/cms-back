@@ -9,7 +9,7 @@ const Panel = (props) => {
     return (
         <div>
             {
-                !!panel.label
+                !!panel.type
                 && (
                     <div className="panel-container right">
                         <div className="panel">

@@ -1,6 +1,6 @@
 import { creators as PanelCreators } from '../../actions/Panel';
 
-export default (dispatch) => ({
+export default dispatch => ({
     closePanel: () => {
         dispatch(PanelCreators.close.do());
     },

@@ -1,7 +1,11 @@
 import React from 'react';
 
-const Edit = () => (
-    <div>edit</div>
-);
+const Edit = (props) => {
+    const {detail}= props;
+
+    return (
+        <div>dfdf</div>
+    );
+};
 
 export default Edit;
