@@ -48,24 +48,16 @@ class Panel extends Component {
         const { panel } = this.props;
 
         return (
-            <TransitionGroup>
+            <div>
                 {
                     !!panel.label
                     && (
-                        <CSSTransition
-                            key={`trans_right_${panel.label}`}
-                            classNames="panel"
-                            timeout={{
-                                enter: 0, exit: 0,
-                            }}
-                        >
-                            <div className="panel-container right">
-                                {this.renderPanel(panel)}
-                            </div>
-                        </CSSTransition>
+                        <div className="panel-container right">
+                            {this.renderPanel(panel)}
+                        </div>
                     )
                 }
-            </TransitionGroup>
+            </div>
         );
     }
 }
