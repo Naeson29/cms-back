@@ -1,14 +1,22 @@
-import React, { Component } from 'react';
-import 'react-datetime/css/react-datetime.css';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Panel extends Component {
-    render() {
-        return (
-            <div className="content-panel" ref={(el) => { this.content = el; }}>
-                <div className="content" />
-            </div>
-        );
-    }
-}
+const Panel = (props) => {
+    const { children } = props;
+
+    return (
+        <div className="content">
+            {children}
+        </div>
+    );
+};
+
+Panel.propTypes = {
+    children: PropTypes.element,
+};
+
+Panel.defaultProps = {
+    children: (<div />),
+};
 
 export default Panel;

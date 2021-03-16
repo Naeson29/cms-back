@@ -56,7 +56,7 @@ HeaderScreen.propTypes = {
     openPanel: PropTypes.func,
     closePanel: PropTypes.func,
     title: PropTypes.string,
-    panel: PropTypes.string,
+    panel: PropTypes.oneOfType([PropTypes.object]),
 };
 
 HeaderScreen.defaultProps = {
@@ -64,7 +64,7 @@ HeaderScreen.defaultProps = {
     openPanel: () => {},
     closePanel: () => {},
     title: '',
-    panel: '',
+    panel: {},
 };
 
 export default HeaderScreen;

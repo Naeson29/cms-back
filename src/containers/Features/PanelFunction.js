@@ -5,8 +5,8 @@ export default function (dispatch) {
         closePanel: () => {
             dispatch(PanelCreators.close.do());
         },
-        openPanel: (panel, parameters, callbacks) => {
-            dispatch(PanelCreators.open.do(panel, parameters, callbacks));
+        openPanel: (panel) => {
+            dispatch(PanelCreators.open.do(panel));
         },
     };
 }

@@ -7,22 +7,14 @@ export const types = {
 
 export const creators = {
     close: {
-        do() {
-            return {
-                type: types.CLOSE.DO,
-            };
-        },
+        do: () => ({
+            type: types.CLOSE.DO,
+        }),
     },
     open: {
-        do(panel, parameters, callbacks) {
-            return {
-                type: types.OPEN.DO,
-                payload: {
-                    label: panel,
-                    parameters,
-                    callbacks,
-                },
-            };
-        },
+        do: payload => ({
+            type: types.OPEN.DO,
+            payload,
+        }),
     },
 };

@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import List from '../../../containers/Features/List';
-import Action from '../../../utils/Action';
+import {
+    Actions, Type,
+} from '../../../utils/Panel';
 import Loading from '../../Features/Loading';
 import { deleteUser } from '../../../utils/Modal';
 import { AllowUser } from '../../../utils/Allow';
@@ -25,7 +27,10 @@ class Index extends Component {
             <div className="fragment users">
                 <HeaderScreen
                     type="list"
-                    panel={Action.PANEL_USER}
+                    panel={{
+                        label: Type.USER,
+                        action: Actions.CREATE,
+                    }}
                     title="Utilisateurs"
                 />
                 {
