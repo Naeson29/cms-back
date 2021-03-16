@@ -1,14 +1,13 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { HiPlusCircle } from 'react-icons/hi';
 import List from '../../../containers/Features/List';
 import Action from '../../../utils/Action';
 import Loading from '../../Features/Loading';
 import { deleteUser } from '../../../utils/Modal';
 import { AllowUser } from '../../../utils/Allow';
 import { getImage } from '../../../utils/Functions';
-import HeaderScreen from "../../../containers/Features/HeaderScreen";
+import HeaderScreen from '../../../containers/Features/HeaderScreen';
 
 // Components
 
@@ -25,9 +24,9 @@ class Index extends Component {
         return (
             <div className="fragment users">
                 <HeaderScreen
-                    type={'list'}
+                    type="list"
                     panel={Action.PANEL_USER}
-                    title={'Utilisateurs'}
+                    title="Utilisateurs"
                 />
                 {
                     loading ? <Loading />
@@ -62,7 +61,6 @@ class Index extends Component {
 
 Index.propTypes = {
     load: PropTypes.func,
-    openModal: PropTypes.func,
     more: PropTypes.func,
     users: PropTypes.oneOfType([PropTypes.array]),
     loading: PropTypes.bool,
@@ -71,7 +69,6 @@ Index.propTypes = {
 
 Index.defaultProps = {
     load: () => {},
-    openModal: () => {},
     more: () => {},
     users: [],
     loading: false,

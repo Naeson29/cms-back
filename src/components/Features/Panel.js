@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    TransitionGroup, CSSTransition,
-} from 'react-transition-group';
 import Action from '../../utils/Action';
-import HeaderScreen from "../../containers/Features/HeaderScreen";
+import HeaderScreen from '../../containers/Features/HeaderScreen';
 
 // Panels
 import PanelEvent from '../../containers/Screens/Dashboard/Panel';
@@ -36,7 +33,7 @@ class Panel extends Component {
         return (
             <div className="panel">
                 <HeaderScreen
-                    type={'panel'}
+                    type="panel"
                 />
                 {component}
             </div>

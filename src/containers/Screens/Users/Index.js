@@ -22,10 +22,10 @@ const mapDispatchToProps = dispatch => ({
     },
     more: (page) => {
         dispatch(creators.more.request({
-            params : {
+            params: {
                 ...paramUser.params,
-                page
-            }
+                page,
+            },
         }));
     },
 });
