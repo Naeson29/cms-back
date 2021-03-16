@@ -5,6 +5,12 @@ import {
     HiLogout, HiCog,
 } from 'react-icons/hi';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Header = (props) => {
     const { logout } = props;
 

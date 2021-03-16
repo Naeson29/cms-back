@@ -4,43 +4,48 @@ import {
     HiArrowCircleLeft, HiPlusCircle,
 } from 'react-icons/hi';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const HeaderScreen = (props) => {
     const { type, openPanel, closePanel, panel, title } = props;
 
-    let button;
-    switch (type) {
-    case 'list':
-        button = (
-            <button
-                onClick={() => openPanel(panel)}
-                className="add"
-                type="button"
-            >
-                <HiPlusCircle className="icon" />
-            </button>
-        );
-        break;
-
-    case 'panel':
-        button = (
-            <button
-                onClick={() => closePanel()}
-                className="close-panel"
-                type="button"
-            >
-                <HiArrowCircleLeft className="icon" />
-            </button>
-        );
-        break;
-
-    default:
-        button = (<div />);
-    }
+    const Button = () => {
+        switch (type) {
+        case 'list': {
+            return (
+                <button
+                    onClick={() => openPanel(panel)}
+                    className="add"
+                    type="button"
+                >
+                    <HiPlusCircle className="icon" />
+                </button>
+            );
+        }
+        case 'panel': {
+            return (
+                <button
+                    onClick={() => closePanel()}
+                    className="close-panel"
+                    type="button"
+                >
+                    <HiArrowCircleLeft className="icon" />
+                </button>
+            );
+        }
+        default:
+            return (<div />);
+        }
+    };
 
     return (
         <div className="header-screen">
             <div className="content left">
-                {button}
+                <Button />
                 <span>{title}</span>
             </div>
             <div className="content right" />

@@ -1,3 +1,9 @@
+/**
+ *
+ * @param roles
+ * @returns {{edit: *, trash: boolean}}
+ * @constructor
+ */
 const AllowUser = (roles) => {
     const { isAdmin, isSuperUser, isUser, isMe } = roles;
     return {

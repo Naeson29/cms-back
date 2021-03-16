@@ -6,9 +6,20 @@ import {
 } from 'react-icons/hi';
 import { Modal } from '../../utils/Modal';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Modals = (props) => {
     const { open, type, params, close, destroy } = props;
 
+    /**
+     *
+     * @returns {JSX.Element}
+     * @constructor
+     */
     const Component = () => {
         switch (type) {
         case Modal.DELETE: {

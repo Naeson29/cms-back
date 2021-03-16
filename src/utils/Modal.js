@@ -2,6 +2,11 @@ const Modal = {
     DELETE: 'delete',
 };
 
+/**
+ *
+ * @param key
+ * @returns {{type: string, params: {destroy: {action: string, id}, message: string, complement: string}}}
+ */
 const deleteUser = key => ({
     type: Modal.DELETE,
     params: {

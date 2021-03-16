@@ -3,6 +3,12 @@ import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import colors from '../../utils/Color';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Loading = (props) => {
     const { contextClass } = props;
     return (

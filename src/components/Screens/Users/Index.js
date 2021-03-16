@@ -5,16 +5,17 @@ import List from '../../../containers/Features/List';
 import {
     Actions, Type,
 } from '../../../utils/Panel';
+
+// Utils
 import { deleteUser } from '../../../utils/Modal';
 import { AllowUser } from '../../../utils/Allow';
 import { getImage } from '../../../utils/Functions';
 
+// Components
 import HeaderScreen from '../../../containers/Features/HeaderScreen';
 import Panel from '../../../containers/Features/Panel';
 import Modal from '../../../containers/Features/Modal';
 import Loading from '../../Features/Loading';
-
-// Components
 
 class Index extends Component {
     constructor(props) {
@@ -53,8 +54,8 @@ class Index extends Component {
                                 panel={panel}
                                 allow={AllowUser}
                                 deleteAction={deleteUser}
-                                content={key => {
-                                    const {firstName, lastName, image} = key;
+                                content={(key) => {
+                                    const { firstName, lastName, image } = key;
                                     return (
                                         <div className="card-user">
                                             <div
@@ -65,7 +66,7 @@ class Index extends Component {
                                             />
                                             <p className="name">{`${firstName} ${lastName}`}</p>
                                         </div>
-                                    )
+                                    );
                                 }}
                                 loading={Loading({ contextClass: 'loading-list' })}
                             />

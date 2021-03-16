@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import { PanelContainer } from '../../utils/Panel';
 import HeaderScreen from '../../containers/Features/HeaderScreen';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Panel = (props) => {
     const { panel, loading, loadingComponent, detail } = props;
 

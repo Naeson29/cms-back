@@ -6,6 +6,12 @@ import {
 } from 'react-icons/hi';
 import { getRoles } from '../../utils/Role';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const List = (props) => {
     const {
         type,
@@ -23,6 +29,10 @@ const List = (props) => {
         detail,
     } = props;
 
+    /**
+     *
+     * @param id
+     */
     const show = (id) => {
         openPanel({
             type: panel.type,
@@ -31,10 +41,20 @@ const List = (props) => {
         detail(id);
     };
 
+    /**
+     *
+     * @param permission
+     * @param key
+     */
     const remove = (permission, key) => {
         if (permission) deleteModal(deleteAction(key));
     };
 
+    /**
+     *
+     * @param permission
+     * @param id
+     */
     const update = (permission, id) => {
         if (permission) {
             openPanel({

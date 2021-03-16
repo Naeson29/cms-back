@@ -7,6 +7,10 @@ import Panel from '../components/Screens/Commons/Panel';
 import EditUser from '../components/Screens/Users/Edit';
 import ShowUser from '../components/Screens/Users/Show';
 
+/**
+ *
+ * @type {{CREATE: string, UPDATE: string, SHOW: string}}
+ */
 const Actions = {
     SHOW: 'show',
     CREATE: 'create',
@@ -25,6 +29,13 @@ const PanelComponents = {
     },
 };
 
+/**
+ *
+ * @param panel
+ * @param detail
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const PanelContainer = (panel, detail) => {
     const { type, action } = panel;
     const Component = PanelComponents[type][action];

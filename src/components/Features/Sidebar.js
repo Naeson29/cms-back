@@ -5,6 +5,12 @@ import {
     Navs, isRoot, isRootPath,
 } from '../../utils/Sidebar';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Sidebar = props => (
     <div className="sidebar">
         <div className="sidebar-nav">

@@ -5,6 +5,12 @@ import {
 import PropTypes from 'prop-types';
 import { authentication } from '../../routes/Routes';
 
+/**
+ *
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const PrivateRoute = (props) => {
     const { Fragment, location, token, ...rest } = props;
 

@@ -4,7 +4,7 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import { persistReducer } from 'redux-persist';
 
-export default function configure(rootReducer, persistConfig) {
+const configure = (rootReducer, persistConfig) => {
     const persistedReducer = persistReducer(persistConfig, rootReducer);
     const sagaMiddleware = createSagaMiddleware();
 
@@ -23,4 +23,6 @@ export default function configure(rootReducer, persistConfig) {
     return {
         store, sagaMiddleware,
     };
-}
+};
+
+export default configure;

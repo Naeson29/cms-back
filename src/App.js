@@ -22,6 +22,11 @@ require('moment/locale/fr.js');
 
 moment.locale('fr');
 
+/**
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const App = () => (
     <I18nextProvider i18n={i18n}>
         <Provider store={store}>

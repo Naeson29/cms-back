@@ -31,8 +31,18 @@ const Navs = [
     },
 ];
 
+/**
+ *
+ * @param path
+ * @returns {boolean}
+ */
 const isRoot = path => (path === rootPath);
 
+/**
+ *
+ * @param props
+ * @returns {boolean}
+ */
 const isRootPath = (props) => {
     const { match, location } = props;
 
