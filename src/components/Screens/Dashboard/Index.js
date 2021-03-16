@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../../Features/Loading';
+import HeaderScreen from '../../../containers/Features/HeaderScreen';
 
 class Index extends Component {
     constructor(props) {
@@ -13,9 +14,10 @@ class Index extends Component {
 
         return (
             <div className="fragment dashboard">
-                <h1>
-                    <span>Tableau de bord</span>
-                </h1>
+                <HeaderScreen
+                    type="list"
+                    title="Tableau de bord"
+                />
                 {
                     loading ? <Loader />
                         : (
