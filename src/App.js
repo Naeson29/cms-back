@@ -8,15 +8,15 @@ import { I18nextProvider } from 'react-i18next';
 import moment from 'moment';
 import store, {
     persist, history,
-} from './store';
-import i18n from './locales/i18n';
+} from './Store';
+import i18n from './Locales/i18n';
 
-import { authentication } from './routes/Routes';
+import { authentication } from './Routes';
 
 // Containers
-import AuthenticationContainer from './containers/Screens/Authentication/Login';
-import PrivateRoute from './containers/Features/PrivateRoute';
-import AppContainer from './containers/App';
+import AuthenticationContainer from './Containers/Screens/Authentication/Login';
+import PrivateRoute from './Containers/Features/PrivateRoute';
+import AppContainer from './Containers/App';
 
 require('moment/locale/fr.js');
 
