@@ -5,27 +5,25 @@ import {
 import { getPanel } from '../selectors/Panel';
 import { getModal } from '../selectors/Modal';
 
-import { getRoles } from './Role';
+// Utils
+import getRoles from './Role';
 
 const getAllowButtons = (model, current) => {
-    const { isAdmin, isSuperUser, isUser } = getRoles(current);
+    const roles = getRoles(current);
+    const { isAdmin, isSuperUser } = roles;
 
     const allows = {
         user: {
-            edit: isAdmin || isSuperUser || isUser,
+            role : {
+                [Object.keys(roles).find(key => !!roles[key])] : true
+            },
+            edit: isAdmin || isSuperUser,
             trash: isAdmin || isSuperUser,
         },
     };
 
     return allows[model];
 };
-
-/* const additionalState = (model, state) => {
-    const additional = {
-
-    };
-    return !additional[model] ? {} : additional[model];
-}; */
 
 export default (state, model) => ({
     state: {

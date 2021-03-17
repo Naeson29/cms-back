@@ -6,6 +6,13 @@ const scrollBody = lock => (lock ? document.body.classList.add('lock') : documen
 
 /**
  *
+ * @param pagination
+ * @returns {boolean}
+ */
+const hasMorePage = pagination => (pagination.current_page < pagination.last_page);
+
+/**
+ *
  * @param obj
  * @param conversion
  * @returns {string}
@@ -27,6 +34,7 @@ const getSlideImages = images => JSON.parse(images).map((key, index) => ({
 
 export {
     scrollBody,
+    hasMorePage,
     getImage,
     getSlideImages,
 };

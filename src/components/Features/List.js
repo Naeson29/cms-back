@@ -7,6 +7,7 @@ import {
 
 // Utils
 import setModalDelete from '../../utils/Modal';
+import {hasMorePage} from '../../utils/Functions';
 
 /**
  *
@@ -31,10 +32,9 @@ const List = (props) => {
      *
       * @param permission
      * @param key
-     * @param isMe
      */
-    const remove = (permission, key, isMe) => {
-        if (permission || !isMe) openModal(setModalDelete(model, key));
+    const remove = (permission, key) => {
+        if (permission) openModal(setModalDelete(model, key));
     };
 
     /**
@@ -49,13 +49,13 @@ const List = (props) => {
         }
     };
 
+    const hasMore = hasMorePage(pagination);
+
     return (
         <InfiniteScroll
             dataLength={list.length}
-            next={() => {
-                if (pagination.current_page < pagination.last_page) getMore(pagination.current_page + 1);
-            }}
-            hasMore={pagination.current_page < pagination.last_page}
+            next={() => { if (hasMore) getMore(pagination.current_page + 1) }}
+            hasMore={hasMore}
             loader={loading}
             refreshFunction={() => {}}
             pullDownToRefreshThreshold={50}
@@ -63,8 +63,9 @@ const List = (props) => {
         >
             {
                 list.map((key, index) => {
-                    const { edit, trash } = allowButton;
-                    const isMe = current.id === key.id;
+                    const { edit, trash, role } = allowButton;
+                    const isMe = (current.id === key.id);
+                    const isUserMe = (!!role.isUser && isMe);
 
                     return (
                         <div
@@ -76,14 +77,14 @@ const List = (props) => {
                                 <div className="action">
                                     <div className="button-container left">
                                         <button
-                                            onClick={() => update(edit, key.id)}
-                                            className={`button edit ${!edit && 'disabled'}`}
+                                            onClick={() => update((edit || isUserMe), key.id)}
+                                            className={`button edit ${(!edit && (!isUserMe)) && 'disabled'}`}
                                             type="button"
                                         >
                                             <HiPencil className="icon" />
                                         </button>
                                         <button
-                                            onClick={() => remove(trash, key, isMe)}
+                                            onClick={() => remove((trash && !isMe), key)}
                                             className={`button trash ${(!trash || isMe) && 'disabled'}`}
                                             type="button"
                                         >
@@ -113,13 +114,11 @@ List.propTypes = {
     type: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
     panels: PropTypes.oneOfType([PropTypes.object]),
+    loading: PropTypes.element,
     getDetail: PropTypes.func,
     getMore: PropTypes.func,
     openPanel: PropTypes.func,
     openModal: PropTypes.func,
-
-
-    loading: PropTypes.element,
     content: PropTypes.func,
 };
 
@@ -127,13 +126,11 @@ List.defaultProps = {
     type: 'small',
     state: {},
     panels: {},
+    loading: (<div />),
     getDetail: () => {},
     getMore: () => {},
     openPanel: () => {},
     openModal: () => {},
-
-
-    loading: (<div />),
     content: () => {},
 };
 
