@@ -90,6 +90,6 @@ Login.defaultProps = {
     actionForm: () => {},
 };
 
-const LoginScreen = withTranslation('LoginScreen')(Login);
+const LoginScreen = withTranslation('authentication')(Login);
 
 export default LoginScreen;

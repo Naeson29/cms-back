@@ -14,7 +14,7 @@ import i18n from './Locales/i18n';
 import { authentication } from './Routes';
 
 // Containers
-import AuthenticationContainer from './Containers/Screens/Authentication/Login';
+import AuthenticationContainer from './Containers/Screens/Authentication';
 import PrivateRoute from './Containers/Features/PrivateRoute';
 import AppContainer from './Containers/App';
 

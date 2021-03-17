@@ -15,6 +15,9 @@ import Panel from '../../Features/Panel';
 import Modal from '../../Features/Modal';
 import Loading from '../../Features/Loading';
 
+// Translation
+import {withTranslation} from "react-i18next";
+
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -22,8 +25,8 @@ class Index extends Component {
     }
 
     render() {
-        const { props } = this;
-        const { state } = props;
+        const {props } = this;
+        const { t, state } = props;
         const { model, loadingList } = state;
         const panels = setPanels(model);
 
@@ -31,9 +34,8 @@ class Index extends Component {
             <div className={`fragment ${model}`}>
                 <HeaderScreen
                     {...props}
-                    type="list"
                     panel={panels.create}
-                    title="Utilisateurs"
+                    title={t(`Default:${model}:title`)}
                 />
                 {
                     loadingList ? <Loading />
@@ -69,13 +71,15 @@ class Index extends Component {
 }
 
 Index.propTypes = {
+    t: PropTypes.func,
     load: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Index.defaultProps = {
+    t: () => {},
     load: () => {},
     state: {},
 };
 
-export default Index;
+export default withTranslation('Default')(Index);

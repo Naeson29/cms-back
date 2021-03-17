@@ -64,7 +64,10 @@ const List = (props) => {
             {
                 list.map((key, index) => {
                     const { edit, trash, role } = allowButton;
-                    const isMe = (current.id === key.id);
+
+
+
+                    const isMe = model === 'user' ? (current.id === key.id) : false;
                     const isUserMe = (!!role.isUser && isMe);
 
                     return (

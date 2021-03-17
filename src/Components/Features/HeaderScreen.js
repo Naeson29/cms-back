@@ -13,39 +13,29 @@ import {
 const HeaderScreen = (props) => {
     const { type, openPanel, closePanel, panel, title } = props;
 
-    const Button = () => {
-        switch (type) {
-        case 'list': {
-            return (
-                <button
-                    onClick={() => openPanel(panel)}
-                    className="add"
-                    type="button"
-                >
-                    <HiPlusCircle className="icon" />
-                </button>
-            );
-        }
-        case 'panel': {
-            return (
-                <button
-                    onClick={() => closePanel()}
-                    className="close-panel"
-                    type="button"
-                >
-                    <HiArrowCircleLeft className="icon" />
-                </button>
-            );
-        }
-        default:
-            return (<div />);
+    const leftButton = {
+        list: {
+            action: () => openPanel(panel),
+            Icon: HiPlusCircle
+        },
+        panel : {
+            action: () => closePanel(),
+            Icon: HiArrowCircleLeft
         }
     };
+
+    const {action, Icon} = leftButton[type];
 
     return (
         <div className="header-screen">
             <div className="content left">
-                <Button />
+                <button
+                    onClick={action}
+                    className="add"
+                    type="button"
+                >
+                    <Icon className="icon" />
+                </button>
                 <span>{title}</span>
             </div>
             <div className="content right" />
@@ -62,7 +52,7 @@ HeaderScreen.propTypes = {
 };
 
 HeaderScreen.defaultProps = {
-    type: '',
+    type: 'list',
     title: '',
     panel: {},
     openPanel: () => {},

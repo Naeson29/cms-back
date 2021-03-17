@@ -3,7 +3,7 @@ import {
     createModelDestroyViewSelector,
     createModelIndexViewSelector,
     createModelShowViewSelector,
-} from '../../react-core';
+} from '../../../react-core';
 
 const model = 'User';
 

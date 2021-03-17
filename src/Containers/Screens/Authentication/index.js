@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Login from '../../../Components/Screens/Authentication/Login';
+import Login from '../../../Components/Screens/Authentication';
 import { creators } from '../../../Actions/Authentication';
 
 
