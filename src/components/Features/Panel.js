@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { panelContainer } from '../../utils/Panel';
-import HeaderScreen from '../../containers/Features/HeaderScreen';
+import HeaderScreen from './HeaderScreen';
 
 /**
  *
@@ -21,6 +21,7 @@ const Panel = (props) => {
                     <div className="panel-container right">
                         <div className="panel">
                             <HeaderScreen
+                                {...props}
                                 type="panel"
                             />
                             <div className="content-panel">

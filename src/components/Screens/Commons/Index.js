@@ -7,11 +7,10 @@ import {
 } from '../../../utils/Panel';
 
 // Utils
-import { AllowUserButton } from '../../../utils/Allow';
 import { getImage } from '../../../utils/Functions';
 
 // Components
-import HeaderScreen from '../../../containers/Features/HeaderScreen';
+import HeaderScreen from '../../Features/HeaderScreen';
 import Panel from '../../Features/Panel';
 import Modal from '../../Features/Modal';
 import Loading from '../../Features/Loading';
@@ -31,6 +30,7 @@ class Index extends Component {
         return (
             <div className={`fragment ${model}`}>
                 <HeaderScreen
+                    {...props}
                     type="list"
                     panel={panels.create}
                     title="Utilisateurs"
@@ -43,7 +43,6 @@ class Index extends Component {
                                 {...props}
                                 type="small"
                                 panels={panels}
-                                allow={AllowUserButton}
                                 content={(key) => {
                                     const { firstName, lastName, image } = key;
                                     return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../../Features/Loading';
-import HeaderScreen from '../../../containers/Features/HeaderScreen';
+import HeaderScreen from '../../Features/HeaderScreen';
 
 class Index extends Component {
     constructor(props) {

@@ -5,15 +5,27 @@ import {
 import { getPanel } from '../selectors/Panel';
 import { getModal } from '../selectors/Modal';
 
+import { getRoles } from './Role';
 
-const additionalState = (model, state) => {
-    const additional = {
+const getAllowButtons = (model, current) => {
+    const { isAdmin, isSuperUser, isUser } = getRoles(current);
+
+    const allows = {
         user: {
-            current: getCurrent(state),
+            edit: isAdmin || isSuperUser || isUser,
+            trash: isAdmin || isSuperUser,
         },
     };
-    return !additional[model] ? {} : additional[model];
+
+    return allows[model];
 };
+
+/* const additionalState = (model, state) => {
+    const additional = {
+
+    };
+    return !additional[model] ? {} : additional[model];
+}; */
 
 export default (state, model) => ({
     state: {
@@ -26,10 +38,12 @@ export default (state, model) => ({
         loadingDetail: loadingDetail(state),
         loadingDestroy: loadingDestroy(state),
         // More state
-        ...additionalState(model, state),
+        current: getCurrent(state),
         // Panel
         panel: getPanel(state),
         // Modal
         modal: getModal(state),
+        // Allows
+        allowButton: getAllowButtons(model, getCurrent(state)),
     },
 });

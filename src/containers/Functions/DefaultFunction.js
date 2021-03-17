@@ -1,13 +1,13 @@
-export default (dispatch, creators, params) => ({
+export default (dispatch, creators, paramsList) => ({
     load: () => {
-        if (creators) dispatch(creators.search.request(params));
+        if (creators) dispatch(creators.search.request(paramsList));
     },
 
     getMore: (page) => {
         if (creators) {
             dispatch(creators.more.request({
                 params: {
-                    ...params.params,
+                    ...paramsList.params,
                     page,
                 },
             }));

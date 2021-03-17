@@ -6,7 +6,6 @@ import {
 } from 'react-icons/hi';
 
 // Utils
-import { getRoles } from '../../utils/Role';
 import setModalDelete from '../../utils/Modal';
 
 /**
@@ -16,8 +15,8 @@ import setModalDelete from '../../utils/Modal';
  * @constructor
  */
 const List = (props) => {
-    const { state, getDetail, getMore, type, allow, openModal, content, loading, openPanel, panels } = props;
-    const { model, current, list, pagination } = state;
+    const { state, getDetail, getMore, type, openModal, content, loading, openPanel, panels } = props;
+    const { model, list, pagination, allowButton, current } = state;
 
     /**
      *
@@ -30,11 +29,12 @@ const List = (props) => {
 
     /**
      *
-     * @param permission
+      * @param permission
      * @param key
+     * @param isMe
      */
-    const remove = (permission, key) => {
-        if (permission) openModal(setModalDelete(model, key));
+    const remove = (permission, key, isMe) => {
+        if (permission || !isMe) openModal(setModalDelete(model, key));
     };
 
     /**
@@ -63,10 +63,8 @@ const List = (props) => {
         >
             {
                 list.map((key, index) => {
-                    const { edit, trash } = allow({
-                        ...getRoles(current),
-                        isMe: current.id === key.id,
-                    });
+                    const { edit, trash } = allowButton;
+                    const isMe = current.id === key.id;
 
                     return (
                         <div
@@ -85,8 +83,8 @@ const List = (props) => {
                                             <HiPencil className="icon" />
                                         </button>
                                         <button
-                                            onClick={() => remove(trash, key)}
-                                            className={`button trash ${!trash && 'disabled'}`}
+                                            onClick={() => remove(trash, key, isMe)}
+                                            className={`button trash ${(!trash || isMe) && 'disabled'}`}
                                             type="button"
                                         >
                                             <HiTrash className="icon" />
@@ -121,7 +119,6 @@ List.propTypes = {
     openModal: PropTypes.func,
 
 
-    allow: PropTypes.func,
     loading: PropTypes.element,
     content: PropTypes.func,
 };
@@ -136,7 +133,6 @@ List.defaultProps = {
     openModal: () => {},
 
 
-    allow: () => {},
     loading: (<div />),
     content: () => {},
 };

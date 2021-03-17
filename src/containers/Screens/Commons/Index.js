@@ -6,21 +6,21 @@ import Index from '../../../components/Screens/Commons/Index';
 
 // Utils
 import getState from '../../../utils/State';
-import getParam from '../../../utils/Param';
+import getParamList from '../../../utils/Param';
 import getActionModel from '../../../utils/Action';
 
-// Panel
-import PanelFunction from '../../Features/PanelFunction';
+// Panel function
+import PanelFunction from '../../Functions/PanelFunction';
 
-// Modal
-import ModalFunction from '../../Features/ModalFunction';
+// Modal function
+import ModalFunction from '../../Functions/ModalFunction';
 
-// Default
-import DefaultFunction from '../../Features/DefaultFunction';
+// Default function
+import DefaultFunction from '../../Functions/DefaultFunction';
 
 export default (model) => {
     const creators = getActionModel(model);
-    const params = getParam(model);
+    const paramsList = getParamList(model);
 
     const mapStateToProps = state => ({
         ...getState(state, model),
@@ -29,7 +29,7 @@ export default (model) => {
     const mapDispatchToProps = dispatch => ({
         ...PanelFunction(dispatch),
         ...ModalFunction(dispatch),
-        ...DefaultFunction(dispatch, creators, params),
+        ...DefaultFunction(dispatch, creators, paramsList),
     });
 
     return withRouter(connect(mapStateToProps, mapDispatchToProps)(Index));

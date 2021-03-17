@@ -55,18 +55,18 @@ const HeaderScreen = (props) => {
 
 HeaderScreen.propTypes = {
     type: PropTypes.string,
-    openPanel: PropTypes.func,
-    closePanel: PropTypes.func,
     title: PropTypes.string,
     panel: PropTypes.oneOfType([PropTypes.object]),
+    openPanel: PropTypes.func,
+    closePanel: PropTypes.func,
 };
 
 HeaderScreen.defaultProps = {
     type: '',
-    openPanel: () => {},
-    closePanel: () => {},
     title: '',
     panel: {},
+    openPanel: () => {},
+    closePanel: () => {},
 };
 
 export default HeaderScreen;

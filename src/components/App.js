@@ -9,8 +9,8 @@ import {
 import routes from '../routes/Routes';
 
 // Components
-import Header from '../containers/Features/Header';
-import Sidebar from '../containers/Features/Sidebar';
+import Header from './Features/Header';
+import Sidebar from './Features/Sidebar';
 
 class App extends Component {
     constructor(props) {
@@ -19,10 +19,12 @@ class App extends Component {
     }
 
     render() {
+        const { props } = this;
+
         return (
             <div className="container-app">
                 <div className="header-app">
-                    <Header />
+                    <Header {...props} />
                 </div>
                 <Sidebar />
                 <div className="content-app">
