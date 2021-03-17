@@ -6,5 +6,5 @@ export default dispatch => ({
     },
     closePanel: () => {
         dispatch(PanelCreators.close.do());
-    }
+    },
 });

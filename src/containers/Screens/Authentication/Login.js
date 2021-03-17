@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import Login from '../../../components/Screens/Authentication/Login';
 import { creators } from '../../../actions/Authentication';
 
-// Utils
-import { LOGIN } from '../../../utils/Model';
 
 const mapStateToProps = () => ({
-    initialData: LOGIN,
+    initialData: {
+        username: '',
+        password: '',
+    },
 });
 
 const mapDispatchToProps = dispatch => ({

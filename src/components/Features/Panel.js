@@ -10,7 +10,7 @@ import HeaderScreen from '../../containers/Features/HeaderScreen';
  * @constructor
  */
 const Panel = (props) => {
-    const {state, loadingComponent} = props;
+    const { state, loadingComponent } = props;
     const { panel, loadingDetail, detail } = state;
 
     return (

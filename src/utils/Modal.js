@@ -1,32 +1,19 @@
-import React from "react";
-
-
-const params ={
-    user : {
-
-    }
-}
-
-const getModal = (model)=> {
-
-}
-
-
-const deleteUser = key => {
-    const {lastName, firstName, id} = key;
-    return {
-        type: Modal.delete,
-        params: {
+const getContent = (model, obj) => {
+    const params = {
+        user: ({ firstName, lastName }) => ({
             message: 'Confirmer la suppression de l\'utilisateur',
             complement: `${firstName} ${lastName}`,
-            destroy: {
-                action: 'User',
-                id
-            },
-        },
-    }
+        }),
+    };
+    return params[model](obj);
 };
 
-export {
-    deleteUser,
-};
+const setModalDelete = (model, obj) => ({
+    open: true,
+    params: {
+        ...getContent(model, obj),
+        id: obj.id,
+    },
+});
+
+export default setModalDelete;

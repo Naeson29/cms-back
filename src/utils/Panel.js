@@ -17,19 +17,19 @@ const actions = {
     update: 'update',
 };
 
-const setPanels = (model) => ({
-    show : {
+const setPanels = model => ({
+    show: {
         model,
-        action : actions.show
+        action: actions.show,
     },
-    create : {
+    create: {
         model,
-        action : actions.create
+        action: actions.create,
     },
-    update : {
+    update: {
         model,
-        action : actions.update
-    }
+        action: actions.update,
+    },
 });
 
 const panelComponents = {

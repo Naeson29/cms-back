@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import {
     HiPencil, HiTrash, HiSearch,
 } from 'react-icons/hi';
+
+// Utils
 import { getRoles } from '../../utils/Role';
+import setModalDelete from '../../utils/Modal';
 
 /**
  *
@@ -13,8 +16,8 @@ import { getRoles } from '../../utils/Role';
  * @constructor
  */
 const List = (props) => {
-    const {state, getDetail, getMore, type, allow, openModal, deleteAction, content, loading, openPanel, panels} = props;
-    const {current, list, pagination} = state;
+    const { state, getDetail, getMore, type, allow, openModal, content, loading, openPanel, panels } = props;
+    const { model, current, list, pagination } = state;
 
     /**
      *
@@ -31,7 +34,7 @@ const List = (props) => {
      * @param key
      */
     const remove = (permission, key) => {
-        if (permission) openModal(deleteAction(key));
+        if (permission) openModal(setModalDelete(model, key));
     };
 
     /**
@@ -109,31 +112,33 @@ const List = (props) => {
 };
 
 List.propTypes = {
+    type: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
+    panels: PropTypes.oneOfType([PropTypes.object]),
     getDetail: PropTypes.func,
     getMore: PropTypes.func,
+    openPanel: PropTypes.func,
+    openModal: PropTypes.func,
 
 
     allow: PropTypes.func,
     loading: PropTypes.element,
-    openPanel: PropTypes.func,
-    openModal: PropTypes.func,
-    deleteAction: PropTypes.func,
-
     content: PropTypes.func,
-    type: PropTypes.string,
 };
 
 List.defaultProps = {
+    type: 'small',
     state: {},
-    allow: () => {},
-    loading: (<div />),
+    panels: {},
+    getDetail: () => {},
+    getMore: () => {},
     openPanel: () => {},
     openModal: () => {},
-    deleteAction: () => {},
-    getDetail: () => {},
+
+
+    allow: () => {},
+    loading: (<div />),
     content: () => {},
-    type: '',
 };
 
 

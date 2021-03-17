@@ -7,7 +7,6 @@ import {
 } from '../../../utils/Panel';
 
 // Utils
-import { deleteUser } from '../../../utils/Modal';
 import { AllowUserButton } from '../../../utils/Allow';
 import { getImage } from '../../../utils/Functions';
 
@@ -24,8 +23,8 @@ class Index extends Component {
     }
 
     render() {
-        const {props} = this;
-        const {state} = props;
+        const { props } = this;
+        const { state } = props;
         const { model, loadingList } = state;
         const panels = setPanels(model);
 
@@ -45,7 +44,6 @@ class Index extends Component {
                                 type="small"
                                 panels={panels}
                                 allow={AllowUserButton}
-                                deleteAction={deleteUser}
                                 content={(key) => {
                                     const { firstName, lastName, image } = key;
                                     return (
@@ -73,12 +71,12 @@ class Index extends Component {
 
 Index.propTypes = {
     load: PropTypes.func,
-    state: PropTypes.oneOfType([PropTypes.object])
+    state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Index.defaultProps = {
     load: () => {},
-    state: {}
+    state: {},
 };
 
 export default Index;

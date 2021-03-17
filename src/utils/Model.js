@@ -1,10 +1,10 @@
 const models = {
-    user : 'user'
+    user: 'user',
 };
 
-const getModel = (model) => (models[model]);
+const getModel = model => (models[model]);
 
 export {
     models,
-    getModel
-}
+    getModel,
+};

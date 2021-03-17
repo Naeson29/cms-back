@@ -12,8 +12,9 @@ import {
  * @constructor
  */
 const Modals = (props) => {
-    const { modal, destroy } = props;
-    const {open, params} = modal;
+    const { state, destroy, closeModal } = props;
+    const { modal } = state;
+    const { open, params } = modal;
 
     return (
         <ReactModal
@@ -22,45 +23,50 @@ const Modals = (props) => {
             className="modal"
             overlayClassName="overlay"
         >
-            <div className="content-modal">
-                <div className="card">
-                    <div className="card-content">
-                        <div className="card-text">
-                            <p className="message">{params.message}</p>
-                            <p className="complement">{params.complement}</p>
-                        </div>
-                        <div className="action">
-                            <button
-                                className="button yes"
-                                onClick={() => destroy(params.destroy)}
-                                type="button"
-                            >
-                                <HiCheck className="icon" />
-                            </button>
-                            <button
-                                className="button no"
-                                onClick={() => close()}
-                                type="button"
-                            >
-                                <HiX className="icon" />
-                            </button>
+            {
+                !!params
+                && (
+                    <div className="content-modal">
+                        <div className="card">
+                            <div className="card-content">
+                                <div className="card-text">
+                                    <p className="message">{params.message}</p>
+                                    <p className="complement">{params.complement}</p>
+                                </div>
+                                <div className="action">
+                                    <button
+                                        className="button yes"
+                                        onClick={() => destroy(params.id)}
+                                        type="button"
+                                    >
+                                        <HiCheck className="icon" />
+                                    </button>
+                                    <button
+                                        className="button no"
+                                        onClick={() => closeModal()}
+                                        type="button"
+                                    >
+                                        <HiX className="icon" />
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                )
+            }
         </ReactModal>
     );
 };
 
 Modals.propTypes = {
-    modal: PropTypes.oneOfType([PropTypes.object]),
-    close: PropTypes.func,
+    state: PropTypes.oneOfType([PropTypes.object]),
+    closeModal: PropTypes.func,
     destroy: PropTypes.func,
 };
 
 Modals.defaultProps = {
-    modal: {},
-    close: () => {},
+    state: {},
+    closeModal: () => {},
     destroy: () => {},
 };
 

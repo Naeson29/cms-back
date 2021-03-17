@@ -6,5 +6,5 @@ export default dispatch => ({
     },
     closeModal: () => {
         dispatch(ModalCreators.close.do());
-    }
+    },
 });

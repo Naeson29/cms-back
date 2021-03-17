@@ -1,20 +1,22 @@
 // Selectors
-import {detail, getCurrent, list, loadingDestroy, loadingDetail, loadingList, paginationList} from "../selectors/User";
+import {
+    detail, getCurrent, list, loadingDestroy, loadingDetail, loadingList, paginationList,
+} from '../selectors/User';
 import { getPanel } from '../selectors/Panel';
 import { getModal } from '../selectors/Modal';
 
 
-const additionalState = (model, state)=>{
+const additionalState = (model, state) => {
     const additional = {
-        user : {
-            current: getCurrent(state)
-        }
+        user: {
+            current: getCurrent(state),
+        },
     };
     return !additional[model] ? {} : additional[model];
 };
 
 export default (state, model) => ({
-    state : {
+    state: {
         model,
         // Default state
         list: list(state),
@@ -26,8 +28,8 @@ export default (state, model) => ({
         // More state
         ...additionalState(model, state),
         // Panel
-        panel : getPanel(state),
+        panel: getPanel(state),
         // Modal
-        modal : getModal(state),
-    }
+        modal: getModal(state),
+    },
 });
