@@ -7,7 +7,7 @@ import {
 
 // Utils
 import setModalDelete from '../Utilities/Modal';
-import {hasMorePage} from '../../Utilities/Functions';
+import { hasMorePage } from '../../Utilities/Functions';
 
 /**
  *
@@ -54,7 +54,7 @@ const List = (props) => {
     return (
         <InfiniteScroll
             dataLength={list.length}
-            next={() => { if (hasMore) getMore(pagination.current_page + 1) }}
+            next={() => { if (hasMore) getMore(pagination.current_page + 1); }}
             hasMore={hasMore}
             loader={loading}
             refreshFunction={() => {}}

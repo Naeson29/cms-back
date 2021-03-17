@@ -14,8 +14,8 @@ const getAllowButtons = (model, current) => {
 
     const allows = {
         user: {
-            role : {
-                [Object.keys(roles).find(key => !!roles[key])] : true
+            role: {
+                [Object.keys(roles).find(key => !!roles[key])]: true,
             },
             edit: isAdmin || isSuperUser,
             trash: isAdmin || isSuperUser,

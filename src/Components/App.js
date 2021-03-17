@@ -26,7 +26,7 @@ class App extends Component {
                 <div className="header-app">
                     <Header {...props} />
                 </div>
-                <Sidebar />
+                <Sidebar {...props} />
                 <div className="content-app">
                     <Switch>
                         {
