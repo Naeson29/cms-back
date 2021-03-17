@@ -1,5 +1,5 @@
 import Dashboard from '../Containers/Screens/Dashboard/Index';
-import Users from '../Containers/Screens/Users';
+import Users from '../Containers/Screens/User';
 
 const index = [
     // Dashboard
