@@ -1,4 +1,4 @@
-import { createActionTypes } from '../../react-core';
+import { createActionTypes } from '../../../react-core';
 
 export const types = {
     PUSH: createActionTypes('navigation', 'PUSH', ['DO']),
@@ -11,7 +11,7 @@ export const creators = {
             return {
                 type: types.PUSH.DO,
                 payload: {
-                    path,
+                    path
                 },
             };
         },
@@ -20,8 +20,6 @@ export const creators = {
         do() {
             return {
                 type: types.BACK.DO,
-                payload: {
-                },
             };
         },
     },

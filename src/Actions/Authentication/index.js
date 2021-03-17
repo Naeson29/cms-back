@@ -1,4 +1,4 @@
-import { createDefaultHttpActionTypes } from '../../react-core';
+import { createDefaultHttpActionTypes } from '../../../react-core';
 
 export const types = {
     LOGIN: createDefaultHttpActionTypes('authentication', 'LOGIN'),

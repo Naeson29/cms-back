@@ -1,6 +1,6 @@
 import {
     createDefaultModelActionTypes, createDefaultModelActionCreators, createDefaultHttpActionTypes,
-} from '../../react-core';
+} from '../../../react-core';
 
 export const types = {
     ...createDefaultModelActionTypes('user'),

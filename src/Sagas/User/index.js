@@ -1,18 +1,15 @@
-import {
-    put, takeEvery,
-} from '@redux-saga/core/effects';
-import {
-    createHttpApiSaga, createModelApiSagas,
-} from '../../react-core';
+import { put, takeEvery} from '@redux-saga/core/effects';
+import { createHttpApiSaga, createModelApiSagas } from '../../../react-core';
 
-import UserApi from '../Api/UserApi';
-import {
-    types, creators,
-} from '../Actions/User';
-import { creators as ModalCreators } from '../Actions/Modal';
-import { creators as navigationCreators } from '../Actions/Navigation';
+// Api
+import UserApi from '../../Api/User';
 
-const UserSaga = () => {
+// Actions
+import { types, creators } from '../../Actions/User';
+import { creators as ModalCreators } from '../../Actions/Modal';
+import { creators as navigationCreators } from '../../Actions/Navigation';
+
+export default () => {
     const defaultSagas = createModelApiSagas(types, creators, UserApi);
     const getMe = createHttpApiSaga(creators.getMe, UserApi, 'getMe');
 
@@ -35,5 +32,3 @@ const UserSaga = () => {
         root,
     };
 };
-
-export default UserSaga;

@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga/effects';
-import { types } from '../Actions/Navigation';
+import { types } from '../../Actions/Navigation';
 
 let sagaHistory;
 
-const NavigationSaga = () => {
+export default () => {
     const setHistory = (history) => {
         sagaHistory = history;
     };
@@ -27,4 +27,3 @@ const NavigationSaga = () => {
         root,
     };
 };
-export default NavigationSaga;

@@ -1,6 +1,6 @@
-import AuthenticationBase from './AuthenticationBase';
+import Base from './Base';
 
-class AuthenticationApi extends AuthenticationBase {
+class AuthenticationApi extends Base {
     login = params => this.post({
         url: 'token',
         data: {

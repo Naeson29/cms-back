@@ -1,19 +1,18 @@
-import {
-    takeEvery, put, call,
-} from 'redux-saga/effects';
-import {
-    createHttpApiSaga, createHttpSaga,
-} from '../../react-core';
+import { takeEvery, put, call } from 'redux-saga/effects';
+import { createHttpApiSaga, createHttpSaga } from '../../../react-core';
 
-import AuthenticationApi from '../Api/AuthenticationApi';
-import UserApi from '../Api/UserApi';
-import {
-    types, creators,
-} from '../Actions/Authentication';
-import { creators as navigationCreators } from '../Actions/Navigation';
-import AuthenticationService from '../Services/AuthenticationService';
+// Api
+import AuthenticationApi from '../../Api/Authentication';
+import UserApi from '../../Api/User';
 
-const AuthenticationSaga = () => {
+// Actions
+import { types, creators } from '../../Actions/Authentication';
+import { creators as navigationCreators } from '../../Actions/Navigation';
+
+// Services
+import AuthenticationService from '../../Services/Authentication';
+
+export default () => {
     const login = createHttpSaga(creators.login, AuthenticationApi.login);
     const logout = createHttpApiSaga(creators.logout, UserApi, 'revoke');
 
@@ -38,4 +37,3 @@ const AuthenticationSaga = () => {
         root,
     };
 };
-export default AuthenticationSaga;
