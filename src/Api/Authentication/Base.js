@@ -6,4 +6,4 @@ export default class AuthenticationBase extends createHttpApiClass({
         'Content-Type': 'application/json',
         Accept: 'application/json',
     },
-}) {};
+}) {}

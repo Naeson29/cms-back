@@ -1,11 +1,17 @@
-import { put, takeEvery} from '@redux-saga/core/effects';
-import { createHttpApiSaga, createModelApiSagas } from '../../../react-core';
+import {
+    put, takeEvery,
+} from '@redux-saga/core/effects';
+import {
+    createHttpApiSaga, createModelApiSagas,
+} from '../../../react-core';
 
 // Api
 import UserApi from '../../Api/User';
 
 // Actions
-import { types, creators } from '../../Actions/User';
+import {
+    types, creators,
+} from '../../Actions/User';
 import { creators as ModalCreators } from '../../Actions/Modal';
 import { creators as navigationCreators } from '../../Actions/Navigation';
 

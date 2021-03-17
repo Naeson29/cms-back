@@ -1,12 +1,18 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
-import { createHttpApiSaga, createHttpSaga } from '../../../react-core';
+import {
+    takeEvery, put, call,
+} from 'redux-saga/effects';
+import {
+    createHttpApiSaga, createHttpSaga,
+} from '../../../react-core';
 
 // Api
 import AuthenticationApi from '../../Api/Authentication';
 import UserApi from '../../Api/User';
 
 // Actions
-import { types, creators } from '../../Actions/Authentication';
+import {
+    types, creators,
+} from '../../Actions/Authentication';
 import { creators as navigationCreators } from '../../Actions/Navigation';
 
 // Services

@@ -1,6 +1,6 @@
-import { types } from '../Actions/Panel';
-import { createModelReducer } from '../../react-core';
-import { scrollBody } from '../Utilities/Functions';
+import { types } from '../../Actions/Panel';
+import { createModelReducer } from '../../../react-core';
+import { scrollBody } from '../../Utilities/Functions';
 
 export const initialState = {
     panel: {},

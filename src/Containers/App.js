@@ -8,7 +8,7 @@ import App from '../Components/App';
 import { getCurrent } from '../Selectors/User';
 
 // App function
-import AppFunction from './Functions/AppFunction';
+import AppFunction from './Functions/App';
 
 const mapStateToProps = state => ({
     current: getCurrent(state),

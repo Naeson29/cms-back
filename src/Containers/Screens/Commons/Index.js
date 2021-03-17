@@ -10,13 +10,13 @@ import getParamList from '../../Utilities/Param';
 import getActionModel from '../../Utilities/Action';
 
 // Panel function
-import PanelFunction from '../../Functions/PanelFunction';
+import PanelFunction from '../../Functions/Panel';
 
 // Modal function
-import ModalFunction from '../../Functions/ModalFunction';
+import ModalFunction from '../../Functions/Modal';
 
 // Default function
-import DefaultFunction from '../../Functions/DefaultFunction';
+import DefaultFunction from '../../Functions/Default';
 
 export default (model) => {
     const creators = getActionModel(model);

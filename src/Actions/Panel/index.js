@@ -2,7 +2,7 @@ import { createActionTypes } from '../../../react-core';
 
 export const types = {
     OPEN: createActionTypes('panel', 'OPEN', ['DO']),
-    CLOSE: createActionTypes('panel', 'CLOSE', ['DO'])
+    CLOSE: createActionTypes('panel', 'CLOSE', ['DO']),
 };
 
 export const creators = {
@@ -16,5 +16,5 @@ export const creators = {
         do: () => ({
             type: types.CLOSE.DO,
         }),
-    }
+    },
 };

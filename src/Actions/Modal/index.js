@@ -2,7 +2,7 @@ import { createActionTypes } from '../../../react-core';
 
 export const types = {
     OPEN: createActionTypes('modal', 'OPEN', ['DO']),
-    CLOSE: createActionTypes('modal', 'CLOSE', ['DO'])
+    CLOSE: createActionTypes('modal', 'CLOSE', ['DO']),
 };
 
 export const creators = {
@@ -17,5 +17,5 @@ export const creators = {
             type: types.CLOSE.DO,
             payload,
         }),
-    }
+    },
 };

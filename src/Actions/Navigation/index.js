@@ -11,7 +11,7 @@ export const creators = {
             return {
                 type: types.PUSH.DO,
                 payload: {
-                    path
+                    path,
                 },
             };
         },
