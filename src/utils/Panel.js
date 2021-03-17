@@ -9,19 +9,30 @@ import ShowUser from '../components/Screens/Users/Show';
 
 /**
  *
- * @type {{CREATE: string, UPDATE: string, SHOW: string}}
+ * @type {{show: string, create: string, update: string}}
  */
-const Actions = {
-    SHOW: 'show',
-    CREATE: 'create',
-    UPDATE: 'update',
+const actions = {
+    show: 'show',
+    create: 'create',
+    update: 'update',
 };
 
-const Type = {
-    USER: 'user',
-};
+const setPanels = (model) => ({
+    show : {
+        model,
+        action : actions.show
+    },
+    create : {
+        model,
+        action : actions.create
+    },
+    update : {
+        model,
+        action : actions.update
+    }
+});
 
-const PanelComponents = {
+const panelComponents = {
     user: {
         show: ShowUser,
         create: EditUser,
@@ -36,17 +47,17 @@ const PanelComponents = {
  * @returns {JSX.Element}
  * @constructor
  */
-const PanelContainer = (panel, detail) => {
-    const { type, action } = panel;
-    const Component = PanelComponents[type][action];
+const panelContainer = (panel, detail) => {
+    const { model, action } = panel;
+    const Component = panelComponents[model][action];
 
     return (
         <Panel {...panel}>
-            <Component detail={(action !== Actions.CREATE) ? detail : {}} />
+            <Component detail={(action !== actions.create) ? detail : {}} />
         </Panel>
     );
 };
 
 export {
-    Actions, Type, PanelContainer,
+    setPanels, panelContainer,
 };

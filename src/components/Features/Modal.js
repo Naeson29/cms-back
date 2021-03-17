@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
     HiCheck, HiX,
 } from 'react-icons/hi';
-import { Modal } from '../../utils/Modal';
 
 /**
  *
@@ -13,46 +12,8 @@ import { Modal } from '../../utils/Modal';
  * @constructor
  */
 const Modals = (props) => {
-    const { open, type, params, close, destroy } = props;
-
-    /**
-     *
-     * @returns {JSX.Element}
-     * @constructor
-     */
-    const Component = () => {
-        switch (type) {
-        case Modal.DELETE: {
-            return (
-                <div className="card-content">
-                    <div className="card-text">
-                        <p className="message">{params.message}</p>
-                        <p className="complement">{params.complement}</p>
-                    </div>
-                    <div className="action">
-                        <button
-                            className="button yes"
-                            onClick={() => destroy(params.destroy)}
-                            type="button"
-                        >
-                            <HiCheck className="icon" />
-                        </button>
-                        <button
-                            className="button no"
-                            onClick={() => close()}
-                            type="button"
-                        >
-                            <HiX className="icon" />
-                        </button>
-                    </div>
-                </div>
-            );
-        }
-        default:
-            return (<div />);
-        }
-    };
-
+    const { modal, destroy } = props;
+    const {open, params} = modal;
 
     return (
         <ReactModal
@@ -63,7 +24,28 @@ const Modals = (props) => {
         >
             <div className="content-modal">
                 <div className="card">
-                    <Component />
+                    <div className="card-content">
+                        <div className="card-text">
+                            <p className="message">{params.message}</p>
+                            <p className="complement">{params.complement}</p>
+                        </div>
+                        <div className="action">
+                            <button
+                                className="button yes"
+                                onClick={() => destroy(params.destroy)}
+                                type="button"
+                            >
+                                <HiCheck className="icon" />
+                            </button>
+                            <button
+                                className="button no"
+                                onClick={() => close()}
+                                type="button"
+                            >
+                                <HiX className="icon" />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ReactModal>
@@ -71,17 +53,13 @@ const Modals = (props) => {
 };
 
 Modals.propTypes = {
-    open: PropTypes.bool,
-    type: PropTypes.string,
-    params: PropTypes.oneOfType([PropTypes.object]),
+    modal: PropTypes.oneOfType([PropTypes.object]),
     close: PropTypes.func,
     destroy: PropTypes.func,
 };
 
 Modals.defaultProps = {
-    open: true,
-    type: null,
-    params: {},
+    modal: {},
     close: () => {},
     destroy: () => {},
 };

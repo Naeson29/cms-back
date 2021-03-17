@@ -3,9 +3,7 @@ import { createModelReducer } from '../../react-core';
 import { scrollBody } from '../utils/Functions';
 
 export const initialState = {
-    open: false,
-    type: null,
-    params: {},
+    modal : {}
 };
 
 const standardReducer = createModelReducer(initialState, types);
@@ -23,9 +21,7 @@ export const reducer = (state = initialState, action) => {
     case types.OPEN.DO: {
         scrollBody(true);
         return {
-            open: true,
-            type: payload.type,
-            params: payload.params,
+            modal : payload
         };
     }
 

@@ -1,9 +1,9 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import List from '../../../containers/Features/List';
+import List from '../../Features/List';
 import {
-    Actions, Type,
+    setPanels,
 } from '../../../utils/Panel';
 
 // Utils
@@ -13,8 +13,8 @@ import { getImage } from '../../../utils/Functions';
 
 // Components
 import HeaderScreen from '../../../containers/Features/HeaderScreen';
-import Panel from '../../../containers/Features/Panel';
-import Modal from '../../../containers/Features/Modal';
+import Panel from '../../Features/Panel';
+import Modal from '../../Features/Modal';
 import Loading from '../../Features/Loading';
 
 class Index extends Component {
@@ -24,22 +24,16 @@ class Index extends Component {
     }
 
     render() {
-        const { list, loadingList, loadingDetail, pagination, more, detail } = this.props;
-        const panel = {
-            type: Type.USER,
-            actions: Actions,
-        };
-
-        const { type, actions } = panel;
+        const {props} = this;
+        const {state} = props;
+        const { model, loadingList } = state;
+        const panels = setPanels(model);
 
         return (
-            <div className="fragment users">
+            <div className={`fragment ${model}`}>
                 <HeaderScreen
                     type="list"
-                    panel={{
-                        type,
-                        action: actions.CREATE,
-                    }}
+                    panel={panels.create}
                     title="Utilisateurs"
                 />
                 {
@@ -47,11 +41,9 @@ class Index extends Component {
 
                         : (
                             <List
+                                {...props}
                                 type="small"
-                                data={list}
-                                pagination={pagination}
-                                more={more}
-                                panel={panel}
+                                panels={panels}
                                 allow={AllowUserButton}
                                 deleteAction={deleteUser}
                                 content={(key) => {
@@ -72,12 +64,8 @@ class Index extends Component {
                             />
                         )
                 }
-                <Panel
-                    loading={loadingDetail}
-                    loadingComponent={<Loading />}
-                    detail={detail}
-                />
-                <Modal />
+                <Panel {...props} loadingComponent={<Loading />} />
+                <Modal {...props} />
             </div>
         );
     }
@@ -85,24 +73,12 @@ class Index extends Component {
 
 Index.propTypes = {
     load: PropTypes.func,
-    more: PropTypes.func,
-    list: PropTypes.oneOfType([PropTypes.array]),
-    detail: PropTypes.oneOfType([PropTypes.object]),
-    loadingList: PropTypes.bool,
-    loadingDetail: PropTypes.bool,
-    loadingDestroy: PropTypes.bool,
-    pagination: PropTypes.oneOfType([PropTypes.object]),
+    state: PropTypes.oneOfType([PropTypes.object])
 };
 
 Index.defaultProps = {
     load: () => {},
-    more: () => {},
-    list: [],
-    detail: {},
-    loadingList: false,
-    loadingDetail: false,
-    loadingDestroy: false,
-    pagination: {},
+    state: {}
 };
 
 export default Index;

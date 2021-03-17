@@ -1,20 +1,16 @@
 /**
  *
- * @type {{params: {limit: number, order: {column: string}}}}
+ * @type {{user: {params: {limit: number, order: {column: string}}}}}
  */
-const paramUser = {
-    params: {
-        limit: 50,
-        order: {
-            column: 'first_name',
-        },
-    },
+const params = {
+    user : {
+        params: {
+            limit: 50,
+            order: {
+                column: 'first_name',
+            },
+        }
+    }
 };
 
-const paramSlider = {
-
-};
-
-export {
-    paramUser, paramSlider,
-};
+export default (model) => (params[model]);

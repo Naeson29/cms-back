@@ -13,32 +13,16 @@ import { getRoles } from '../../utils/Role';
  * @constructor
  */
 const List = (props) => {
-    const {
-        type,
-        current,
-        data,
-        pagination,
-        more,
-        allow,
-        deleteModal,
-        deleteAction,
-        content,
-        loading,
-        panel,
-        openPanel,
-        detail,
-    } = props;
+    const {state, getDetail, getMore, type, allow, openModal, deleteAction, content, loading, openPanel, panels} = props;
+    const {current, list, pagination} = state;
 
     /**
      *
      * @param id
      */
     const show = (id) => {
-        openPanel({
-            type: panel.type,
-            action: panel.actions.SHOW,
-        });
-        detail(id);
+        openPanel(panels.show);
+        getDetail(id);
     };
 
     /**
@@ -47,7 +31,7 @@ const List = (props) => {
      * @param key
      */
     const remove = (permission, key) => {
-        if (permission) deleteModal(deleteAction(key));
+        if (permission) openModal(deleteAction(key));
     };
 
     /**
@@ -57,19 +41,16 @@ const List = (props) => {
      */
     const update = (permission, id) => {
         if (permission) {
-            openPanel({
-                type: panel.type,
-                action: panel.actions.UPDATE,
-            });
-            detail(id);
+            openPanel(panels.update);
+            getDetail(id);
         }
     };
 
     return (
         <InfiniteScroll
-            dataLength={data.length}
+            dataLength={list.length}
             next={() => {
-                if (pagination.current_page < pagination.last_page) more(pagination.current_page + 1);
+                if (pagination.current_page < pagination.last_page) getMore(pagination.current_page + 1);
             }}
             hasMore={pagination.current_page < pagination.last_page}
             loader={loading}
@@ -78,7 +59,7 @@ const List = (props) => {
             className="list-card"
         >
             {
-                data.map((key, index) => {
+                list.map((key, index) => {
                     const { edit, trash } = allow({
                         ...getRoles(current),
                         isMe: current.id === key.id,
@@ -128,33 +109,29 @@ const List = (props) => {
 };
 
 List.propTypes = {
-    data: PropTypes.oneOfType([PropTypes.array]),
-    pagination: PropTypes.oneOfType([PropTypes.object]),
-    current: PropTypes.oneOfType([PropTypes.object]),
-    panel: PropTypes.oneOfType([PropTypes.object]),
-    more: PropTypes.func,
+    state: PropTypes.oneOfType([PropTypes.object]),
+    getDetail: PropTypes.func,
+    getMore: PropTypes.func,
+
+
     allow: PropTypes.func,
     loading: PropTypes.element,
     openPanel: PropTypes.func,
-    deleteModal: PropTypes.func,
+    openModal: PropTypes.func,
     deleteAction: PropTypes.func,
-    detail: PropTypes.func,
+
     content: PropTypes.func,
     type: PropTypes.string,
 };
 
 List.defaultProps = {
-    data: [],
-    pagination: {},
-    current: {},
-    panel: {},
-    more: () => {},
+    state: {},
     allow: () => {},
     loading: (<div />),
     openPanel: () => {},
-    deleteModal: () => {},
+    openModal: () => {},
     deleteAction: () => {},
-    detail: () => {},
+    getDetail: () => {},
     content: () => {},
     type: '',
 };

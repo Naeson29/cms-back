@@ -1,10 +1,10 @@
-export const LOGIN = {
-    username: '',
-    password: '',
+const models = {
+    user : 'user'
 };
 
-export const USER = {
-    firstName: '',
-    last_name: '',
-    email: '',
-};
+const getModel = (model) => (models[model]);
+
+export {
+    models,
+    getModel
+}

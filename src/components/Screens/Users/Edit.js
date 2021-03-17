@@ -1,4 +1,5 @@
 import React from 'react';
+import Form from "../../Features/Form";
 
 /**
  *
@@ -6,7 +7,7 @@ import React from 'react';
  * @constructor
  */
 const Edit = () => (
-    <div>dfdf</div>
+    <Form />
 );
 
 export default Edit;

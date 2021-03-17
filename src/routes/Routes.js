@@ -1,6 +1,6 @@
 import Dashboard from '../containers/Screens/Dashboard/Index';
 
-import Users from '../containers/Screens/Users/Index';
+import Users from '../containers/Screens/Users';
 
 const routes = [
     // TODO create others routes

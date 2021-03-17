@@ -1,16 +1,21 @@
-const Modal = {
-    DELETE: 'delete',
-};
+import React from "react";
 
-/**
- *
- * @param key
- * @returns {{type: string, params: {destroy: {action: string, id}, message: string, complement: string}}}
- */
+
+const params ={
+    user : {
+
+    }
+}
+
+const getModal = (model)=> {
+
+}
+
+
 const deleteUser = key => {
     const {lastName, firstName, id} = key;
     return {
-        type: Modal.DELETE,
+        type: Modal.delete,
         params: {
             message: 'Confirmer la suppression de l\'utilisateur',
             complement: `${firstName} ${lastName}`,
@@ -23,6 +28,5 @@ const deleteUser = key => {
 };
 
 export {
-    Modal,
     deleteUser,
 };
