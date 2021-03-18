@@ -4,6 +4,9 @@ import {
     HiArrowCircleLeft, HiPlusCircle,
 } from 'react-icons/hi';
 
+// Feature
+import Button from "./Button";
+
 /**
  *
  * @param props
@@ -13,29 +16,24 @@ import {
 const HeaderScreen = (props) => {
     const { type, openPanel, closePanel, panel, title } = props;
 
-    const leftButton = {
+    const context = {
         list: {
             action: () => openPanel(panel),
-            Icon: HiPlusCircle,
+            icon: HiPlusCircle,
         },
         panel: {
             action: () => closePanel(),
-            Icon: HiArrowCircleLeft,
+            icon: HiArrowCircleLeft,
         },
     };
-
-    const { action, Icon } = leftButton[type];
 
     return (
         <div className="header-screen">
             <div className="content left">
-                <button
-                    onClick={action}
-                    className="add"
-                    type="button"
-                >
-                    <Icon className="icon" />
-                </button>
+                <Button
+                    {...context[type]}
+                    className={'button'}
+                />
                 <span>{title}</span>
             </div>
             <div className="content right" />

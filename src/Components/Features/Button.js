@@ -8,7 +8,7 @@ const Button = (props) => {
     return (
         <button
             onClick={action}
-            className={`button ${className} ${disabled}`}
+            className={`${className} ${disabled}`}
             type="button"
         >
             <Icon className="icon" />

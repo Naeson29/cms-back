@@ -103,7 +103,11 @@
 
             &.disabled {
               cursor: default;
-              opacity: .2;
+
+              .icon {
+                opacity: .2;
+              }
+
             }
 
             .icon {

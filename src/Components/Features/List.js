@@ -85,13 +85,13 @@ const List = (props) => {
                                     <div className="button-container left">
                                         <Button
                                             action={() => update(key.id)}
-                                            className="edit"
+                                            className="button edit"
                                             icon={HiPencil}
                                             disabled={isDisabled(permission.update)}
                                         />
                                         <Button
                                             action={() => remove(key, isUserAndMe)}
-                                            className="trash"
+                                            className="button trash"
                                             icon={HiTrash}
                                             disabled={isDisabled(permission.delete && !isUserAndMe)}
                                         />
@@ -99,7 +99,7 @@ const List = (props) => {
                                     <div className="button-container right">
                                         <Button
                                             action={() => show(key.id)}
-                                            className="show"
+                                            className="button show"
                                             icon={HiSearch}
                                             disabled={isDisabled(permission.show)}
                                         />
