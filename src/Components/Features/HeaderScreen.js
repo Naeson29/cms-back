@@ -16,15 +16,15 @@ const HeaderScreen = (props) => {
     const leftButton = {
         list: {
             action: () => openPanel(panel),
-            Icon: HiPlusCircle
+            Icon: HiPlusCircle,
         },
-        panel : {
+        panel: {
             action: () => closePanel(),
-            Icon: HiArrowCircleLeft
-        }
+            Icon: HiArrowCircleLeft,
+        },
     };
 
-    const {action, Icon} = leftButton[type];
+    const { action, Icon } = leftButton[type];
 
     return (
         <div className="header-screen">

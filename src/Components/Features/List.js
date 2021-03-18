@@ -17,7 +17,7 @@ import { hasMorePage } from '../../Utilities/Functions';
  */
 const List = (props) => {
     const { state, getDetail, getMore, type, openModal, content, loading, openPanel, panels } = props;
-    const { model, list, pagination, allowButton, current } = state;
+    const { model, list, pagination } = state;
 
     /**
      *
@@ -30,23 +30,19 @@ const List = (props) => {
 
     /**
      *
-      * @param permission
      * @param key
      */
-    const remove = (permission, key) => {
-        if (permission) openModal(setModalDelete(model, key));
+    const remove = (key) => {
+        openModal(setModalDelete(model, key));
     };
 
     /**
      *
-     * @param permission
      * @param id
      */
-    const update = (permission, id) => {
-        if (permission) {
-            openPanel(panels.update);
-            getDetail(id);
-        }
+    const update = (id) => {
+        openPanel(panels.update);
+        getDetail(id);
     };
 
     const hasMore = hasMorePage(pagination);
@@ -62,52 +58,43 @@ const List = (props) => {
             className="list-card"
         >
             {
-                list.map((key, index) => {
-                    const { edit, trash, role } = allowButton;
-
-
-
-                    const isMe = model === 'user' ? (current.id === key.id) : false;
-                    const isUserMe = (!!role.isUser && isMe);
-
-                    return (
-                        <div
-                            className={`card-container ${type}`}
-                            key={index.toString()}
-                        >
-                            <div className="card">
-                                {content(key)}
-                                <div className="action">
-                                    <div className="button-container left">
-                                        <button
-                                            onClick={() => update((edit || isUserMe), key.id)}
-                                            className={`button edit ${(!edit && (!isUserMe)) && 'disabled'}`}
-                                            type="button"
-                                        >
-                                            <HiPencil className="icon" />
-                                        </button>
-                                        <button
-                                            onClick={() => remove((trash && !isMe), key)}
-                                            className={`button trash ${(!trash || isMe) && 'disabled'}`}
-                                            type="button"
-                                        >
-                                            <HiTrash className="icon" />
-                                        </button>
-                                    </div>
-                                    <div className="button-container right">
-                                        <button
-                                            onClick={() => show(key.id)}
-                                            className="button show"
-                                            type="button"
-                                        >
-                                            <HiSearch className="icon" />
-                                        </button>
-                                    </div>
+                list.map((key, index) => (
+                    <div
+                        className={`card-container ${type}`}
+                        key={index.toString()}
+                    >
+                        <div className="card">
+                            {content(key)}
+                            <div className="action">
+                                <div className="button-container left">
+                                    <button
+                                        onClick={() => update(key.id)}
+                                        className="button edit"
+                                        type="button"
+                                    >
+                                        <HiPencil className="icon" />
+                                    </button>
+                                    <button
+                                        onClick={() => remove(key)}
+                                        className="button trash"
+                                        type="button"
+                                    >
+                                        <HiTrash className="icon" />
+                                    </button>
+                                </div>
+                                <div className="button-container right">
+                                    <button
+                                        onClick={() => show(key.id)}
+                                        className="button show"
+                                        type="button"
+                                    >
+                                        <HiSearch className="icon" />
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    );
-                })
+                    </div>
+                ))
             }
         </InfiniteScroll>
     );

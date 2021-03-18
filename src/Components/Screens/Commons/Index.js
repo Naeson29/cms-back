@@ -1,6 +1,7 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 import List from '../../Features/List';
 import {
     setPanels,
@@ -16,7 +17,6 @@ import Modal from '../../Features/Modal';
 import Loading from '../../Features/Loading';
 
 // Translation
-import {withTranslation} from "react-i18next";
 
 class Index extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class Index extends Component {
     }
 
     render() {
-        const {props } = this;
+        const { props } = this;
         const { t, state } = props;
         const { model, loadingList } = state;
         const panels = setPanels(model);

@@ -1,10 +1,10 @@
 export default {
-    Default : {
-        authentication : {
+    Default: {
+        authentication: {
 
         },
-        user : {
-            title : 'Utilisateurs'
-        }
-    }
-}
+        user: {
+            title: 'Utilisateurs',
+        },
+    },
+};
