@@ -13,6 +13,13 @@ const hasMorePage = pagination => (pagination.current_page < pagination.last_pag
 
 /**
  *
+ * @param json
+ * @returns {any}
+ */
+const parseJson = json => (JSON.parse(json));
+
+/**
+ *
  * @param obj
  * @param conversion
  * @returns {string}
@@ -35,6 +42,7 @@ const getSlideImages = images => JSON.parse(images).map((key, index) => ({
 export {
     scrollBody,
     hasMorePage,
+    parseJson,
     getImage,
     getSlideImages,
 };

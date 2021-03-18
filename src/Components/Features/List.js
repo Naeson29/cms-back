@@ -8,6 +8,12 @@ import {
 // Utils
 import setModalDelete from '../Utilities/Modal';
 import { hasMorePage } from '../../Utilities/Functions';
+import {
+    getPermissionModel, isDisabled,
+} from '../Utilities/Permission';
+
+// Features
+import Button from './Button';
 
 /**
  *
@@ -17,23 +23,28 @@ import { hasMorePage } from '../../Utilities/Functions';
  */
 const List = (props) => {
     const { state, getDetail, getMore, type, openModal, content, loading, openPanel, panels } = props;
-    const { model, list, pagination } = state;
+    const { model, list, pagination, current } = state;
+    const { permissions } = current;
+    const permission = getPermissionModel(permissions, model);
 
     /**
      *
      * @param id
      */
     const show = (id) => {
-        openPanel(panels.show);
-        getDetail(id);
+        if (permission.show) {
+            openPanel(panels.show);
+            getDetail(id);
+        }
     };
 
     /**
      *
      * @param key
+     * @param isUserAndMe
      */
-    const remove = (key) => {
-        openModal(setModalDelete(model, key));
+    const remove = (key, isUserAndMe = false) => {
+        if (permission.delete && !isUserAndMe) openModal(setModalDelete(model, key));
     };
 
     /**
@@ -41,8 +52,10 @@ const List = (props) => {
      * @param id
      */
     const update = (id) => {
-        openPanel(panels.update);
-        getDetail(id);
+        if (permission.update) {
+            openPanel(panels.update);
+            getDetail(id);
+        }
     };
 
     const hasMore = hasMorePage(pagination);
@@ -58,43 +71,44 @@ const List = (props) => {
             className="list-card"
         >
             {
-                list.map((key, index) => (
-                    <div
-                        className={`card-container ${type}`}
-                        key={index.toString()}
-                    >
-                        <div className="card">
-                            {content(key)}
-                            <div className="action">
-                                <div className="button-container left">
-                                    <button
-                                        onClick={() => update(key.id)}
-                                        className="button edit"
-                                        type="button"
-                                    >
-                                        <HiPencil className="icon" />
-                                    </button>
-                                    <button
-                                        onClick={() => remove(key)}
-                                        className="button trash"
-                                        type="button"
-                                    >
-                                        <HiTrash className="icon" />
-                                    </button>
-                                </div>
-                                <div className="button-container right">
-                                    <button
-                                        onClick={() => show(key.id)}
-                                        className="button show"
-                                        type="button"
-                                    >
-                                        <HiSearch className="icon" />
-                                    </button>
+                list.map((key, index) => {
+                    const isUserAndMe = (model === 'user') && (current.id === key.id);
+
+                    return (
+                        <div
+                            className={`card-container ${type}`}
+                            key={index.toString()}
+                        >
+                            <div className="card">
+                                {content(key)}
+                                <div className="action">
+                                    <div className="button-container left">
+                                        <Button
+                                            action={() => update(key.id)}
+                                            className="edit"
+                                            icon={HiPencil}
+                                            disabled={isDisabled(permission.update)}
+                                        />
+                                        <Button
+                                            action={() => remove(key, isUserAndMe)}
+                                            className="trash"
+                                            icon={HiTrash}
+                                            disabled={isDisabled(permission.delete && !isUserAndMe)}
+                                        />
+                                    </div>
+                                    <div className="button-container right">
+                                        <Button
+                                            action={() => show(key.id)}
+                                            className="show"
+                                            icon={HiSearch}
+                                            disabled={isDisabled(permission.show)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))
+                    );
+                })
             }
         </InfiniteScroll>
     );
