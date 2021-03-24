@@ -10,7 +10,7 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "plugins": ["react", "jsx-a11y", "import"],
+  "plugins": ["react", "jsx-a11y", "import", "html"],
   "env": {
     "es6": true,
     "browser": true,
@@ -24,7 +24,7 @@
       "ObjectExpression": { "consistent": true, "minProperties": 2 },
       "ObjectPattern": { "consistent": true },
       "ImportDeclaration": { "consistent": true, "minProperties": 2 },
-      "ExportDeclaration": { "consistent": true, "minProperties": 2 },
+      "ExportDeclaration": { "consistent": true, "minProperties": 2 }
     }],
     "class-methods-use-this": ["off"],
     "no-multi-str": ["off"],

@@ -3,12 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 import List from '../../Features/List';
-import {
-    setPanels,
-} from '../../Utilities/Panel';
-
-// Utils
-import { getImage } from '../../../Utilities/Functions';
 
 // Components
 import HeaderScreen from '../../Features/HeaderScreen';
@@ -16,7 +10,8 @@ import Panel from '../../Features/Panel';
 import Modal from '../../Features/Modal';
 import Loading from '../../Features/Loading';
 
-// Translation
+// Models
+import getModel from '../../Models';
 
 class Index extends Component {
     constructor(props) {
@@ -27,43 +22,31 @@ class Index extends Component {
     render() {
         const { props } = this;
         const { t, state } = props;
-        const { model, loadingList } = state;
-        const panels = setPanels(model);
+        const { model, loadings, panel } = state;
+        const { panels, modals, card } = getModel(model);
 
         return (
             <div className={`fragment ${model}`}>
                 <HeaderScreen
                     {...props}
-                    panel={panels.create}
-                    title={t(`Default:${model}:title`)}
+                    title={t(`${model}:title:${!panel.open ? 'default' : panel.action}`)}
                 />
                 {
-                    loadingList ? <Loading />
-
-                        : (
-                            <List
-                                {...props}
-                                type="small"
-                                panels={panels}
-                                content={(key) => {
-                                    const { firstName, lastName, image } = key;
-                                    return (
-                                        <div className="card-user">
-                                            <div
-                                                style={{
-                                                    backgroundImage: `url(${image ? getImage(image, 'thumb') : './img/avatar.png'})`,
-                                                }}
-                                                className="image"
-                                            />
-                                            <p className="name">{`${firstName} ${lastName}`}</p>
-                                        </div>
-                                    );
-                                }}
-                                loading={Loading({ contextClass: 'loading-list' })}
-                            />
-                        )
+                    loadings.list ? <Loading /> : (
+                        <List
+                            {...props}
+                            type="small"
+                            content={card}
+                            modals={modals}
+                            loading={<Loading className="loading-list" />}
+                        />
+                    )
                 }
-                <Panel {...props} loadingComponent={<Loading />} />
+                <Panel
+                    state={state}
+                    panels={panels}
+                    loading={<Loading />}
+                />
                 <Modal {...props} />
             </div>
         );

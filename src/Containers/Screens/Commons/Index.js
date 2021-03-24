@@ -4,31 +4,26 @@ import { withRouter } from 'react-router-dom';
 // Screen
 import Index from '../../../Components/Screens/Commons/Index';
 
+// Models
+import getModel from '../../Models';
+
 // Utils
 import getState from '../../Utilities/State';
-import getParamList from '../../Utilities/Param';
-import getActionModel from '../../Utilities/Action';
-
-// Panel function
-import PanelFunction from '../../Functions/Panel';
-
-// Modal function
-import ModalFunction from '../../Functions/Modal';
 
 // Default function
 import DefaultFunction from '../../Functions/Default';
 
 export default (model) => {
-    const creators = getActionModel(model);
-    const paramsList = getParamList(model);
+    const { creators, paramsList, selectors } = getModel(model);
 
     const mapStateToProps = state => ({
-        ...getState(state, model),
+        state: {
+            model,
+            ...getState(state, selectors),
+        },
     });
 
     const mapDispatchToProps = dispatch => ({
-        ...PanelFunction(dispatch),
-        ...ModalFunction(dispatch),
         ...DefaultFunction(dispatch, creators, paramsList),
     });
 

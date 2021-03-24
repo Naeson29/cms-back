@@ -10,9 +10,9 @@ import colors from '../Utilities/Color';
  * @constructor
  */
 const Loading = (props) => {
-    const { contextClass } = props;
+    const { className } = props;
     return (
-        <div className={`loading ${contextClass}`}>
+        <div className={`loading ${className}`}>
             <Loader
                 type="ThreeDots"
                 width={80}
@@ -24,11 +24,11 @@ const Loading = (props) => {
 };
 
 Loading.propTypes = {
-    contextClass: PropTypes.string,
+    className: PropTypes.string,
 };
 
 Loading.defaultProps = {
-    contextClass: 'loading-fragment',
+    className: 'loading-fragment',
 };
 
 export default Loading;

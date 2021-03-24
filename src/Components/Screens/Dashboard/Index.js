@@ -31,7 +31,6 @@ class Index extends Component {
     }
 }
 
-
 Index.propTypes = {
     load: PropTypes.func,
     loading: PropTypes.bool,

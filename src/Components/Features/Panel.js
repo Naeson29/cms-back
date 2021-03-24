@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { panelContainer } from '../Utilities/Panel';
-import HeaderScreen from './HeaderScreen';
+
+// Utils
+import {
+    isOpen, getContent,
+} from '../Utilities/Panel';
 
 /**
  *
@@ -10,22 +13,19 @@ import HeaderScreen from './HeaderScreen';
  * @constructor
  */
 const Panel = (props) => {
-    const { state, loadingComponent } = props;
-    const { panel, loadingDetail, detail } = state;
+    const { state, panels, loading } = props;
+    const { panel, loadings, detail } = state;
+    const Content = getContent(panel, panels);
 
     return (
         <div>
             {
-                !!panel.model
+                isOpen(panel)
                 && (
                     <div className="panel-container right">
                         <div className="panel">
-                            <HeaderScreen
-                                {...props}
-                                type="panel"
-                            />
                             <div className="content-panel">
-                                { loadingDetail ? loadingComponent : panelContainer(panel, detail) }
+                                { loadings.detail ? loading : <Content detail={detail} /> }
                             </div>
                         </div>
                     </div>
@@ -37,12 +37,14 @@ const Panel = (props) => {
 
 Panel.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
-    loadingComponent: PropTypes.element,
+    panels: PropTypes.oneOfType([PropTypes.object]),
+    loading: PropTypes.element,
 };
 
 Panel.defaultProps = {
     state: {},
-    loadingComponent: (<div />),
+    panels: {},
+    loading: (<div />),
 };
 
 export default Panel;

@@ -1,19 +1,18 @@
-const getContent = (model, obj) => {
-    const params = {
-        user: ({ firstName, lastName }) => ({
-            message: 'Confirmer la suppression de l\'utilisateur',
-            complement: `${firstName} ${lastName}`,
-        }),
-    };
-    return params[model](obj);
-};
-
-const setModalDelete = (model, obj) => ({
+const createModal = (params, content) => ({
     open: true,
-    params: {
-        ...getContent(model, obj),
-        id: obj.id,
-    },
+    content,
+    params,
 });
 
-export default setModalDelete;
+const actions = {
+    destroy: (key, content) => createModal({
+        id: key.id,
+    }, content(key)),
+};
+
+const isOpen = modal => (modal.open);
+
+export {
+    actions,
+    isOpen,
+};

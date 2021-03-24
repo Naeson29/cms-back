@@ -12,7 +12,9 @@ import { authentication } from '../../Routes';
  * @constructor
  */
 const PrivateRoute = (props) => {
-    const { Fragment, location, token, ...rest } = props;
+    const {
+        Fragment, location, token, ...rest
+    } = props;
 
     return (
         <Route
@@ -25,8 +27,7 @@ const PrivateRoute = (props) => {
                         pathname: authentication.login.path, state: { from: location },
                     }}
                 />
-            ))
-            }
+            ))}
         />
     );
 };

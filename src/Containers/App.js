@@ -5,13 +5,13 @@ import { withRouter } from 'react-router-dom';
 import App from '../Components/App';
 
 // Selectors
-import { getCurrent } from '../Selectors/User';
+import User from '../Selectors/User';
 
 // App function
 import AppFunction from './Functions/App';
 
 const mapStateToProps = state => ({
-    current: getCurrent(state),
+    current: User.getCurrent(state),
 });
 
 const mapDispatchToProps = dispatch => ({

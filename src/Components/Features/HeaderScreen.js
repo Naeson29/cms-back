@@ -5,7 +5,12 @@ import {
 } from 'react-icons/hi';
 
 // Feature
-import Button from "./Button";
+import Button from './Button';
+
+// Utils
+import {
+    actions, isOpen,
+} from '../Utilities/Panel';
 
 /**
  *
@@ -14,25 +19,16 @@ import Button from "./Button";
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { type, openPanel, closePanel, panel, title } = props;
-
-    const context = {
-        list: {
-            action: () => openPanel(panel),
-            icon: HiPlusCircle,
-        },
-        panel: {
-            action: () => closePanel(),
-            icon: HiArrowCircleLeft,
-        },
-    };
+    const { openPanel, closePanel, state, title } = props;
+    const { panel } = state;
 
     return (
         <div className="header-screen">
             <div className="content left">
                 <Button
-                    {...context[type]}
-                    className={'button'}
+                    action={() => (isOpen(panel) ? closePanel() : openPanel(actions.create))}
+                    icon={isOpen(panel) ? HiArrowCircleLeft : HiPlusCircle}
+                    className="button"
                 />
                 <span>{title}</span>
             </div>
@@ -42,17 +38,15 @@ const HeaderScreen = (props) => {
 };
 
 HeaderScreen.propTypes = {
-    type: PropTypes.string,
     title: PropTypes.string,
-    panel: PropTypes.oneOfType([PropTypes.object]),
+    state: PropTypes.oneOfType([PropTypes.object]),
     openPanel: PropTypes.func,
     closePanel: PropTypes.func,
 };
 
 HeaderScreen.defaultProps = {
-    type: 'list',
     title: '',
-    panel: {},
+    state: {},
     openPanel: () => {},
     closePanel: () => {},
 };

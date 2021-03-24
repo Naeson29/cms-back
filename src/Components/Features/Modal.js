@@ -5,6 +5,10 @@ import {
     HiCheck, HiX,
 } from 'react-icons/hi';
 
+// Feature
+import Button from './Button';
+import { isOpen } from '../Utilities/Modal';
+
 /**
  *
  * @param props
@@ -14,7 +18,7 @@ import {
 const Modals = (props) => {
     const { state, destroy, closeModal } = props;
     const { modal } = state;
-    const { open, params } = modal;
+    const { open, params, content } = modal;
 
     return (
         <ReactModal
@@ -24,30 +28,23 @@ const Modals = (props) => {
             overlayClassName="overlay"
         >
             {
-                !!params
+                isOpen(modal)
                 && (
                     <div className="content-modal">
                         <div className="card">
                             <div className="card-content">
-                                <div className="card-text">
-                                    <p className="message">{params.message}</p>
-                                    <p className="complement">{params.complement}</p>
-                                </div>
+                                {content}
                                 <div className="action">
-                                    <button
+                                    <Button
+                                        action={() => destroy(params.id)}
+                                        icon={HiCheck}
                                         className="button yes"
-                                        onClick={() => destroy(params.id)}
-                                        type="button"
-                                    >
-                                        <HiCheck className="icon" />
-                                    </button>
-                                    <button
+                                    />
+                                    <Button
+                                        action={() => closeModal()}
+                                        icon={HiX}
                                         className="button no"
-                                        onClick={() => closeModal()}
-                                        type="button"
-                                    >
-                                        <HiX className="icon" />
-                                    </button>
+                                    />
                                 </div>
                             </div>
                         </div>

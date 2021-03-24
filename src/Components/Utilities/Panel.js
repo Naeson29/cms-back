@@ -1,63 +1,26 @@
 import React from 'react';
 
-// Panel
-import Panel from '../Screens/Commons/Panel';
-
-// User
-import EditUser from '../Screens/Users/Edit';
-import ShowUser from '../Screens/Users/Show';
-
-/**
- *
- * @type {{show: string, create: string, update: string}}
- */
 const actions = {
-    show: 'show',
-    create: 'create',
-    update: 'update',
-};
-
-const setPanels = model => ({
     show: {
-        model,
-        action: actions.show,
+        open: true,
+        action: 'show',
     },
     create: {
-        model,
-        action: actions.create,
+        open: true,
+        action: 'create',
     },
     update: {
-        model,
-        action: actions.update,
-    },
-});
-
-const panelComponents = {
-    user: {
-        show: ShowUser,
-        create: EditUser,
-        update: EditUser,
+        open: true,
+        action: 'update',
     },
 };
 
-/**
- *
- * @param panel
- * @param detail
- * @returns {JSX.Element}
- * @constructor
- */
-const panelContainer = (panel, detail) => {
-    const { model, action } = panel;
-    const Component = panelComponents[model][action];
+const isOpen = panel => (panel.open);
 
-    return (
-        <Panel {...panel}>
-            <Component detail={(action !== actions.create) ? detail : {}} />
-        </Panel>
-    );
-};
+const getContent = (panel, panels) => (!panel.action ? <div /> : panels[panel.action]);
 
 export {
-    setPanels, panelContainer,
+    actions,
+    isOpen,
+    getContent,
 };

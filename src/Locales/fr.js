@@ -1,10 +1,12 @@
 export default {
-    Default: {
-        authentication: {
+    authentication: {
 
-        },
-        user: {
-            title: 'Utilisateurs',
+    },
+    user: {
+        title: {
+            default: 'Utilisateurs',
+            create: 'Ajouter un nouvel utilisateur',
+            update: 'Modifier l\'utilisateur',
         },
     },
 };

@@ -6,11 +6,13 @@ import {
 } from 'react-icons/hi';
 
 // Utils
-import setModalDelete from '../Utilities/Modal';
+import { actions as ModalActions } from '../Utilities/Modal';
 import { hasMorePage } from '../../Utilities/Functions';
 import {
     getPermissionModel, isDisabled,
 } from '../Utilities/Permission';
+
+import { actions as PanelActions } from '../Utilities/Panel';
 
 // Features
 import Button from './Button';
@@ -22,8 +24,12 @@ import Button from './Button';
  * @constructor
  */
 const List = (props) => {
-    const { state, getDetail, getMore, type, openModal, content, loading, openPanel, panels } = props;
-    const { model, list, pagination, current } = state;
+    const {
+        state, getDetail, getMore, type, openModal, content, loading, openPanel, modals,
+    } = props;
+    const {
+        model, list, pagination, current,
+    } = state;
     const { permissions } = current;
     const permission = getPermissionModel(permissions, model);
 
@@ -33,7 +39,7 @@ const List = (props) => {
      */
     const show = (id) => {
         if (permission.show) {
-            openPanel(panels.show);
+            openPanel(PanelActions.show);
             getDetail(id);
         }
     };
@@ -44,7 +50,7 @@ const List = (props) => {
      * @param isUserAndMe
      */
     const remove = (key, isUserAndMe = false) => {
-        if (permission.delete && !isUserAndMe) openModal(setModalDelete(model, key));
+        if (permission.delete && !isUserAndMe) openModal(ModalActions.destroy(key, modals.destroy));
     };
 
     /**
@@ -53,7 +59,7 @@ const List = (props) => {
      */
     const update = (id) => {
         if (permission.update) {
-            openPanel(panels.update);
+            openPanel(PanelActions.update);
             getDetail(id);
         }
     };
@@ -117,7 +123,7 @@ const List = (props) => {
 List.propTypes = {
     type: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
-    panels: PropTypes.oneOfType([PropTypes.object]),
+    modals: PropTypes.oneOfType([PropTypes.object]),
     loading: PropTypes.element,
     getDetail: PropTypes.func,
     getMore: PropTypes.func,
@@ -129,7 +135,7 @@ List.propTypes = {
 List.defaultProps = {
     type: 'small',
     state: {},
-    panels: {},
+    modals: {},
     loading: (<div />),
     getDetail: () => {},
     getMore: () => {},
@@ -137,6 +143,5 @@ List.defaultProps = {
     openModal: () => {},
     content: () => {},
 };
-
 
 export default List;
