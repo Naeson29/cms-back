@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
  * @constructor
  */
 const Show = (props) => {
-    const { detail } = props;
+    const { state } = props;
+    const { detail } = state;
     const { lastName, firstName } = detail;
 
     return (
@@ -19,11 +20,11 @@ const Show = (props) => {
 };
 
 Show.propTypes = {
-    detail: PropTypes.oneOfType([PropTypes.object]),
+    state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Show.defaultProps = {
-    detail: {},
+    state: {},
 };
 
 export default Show;

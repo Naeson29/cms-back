@@ -7,6 +7,7 @@ export default {
             default: 'Utilisateurs',
             create: 'Ajouter un nouvel utilisateur',
             update: 'Modifier l\'utilisateur',
+            show: 'Fiche utilisateur',
         },
     },
 };

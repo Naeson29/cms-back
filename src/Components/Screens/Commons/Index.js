@@ -23,7 +23,7 @@ class Index extends Component {
         const { props } = this;
         const { t, state } = props;
         const { model, loadings, panel } = state;
-        const { panels, modals, card } = getModel(model);
+        const { panels, modals, card, form } = getModel(model);
 
         return (
             <div className={`fragment ${model}`}>
@@ -45,6 +45,7 @@ class Index extends Component {
                 <Panel
                     state={state}
                     panels={panels}
+                    form={form}
                     loading={<Loading />}
                 />
                 <Modal {...props} />

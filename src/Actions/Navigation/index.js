@@ -7,20 +7,14 @@ export const types = {
 
 export const creators = {
     push: {
-        do(path) {
-            return {
-                type: types.PUSH.DO,
-                payload: {
-                    path,
-                },
-            };
-        },
+        do: path => ({
+            type: types.PUSH.DO,
+            payload: {
+                path,
+            },
+        }),
     },
     back: {
-        do() {
-            return {
-                type: types.BACK.DO,
-            };
-        },
+        do: () => ({ type: types.BACK.DO }),
     },
 };

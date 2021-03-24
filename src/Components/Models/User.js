@@ -1,15 +1,20 @@
 import React from 'react';
 
+// Components
 import Edit from '../Screens/Users/Edit';
 import Show from '../Screens/Users/Show';
+
+// Functions
 import { getImage } from '../../Utilities/Functions';
 
+// Panels
 const panels = {
     show: Show,
     create: Edit,
     update: Edit,
 };
 
+// Modals
 const modals = {
     destroy: (key) => {
         const { firstName, lastName } = key;
@@ -22,6 +27,7 @@ const modals = {
     },
 };
 
+// Card
 const card = (key) => {
     const { firstName, lastName, image } = key;
     return (
@@ -37,8 +43,30 @@ const card = (key) => {
     );
 };
 
+// Form
+
+const form = {
+    left: [
+        {
+            html: 'input',
+            label: 'Prénom',
+            placeholder: 'Pierre...',
+            name: 'firstName',
+            require: true,
+        },
+        {
+            html: 'input',
+            label: 'Nom',
+            placeholder: 'Richard...',
+            name: 'lastName',
+            require: true,
+        },
+    ],
+};
+
 export default {
     panels,
     modals,
     card,
+    form,
 };

@@ -14,7 +14,7 @@ import {
  */
 const Panel = (props) => {
     const { state, panels, loading } = props;
-    const { panel, loadings, detail } = state;
+    const { panel, loadings } = state;
     const Content = getContent(panel, panels);
 
     return (
@@ -25,7 +25,7 @@ const Panel = (props) => {
                     <div className="panel-container right">
                         <div className="panel">
                             <div className="content-panel">
-                                { loadings.detail ? loading : <Content detail={detail} /> }
+                                { loadings.detail ? loading : <Content {...props} action={panel.action} /> }
                             </div>
                         </div>
                     </div>
@@ -38,12 +38,14 @@ const Panel = (props) => {
 Panel.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     panels: PropTypes.oneOfType([PropTypes.object]),
+    form: PropTypes.oneOfType([PropTypes.object]),
     loading: PropTypes.element,
 };
 
 Panel.defaultProps = {
     state: {},
     panels: {},
+    form: {},
     loading: (<div />),
 };
 

@@ -1,24 +1,12 @@
-const forms = {
-    user: [
-        {
-            type: 'input',
-            name: 'first_name',
-            require: true,
-        },
-        {
-            type: 'input',
-            name: 'last_name',
-            require: true,
-        },
-    ],
+import Input from '../Features/Input';
 
+export default (html) => {
+    switch (html) {
+    case 'input': {
+        return Input;
+    }
+    default: {
+        return null;
+    }
+    }
 };
-
-/**
- *
- * @param model
- * @returns {*}
- */
-const getForm = model => forms[model];
-
-export default getForm;
