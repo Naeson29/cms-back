@@ -1,6 +1,7 @@
 import {
-    put, takeEvery, call
+    put, takeEvery, call,
 } from '@redux-saga/core/effects';
+import { toast } from 'react-toastify';
 import {
     createHttpApiSaga, createModelApiSagas,
 } from '../../../react-core';
@@ -16,7 +17,6 @@ import { creators as ModalCreators } from '../../Actions/Modal';
 import { creators as navigationCreators } from '../../Actions/Navigation';
 
 // Toast
-import { toast } from 'react-toastify';
 
 
 export default () => {
@@ -32,7 +32,7 @@ export default () => {
     }
 
     function* updateFailure() {
-        yield call(toast.error, "Echec de la modification");
+        yield call(toast.error, 'Echec de la modification');
     }
 
     function* getMeFailure() {

@@ -1,5 +1,7 @@
 // Library
-import React, {Component, useState} from 'react';
+import React, {
+    Component,
+} from 'react';
 import PropTypes from 'prop-types';
 import { ToastContainer } from 'react-toastify';
 
@@ -12,24 +14,25 @@ import routes from '../Routes';
 // Components
 import Header from './Features/Header';
 import Sidebar from './Features/Sidebar';
+import { scrollBody } from '../Utilities/Functions';
 
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            menu: false
+            menu: false,
         };
 
         this.toggleMenu = this.toggleMenu.bind(this);
         props.load();
     }
 
-    toggleMenu(){
+    toggleMenu() {
         const { menu } = this.state;
         this.setState({
-            menu: !menu
-        });
+            menu: !menu,
+        }, () => scrollBody(!menu));
     }
 
     render() {
@@ -39,7 +42,7 @@ class App extends Component {
         return (
             <div className="container-app">
                 <div className="header-app">
-                    <Header {...props} toggleMenu={this.toggleMenu}/>
+                    <Header {...props} toggleMenu={this.toggleMenu} />
                 </div>
                 <Sidebar {...props} active={menu} toggleMenu={this.toggleMenu} />
                 <div className="content-app">
@@ -58,9 +61,9 @@ class App extends Component {
                     </Switch>
                 </div>
                 <ToastContainer
-                    className={"toast-container"}
-                    toastClassName={"toast-content"}
-                    bodyClassName={"toast-body"}
+                    className="toast-container"
+                    toastClassName="toast-content"
+                    bodyClassName="toast-body"
                     autoClose={3000}
                     hideProgressBar
                 />

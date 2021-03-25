@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
     HiLogout, HiCog, HiMenu,
 } from 'react-icons/hi';
 
-import Button from "./Button";
+import Button from './Button';
 
 /**
  *

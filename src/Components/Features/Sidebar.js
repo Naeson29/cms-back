@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
 import {
     Navs, isRoot, isRootPath,
 } from '../Utilities/Sidebar';
-import PropTypes from "prop-types";
 
 /**
  *
@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  * @constructor
  */
-const Sidebar = props => {
+const Sidebar = (props) => {
     const { active, toggleMenu } = props;
 
     return (
@@ -26,7 +26,12 @@ const Sidebar = props => {
                                 const Icon = key.icon;
 
                                 return (
-                                    <li className="nav-item" key={key.id} onClick={() => toggleMenu()}>
+                                    <li
+                                        className="nav-item"
+                                        key={key.id}
+                                        onClick={() => toggleMenu()}
+                                        role="presentation"
+                                    >
                                         <NavLink
                                             to={key.path}
                                             isActive={isRoot(key.path) ? isActive : undefined}

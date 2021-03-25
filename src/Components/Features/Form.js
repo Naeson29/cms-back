@@ -7,9 +7,7 @@ import React from 'react';
  * @constructor
  */
 const Form = () => (
-    <form className="form">
-
-    </form>
+    <form className="form" />
 );
 
 Form.propTypes = {
