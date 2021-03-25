@@ -28,23 +28,33 @@ class App extends Component {
         props.load();
     }
 
-    toggleMenu() {
-        const { menu } = this.state;
+    toggleMenu(bool) {
         this.setState({
-            menu: !menu,
-        }, () => scrollBody(!menu));
+            menu: bool,
+        }, () => scrollBody(bool));
     }
 
     render() {
         const { props, state } = this;
         const { menu } = state;
 
+        const propsMenu = {
+            menu,
+            toggle : this.toggleMenu
+        }
+
         return (
             <div className="container-app">
                 <div className="header-app">
-                    <Header {...props} toggleMenu={this.toggleMenu} />
+                    <Header
+                        {...props}
+                        propsMenu={propsMenu}
+                    />
                 </div>
-                <Sidebar {...props} active={menu} toggleMenu={this.toggleMenu} />
+                <Sidebar
+                    {...props}
+                    propsMenu={propsMenu}
+                />
                 <div className="content-app">
                     <Switch>
                         {

@@ -14,17 +14,23 @@ import Button from './Button';
  * @constructor
  */
 const Header = (props) => {
-    const { logout, toggleMenu } = props;
+    const { logout, propsMenu } = props;
+    const { toggle, menu } = propsMenu;
 
     return (
         <nav className="navbar">
             <div className="navbar-nav-left">
-                <NavLink to="/" className="navbar-brand" replace>
-                    <img src="./img/logo.png" alt="Logo" />
-                    <span>Backoffice</span>
-                </NavLink>
+                <div
+                    onClick={() => toggle(false)}
+                    role="button"
+                >
+                    <NavLink to="/" className="navbar-brand" replace>
+                        <img src="./img/logo.png" alt="Logo" />
+                        <span>Backoffice</span>
+                    </NavLink>
+                </div>
                 <Button
-                    action={() => toggleMenu()}
+                    action={() => toggle(!menu)}
                     className="menu-burger"
                     icon={HiMenu}
                 />
@@ -46,12 +52,12 @@ const Header = (props) => {
 
 Header.propTypes = {
     logout: PropTypes.func,
-    toggleMenu: PropTypes.func,
+    propsMenu: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Header.defaultProps = {
     logout: () => {},
-    toggleMenu: () => {},
+    propsMenu: {},
 };
 
 export default Header;

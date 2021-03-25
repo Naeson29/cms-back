@@ -13,10 +13,11 @@ import {
  * @constructor
  */
 const Sidebar = (props) => {
-    const { active, toggleMenu } = props;
+    const { propsMenu } = props;
+    const { toggle, menu } = propsMenu;
 
     return (
-        <div className={`sidebar ${!active ? 'isClose' : 'isOpen'}`}>
+        <div className={`sidebar ${!menu ? 'isClose' : 'isOpen'}`}>
             <div className="sidebar-nav">
                 <nav className="navbar">
                     <ul className="nav navbar-nav">
@@ -29,7 +30,7 @@ const Sidebar = (props) => {
                                     <li
                                         className="nav-item"
                                         key={key.id}
-                                        onClick={() => toggleMenu()}
+                                        onClick={() => toggle(false)}
                                         role="presentation"
                                     >
                                         <NavLink
@@ -53,13 +54,11 @@ const Sidebar = (props) => {
 };
 
 Sidebar.propTypes = {
-    active: PropTypes.bool,
-    toggleMenu: PropTypes.func,
+    propsMenu: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Sidebar.defaultProps = {
-    active: false,
-    toggleMenu: () => {},
+    propsMenu: {},
 };
 
 
