@@ -3,22 +3,20 @@
   position: fixed;
   top: $header-height;
   right: 0;
+  bottom: 0;
   z-index: 30;
   background-color: rgba(0,0,0,0.3);
 
   @media (min-width: 1025px) {
     width : calc(100% - 250px);
-    bottom: 0;
   }
 
   @media (max-width: 1024px) {
     width : calc(100% - 50px);
-    bottom: 0;
   }
 
   @media (max-width: 768px) {
     width:100%;
-    bottom: $header-height;
   }
 
   .modal {
@@ -34,7 +32,7 @@
         min-height: 200px;
         width: 400px;
         border-radius: 0.4rem;
-        border: 1px solid rgba(0, 0, 0, 0.3);
+        border: $grey-border;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -49,8 +47,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: $h1_bg;
-            border: 1px solid rgba(0, 0, 0, 0.125);
+            background-color: $grey-background;
+            border: $grey-border;
             border-radius: 5px;
             padding:.8rem 0;
             flex-basis: 100%;
@@ -81,9 +79,9 @@
               justify-content: center;
               align-items: center;
               margin: 0 .8rem;
-              background-color: $h1-bg;
-              border: 1px solid rgba(0, 0, 0, 0.125);
+              background-color: $grey-background;
               border-radius: 5px;
+              border: $grey-border;
 
               .icon {
                 width: 1.5rem;
@@ -92,13 +90,13 @@
 
               &.yes {
                 .icon {
-                  color: $primary_color;
+                  color: $primary-color;
                 }
               }
 
               &.no {
                 .icon {
-                  color: $primary_color_trash;
+                  color: $secondary-color;
                 }
               }
             }

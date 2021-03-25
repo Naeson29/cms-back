@@ -1,68 +1,78 @@
 .sidebar {
-  background  : $bg-sidebar;
+  background  : $black-background;
   z-index     : 20;
   position    : fixed;
 
   @media (min-width: 1025px) {
-    width : $sidebar-width;
+    width : $sidebar-big;
   }
   @media (max-width: 1024px) {
-    width : $sidebar-width-small;
+    width : $sidebar-small;
   }
 
   @media (min-width: 769px) {
-    top         : 0;
-    left        : 0;
+    top : 0;
+    left : 0;
     min-height  : 100%;
 
   }
   @media (max-width: 768px) {
-    bottom   : 0;
-    left     : 0;
+    top: $header-height;
+    bottom : 0;
+    left : 0;
     width : 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-content:center;
+
+    &.isClose {
+      display:none;
+    }
+
+    &.isOpen {
+      display:block;
+    }
   }
 
   .sidebar-nav {
 
-    @media (min-width: 769px) {
-      overflow-x: hidden;
-      overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width:100%;
+    padding-top : 40px;
+    padding-bottom : 30px;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    &::-webkit-scrollbar {
       position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      padding-top : 40px;
-      padding-bottom : 30px;
-      -ms-overflow-style: -ms-autohiding-scrollbar;
-      @include sidebar-width($sidebar-borders, $sidebar-width-small);
+      width: 10px;
+      margin-left: -10px;
+      -webkit-appearance: none;
+    }
 
-      &::-webkit-scrollbar {
-        position: absolute;
-        width: 10px;
-        margin-left: -10px;
-        -webkit-appearance: none;
-      }
+    &::-webkit-scrollbar-track {
+      background-color: lighten($black-background, 5%);
+      border-right: 1px solid darken($black-background, 5%);
+      border-left: 1px solid darken($black-background, 5%);
+    }
 
-      &::-webkit-scrollbar-track {
-        background-color: lighten($bg-sidebar, 5%);
-        border-right: 1px solid darken($bg-sidebar, 5%);
-        border-left: 1px solid darken($bg-sidebar, 5%);
-      }
-
-      &::-webkit-scrollbar-thumb {
-        height: 50px;
-        background-color: darken($bg-sidebar, 10%);
-        background-clip: content-box;
-        border-color: transparent;
-        border-style: solid;
-        border-width: 1px 2px;
-      }
+    &::-webkit-scrollbar-thumb {
+      height: 50px;
+      background-color: darken($black-background, 10%);
+      background-clip: content-box;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 1px 2px;
     }
 
     @media (min-width: 1024px) {
-      @include sidebar-width($sidebar-borders, $sidebar-width);
+      width : $sidebar-big;
     }
-
 
     .navbar {
 
@@ -79,6 +89,7 @@
       }
 
       @media (max-width: 1024px) {
+        width: $sidebar-small;
         padding: .5rem;
         .navbar-nav {
 
@@ -91,6 +102,7 @@
       }
 
       @media (min-width: 769px) {
+
         margin-top: 0.8rem;
 
         .navbar-nav {
@@ -113,22 +125,26 @@
       }
 
       @media (max-width: 768px) {
-        height : $sidebar-bottom-height;
+        width: auto;
         display : flex;
         justify-content : center;
         align-content   : center;
         padding : 0;
 
         .navbar-nav {
-
-          flex-direction  : initial;
+          width:70%;
+          min-width:$sidebar-big;
 
           .nav-item {
-            display         : flex;
+            flex:1;
+            display : flex;
             .nav-link {
-              justify-content: center;
+              flex:1;
+              justify-content: flex-start;
+              align-items: center;
+              border-bottom : 1px solid $border-sidebar;
               .icon {
-                margin : 0 1.2rem;
+                margin-right :2rem;
               }
             }
           }
@@ -154,6 +170,9 @@
             span {
               @media (max-width: 1024px) {
                 display: none;
+              }
+              @media (max-width: 768px) {
+                display: inline-flex;
               }
             }
           }

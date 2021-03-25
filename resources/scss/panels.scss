@@ -3,6 +3,7 @@
   z-index : 15;
   display : flex;
   top: 100px;
+  bottom : 0;
 
   @media (min-width: 1025px) {
     width : calc(100% - 250px);
@@ -11,13 +12,8 @@
     width : calc(100% - 50px);
   }
 
-  @media (min-width: 769px) {
-    bottom: 0;
-  }
-
   @media (max-width: 768px) {
     left : 0;
-    bottom:50px;
     width: 100%;
   }
 

@@ -5,55 +5,78 @@
   left       : 0;
   width      : 100%;
   height     : $header-height;
-  background : $header-bg;
+  background : $black-background;
 
   -webkit-box-shadow : 0 2px 5px rgba(57, 63, 72, 0.2);
   -moz-box-shadow    : 0 2px 5px rgba(57, 63, 72, 0.2);
   box-shadow         : 0 2px 5px rgba(57, 63, 72, 0.2);
 
   .navbar {
+    display: flex;
     padding         : 0;
     border-radius   : initial;
     justify-content : space-between;
     height          : inherit;
 
-    .navbar-brand {
+    .navbar-nav-left {
       display: flex;
-      height       : 100%;
-      color        : $primary-color;
-      @media (min-width: 1024px) {
-        width : $sidebar-width;
-        justify-content: flex-start;
-        align-items: center;
 
-      }
-      @media (max-width: 1024px) {
-        width : $sidebar-width-small;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      background   : rgba(0,0,0,0.8);
-
-      img {
+      .navbar-brand {
+        display: flex;
+        height       : 100%;
+        color        : $primary-color;
         @media (min-width: 1024px) {
-          height : 80%;
-          margin-left: 1rem;
-          margin-right: .5rem;
+          width : $sidebar-big;
+          justify-content: flex-start;
+          align-items: center;
+
         }
         @media (max-width: 1024px) {
-          height : 90%;
+          width : $sidebar-small;
+          height : $sidebar-small;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        background   : rgba(0,0,0,0.8);
+
+        img {
+          width : 40px;
+          height : 40px;
+
+          @media (min-width: 1024px) {
+            margin-left: 1rem;
+            margin-right: .5rem;
+          }
+        }
+
+        span {
+          font-size:16px;
+          @media (max-width: 1024px) {
+            display: none;
+          }
         }
       }
 
-      span {
-        font-size:16px;
-        @media (min-width: 1024px) {
-          display: inline-block;
+      .menu-burger {
+        cursor : pointer;
+        padding: .4rem;
+        background-color: transparent;
+
+        @media (min-width: 769px) {
+          display:none;
         }
-        @media (max-width: 1024px) {
-          display: none;
+
+        &:focus {
+          box-shadow : none;
+          outline    : 0
+        }
+
+        .icon {
+          color : $primary-color;
+          width  : 30px;
+          height : 30px;
         }
       }
     }
@@ -73,12 +96,12 @@
           box-shadow : none;
           outline    : 0
         }
-      }
 
-      .icon {
-        color : $primary-color;
-        width  : 25px;
-        height : 25px;
+        .icon {
+          color : $primary-color;
+          width  : 25px;
+          height : 25px;
+        }
       }
     }
   }

@@ -27,8 +27,12 @@ export default () => {
         yield put(ModalCreators.close.do());
     }
 
-    function* onEditSuccess() {
+    function* updateSuccess() {
         yield call(toast.success, "L'utilisateur a été modifié");
+    }
+
+    function* updateFailure() {
+        yield call(toast.error, "Echec de la modification");
     }
 
     function* getMeFailure() {
@@ -40,7 +44,8 @@ export default () => {
         yield takeEvery(types.GET_ME.REQUEST, getMe);
         yield takeEvery(types.GET_ME.FAILURE, getMeFailure);
         yield takeEvery(types.DESTROY.REQUEST, onDelete);
-        yield takeEvery(types.UPDATE.SUCCESS, onEditSuccess);
+        yield takeEvery(types.UPDATE.SUCCESS, updateSuccess);
+        yield takeEvery(types.UPDATE.FAILURE, updateFailure);
     }
 
     return {

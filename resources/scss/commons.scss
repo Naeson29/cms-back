@@ -31,17 +31,6 @@ body {
   }
 
   #root {
-    .root-loader {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
     .container-app {
       position : absolute;
       top : 0;
@@ -73,6 +62,14 @@ body {
             justify-content: center;
             align-items: center;
           }
+
+          &.Toastify__toast--success {
+            background-color: $primary-color;
+          }
+
+          &.Toastify__toast--error {
+            background-color: $secondary-color;
+          }
         }
       }
 
@@ -83,15 +80,13 @@ body {
         display: flex;
 
         @media (min-width: 1024px) {
-          padding-left : $sidebar-width;
+          padding-left : $sidebar-big;
         }
         @media (max-width: 1024px) {
-          padding-left : $sidebar-width-small;
+          padding-left : $sidebar-small;
         }
         @media (max-width: 768px) {
-          padding-left   : 0;
-          padding-bottom : 50px;
-          left           : 0;
+          padding-left:0;
         }
 
         .fragment {
@@ -99,7 +94,7 @@ body {
           flex: 1;
           display: flex;
           flex-direction: column;
-          padding-top: 50px;
+          padding-top: $header-height;
 
           h2 {
             margin    : 0.9rem 0.9rem 0 0.9rem;
@@ -121,9 +116,9 @@ body {
         .header-screen {
           position: fixed;
           right: 0;
-          top:50px;
+          top:$header-height;
           z-index: 16;
-          background : $h1-bg;
+          background : $grey-background;
           color : $primary-color;
           font-size : 20px;
           height : $header-height;

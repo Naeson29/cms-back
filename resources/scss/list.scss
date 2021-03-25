@@ -55,6 +55,7 @@
       margin:0 .8rem;
       padding: 1.5rem;
       background-color: #fbfbfb;
+      border : $grey-border;
 
       .action {
         display: flex;
@@ -85,19 +86,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: $h1-bg;
-            border: 1px solid rgba(0, 0, 0, 0.125);
-
+            background-color: $grey-background;
+            border: $grey-border;
 
             &.edit, &.show {
               .icon {
-                color: $primary_color;
+                color: $primary-color;
               }
             }
 
             &.trash {
               .icon {
-                color: $primary_color_trash;
+                color: $secondary-color;
               }
             }
 

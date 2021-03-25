@@ -1,5 +1,5 @@
 // Library
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
 import PropTypes from 'prop-types';
 import { ToastContainer } from 'react-toastify';
 
@@ -16,18 +16,32 @@ import Sidebar from './Features/Sidebar';
 class App extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            menu: false
+        };
+
+        this.toggleMenu = this.toggleMenu.bind(this);
         props.load();
     }
 
+    toggleMenu(){
+        const { menu } = this.state;
+        this.setState({
+            menu: !menu
+        });
+    }
+
     render() {
-        const { props } = this;
+        const { props, state } = this;
+        const { menu } = state;
 
         return (
             <div className="container-app">
                 <div className="header-app">
-                    <Header {...props} />
+                    <Header {...props} toggleMenu={this.toggleMenu}/>
                 </div>
-                <Sidebar {...props} />
+                <Sidebar {...props} active={menu} toggleMenu={this.toggleMenu} />
                 <div className="content-app">
                     <Switch>
                         {
