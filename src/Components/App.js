@@ -40,8 +40,8 @@ class App extends Component {
 
         const propsMenu = {
             menu,
-            toggle : this.toggleMenu
-        }
+            toggle: this.toggleMenu,
+        };
 
         return (
             <div className="container-app">

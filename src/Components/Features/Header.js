@@ -22,7 +22,7 @@ const Header = (props) => {
             <div className="navbar-nav-left">
                 <div
                     onClick={() => toggle(false)}
-                    role="button"
+                    role="presentation"
                 >
                     <NavLink to="/" className="navbar-brand" replace>
                         <img src="./img/logo.png" alt="Logo" />
