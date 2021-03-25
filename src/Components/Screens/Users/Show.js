@@ -10,11 +10,11 @@ import PropTypes from 'prop-types';
 const Show = (props) => {
     const { state } = props;
     const { detail } = state;
-    const { lastName, firstName } = detail;
+    const { last_name, first_name } = detail;
 
     return (
         <div>
-            <p>{`${firstName} ${lastName}`}</p>
+            <p>{`${first_name} ${last_name}`}</p>
         </div>
     );
 };

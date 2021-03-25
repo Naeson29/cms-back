@@ -2,32 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Input = (props) => {
-    const { data, value } = props;
+    const { attributes, value, handleChange } = props;
     const {
-        type = 'text', name = 'input', className = 'input', placeholder = '',
-    } = data;
+        label = '', type = 'text', name = 'input', className = 'input', placeholder = '',
+    } = attributes;
 
     return (
         <div className="container-field">
-            <p className="label">{data.label}</p>
+            <p className="label">{label}</p>
             <input
                 type={type}
                 name={name}
                 className={className}
                 placeholder={placeholder}
-                value={value}
+                defaultValue={value}
+                onChange={e => handleChange(name, e)}
             />
         </div>
     );
 };
 
 Input.propTypes = {
-    data: PropTypes.oneOfType([PropTypes.object]),
+    attributes: PropTypes.oneOfType([PropTypes.object]),
+    handleChange: PropTypes.func,
     value: PropTypes.string,
 };
 
 Input.defaultProps = {
-    data: {},
+    attributes: {},
+    handleChange: () => {},
     value: '',
 };
 

@@ -16,7 +16,7 @@ import getModel from '../../Models';
 class Index extends Component {
     constructor(props) {
         super(props);
-        props.load();
+        props.getList();
     }
 
     render() {
@@ -43,7 +43,7 @@ class Index extends Component {
                     )
                 }
                 <Panel
-                    state={state}
+                    {...props}
                     panels={panels}
                     form={form}
                     loading={<Loading />}
@@ -56,13 +56,13 @@ class Index extends Component {
 
 Index.propTypes = {
     t: PropTypes.func,
-    load: PropTypes.func,
+    getList: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Index.defaultProps = {
     t: () => {},
-    load: () => {},
+    getList: () => {},
     state: {},
 };
 

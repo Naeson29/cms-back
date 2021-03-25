@@ -15,15 +15,11 @@ export default (dispatch, creators, paramsList) => ({
     closePanel: () => {
         dispatch(PanelCreators.close.do());
     },
-
-    load: () => {
+    getList: () => {
         if (creators) dispatch(creators.search.request(paramsList));
     },
     getDetail: (id) => {
         if (creators) dispatch(creators.read.request(id));
-    },
-    destroy: (id) => {
-        if (creators) dispatch(creators.destroy.request(id));
     },
     getMore: (page) => {
         if (creators) {
@@ -35,6 +31,10 @@ export default (dispatch, creators, paramsList) => ({
             }));
         }
     },
-
-
+    update: (id, data) => {
+        if (creators) dispatch(creators.update.request(id, data));
+    },
+    destroy: (id) => {
+        if (creators) dispatch(creators.destroy.request(id));
+    },
 });

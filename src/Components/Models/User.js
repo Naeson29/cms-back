@@ -17,11 +17,11 @@ const panels = {
 // Modals
 const modals = {
     destroy: (key) => {
-        const { firstName, lastName } = key;
+        const { first_name, last_name } = key;
         return (
             <div className="card-text">
                 <p className="message">{'Confirmer la suppression de l\'utilisateur'}</p>
-                <p className="complement">{`${firstName} ${lastName}`}</p>
+                <p className="complement">{`${first_name} ${last_name}`}</p>
             </div>
         );
     },
@@ -29,7 +29,7 @@ const modals = {
 
 // Card
 const card = (key) => {
-    const { firstName, lastName, image } = key;
+    const { first_name, last_name, image } = key;
     return (
         <div className="card-user">
             <div
@@ -38,27 +38,33 @@ const card = (key) => {
                 }}
                 className="image"
             />
-            <p className="name">{`${firstName} ${lastName}`}</p>
+            <p className="name">{`${first_name} ${last_name}`}</p>
         </div>
     );
 };
 
 // Form
-
 const form = {
-    left: [
+    fields: [
         {
             html: 'input',
             label: 'Prénom',
             placeholder: 'Pierre...',
-            name: 'firstName',
+            name: 'first_name',
             require: true,
         },
         {
             html: 'input',
             label: 'Nom',
             placeholder: 'Richard...',
-            name: 'lastName',
+            name: 'last_name',
+            require: true,
+        },
+        {
+            html: 'input',
+            label: 'Email',
+            placeholder: 'exemple@mail.fr...',
+            name: 'email',
             require: true,
         },
     ],
