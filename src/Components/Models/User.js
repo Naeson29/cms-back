@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Components
-import Edit from '../Screens/Users/Edit';
-import Show from '../Screens/Users/Show';
+import Edit from '../Screens/Commons/Edit';
+import Show from '../Screens/Commons/Show';
 
 // Functions
 import { getImage } from '../../Utilities/Functions';
