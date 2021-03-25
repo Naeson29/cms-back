@@ -18,35 +18,37 @@ const Header = (props) => {
     const { toggle, menu } = propsMenu;
 
     return (
-        <nav className="navbar">
-            <div className="navbar-nav-left">
-                <div
-                    onClick={() => toggle(false)}
-                    role="presentation"
-                >
-                    <NavLink to="/" className="navbar-brand" replace>
-                        <img src="./img/logo.png" alt="Logo" />
-                        <span>Backoffice</span>
-                    </NavLink>
+        <div className="header-app">
+            <nav className="navbar">
+                <div className="navbar-nav-left">
+                    <div
+                        onClick={() => toggle(false)}
+                        role="presentation"
+                    >
+                        <NavLink to="/" className="navbar-brand" replace>
+                            <img src="./img/logo.png" alt="Logo" />
+                            <span>Backoffice</span>
+                        </NavLink>
+                    </div>
+                    <Button
+                        action={() => toggle(!menu)}
+                        className="menu-burger"
+                        icon={HiMenu}
+                    />
                 </div>
-                <Button
-                    action={() => toggle(!menu)}
-                    className="menu-burger"
-                    icon={HiMenu}
-                />
-            </div>
 
-            <div className="navbar-nav-right">
-                <NavLink to="/parameters" replace>
-                    <HiCog className="icon" />
-                </NavLink>
-                <Button
-                    action={() => logout()}
-                    className="button"
-                    icon={HiLogout}
-                />
-            </div>
-        </nav>
+                <div className="navbar-nav-right">
+                    <NavLink to="/parameters" replace>
+                        <HiCog className="icon" />
+                    </NavLink>
+                    <Button
+                        action={() => logout()}
+                        className="button"
+                        icon={HiLogout}
+                    />
+                </div>
+            </nav>
+        </div>
     );
 };
 

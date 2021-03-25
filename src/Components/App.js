@@ -24,8 +24,9 @@ class App extends Component {
             menu: false,
         };
 
-        this.toggleMenu = this.toggleMenu.bind(this);
         props.load();
+
+        this.toggleMenu = this.toggleMenu.bind(this);
     }
 
     toggleMenu(bool) {
@@ -39,18 +40,15 @@ class App extends Component {
         const { menu } = state;
 
         const propsMenu = {
-            menu,
-            toggle: this.toggleMenu,
+            menu, toggle: this.toggleMenu,
         };
 
         return (
             <div className="container-app">
-                <div className="header-app">
-                    <Header
-                        {...props}
-                        propsMenu={propsMenu}
-                    />
-                </div>
+                <Header
+                    {...props}
+                    propsMenu={propsMenu}
+                />
                 <Sidebar
                     {...props}
                     propsMenu={propsMenu}
