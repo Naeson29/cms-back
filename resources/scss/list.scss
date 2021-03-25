@@ -25,13 +25,13 @@
     min-height : 12rem;
     background-color: transparent;
 
-    @media (min-width: 1451px) {
+    @media (min-width: 1201px) {
       &.small {
         width : 25%;
       }
     }
 
-    @media (max-width: 1450px) {
+    @media (max-width: 1200px) {
       &.small {
         width : 50%;
       }
@@ -44,6 +44,12 @@
     }
 
     @media (max-width: 768px) {
+      &.small {
+        width : 50%;
+      }
+    }
+
+    @media (max-width: 468px) {
       &.small {
         width : 100%;
       }
@@ -111,8 +117,16 @@
             }
 
             .icon {
-              width: 1.4rem;
-              height: 1.4rem;
+              @media (min-width: 1025px) {
+                width: 1.4rem;
+                height: 1.4rem;
+              }
+
+              @media (max-width: 1024px) {
+                width: 1.2rem;
+                height: 1.2rem;
+              }
+
             }
           }
         }
