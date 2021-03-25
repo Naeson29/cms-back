@@ -43,7 +43,13 @@ class App extends Component {
                         }
                     </Switch>
                 </div>
-                <ToastContainer />
+                <ToastContainer
+                    className={"toast-container"}
+                    toastClassName={"toast-content"}
+                    bodyClassName={"toast-body"}
+                    autoClose={3000}
+                    hideProgressBar
+                />
             </div>
         );
     }

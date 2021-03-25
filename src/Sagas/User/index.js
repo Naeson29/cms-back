@@ -28,10 +28,7 @@ export default () => {
     }
 
     function* onEditSuccess() {
-        yield call(toast.success, "Utilisateur modifié", {
-            autoClose: 3000,
-            hideProgressBar: false,
-        });
+        yield call(toast.success, "L'utilisateur a été modifié");
     }
 
     function* getMeFailure() {
