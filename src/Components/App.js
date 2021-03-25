@@ -1,6 +1,7 @@
 // Library
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ToastContainer } from 'react-toastify';
 
 // Routes
 import {
@@ -42,6 +43,7 @@ class App extends Component {
                         }
                     </Switch>
                 </div>
+                <ToastContainer />
             </div>
         );
     }

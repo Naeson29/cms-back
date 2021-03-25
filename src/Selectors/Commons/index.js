@@ -3,6 +3,7 @@ import {
     createModelDestroyViewSelector,
     createModelIndexViewSelector,
     createModelShowViewSelector,
+    createModelEditViewSelector,
 } from '../../../react-core';
 
 export default (model) => {
@@ -10,60 +11,66 @@ export default (model) => {
     const getModalSubState = ({ Modal = {} }) => Modal;
     const getPanelSubState = ({ Panel = {} }) => Panel;
 
-    const getCurrent = createSelector(
+    const GetCurrent = createSelector(
         getUserSubState,
         ({ current }) => current,
     );
 
-    const getModal = createSelector(
+    const GetModal = createSelector(
         getModalSubState,
         ({ modal }) => modal,
     );
 
-    const getPanel = createSelector(
+    const GetPanel = createSelector(
         getPanelSubState,
         ({ panel }) => panel,
     );
 
-    const list = createSelector(
+    const List = createSelector(
         createModelIndexViewSelector(model),
         ({ content = [] }) => content,
     );
 
-    const loadingList = createSelector(
-        createModelIndexViewSelector(model),
-        ({ loading = true }) => loading,
-    );
-
-    const paginationList = createSelector(
+    const Pagination = createSelector(
         createModelIndexViewSelector(model),
         ({ pagination = {} }) => pagination,
     );
 
-    const detail = createSelector(
+    const Detail = createSelector(
         createModelShowViewSelector(model),
         ({ content = {} }) => content,
     );
 
-    const loadingDetail = createSelector(
+    const LoadingList = createSelector(
+        createModelIndexViewSelector(model),
+        ({ loading = true }) => loading,
+    );
+
+    const LoadingDetail = createSelector(
         createModelShowViewSelector(model),
         ({ loading }) => loading,
     );
 
-    const loadingDestroy = createSelector(
+    const LoadingDestroy = createSelector(
         createModelDestroyViewSelector(model),
         ({ loading }) => loading,
     );
 
+    const LoadingEdit = createSelector(
+        createModelEditViewSelector(model),
+        ({ loading }) => loading,
+    );
+
     return {
-        getCurrent,
-        list,
-        detail,
-        loadingList,
-        loadingDetail,
-        loadingDestroy,
-        paginationList,
-        getModal,
-        getPanel,
+        GetCurrent,
+        List,
+        Detail,
+        Pagination,
+        GetModal,
+        GetPanel,
+        LoadingList,
+        LoadingDetail,
+        LoadingDestroy,
+        LoadingEdit,
     };
 };

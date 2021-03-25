@@ -16,6 +16,7 @@ const Panel = (props) => {
     const { state, panels, loading } = props;
     const { panel, loadings } = state;
     const Content = getContent(panel, panels);
+    const isLoading = (loadings.detail || loadings.edit);
 
     return (
         <div>
@@ -25,7 +26,7 @@ const Panel = (props) => {
                     <div className="panel-container right">
                         <div className="panel">
                             <div className="content-panel">
-                                { loadings.detail ? loading : <Content {...props} action={panel.action} /> }
+                                { isLoading ? loading : <Content {...props} action={panel.action} /> }
                             </div>
                         </div>
                     </div>

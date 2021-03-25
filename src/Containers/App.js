@@ -11,7 +11,7 @@ import User from '../Selectors/User';
 import AppFunction from './Functions/App';
 
 const mapStateToProps = state => ({
-    current: User.getCurrent(state),
+    current: User.GetCurrent(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -32,35 +32,6 @@ body {
 
   #root {
 
-    .Toastify {
-
-      .Toastify__toast-container {
-        padding:0;
-        &.Toastify__toast-container--top-center {
-
-          @media (max-width: 768px) {
-            top:0;
-            left:0;
-            width:100%;
-            margin-left:0;
-          }
-        }
-
-        .Toastify__toast {
-          @media (min-width: 768px) {
-            min-height:55px;
-          }
-          @media (max-width: 768px) {
-            min-height:40px;
-          }
-
-          .Toastify__toast-body {
-            text-align: center;
-          }
-        }
-      }
-    }
-
     .root-loader {
       position: absolute;
       top: 0;
@@ -185,42 +156,5 @@ body {
         }
       }
     }
-  }
-
-  #lightboxBackdrop {
-
-    .content_13hv8io {
-      position: static!important;
-    }
-
-    .close_1x3s325 {
-      position     : absolute;
-      top          : 5px;
-      right        : 5px;
-      margin-right : 0;
-      z-index      : 1;
-      height       : 30px;
-      width        : 30px;
-      padding      : 5px;
-    }
-
-    button {
-      &:focus {
-        box-shadow : none;
-        outline    : 0
-      }
-    }
-
-    .arrow_b9bbag-o_O-arrow__direction__right_174p6a9-o_O-arrow__size__medium_9f7hgo,
-    .arrow_b9bbag-o_O-arrow__direction__left_shhpn5-o_O-arrow__size__medium_9f7hgo{
-      height     : 60px;
-      margin-top : -30px;
-      background : rgba(255,255,255, 0.15);
-
-      @media (min-width: 768px) {
-        width: 50px!important;
-      }
-    }
-
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -15,14 +15,14 @@ const Edit = (props) => {
     const { detail } = state;
     const isUpdate = action === 'update';
 
+
     const [data, setData] = useState(fields.reduce((obj, item) => ({
         ...obj,
         [item.name]: isUpdate ? detail[item.name] : '',
     }), {}));
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         if (isUpdate) update(detail.id, data);
-
         event.preventDefault();
     };
 

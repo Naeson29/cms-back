@@ -1,16 +1,17 @@
 export default (state, selectors) => {
-    const { detail, getCurrent, list, loadingDestroy, loadingDetail, loadingList, paginationList, getModal, getPanel } = selectors;
+    const { GetCurrent, List, Detail, Pagination, GetModal, GetPanel, LoadingDestroy, LoadingDetail, LoadingList, LoadingEdit } = selectors;
     return {
-        current: getCurrent(state),
-        list: list(state),
-        detail: detail(state),
-        pagination: paginationList(state),
-        panel: getPanel(state),
-        modal: getModal(state),
+        current: GetCurrent(state),
+        list: List(state),
+        detail: Detail(state),
+        pagination: Pagination(state),
+        panel: GetPanel(state),
+        modal: GetModal(state),
         loadings: {
-            list: loadingList(state),
-            detail: loadingDetail(state),
-            destroy: loadingDestroy(state),
+            list: LoadingList(state),
+            detail: LoadingDetail(state),
+            destroy: LoadingDestroy(state),
+            edit: LoadingEdit(state),
         },
     };
 };
