@@ -33,4 +33,25 @@
     }
   }
 
+  .submit {
+    position: fixed;
+    top : 110px;
+    right:1rem;
+    z-index: 20;
+    cursor: pointer;
+    background-color: transparent;
+
+    .icon {
+      fill : $primary-color;
+      @media (min-width: 1025px) {
+        height: 40px;
+        width: 38px;
+      }
+
+      @media (max-width: 1024px) {
+        height: 38px;
+        width: 38px;
+      }
+    }
+  }
 }

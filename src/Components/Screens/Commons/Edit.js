@@ -6,6 +6,11 @@ import PropTypes from 'prop-types';
 // Utils
 import getComponent from '../../Utilities/Form';
 
+// Features
+import Button from "../../Features/Button";
+
+import {HiSave} from "react-icons/hi";
+
 /**
  *
  * @returns {JSX.Element}
@@ -16,16 +21,13 @@ const Edit = (props) => {
     const { fields } = form;
     const { detail } = state;
     const isUpdate = action === 'update';
-
-
     const [data, setData] = useState(fields.reduce((obj, item) => ({
         ...obj,
         [item.name]: isUpdate ? detail[item.name] : '',
     }), {}));
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = () => {
         if (isUpdate) update(detail.id, data);
-        event.preventDefault();
     };
 
     const handleChange = (key, event) => {
@@ -52,7 +54,11 @@ const Edit = (props) => {
                     })
                 }
             </div>
-            <input type="submit" value="Envoyer" />
+            <Button
+                action={handleSubmit}
+                className={'button submit'}
+                icon={HiSave}
+            />
         </form>
     );
 };
