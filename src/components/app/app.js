@@ -9,14 +9,14 @@ import { ToastContainer } from 'react-toastify';
 import {
     Route, Switch,
 } from 'react-router-dom';
-import routes from '../routes';
+import routes from '../../routes';
 
 // features
 import {
     Header, Sidebar,
-} from './features';
+} from '../features';
 
-import { scrollBody } from '../utilities/functions';
+import { scrollBody } from '../../utilities/functions';
 
 class App extends Component {
     constructor(props) {

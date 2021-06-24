@@ -13,10 +13,12 @@ import i18n from './locales/i18n';
 
 import { authentication } from './routes';
 
-// containers
+import { App } from './components';
+import { setContainer } from './containers';
+
+
 import AuthenticationContainer from './containers/screens/authentication';
 import PrivateRoute from './containers/features/privateRoute';
-import AppContainer from './containers/app';
 
 require('moment/locale/fr.js');
 
@@ -27,19 +29,23 @@ moment.locale('fr');
  * @returns {JSX.Element}
  * @constructor
  */
-const App = () => (
+export default () => (
     <I18nextProvider i18n={i18n}>
         <Provider store={store}>
             <PersistGate persistor={persist}>
                 <Router history={history}>
                     <Switch>
                         <Route exact path={authentication.login.path} name={authentication.login.name} component={AuthenticationContainer} />
-                        <PrivateRoute path="/" name="App" Fragment={AppContainer} />
+                        <PrivateRoute
+                            path="/"
+                            name="App"
+                            Fragment={setContainer({
+                                component: App,
+                            })}
+                        />
                     </Switch>
                 </Router>
             </PersistGate>
         </Provider>
     </I18nextProvider>
 );
-
-export default App;

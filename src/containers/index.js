@@ -1,1 +1,1 @@
-export { default as setScreenContainer } from './setScreenContainer';
+export { default as setContainer } from './setContainer';

@@ -19,8 +19,13 @@ class Default extends Component {
     render() {
         const { props } = this;
         const { t, state } = props;
-        const { model, loadings, panel } = state;
-        const { panels, modals, card, form } = getModel[model];
+        const { model = 'default', loadings = {}, panel = {}, list = false } = state;
+        const {
+            panels = null,
+            modals = false,
+            card = null,
+            form = null,
+        } = getModel[model] || {};
 
         return (
             <div className={`fragment ${model}`}>
@@ -29,12 +34,12 @@ class Default extends Component {
                     title={t(`${model}:title:${!panel.open ? 'default' : panel.action}`)}
                 />
                 {
-                    loadings.list ? <Loading /> : (
+                    loadings.list ? <Loading /> : list && (
                         <List
                             {...props}
                             type="small"
                             content={card}
-                            modals={modals}
+                            modals={modals || {}}
                             loading={<Loading className="loading-list" />}
                         />
                     )
@@ -63,4 +68,4 @@ Default.defaultProps = {
     state: {},
 };
 
-export default withTranslation('Default')(Default);
+export default withTranslation('default')(Default);

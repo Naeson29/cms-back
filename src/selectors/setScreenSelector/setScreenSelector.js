@@ -8,22 +8,10 @@ import {
 
 export default (model) => {
     const getSubState = obj => obj[model];
-    const getModalSubState = ({ modal = {} }) => modal;
-    const getPanelSubState = ({ panel = {} }) => panel;
 
     const GetCurrent = createSelector(
         getSubState,
         ({ current }) => current,
-    );
-
-    const GetModal = createSelector(
-        getModalSubState,
-        ({ modal }) => modal,
-    );
-
-    const GetPanel = createSelector(
-        getPanelSubState,
-        ({ panel }) => panel,
     );
 
     const List = createSelector(
@@ -66,8 +54,6 @@ export default (model) => {
         List,
         Detail,
         Pagination,
-        GetModal,
-        GetPanel,
         LoadingList,
         LoadingDetail,
         LoadingDestroy,

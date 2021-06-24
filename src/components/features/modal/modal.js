@@ -17,7 +17,7 @@ import { isOpen } from '../../utilities/modal';
  */
 const Modals = (props) => {
     const { state, destroy, closeModal } = props;
-    const { modal } = state;
+    const { modal = {} } = state;
     const { open, params, content } = modal;
 
     return (

@@ -1,17 +1,29 @@
 import { models } from '../models';
-import { setScreenContainer } from '../containers';
-import Dashboard from '../containers/screens/dashboard';
+import { setContainer } from '../containers';
 
-const { USER } = models;
+const { user } = models;
+const panel = true;
+const modal = true;
 
-const index = [
-    {
-        exact: true, path: '/', name: 'Dashboard', component: Dashboard, id: 1,
-    },
-    {
-        exact: true, path: '/user', name: 'Users', component: setScreenContainer(USER), id: 2,
-    },
-];
+const index = [{
+    exact: true,
+    path: '/',
+    name: 'Dashboard',
+    component: setContainer(),
+    id: 1,
+},
+{
+    exact: true,
+    path: '/user',
+    name: 'Users',
+    component: setContainer({
+        model: user,
+        panel,
+        modal,
+    }),
+    id: 2,
+}];
+
 export default index;
 
 export const authentication = {

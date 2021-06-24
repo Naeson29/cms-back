@@ -25,13 +25,15 @@ import { Button } from '..';
  */
 const List = (props) => {
     const {
-        state, getDetail, getMore, type, openModal, content, loading, openPanel, modals,
+        state, getDetail, getMore, type, openModal, content, loading, openPanel, modals = {},
     } = props;
     const {
         model, list, pagination, current,
     } = state;
     const { permissions } = current;
     const permission = getPermissionModel(permissions, model);
+
+    console.log(current)
 
     /**
      *

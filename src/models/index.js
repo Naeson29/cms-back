@@ -2,10 +2,9 @@ import user from './user';
 import dashboard from './dashboard';
 
 export const models = {
-    USER: 'user',
+    user: 'user',
 };
 
 export default {
-    dashboard,
     user,
 };

@@ -2,6 +2,11 @@ export default {
     authentication: {
 
     },
+    default: {
+        title: {
+            default: 'Titre de la page',
+        },
+    },
     user: {
         title: {
             default: 'Utilisateurs',

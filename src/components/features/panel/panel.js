@@ -14,7 +14,7 @@ import {
  */
 const Panel = (props) => {
     const { state, panels, loading } = props;
-    const { panel, loadings } = state;
+    const { panel = {}, loadings = {} } = state;
     const Content = getContent(panel, panels);
     const isLoading = (loadings.detail || loadings.edit);
 

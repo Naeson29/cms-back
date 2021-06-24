@@ -15,7 +15,7 @@ const actions = {
     },
 };
 
-const isOpen = panel => (panel.open);
+const isOpen = (panel = {}) => (panel.open);
 
 const getContent = (panel, panels) => (!panel.action ? <div /> : panels[panel.action]);
 
