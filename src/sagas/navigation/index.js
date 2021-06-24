@@ -1,5 +1,7 @@
 import { takeEvery } from 'redux-saga/effects';
-import { types } from '../../actions/navigation';
+import { navigationActions } from '../../actions';
+
+const { types } = navigationActions;
 
 let sagaHistory;
 

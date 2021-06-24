@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const DEFAULT_AUTHENTICATION_STATE_KEY = 'Authentication';
+export const DEFAULT_AUTHENTICATION_STATE_KEY = 'authentication';
 export const DEFAULT_AUTHENTICATION_TOKEN_FIELD = 'token';
 export const DEFAULT_AUTHENTICATION_HEADER_KEY = 'Authorization';
 export const DEFAULT_AUTHENTICATION_HEADER_PREFIX = 'Bearer ';

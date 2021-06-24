@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import PanelReducer from './panel';
-import ModalReducer from './modal';
-import AuthenticationReducer from './authentication';
-import UserReducer from './user';
+import panelReducer from './panel';
+import modalReducer from './modal';
+import authenticationReducer from './authentication';
+import userReducer from './user';
 
 export default combineReducers({
     routing: routerReducer,
-    Panel: PanelReducer,
-    Modal: ModalReducer,
-    Authentication: AuthenticationReducer,
-    User: UserReducer,
+    panel: panelReducer,
+    modal: modalReducer,
+    authentication: authenticationReducer,
+    user: userReducer,
 });

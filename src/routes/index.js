@@ -1,14 +1,15 @@
+import { models } from '../models';
+import { setScreenContainer } from '../containers';
 import Dashboard from '../containers/screens/dashboard';
-import Users from '../containers/screens/user';
+
+const { USER } = models;
 
 const index = [
-    // dashboard
     {
         exact: true, path: '/', name: 'Dashboard', component: Dashboard, id: 1,
     },
-    // Users
     {
-        exact: true, path: '/user', name: 'Users', component: Users, id: 2,
+        exact: true, path: '/user', name: 'Users', component: setScreenContainer(USER), id: 2,
     },
 ];
 export default index;

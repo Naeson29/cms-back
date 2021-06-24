@@ -11,24 +11,29 @@ import UserApi from '../../api/User';
 
 // actions
 import {
-    types, creators,
-} from '../../actions/authentication';
-import { creators as navigationCreators } from '../../actions/navigation';
+    navigationActions,
+    authenticationActions,
+} from '../../actions';
 
 // services
 import AuthenticationService from '../../services/authentication';
+
+const {
+    types,
+    creators,
+} = authenticationActions;
 
 export default () => {
     const login = createHttpSaga(creators.login, AuthenticationApi.login);
     const logout = createHttpApiSaga(creators.logout, UserApi, 'revoke');
 
     function* navigationAfterLogin() {
-        yield put(navigationCreators.push.do('/'));
+        yield put(navigationActions.creators.push.do('/'));
     }
 
     function* clear() {
         yield call(() => AuthenticationService.logout());
-        yield put(navigationCreators.push.do('/login'));
+        yield put(navigationActions.creators.push.do('/login'));
     }
 
     function* root() {

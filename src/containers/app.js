@@ -4,14 +4,15 @@ import { withRouter } from 'react-router-dom';
 // Component
 import App from '../components/app';
 
-// selectors
-import User from '../selectors/user';
+import { setScreenSelectors } from '../selectors';
 
 // App function
 import AppFunction from './functions/app';
 
+const userSelector = setScreenSelectors('user');
+
 const mapStateToProps = state => ({
-    current: User.GetCurrent(state),
+    current: userSelector.GetCurrent(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -11,9 +11,11 @@ import {
 } from 'react-router-dom';
 import routes from '../routes';
 
-// components
-import Header from './features/header';
-import Sidebar from './features/sidebar';
+// features
+import {
+    Header, Sidebar,
+} from './features';
+
 import { scrollBody } from '../utilities/functions';
 
 class App extends Component {

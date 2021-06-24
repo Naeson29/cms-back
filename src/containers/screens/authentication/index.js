@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Login from '../../../components/screens/authentication';
-import { creators } from '../../../actions/authentication';
+import { authenticationActions } from '../../../actions';
 
 const mapStateToProps = () => ({
     initialData: {
@@ -11,7 +11,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actionForm: (data) => { dispatch(creators.login.request(data)); },
+    actionForm: (data) => { dispatch(authenticationActions.creators.login.request(data)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

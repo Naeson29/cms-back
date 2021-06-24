@@ -11,20 +11,22 @@ import UserApi from '../../api/User';
 
 // actions
 import {
-    types, creators,
-} from '../../actions/user';
-import { creators as ModalCreators } from '../../actions/modal';
-import { creators as navigationCreators } from '../../actions/navigation';
+    modalActions,
+    navigationActions,
+    userActions,
+} from '../../actions';
 
-// toast
-
+const {
+    types,
+    creators,
+} = userActions;
 
 export default () => {
     const defaultSagas = createModelApiSagas(types, creators, UserApi);
     const getMe = createHttpApiSaga(creators.getMe, UserApi, 'getMe');
 
     function* onDelete() {
-        yield put(ModalCreators.close.do());
+        yield put(modalActions.creators.close.do());
     }
 
     function* updateSuccess() {
@@ -36,7 +38,7 @@ export default () => {
     }
 
     function* getMeFailure() {
-        yield put(navigationCreators.push.do('/login'));
+        yield put(navigationActions.creators.push.do('/login'));
     }
 
     function* root() {

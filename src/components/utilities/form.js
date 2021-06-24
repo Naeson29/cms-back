@@ -1,4 +1,4 @@
-import Input from '../features/input';
+import { Input } from '../features';
 
 export default (html) => {
     switch (html) {

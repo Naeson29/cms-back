@@ -1,11 +1,13 @@
-import { creators as AuthenticationCreators } from '../../actions/authentication';
-import { creators as usersCreators } from '../../actions/user';
+import {
+    authenticationActions,
+    userActions,
+} from '../../actions';
 
 export default dispatch => ({
     load: () => {
-        dispatch(usersCreators.getMe.request());
+        dispatch(userActions.creators.getMe.request());
     },
     logout: () => {
-        dispatch(AuthenticationCreators.logout.request());
+        dispatch(authenticationActions.creators.logout.request());
     },
 });

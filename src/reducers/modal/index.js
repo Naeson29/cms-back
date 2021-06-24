@@ -1,6 +1,8 @@
-import { types } from '../../actions/modal';
+import { modalActions } from '../../actions';
 import { createModelReducer } from '../../../react-core';
 import { scrollBody } from '../../utilities/functions';
+
+const { types } = modalActions;
 
 export const initialState = {
     modal: {},

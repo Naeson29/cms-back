@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Loading from '../../features/loading';
+import { Loading } from '../../features';
 
 class Index extends Component {
     constructor(props) {

@@ -1,29 +1,29 @@
-const path                 = require('path');
-const webpack              = require('webpack');
-const DotenvPlugin         = require('webpack-dotenv-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin    = require('html-webpack-plugin');
-const CopyWebpackPlugin    = require('copy-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
-const SRC_DIR   = path.resolve(__dirname, 'src');
+const SRC_DIR = path.resolve(__dirname, 'src');
 
 const modeValues = {
-    'development': [
-        'local', 'dev', 'preprod'
+    development: [
+        'local', 'dev', 'preprod',
     ],
-    'production': [
+    production: [
         'prod', 'production',
-    ]
+    ],
 };
 
 module.exports = () => {
     const dotenv = new DotenvPlugin({
-        sample: './configuration/.env.example'
+        sample: './configuration/.env.example',
     });
 
-    const mode    = Object.keys(modeValues).find(key => modeValues[key].indexOf(dotenv.env.APP_ENV) !== -1) || 'none';
+    const mode = Object.keys(modeValues).find(key => modeValues[key].indexOf(dotenv.env.APP_ENV) !== -1) || 'none';
     const devMode = (mode !== 'production');
 
     return {
@@ -33,8 +33,8 @@ module.exports = () => {
             ]
         },
         output: {
-            path         : BUILD_DIR,
-            filename     : '[name].bundle.js?v=[hash]',
+            path: BUILD_DIR,
+            filename: '[name].bundle.js?v=[hash]',
             chunkFilename: '[id].bundle.js?v=[hash]',
         },
 
@@ -50,12 +50,12 @@ module.exports = () => {
                         options: {
                             babelrc: true,
                             cacheDirectory: true,
-                        }
-                    }
+                        },
+                    },
                 },
                 {
                     test: /\.html$/,
-                    loader: 'html-loader'
+                    loader: 'html-loader',
                 },
                 {
                     test: /\.(sa|sc|c)ss$/,
@@ -63,29 +63,29 @@ module.exports = () => {
                         'css-hot-loader',
                         MiniCssExtractPlugin.loader,
                         'css-loader',
-                        'sass-loader'
-                    ]
+                        'sass-loader',
+                    ],
                 },
                 {
                     test: /\.(png|jp(e*)g|gif|ico)$/,
                     loader: 'file-loader',
                     options: {
                         outputPath: 'img',
-                        name: (devMode) ? '[name].[hash].[ext]' : '[hash].[ext]'
-                    }
+                        name: (devMode) ? '[name].[hash].[ext]' : '[hash].[ext]',
+                    },
                 },
                 {
                     test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                     loader: 'file-loader',
                     options: {
                         outputPath: 'fonts',
-                        name: (devMode) ? '[name].[hash].[ext]' : '[hash].[ext]'
-                    }
-                }
-            ]
+                        name: (devMode) ? '[name].[hash].[ext]' : '[hash].[ext]',
+                    },
+                },
+            ],
         },
 
-        mode: mode,
+        mode,
 
         optimization: {
             splitChunks: {
@@ -100,15 +100,15 @@ module.exports = () => {
                 cacheGroups: {
                     vendors: {
                         test: /\/node_modules\//,
-                        priority: -10
+                        priority: -10,
                     },
                     default: {
                         minChunks: 2,
                         priority: -20,
-                        reuseExistingChunk: true
-                    }
-                }
-            }
+                        reuseExistingChunk: true,
+                    },
+                },
+            },
         },
 
         plugins: [
@@ -120,27 +120,27 @@ module.exports = () => {
                 {
                     filename: (devMode) ? '[name].[hash].css' : '[hash].css',
                     chunkFilename: '[id].[hash].css',
-                }
+                },
             ),
             new HtmlWebpackPlugin(
                 {
                     inject: true,
-                    template: './src/index.html'
-                }
+                    template: './src/index.html',
+                },
             ),
             new CopyWebpackPlugin(
                 [
                     {
                         from: './resources/img',
-                        to: './img'
-                    }
-                ]
+                        to: './img',
+                    },
+                ],
             ),
             new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         ],
 
         watchOptions: {
-            ignored: ['node_modules', 'public', 'docker']
-        }
+            ignored: ['node_modules', 'public', 'docker'],
+        },
     };
 };
