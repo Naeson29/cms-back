@@ -32,43 +32,46 @@ import {
 moment.locale('fr');
 require('moment/locale/fr.js');
 
-const PrivateRoutes = setContainer({
-    component: privateRoutes,
-    mapState: privateRoutesContainer.mapState,
-});
-
 /**
  *
  * @returns {JSX.Element}
  * @constructor
  */
-export default () => (
-    <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-            <PersistGate persistor={persist}>
-                <Router history={history}>
-                    <Switch>
-                        <Route
-                            exact
-                            path={auth.login.path}
-                            name={auth.login.name}
-                            component={setContainer({
-                                component: authentication,
-                                mapDispatch: authenticationContainer.mapDispatch,
-                                mapState: authenticationContainer.mapState,
-                            })}
-                        />
-                        <PrivateRoutes
-                            path="/"
-                            name="App"
-                            Fragment={setContainer({
-                                component: app,
-                                mapDispatch: appContainer.mapDispatch,
-                            })}
-                        />
-                    </Switch>
-                </Router>
-            </PersistGate>
-        </Provider>
-    </I18nextProvider>
-);
+export default () => {
+
+    const PrivateRoutes = setContainer({
+        component: privateRoutes,
+        mapState: privateRoutesContainer.mapState,
+    });
+
+    return (
+        <I18nextProvider i18n={i18n}>
+            <Provider store={store}>
+                <PersistGate persistor={persist}>
+                    <Router history={history}>
+                        <Switch>
+                            <Route
+                                exact
+                                path={auth.login.path}
+                                name={auth.login.name}
+                                component={setContainer({
+                                    component: authentication,
+                                    mapDispatch: authenticationContainer.mapDispatch,
+                                    mapState: authenticationContainer.mapState,
+                                })}
+                            />
+                            <PrivateRoutes
+                                path="/"
+                                name="App"
+                                Fragment={setContainer({
+                                    component: app,
+                                    mapDispatch: appContainer.mapDispatch,
+                                })}
+                            />
+                        </Switch>
+                    </Router>
+                </PersistGate>
+            </Provider>
+        </I18nextProvider>
+    );
+}
