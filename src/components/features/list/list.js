@@ -33,8 +33,6 @@ const List = (props) => {
     const { permissions } = current;
     const permission = getPermissionModel(permissions, model);
 
-    console.log(current)
-
     /**
      *
      * @param id

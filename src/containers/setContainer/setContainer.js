@@ -144,6 +144,8 @@ export default ({
     modal = false,
     panel = false,
     auth = true,
+    mapDispatch,
+    mapState,
 } = {}) => {
     const hasModel = getModel[model] || false;
     const { creators = false, paramsList = {} } = hasModel;
@@ -157,12 +159,14 @@ export default ({
             ...panel && setPanelState(state, setPanelSelector),
             ...hasModel && setScreenState(state, setScreenSelector(model)),
         },
+        ...mapState && mapState(state),
     });
 
     const mapDispatchToProps = dispatch => ({
         ...modal && setModalFunctions(dispatch),
         ...panel && setPanelFunctions(dispatch),
         ...hasModel && setScreenFunctions(dispatch, creators, paramsList),
+        ...mapDispatch && mapDispatch(dispatch),
     });
 
     return withRouter(connect(mapStateToProps, mapDispatchToProps)(component));

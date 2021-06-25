@@ -26,7 +26,7 @@ const index = [{
 
 export default index;
 
-export const authentication = {
+export const auth = {
     login: {
         path: '/login', name: 'Login',
     },

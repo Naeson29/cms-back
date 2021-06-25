@@ -3,7 +3,7 @@ import {
     Route, Redirect,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { authentication } from '../../routes';
+import { auth } from '../../../routes';
 
 /**
  *
@@ -11,7 +11,7 @@ import { authentication } from '../../routes';
  * @returns {JSX.Element}
  * @constructor
  */
-const PrivateRoute = (props) => {
+const PrivateRoutes = (props) => {
     const {
         Fragment, location, token, ...rest
     } = props;
@@ -24,7 +24,7 @@ const PrivateRoute = (props) => {
             ) : (
                 <Redirect
                     to={{
-                        pathname: authentication.login.path, state: { from: location },
+                        pathname: auth.login.path, state: { from: location },
                     }}
                 />
             ))}
@@ -32,16 +32,16 @@ const PrivateRoute = (props) => {
     );
 };
 
-PrivateRoute.propTypes = {
+PrivateRoutes.propTypes = {
     token: PropTypes.string,
     Fragment: PropTypes.func,
     location: PropTypes.oneOfType([PropTypes.object]),
 };
 
-PrivateRoute.defaultProps = {
+PrivateRoutes.defaultProps = {
     token: '',
     Fragment: () => {},
     location: '',
 };
 
-export default PrivateRoute;
+export default PrivateRoutes;
