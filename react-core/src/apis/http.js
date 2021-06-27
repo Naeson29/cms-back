@@ -17,7 +17,7 @@ export const METHODS = {
 /**
  *
  * @function createHttpApiClass
- * @param {{headers: {Authorization: string, Accept: string, "Content-Type": string}, baseURL: string}} axiosRequestConfiguration
+ * @param {{headers: {Accept: string, "Content-Type": string}, baseURL: string}} axiosRequestConfiguration
  * @return {HttpApi}
  *
  * @example

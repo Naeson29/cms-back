@@ -2,6 +2,8 @@ import {
     authenticationActions,
 } from '../../../actions';
 
+const { creators } = authenticationActions()
+
 export default {
     mapState: () => ({
         initialData: {
@@ -10,6 +12,6 @@ export default {
         },
     }),
     mapDispatch: dispatch => ({
-        actionForm: (data) => { dispatch(authenticationActions.creators.login.request(data)); },
+        actionForm: (data) => { dispatch(creators.login.request(data)); },
     }),
 };

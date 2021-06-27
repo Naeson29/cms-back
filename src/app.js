@@ -38,7 +38,6 @@ require('moment/locale/fr.js');
  * @constructor
  */
 export default () => {
-
     const PrivateRoutes = setContainer({
         component: privateRoutes,
         mapState: privateRoutesContainer.mapState,
@@ -74,4 +73,4 @@ export default () => {
             </Provider>
         </I18nextProvider>
     );
-}
+};

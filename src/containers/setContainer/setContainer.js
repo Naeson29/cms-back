@@ -69,15 +69,6 @@ const setScreenState = (state, selectors) => {
     };
 };
 
-const setAppFunctions = dispatch => ({
-    load: () => {
-        dispatch(userActions.creators.getMe.request());
-    },
-    logout: () => {
-        dispatch(authenticationActions.creators.logout.request());
-    },
-});
-
 /**
  *
  * @param dispatch
@@ -85,10 +76,10 @@ const setAppFunctions = dispatch => ({
  */
 const setModalFunctions = dispatch => ({
     openModal: (modal) => {
-        dispatch(modalActions.creators.open.do(modal));
+        dispatch(modalActions().creators.open.do(modal));
     },
     closeModal: () => {
-        dispatch(modalActions.creators.close.do());
+        dispatch(modalActions().creators.close.do());
     },
 });
 
@@ -99,10 +90,10 @@ const setModalFunctions = dispatch => ({
  */
 const setPanelFunctions = dispatch => ({
     openPanel: (panel) => {
-        dispatch(panelActions.creators.open.do(panel));
+        dispatch(panelActions().creators.open.do(panel));
     },
     closePanel: () => {
-        dispatch(panelActions.creators.close.do());
+        dispatch(panelActions().creators.close.do());
     },
 });
 

@@ -1,6 +1,6 @@
 import { authenticationActions } from '../../actions';
 
-const { types } = authenticationActions;
+const { types } = authenticationActions();
 
 export const initialState = {
     token: null,

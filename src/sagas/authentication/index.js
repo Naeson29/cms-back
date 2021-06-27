@@ -6,8 +6,10 @@ import {
 } from '../../../react-core';
 
 // api
-import AuthenticationApi from '../../api/authentication';
-import UserApi from '../../api/User';
+import {
+    authenticationApi,
+    userApi,
+} from '../../api';
 
 // actions
 import {
@@ -21,19 +23,19 @@ import AuthenticationService from '../../services/authentication';
 const {
     types,
     creators,
-} = authenticationActions;
+} = authenticationActions();
 
 export default () => {
-    const login = createHttpSaga(creators.login, AuthenticationApi.login);
-    const logout = createHttpApiSaga(creators.logout, UserApi, 'revoke');
+    const login = createHttpSaga(creators.login, new authenticationApi().login);
+    const logout = createHttpApiSaga(creators.logout, userApi, 'revoke');
 
     function* navigationAfterLogin() {
-        yield put(navigationActions.creators.push.do('/'));
+        yield put(navigationActions().creators.push.do('/'));
     }
 
     function* clear() {
         yield call(() => AuthenticationService.logout());
-        yield put(navigationActions.creators.push.do('/login'));
+        yield put(navigationActions().creators.push.do('/login'));
     }
 
     function* root() {

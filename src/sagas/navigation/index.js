@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga/effects';
 import { navigationActions } from '../../actions';
 
-const { types } = navigationActions;
+const { types } = navigationActions();
 
 let sagaHistory;
 
@@ -12,7 +12,7 @@ export default () => {
 
     function* push(action) {
         const { payload } = action;
-        yield sagaHistory.push(payload.path);
+        yield sagaHistory.push(payload);
     }
 
     function* back() {

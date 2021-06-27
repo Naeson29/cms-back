@@ -1,7 +1,7 @@
 import { userActions } from '../../actions';
 import { createModelReducer } from '../../../react-core';
 
-const { types } = userActions;
+const { types } = userActions();
 
 export const initialState = {
     data: {},

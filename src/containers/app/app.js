@@ -6,10 +6,10 @@ import {
 export default {
     mapDispatch: dispatch => ({
         load: () => {
-            dispatch(userActions.creators.getMe.request());
+            dispatch(userActions().creators.getMe.request());
         },
         logout: () => {
-            dispatch(authenticationActions.creators.logout.request());
+            dispatch(authenticationActions().creators.logout.request());
         },
     }),
 };

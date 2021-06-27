@@ -2,7 +2,7 @@ import { panelActions } from '../../actions';
 import { createModelReducer } from '../../../react-core';
 import { scrollBody } from '../../utilities/functions';
 
-const { types } = panelActions;
+const { types } = panelActions();
 
 export const initialState = {
     panel: {},

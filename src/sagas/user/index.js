@@ -7,7 +7,7 @@ import {
 } from '../../../react-core';
 
 // api
-import UserApi from '../../api/User';
+import { userApi } from '../../api';
 
 // actions
 import {
@@ -19,14 +19,14 @@ import {
 const {
     types,
     creators,
-} = userActions;
+} = userActions();
 
 export default () => {
-    const defaultSagas = createModelApiSagas(types, creators, UserApi);
-    const getMe = createHttpApiSaga(creators.getMe, UserApi, 'getMe');
+    const defaultSagas = createModelApiSagas(types, creators, userApi);
+    const getMe = createHttpApiSaga(creators.getMe, userApi, 'getMe');
 
     function* onDelete() {
-        yield put(modalActions.creators.close.do());
+        yield put(modalActions().creators.close.do());
     }
 
     function* updateSuccess() {
@@ -38,7 +38,7 @@ export default () => {
     }
 
     function* getMeFailure() {
-        yield put(navigationActions.creators.push.do('/login'));
+        yield put(navigationActions().creators.push.do('/login'));
     }
 
     function* root() {

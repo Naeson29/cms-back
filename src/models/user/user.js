@@ -10,7 +10,7 @@ import {
 // functions
 import { getImage } from '../../utilities/functions';
 
-const { creators } = userActions;
+const { creators } = userActions();
 
 // Panels
 const panels = {
