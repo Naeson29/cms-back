@@ -8,7 +8,7 @@ export const initialState = {
     panel: {},
 };
 
-const standardReducer = createModelReducer(initialState, types);
+const standardReducerPanel = createModelReducer(initialState, types);
 
 export const reducer = (state = initialState, action) => {
     const { payload } = action;
@@ -28,7 +28,7 @@ export const reducer = (state = initialState, action) => {
     }
 
     default:
-        return standardReducer(state, action);
+        return standardReducerPanel(state, action);
     }
 };
 

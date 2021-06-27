@@ -8,7 +8,7 @@ export const initialState = {
     modal: {},
 };
 
-const standardReducer = createModelReducer(initialState, types);
+const standardReducerModal = createModelReducer(initialState, types);
 
 export const reducer = (state = initialState, action) => {
     const { payload } = action;
@@ -28,7 +28,7 @@ export const reducer = (state = initialState, action) => {
     }
 
     default:
-        return standardReducer(state, action);
+        return standardReducerModal(state, action);
     }
 };
 

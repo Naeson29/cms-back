@@ -6,9 +6,11 @@ import configureStore from './configure';
 import rootReducer from '../reducers';
 
 // import sagas
-import AuthenticationSaga from '../sagas/authentication';
-import NavigationSaga from '../sagas/navigation';
-import UserSaga from '../sagas/user';
+import {
+    authenticationSaga,
+    userSaga,
+    navigationSaga
+} from '../sagas';
 
 const { store, sagaMiddleware } = configureStore(rootReducer, STORE_PERSIST_CONFIGURATION);
 export const persist = persistStore(store);
@@ -18,6 +20,6 @@ syncHistoryWithStore(history, store);
 export default store;
 
 // run sagas listeners
-sagaMiddleware.run(AuthenticationSaga().root);
-sagaMiddleware.run(NavigationSaga().root, { history });
-sagaMiddleware.run(UserSaga().root);
+sagaMiddleware.run(authenticationSaga().root);
+sagaMiddleware.run(navigationSaga().root, { history });
+sagaMiddleware.run(userSaga().root);

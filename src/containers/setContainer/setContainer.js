@@ -13,10 +13,8 @@ import {
 
 // creators
 import {
-    authenticationActions,
     modalActions,
     panelActions,
-    userActions,
 } from '../../actions';
 
 // Screen
