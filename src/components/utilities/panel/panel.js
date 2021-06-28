@@ -1,5 +1,3 @@
-import React from 'react';
-
 const actions = {
     show: {
         open: true,
@@ -14,12 +12,10 @@ const actions = {
         action: 'update',
     },
 };
-
 const isOpen = (panel = {}) => (panel.open);
+const getContent = (panel, panels) => (!panel.action ? null : panels[panel.action]);
 
-const getContent = (panel, panels) => (!panel.action ? <div /> : panels[panel.action]);
-
-export {
+export default {
     actions,
     isOpen,
     getContent,

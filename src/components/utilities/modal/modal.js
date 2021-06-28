@@ -12,7 +12,7 @@ const actions = {
 
 const isOpen = modal => (modal.open);
 
-export {
+export default {
     actions,
     isOpen,
 };

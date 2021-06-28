@@ -51,7 +51,7 @@ const isRootPath = (props) => {
     return (pathname === rootPath) && (location.pathname === match.url);
 };
 
-export {
+export default {
     Navs,
     isRoot,
     isRootPath,

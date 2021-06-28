@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Utils
-import {
+import { panelUtility } from '../../utilities';
+
+const {
     isOpen, getContent,
-} from '../../utilities/panel';
+} = panelUtility;
 
 /**
  *

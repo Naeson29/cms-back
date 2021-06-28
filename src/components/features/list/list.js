@@ -6,16 +6,21 @@ import {
 } from 'react-icons/hi';
 
 // Utils
-import { actions as ModalActions } from '../../utilities/modal';
-import { hasMorePage } from '../../../utilities/functions';
 import {
-    getPermissionModel, isDisabled,
-} from '../../utilities/permission';
+    panelUtility,
+    modalUtility,
+    permissionUtility
+} from '../../utilities';
 
-import { actions as PanelActions } from '../../utilities/panel';
+import { hasMorePage } from '../../../utilities/functions';
 
 // features
 import { Button } from '..';
+
+const {
+    getPermissionModel, isDisabled,
+} = permissionUtility;
+
 
 /**
  *
@@ -39,7 +44,7 @@ const List = (props) => {
      */
     const show = (id) => {
         if (permission.show) {
-            openPanel(PanelActions.show);
+            openPanel(panelUtility.actions.show);
             getDetail(id);
         }
     };
@@ -50,7 +55,7 @@ const List = (props) => {
      * @param isUserAndMe
      */
     const remove = (key, isUserAndMe = false) => {
-        if (permission.delete && !isUserAndMe) openModal(ModalActions.destroy(key, modals.destroy));
+        if (permission.delete && !isUserAndMe) openModal(modalUtility.actions.destroy(key, modals.destroy));
     };
 
     /**
@@ -59,7 +64,7 @@ const List = (props) => {
      */
     const update = (id) => {
         if (permission.update) {
-            openPanel(PanelActions.update);
+            openPanel(panelUtility.actions.update);
             getDetail(id);
         }
     };

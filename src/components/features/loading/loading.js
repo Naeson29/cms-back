@@ -1,7 +1,7 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
-import colors from '../../utilities/color';
+import { colorUtility } from '../../utilities';
 
 /**
  *
@@ -17,7 +17,7 @@ const Loading = (props) => {
                 type="ThreeDots"
                 width={80}
                 height={80}
-                color={colors.loadingColor}
+                color={colorUtility.loadingColor}
             />
         </div>
     );

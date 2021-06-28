@@ -8,9 +8,12 @@ import {
 import { Button } from '..';
 
 // Utils
-import {
-    actions, isOpen,
-} from '../../utilities/panel';
+import { panelUtility } from '../../utilities';
+
+const {
+    isOpen,
+    actions
+} = panelUtility;
 
 /**
  *

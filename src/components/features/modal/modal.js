@@ -7,7 +7,10 @@ import {
 
 // Feature
 import Button from '../button';
-import { isOpen } from '../../utilities/modal';
+
+// Utilities
+import { modalUtility } from '../../utilities';
+const { isOpen } = modalUtility;
 
 /**
  *

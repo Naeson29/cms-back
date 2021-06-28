@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 // Utils
 import { HiSave } from 'react-icons/hi';
-import getComponent from '../../utilities/form';
+import { formUtility } from '../../utilities';
 
 // features
 import { Button } from '..';
@@ -41,7 +41,7 @@ const Edit = (props) => {
             <div className="col-left">
                 {
                     fields.map((key, index) => {
-                        const Component = getComponent(key.html);
+                        const Component = formUtility(key.html);
                         return (
                             <Component
                                 key={index.toString()}
