@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // models
-import getModel, { models } from '../../models';
+import { user } from '../../models';
 
 // selectors
 import {
@@ -136,17 +136,16 @@ export default ({
     mapDispatch,
     mapState,
 } = {}) => {
-    const hasModel = getModel[model] || false;
-    const { creators = false, paramsList = {} } = hasModel;
-    const { GetCurrent } = setScreenSelector(models.user);
+    const { card = false, panels = false, modals = false, form = false, creators = false, paramsList = {} } = model || false;
+    const { GetCurrent } = setScreenSelector(user.name);
 
     const mapStateToProps = state => ({
         state: {
             ...auth && { current: GetCurrent(state) },
-            ...model && { model },
+            ...model && { model: model.name },
             ...modal && setModalState(state, setModalSelector),
             ...panel && setPanelState(state, setPanelSelector),
-            ...hasModel && setScreenState(state, setScreenSelector(model)),
+            ...model && setScreenState(state, setScreenSelector(model.name)),
         },
         ...mapState && mapState(state),
     });
@@ -154,8 +153,13 @@ export default ({
     const mapDispatchToProps = dispatch => ({
         ...modal && setModalFunctions(dispatch),
         ...panel && setPanelFunctions(dispatch),
-        ...hasModel && setScreenFunctions(dispatch, creators, paramsList),
+        ...model && setScreenFunctions(dispatch, creators, paramsList),
         ...mapDispatch && mapDispatch(dispatch),
+
+        ...card && { card },
+        ...panels && { panels },
+        ...modals && { modals },
+        ...form && { form },
     });
 
     return withRouter(connect(mapStateToProps, mapDispatchToProps)(component));

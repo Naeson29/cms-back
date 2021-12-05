@@ -9,7 +9,7 @@ import {
 import {
     panelUtility,
     modalUtility,
-    permissionUtility
+    permissionUtility,
 } from '../../utilities';
 
 import { hasMorePage } from '../../../utilities/functions';

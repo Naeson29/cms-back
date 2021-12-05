@@ -7,7 +7,8 @@ import {
 } from '../../react-core';
 
 const createDefaultHttpCreators = types => Object.keys(types).reduce((o, key) => ({
-    ...o, [_.camelCase(key.toLowerCase())]: {
+    ...o,
+    [_.camelCase(key.toLowerCase())]: {
         request: payload => ({
             type: types[key].REQUEST,
             payload,
@@ -20,17 +21,18 @@ const createDefaultHttpCreators = types => Object.keys(types).reduce((o, key) =>
             type: types[key].FAILURE,
             payload,
         }),
-    }}), {}
-);
+    },
+}), {});
 
 const createDefaultSimpleCreators = types => Object.keys(types).reduce((o, key) => ({
-    ...o, [_.camelCase(key.toLowerCase())]: {
+    ...o,
+    [_.camelCase(key.toLowerCase())]: {
         do: payload => ({
             type: types[key].DO,
             payload,
         }),
-    }}), {}
-);
+    },
+}), {});
 
 export const authentication = () => {
     const types = {

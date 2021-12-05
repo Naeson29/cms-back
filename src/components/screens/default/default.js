@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
-// model
-import getModel from '../../../models';
-
 // features
 import {
     HeaderScreen, List, Panel, Modal, Loading,
@@ -18,15 +15,8 @@ class Default extends Component {
 
     render() {
         const { props } = this;
-        const { t, state } = props;
+        const { t, state, panels = null, modals = false, card = null, form = null } = props;
         const { model = 'default', loadings = {}, panel = {}, list = false } = state;
-        const {
-            panels = null,
-            modals = false,
-            card = null,
-            form = null,
-        } = getModel[model] || {};
-
         return (
             <div className={`fragment ${model}`}>
                 <HeaderScreen
@@ -39,7 +29,7 @@ class Default extends Component {
                             {...props}
                             type="small"
                             content={card}
-                            modals={modals || {}}
+                            modals={modals}
                             loading={<Loading className="loading-list" />}
                         />
                     )
@@ -60,12 +50,20 @@ Default.propTypes = {
     t: PropTypes.func,
     getList: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
+    panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+    modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+    card: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    form: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 Default.defaultProps = {
     t: () => {},
     getList: () => {},
     state: {},
+    panels: null,
+    modals: null,
+    card: null,
+    form: null,
 };
 
 export default withTranslation('default')(Default);
