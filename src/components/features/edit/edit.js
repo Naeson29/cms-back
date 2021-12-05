@@ -40,7 +40,7 @@ const Edit = (props) => {
             <div className="col-left">
                 {
                     form.map((key, index) => {
-                        const Component = formUtility(key.html);
+                        const Component = formUtility(key.element);
                         return (
                             <Component
                                 key={index.toString()}
