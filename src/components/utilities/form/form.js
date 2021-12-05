@@ -1,7 +1,12 @@
 import { Input } from '../../features';
 
-const elements = {
-    input: Input,
+export default (element) => {
+    switch (element) {
+    case 'input': {
+        return Input;
+    }
+    default: {
+        return null;
+    }
+    }
 };
-
-export default element => elements[element];
