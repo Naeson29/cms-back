@@ -17,10 +17,9 @@ import { Button } from '..';
  */
 const Edit = (props) => {
     const { form, state, action, update } = props;
-    const { fields } = form;
     const { detail } = state;
     const isUpdate = action === 'update';
-    const [data, setData] = useState(fields.reduce((obj, item) => ({
+    const [data, setData] = useState(form.reduce((obj, item) => ({
         ...obj,
         [item.name]: isUpdate ? detail[item.name] : '',
     }), {}));
@@ -40,7 +39,7 @@ const Edit = (props) => {
         <form className="form" onSubmit={handleSubmit}>
             <div className="col-left">
                 {
-                    fields.map((key, index) => {
+                    form.map((key, index) => {
                         const Component = formUtility(key.html);
                         return (
                             <Component
@@ -55,7 +54,7 @@ const Edit = (props) => {
             </div>
             <Button
                 action={handleSubmit}
-                className={'button submit'}
+                className="button submit"
                 icon={HiSave}
             />
         </form>
@@ -63,14 +62,14 @@ const Edit = (props) => {
 };
 
 Edit.propTypes = {
-    form: PropTypes.oneOfType([PropTypes.object]),
+    form: PropTypes.oneOfType([PropTypes.array]),
     state: PropTypes.oneOfType([PropTypes.object]),
     action: PropTypes.string,
     update: PropTypes.func,
 };
 
 Edit.defaultProps = {
-    form: {},
+    form: [],
     state: {},
     action: 'create',
     update: () => {},

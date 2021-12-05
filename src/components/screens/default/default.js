@@ -15,7 +15,7 @@ class Default extends Component {
 
     render() {
         const { props } = this;
-        const { t, state, panels = null, modals = false, card = null, form = null } = props;
+        const { t, state, panels, modals, card, form } = props;
         const { model = 'default', loadings = {}, panel = {}, list = false } = state;
         return (
             <div className={`fragment ${model}`}>
@@ -34,13 +34,21 @@ class Default extends Component {
                         />
                     )
                 }
-                <Panel
-                    {...props}
-                    panels={panels}
-                    form={form}
-                    loading={<Loading />}
-                />
-                <Modal {...props} />
+                {
+                    panels && (
+                        <Panel
+                            {...props}
+                            panels={panels}
+                            form={form}
+                            loading={<Loading />}
+                        />
+                    )
+                }
+                {
+                    modals && (
+                        <Modal {...props} />
+                    )
+                }
             </div>
         );
     }
@@ -53,17 +61,17 @@ Default.propTypes = {
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     card: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    form: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+    form: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 Default.defaultProps = {
     t: () => {},
     getList: () => {},
     state: {},
-    panels: null,
-    modals: null,
-    card: null,
-    form: null,
+    panels: false,
+    modals: false,
+    card: false,
+    form: false,
 };
 
 export default withTranslation('default')(Default);

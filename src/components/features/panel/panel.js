@@ -41,14 +41,12 @@ const Panel = (props) => {
 Panel.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     panels: PropTypes.oneOfType([PropTypes.object]),
-    form: PropTypes.oneOfType([PropTypes.object]),
     loading: PropTypes.element,
 };
 
 Panel.defaultProps = {
     state: {},
     panels: {},
-    form: {},
     loading: (<div />),
 };
 

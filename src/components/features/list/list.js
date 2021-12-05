@@ -91,7 +91,9 @@ const List = (props) => {
                             key={index.toString()}
                         >
                             <div className="card">
-                                {content(key)}
+                                {
+                                    content && content(key)
+                                }
                                 <div className="action">
                                     <div className="button-container left">
                                         <Button
