@@ -4,11 +4,15 @@ import React, {
 import PropTypes from 'prop-types';
 
 // Utils
-import { HiSave } from 'react-icons/hi';
-import { formUtility } from '../../utilities';
+import {
+    formUtility, validatorUtility,
+} from '../../utilities';
+
 
 // features
-import { Button } from '..';
+import {
+    Button, ErrorList,
+} from '..';
 
 /**
  *
@@ -19,6 +23,7 @@ const Edit = (props) => {
     const { form, state, action, create, update } = props;
     const { detail } = state;
     const isUpdate = action === 'update';
+    const { elements = [], validation = false } = form;
 
     const getValue = (item) => {
         let valueElement = '';
@@ -31,14 +36,21 @@ const Edit = (props) => {
         return valueElement;
     };
 
-    const [data, setData] = useState(form.reduce((obj, item) => ({
+    const [data, setData] = useState(elements.reduce((obj, item) => ({
         ...obj,
         [item.name]: getValue(item),
     }), {}));
 
+    const [errors, setErrors] = useState(false);
+
     const handleSubmit = () => {
-        if (isUpdate) update(detail.id, data);
-        else create(data);
+        const validator = validatorUtility(data, validation);
+        if (validator.success) {
+            if (isUpdate) update(detail.id, data);
+            else create(data);
+        } else {
+            setErrors(validator.error);
+        }
     };
 
     const handleChange = (key, event) => {
@@ -50,32 +62,42 @@ const Edit = (props) => {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <div className="col-left">
-                {
-                    form.map((key, index) => {
-                        const Component = formUtility(key.element);
-                        return (
-                            <Component
-                                key={index.toString()}
-                                attributes={key}
-                                handleChange={handleChange}
-                                value={data[key.name]}
-                            />
-                        );
-                    })
-                }
+            {
+                errors && (
+                    <ErrorList errors={errors} />
+                )
+            }
+            <div className="cols">
+                <div className="col-left">
+                    {
+                        elements.map((key) => {
+                            const Component = formUtility(key.element);
+                            return (
+                                <Component
+                                    key={`field_${key.name}`}
+                                    attributes={key}
+                                    handleChange={handleChange}
+                                    value={data[key.name]}
+                                    error={errors && !!errors[key.name]}
+                                />
+                            );
+                        })
+                    }
+                </div>
             </div>
-            <Button
-                action={handleSubmit}
-                className="button submit"
-                icon={HiSave}
-            />
+            <div className="action">
+                <Button
+                    action={handleSubmit}
+                    className="button submit"
+                    text="Ajouter"
+                />
+            </div>
         </form>
     );
 };
 
 Edit.propTypes = {
-    form: PropTypes.oneOfType([PropTypes.array]),
+    form: PropTypes.oneOfType([PropTypes.object]),
     state: PropTypes.oneOfType([PropTypes.object]),
     action: PropTypes.string,
     create: PropTypes.func,
@@ -83,7 +105,7 @@ Edit.propTypes = {
 };
 
 Edit.defaultProps = {
-    form: [],
+    form: {},
     state: {},
     action: 'create',
     create: () => {},

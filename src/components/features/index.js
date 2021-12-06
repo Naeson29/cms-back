@@ -4,6 +4,7 @@ export { default as Header } from './header';
 export { default as HeaderScreen } from './headerScreen';
 export { default as List } from './list';
 export { default as Form } from './form';
+export { default as ErrorList } from './errorList';
 export { default as Modal } from './modal';
 export { default as Panel } from './panel';
 export { default as Button } from './button';

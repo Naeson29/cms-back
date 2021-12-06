@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Button = (props) => {
     const {
-        action, className, icon, disabled,
+        action, className, text, icon, disabled,
     } = props;
     const Icon = icon;
 
@@ -13,7 +13,14 @@ const Button = (props) => {
             className={`${className} ${disabled}`}
             type="button"
         >
-            <Icon className="icon" />
+            {
+                Icon && (
+                    <Icon className="icon" />
+                )
+            }
+            {
+                text && text
+            }
         </button>
     );
 };
@@ -21,14 +28,16 @@ const Button = (props) => {
 Button.propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.string,
-    icon: PropTypes.func,
+    text: PropTypes.string,
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     action: PropTypes.func,
 };
 
 Button.defaultProps = {
     className: '',
     disabled: '',
-    icon: () => {},
+    text: '',
+    icon: false,
     action: () => {},
 };
 

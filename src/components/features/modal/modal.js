@@ -10,6 +10,7 @@ import Button from '../button';
 
 // Utilities
 import { modalUtility } from '../../utilities';
+
 const { isOpen } = modalUtility;
 
 /**
