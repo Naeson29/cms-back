@@ -16,16 +16,29 @@ import { Button } from '..';
  * @constructor
  */
 const Edit = (props) => {
-    const { form, state, action, update } = props;
+    const { form, state, action, create, update } = props;
     const { detail } = state;
     const isUpdate = action === 'update';
+
+    const getValue = (item) => {
+        let valueElement = '';
+        if (isUpdate) {
+            valueElement = detail[item.name];
+        }
+        if (item.value) {
+            valueElement = item.value;
+        }
+        return valueElement;
+    };
+
     const [data, setData] = useState(form.reduce((obj, item) => ({
         ...obj,
-        [item.name]: isUpdate ? detail[item.name] : '',
+        [item.name]: getValue(item),
     }), {}));
 
     const handleSubmit = () => {
         if (isUpdate) update(detail.id, data);
+        else create(data);
     };
 
     const handleChange = (key, event) => {
@@ -46,7 +59,7 @@ const Edit = (props) => {
                                 key={index.toString()}
                                 attributes={key}
                                 handleChange={handleChange}
-                                value={isUpdate ? detail[key.name] : ''}
+                                value={data[key.name]}
                             />
                         );
                     })
@@ -65,6 +78,7 @@ Edit.propTypes = {
     form: PropTypes.oneOfType([PropTypes.array]),
     state: PropTypes.oneOfType([PropTypes.object]),
     action: PropTypes.string,
+    create: PropTypes.func,
     update: PropTypes.func,
 };
 
@@ -72,6 +86,7 @@ Edit.defaultProps = {
     form: [],
     state: {},
     action: 'create',
+    create: () => {},
     update: () => {},
 };
 

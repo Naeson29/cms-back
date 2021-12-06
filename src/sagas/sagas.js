@@ -1,27 +1,30 @@
 import {
     takeEvery, put, call,
 } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import {
     createHttpApiSaga, createHttpSaga, createModelApiSagas,
 } from '../../react-core';
-import { toast } from 'react-toastify';
 import {
     navigationActions,
     userActions,
     authenticationActions,
     modalActions,
+    panelActions,
 } from '../actions';
 
 import {
-    authenticationApi,
-    userApi,
+    AuthenticationApi,
+    UserApi,
 } from '../api';
 
 let sagaHistory;
 
 export const navigationSaga = () => {
     const { types } = navigationActions();
-    const setHistory = (history) => (sagaHistory = history);
+    const setHistory = (history) => {
+        sagaHistory = history;
+    };
 
     function* push(action) {
         const { payload } = action;
@@ -45,8 +48,8 @@ export const navigationSaga = () => {
 
 export const authenticationSaga = () => {
     const { creators, types } = authenticationActions();
-    const login = createHttpSaga(creators.login, new authenticationApi().login);
-    const logout = createHttpApiSaga(creators.logout, userApi, 'revoke');
+    const login = createHttpSaga(creators.login, new AuthenticationApi().login);
+    const logout = createHttpApiSaga(creators.logout, UserApi, 'revoke');
 
     function* navigationAfterLogin() {
         yield put(navigationActions().creators.push.do('/'));
@@ -72,19 +75,39 @@ export const authenticationSaga = () => {
 
 export const userSaga = () => {
     const { types, creators } = userActions();
-    const defaultSagas = createModelApiSagas(types, creators, userApi);
-    const getMe = createHttpApiSaga(creators.getMe, userApi, 'getMe');
+    const defaultSagas = createModelApiSagas(types, creators, UserApi);
+    const getMe = createHttpApiSaga(creators.getMe, UserApi, 'getMe');
+
+    function* createSuccess() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.success, "L'utilisateur a été crée");
+    }
+
+    function* createFailure() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.error, 'Echec de la création');
+    }
+
+    function* updateSuccess() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.success, "L'utilisateur a été modifié");
+    }
+
+    function* updateFailure() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.error, 'Echec de la modification');
+    }
 
     function* onDelete() {
         yield put(modalActions().creators.close.do());
     }
 
-    function* updateSuccess() {
-        yield call(toast.success, "L'utilisateur a été modifié");
+    function* destroySuccess() {
+        yield call(toast.success, "L'utilisateur a été supprimé");
     }
 
-    function* updateFailure() {
-        yield call(toast.error, 'Echec de la modification');
+    function* destroyFailure() {
+        yield call(toast.error, 'Echec de la suppression');
     }
 
     function* getMeFailure() {
@@ -96,8 +119,12 @@ export const userSaga = () => {
         yield takeEvery(types.GET_ME.REQUEST, getMe);
         yield takeEvery(types.GET_ME.FAILURE, getMeFailure);
         yield takeEvery(types.DESTROY.REQUEST, onDelete);
+        yield takeEvery(types.CREATE.SUCCESS, createSuccess);
         yield takeEvery(types.UPDATE.SUCCESS, updateSuccess);
+        yield takeEvery(types.DESTROY.SUCCESS, destroySuccess);
+        yield takeEvery(types.CREATE.FAILURE, createFailure);
         yield takeEvery(types.UPDATE.FAILURE, updateFailure);
+        yield takeEvery(types.DESTROY.FAILURE, destroyFailure);
     }
 
     return {

@@ -1,6 +1,6 @@
 /* DEFAULT START */
-export const defaultNone = (state) => ({
-    ...state
+export const defaultNone = state => ({
+    ...state,
 });
 
 export const defaultRequest = (state, section) => ({
@@ -33,7 +33,12 @@ export const searchRequest = defaultRequest;
 
 export const searchSuccess = (state, { data, current_page, per_page, total, last_page }, section) => ({ // eslint-disable-line camelcase
     ...state,
-    data: { ...state.data, ...data.reduce((acc, current) => ({ ...acc, [current.id]: current }), {}) },
+    data: {
+        ...state.data,
+        ...data.reduce((acc, current) => ({
+            ...acc, [current.id]: current,
+        }), {}),
+    },
     views: {
         ...state.views,
         [section]: {
@@ -59,9 +64,11 @@ export const moreRequest = defaultNone;
 
 export const moreSuccess = (state, { data, current_page, per_page, total, last_page }, section) => ({ // eslint-disable-line camelcase
     ...state,
-    data : {
+    data: {
         ...state.data,
-        ...data.reduce((acc, current) => ({ ...acc, [current.id]: current }), {})
+        ...data.reduce((acc, current) => ({
+            ...acc, [current.id]: current,
+        }), {}),
     },
     views: {
         ...state.views,
@@ -69,7 +76,7 @@ export const moreSuccess = (state, { data, current_page, per_page, total, last_p
             ...state.views[section],
             results: [
                 ...state.views[section].results,
-                ...data.map(({id}) => id)
+                ...data.map(({ id }) => id),
             ],
             pagination: {
                 current_page,
@@ -79,8 +86,8 @@ export const moreSuccess = (state, { data, current_page, per_page, total, last_p
             },
             loading: false,
             error: null,
-        }
-    }
+        },
+    },
 });
 
 export const moreFailure = defaultFailure;
@@ -89,22 +96,31 @@ export const moreFailure = defaultFailure;
 /* CREATE START */
 export const createRequest = defaultRequest;
 
-export const createSuccess = (state, {data}, section) => ({
-    ...state,
-    data: {
-        ...state.data,
-        [data.id]: data,
-    },
-    views: {
-        ...state.views,
-        [section]: {
-            ...state.views[section],
-            result: data.id,
-            error: null,
-            loading: false,
+export const createSuccess = (state, { data }, section) => {
+    const { index } = state.views;
+    const { results } = index;
+
+    return {
+        ...state,
+        data: {
+            ...state.data,
+            [data.id]: data,
         },
-    },
-});
+        views: {
+            ...state.views,
+            [section]: {
+                ...state.views[section],
+                result: data.id,
+                error: null,
+                loading: false,
+            },
+            index: {
+                ...index,
+                results: [...results, data.id],
+            },
+        },
+    };
+};
 
 export const createFailure = defaultFailure;
 /* CREATE END */
@@ -113,7 +129,7 @@ export const createFailure = defaultFailure;
 export const readRequest = defaultRequest;
 export const readFailure = defaultFailure;
 
-export const readSuccess = (state, {data}, section) => ({
+export const readSuccess = (state, { data }, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -137,7 +153,7 @@ export const readSuccess = (state, {data}, section) => ({
 /* UPDATE START */
 export const updateRequest = defaultRequest;
 
-export const updateSuccess = (state, {data}, section) => ({
+export const updateSuccess = (state, { data }, section) => ({
     ...state,
     data: {
         ...state.data,
@@ -163,15 +179,15 @@ export const updateFailure = defaultFailure;
 /* DESTROY START */
 export const destroyRequest = defaultRequest;
 
-export const destroySuccess = (state, {data}, section) => {
-    const {views} = state;
+export const destroySuccess = (state, { data }, section) => {
+    const { views } = state;
     delete state.data[data.id];
     const results = views.index.results.filter(key => key !== data.id);
 
     return {
         ...state,
         data: {
-            ...state.data
+            ...state.data,
         },
         views: {
             ...views,
@@ -181,12 +197,12 @@ export const destroySuccess = (state, {data}, section) => {
                 error: null,
                 loading: false,
             },
-            index : {
+            index: {
                 ...views.index,
-                results : [...results]
-            }
+                results: [...results],
+            },
         },
-    }
+    };
 };
 
 export const destroyFailure = defaultFailure;

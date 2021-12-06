@@ -119,6 +119,9 @@ const setScreenFunctions = (dispatch, creators, paramsList) => ({
             }));
         }
     },
+    create: (data) => {
+        if (creators) dispatch(creators.create.request(data));
+    },
     update: (id, data) => {
         if (creators) dispatch(creators.update.request(id, data));
     },

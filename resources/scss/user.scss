@@ -20,22 +20,42 @@
       background-position: center center;
       background-size: cover;
       margin-right: 1.2rem;
-      margin-bottom: 1rem;
     }
 
-    .name {
-      color : $primary-color;
-      width:120px;
-      @media (min-width: 1025px) {
-        font-size: 14px;
-      }
+    .infos {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
 
-      @media (max-width: 1024px) {
-        font-size: 13px;
+      .name {
+        color : $primary-color;
+        @media (min-width: 1025px) {
+          font-size: 14px;
+        }
+  
+        @media (max-width: 1024px) {
+          font-size: 13px;
+        }
+  
+        margin-bottom: .3rem;
+        word-break: break-word;
       }
-
-      margin-bottom: .5rem;
-      word-break: break-word;
+  
+      .role {
+        background-color : $grey-background;
+        border:1px solid rgba(0,0,0,.1);
+        color: $primary-color;
+        border-radius: 3px;
+        height: 26px;
+        padding: 0 10px;
+        margin-bottom: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        font-size: 12px;
+        margin-bottom: .4rem;
+      }
     }
-  }
+  }    
 }

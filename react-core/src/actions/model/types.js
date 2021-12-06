@@ -5,7 +5,9 @@ export const DEFAULT_MODEL_ACTION_NAMES = ['SEARCH', 'MORE', 'CREATE', 'READ', '
 
 export const createModelActionTypes = (namespace, actionNames = DEFAULT_MODEL_ACTION_NAMES, actionSteps = DEFAULT_HTTP_ACTION_STEPS) => (
     actionNames.reduce((actionTypes, actionName) => (
-        { ...actionTypes, [actionName]: createActionTypes(namespace, [actionName], actionSteps) }
+        {
+            ...actionTypes, [actionName]: createActionTypes(namespace, [actionName], actionSteps),
+        }
     ), {})
 );
 

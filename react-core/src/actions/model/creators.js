@@ -96,7 +96,9 @@ export const createDefaultModelActionCreators = types => ({
         request(id, data, meta = null) {
             return {
                 type: types.UPDATE.REQUEST,
-                payload: { id, data },
+                payload: {
+                    id, data,
+                },
                 meta,
             };
         },

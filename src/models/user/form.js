@@ -20,4 +20,18 @@ export default [
         name: 'email',
         require: true,
     },
+    {
+        element: 'input',
+        label: 'Mot de passe',
+        placeholder: '*************',
+        name: 'password',
+        type: 'password',
+        require: true,
+    },
+    {
+        element: 'input',
+        name: 'role',
+        type: 'hidden',
+        value: 3,
+    },
 ];

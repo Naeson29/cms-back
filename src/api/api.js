@@ -7,20 +7,20 @@ const headers = {
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-    }
-}
+    },
+};
 
-class authApi extends createHttpApiClass({
+class AuthApi extends createHttpApiClass({
     baseURL: `${process.env.API_URL}/oauth/`,
-    ...headers
+    ...headers,
 }) {}
 
-class bearerApi extends createHttpApiClass({
+class BearerApi extends createHttpApiClass({
     baseURL: `${process.env.API_URL}/api`,
-    ...headers
+    ...headers,
 }) {}
 
-export class authenticationApi extends authApi {
+export class AuthenticationApi extends AuthApi {
     login = params => this.post({
         url: 'token',
         data: {
@@ -33,7 +33,8 @@ export class authenticationApi extends authApi {
     });
 }
 
-export class userApi extends createModelApiClass(bearerApi, '/users') {
+export class UserApi extends createModelApiClass(BearerApi, '/users') {
     getMe = () => this.get({ url: '/me' });
+
     revoke = () => this.post({ url: '/revoke' });
 }

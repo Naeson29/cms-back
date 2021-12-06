@@ -1,4 +1,4 @@
 export {
-    authenticationApi,
-    userApi,
-} from './api'
+    AuthenticationApi,
+    UserApi,
+} from './api';

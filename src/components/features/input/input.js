@@ -8,8 +8,12 @@ const Input = (props) => {
     } = attributes;
 
     return (
-        <div className="container-field">
-            <p className="label">{label}</p>
+        <div className={type !== 'hidden' ? 'container-field' : ''}>
+            {
+                label && (
+                    <p className="label">{label}</p>
+                )
+            }
             <input
                 type={type}
                 name={name}
@@ -17,6 +21,7 @@ const Input = (props) => {
                 placeholder={placeholder}
                 defaultValue={value}
                 onChange={e => handleChange(name, e)}
+                autoComplete="new-password"
             />
         </div>
     );
@@ -25,7 +30,7 @@ const Input = (props) => {
 Input.propTypes = {
     attributes: PropTypes.oneOfType([PropTypes.object]),
     handleChange: PropTypes.func,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Input.defaultProps = {
