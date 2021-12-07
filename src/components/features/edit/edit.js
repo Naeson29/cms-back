@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 
 // Utils
 import {
-    formUtility, validatorUtility, modalUtility,
+    validatorUtility, modalUtility,
 } from '../../utilities';
 
 
 // features
 import {
-    Button,
+    Form,
     Error,
 } from '..';
 
@@ -63,33 +63,7 @@ const Edit = (props) => {
     };
 
     return (
-        <form className="form" onSubmit={handleSubmit}>
-            <div className="cols">
-                <div className="col-left">
-                    {
-                        elements.map((key) => {
-                            const Component = formUtility(key.element);
-                            return (
-                                <Component
-                                    key={`field_${key.name}`}
-                                    attributes={key}
-                                    handleChange={handleChange}
-                                    value={data[key.name]}
-                                    error={errors && !!errors[key.name]}
-                                />
-                            );
-                        })
-                    }
-                </div>
-            </div>
-            <div className="action">
-                <Button
-                    action={handleSubmit}
-                    className="button submit"
-                    text="Ajouter"
-                />
-            </div>
-        </form>
+        <Form {...props} elements={elements} data={data} handleSubmit={handleSubmit} handleChange={handleChange} errors={errors} columns={2} />
     );
 };
 

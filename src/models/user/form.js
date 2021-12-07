@@ -27,6 +27,13 @@ export default {
         },
         {
             element: 'input',
+            label: 'Confirmation',
+            placeholder: 'Confirmation du mot de passe',
+            name: 'confirmation',
+            type: 'password',
+        },
+        {
+            element: 'input',
             name: 'role',
             type: 'hidden',
             value: 3,
@@ -48,6 +55,11 @@ export default {
         },
         password: {
             name: 'mot de passe',
+            required: true,
+            rule: 'password',
+        },
+        confirmation: {
+            name: 'confirmation',
             required: true,
         },
     },

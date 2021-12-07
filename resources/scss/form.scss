@@ -2,44 +2,56 @@
   flex:1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
-  .cols {
+  .columns {
     display: flex;
 
-    .col-left, .col-right {
-      width : 50%;
-      margin-top: 1.5rem;
-  
-      .container-field {
-        display: flex;
-        flex-direction: column;
-        padding : 0 1.5rem;
-        margin-top: .8rem;
-  
-        .label {
-          margin-bottom: .5rem;
-          margin-left:.2rem;
-          color: $primary-color;
-          font-size: 14px;
-        }
-  
-        .input {
-          border-radius: 4px;
-          border: 1px solid rgba(0, 0, 0, 0.2);
-          padding: 0 .5rem;
-          height:35px;
-          color: $black_text;
-          font-size: 13px;
+    .full, .half {
+      margin-top: 1.5rem;  
+    }
 
-          &.error {
-            border-color: $error-form;
-            background-color: $error-form-bg;
-          }
-  
-          &::placeholder {
-            color: rgba(0, 0, 0, 0.4);
-            font-size: 13px;
-          }
+    .full {
+      width:100%;
+    }
+
+    .half {
+      width : 50%;  
+      
+      @media (max-width: 768px) {
+        width:100%;
+      }
+    }
+
+    .container-field {
+      display: flex;
+      flex-direction: column;
+      padding : 0 1.5rem;
+      margin-top: .8rem;
+
+      .label {
+        margin-bottom: .5rem;
+        margin-left:.2rem;
+        color: $primary-color;
+        font-size: 14px;
+      }
+
+      .input {
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 0 .5rem;
+        height:35px;
+        color: $black_text;
+        font-size: 13px;
+
+        &.error {
+          border-color: $error-form;
+          background-color: $error-form-bg;
+        }
+
+        &::placeholder {
+          color: rgba(0, 0, 0, 0.4);
+          font-size: 13px;
         }
       }
     }
@@ -50,14 +62,25 @@
     justify-content: center;
     align-items: center;
     margin-top: 3rem;
+    background-color: $grey-background;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    height:60px;
 
-    .submit {
+    .button {
       cursor: pointer;
-      background-color: $primary-color;
       color: $white;
       padding: 0 2rem;
       border-radius: 3px;
-  
+      margin: 0 1rem;
+
+      &.submit { 
+        background-color: $primary-color;
+      }
+
+      &.cancel { 
+        background-color: $cancel-bg;
+      }
+
       @media (min-width: 1025px) {
         height: 38px;
       }
