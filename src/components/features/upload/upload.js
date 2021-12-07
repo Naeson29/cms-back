@@ -32,7 +32,7 @@ const Upload = (props) => {
                 // write your building UI
                 <div className="upload__image-wrapper">
                     <button type="button" style={isDragging ? { color: 'red' } : undefined} onClick={onImageUpload} {...dragProps}>
-                        <img src="./fonts/upload.44b80a1fd7d26bc989065ff1edb24576.svg" alt="" />
+                        <img src="./svg/upload.svg" alt="" />
                     </button>
 
                     <button type="button" onClick={onImageRemoveAll}>Remove all images</button>
