@@ -29,8 +29,8 @@ module.exports = () => {
     return {
         entry: {
             index: [
-                SRC_DIR + '/index.js',
-            ]
+                `${SRC_DIR}/index.js`,
+            ],
         },
         output: {
             path: BUILD_DIR,

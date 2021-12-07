@@ -9,6 +9,7 @@ export { default as Modal } from './modal';
 export { default as Panel } from './panel';
 export { default as Button } from './button';
 export { default as Input } from './input';
+export { default as Upload } from './upload';
 export { default as Loading } from './loading';
 export { default as Sidebar } from './sidebar';
 export { default as privateRoutes } from './privateRoutes';

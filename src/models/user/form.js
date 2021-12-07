@@ -5,18 +5,21 @@ export default {
             label: 'Prénom',
             placeholder: 'Pierre...',
             name: 'first_name',
+            column: 1,
         },
         {
             element: 'input',
             label: 'Nom',
             placeholder: 'Richard...',
             name: 'last_name',
+            column: 1,
         },
         {
             element: 'input',
             label: 'Email',
             placeholder: 'exemple@mail.fr...',
             name: 'email',
+            column: 1,
         },
         {
             element: 'input',
@@ -24,6 +27,7 @@ export default {
             placeholder: '*************',
             name: 'password',
             type: 'password',
+            column: 1,
         },
         {
             element: 'input',
@@ -31,12 +35,18 @@ export default {
             placeholder: 'Confirmation du mot de passe',
             name: 'confirmation',
             type: 'password',
+            column: 1,
         },
         {
             element: 'input',
             name: 'role',
             type: 'hidden',
             value: 3,
+            column: 1,
+        },
+        {
+            element: 'upload',
+            column: 2,
         },
     ],
     validation: {

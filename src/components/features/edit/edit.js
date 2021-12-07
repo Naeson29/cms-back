@@ -56,6 +56,10 @@ const Edit = (props) => {
     };
 
     const handleChange = (key, event) => {
+        if (errors[key]) {
+            delete errors[key];
+            setErrors(errors);
+        }
         setData({
             ...data,
             [key]: event.target.value,

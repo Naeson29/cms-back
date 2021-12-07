@@ -19,25 +19,37 @@ const Form = (props) => {
         2: 'half',
     };
 
+    const column1 = elements.filter(el => el.column === 1);
+    const column2 = elements.filter(el => el.column === 2);
+
+    const columnsObject = {
+        1: column1,
+        ...column2.length > 0 && { 2: column2 },
+    };
+
     return (
         <form className="form" onSubmit={handleSubmit}>
             <div className="columns">
-                <div className={classNames[columns]}>
-                    {
-                        elements.map((key) => {
-                            const Component = formUtility(key.element);
-                            return (
-                                <Component
-                                    key={`field_${key.name}`}
-                                    attributes={key}
-                                    handleChange={handleChange}
-                                    value={data[key.name]}
-                                    error={errors && !!errors[key.name]}
-                                />
-                            );
-                        })
-                    }
-                </div>
+                {
+                    Object.keys(columnsObject).map((col, index) => (
+                        <div className={classNames[columns]} key={`column_${index.toString()}`}>
+                            {
+                                columnsObject[col].map((key) => {
+                                    const Component = formUtility(key.element);
+                                    return (
+                                        <Component
+                                            key={`field_${key.name}`}
+                                            attributes={key}
+                                            handleChange={handleChange}
+                                            value={data[key.name]}
+                                            error={errors && !!errors[key.name]}
+                                        />
+                                    );
+                                })
+                            }
+                        </div>
+                    ))
+                }
             </div>
             <div className="action">
                 <Button
