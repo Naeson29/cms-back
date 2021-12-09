@@ -45,11 +45,16 @@ const Edit = (props) => {
     const [errors, setErrors] = useState(false);
 
     const handleSubmit = () => {
-        const validator = validatorUtility(data, validation);
+        let validator = { success: true };
+
+        if (!validation) {
+            validator = validatorUtility(data, validation);
+        }
         if (validator.success) {
             if (isUpdate) update(detail.id, data);
             else create(data);
-        } else {
+        }
+        if (validator.error) {
             setErrors(validator.error);
             openModal(modalUtility.actions.error(<Error errors={validator.error} />));
         }
@@ -67,13 +72,9 @@ const Edit = (props) => {
     };
 
     const handleUpload = (key, imageList) => {
-        const images = imageList.map(image => ({
-            base64: image.data_url,
-        }));
-
         setData({
             ...data,
-            [key]: images,
+            [key]: imageList,
         });
     };
 

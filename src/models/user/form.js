@@ -46,7 +46,7 @@ export default {
         },
         {
             element: 'upload',
-            name: 'userImage',
+            name: 'imagesUpload',
             multiple: false,
             maxNumber: 1,
             label: 'Image utilisateur',
@@ -75,6 +75,10 @@ export default {
         confirmation: {
             name: 'confirmation',
             required: true,
+        },
+        imagesUpload: {
+            rule: 'sizeImage',
+            maxSize: 2000000,
         },
     },
 };

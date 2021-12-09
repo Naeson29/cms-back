@@ -17,13 +17,32 @@ export default (data, validation) => {
 
             return same ? { success: true } : { error: 'Les mots de passe ne sont pas identiques' };
         },
+        sizeImage: ({ value, maxSize }) => {
+            let invalid;
+
+            for (let i = 0; i < value.length; i += 1) {
+                if (value[i].file.size > maxSize) {
+                    invalid = true;
+                    break;
+                }
+            }
+
+            let message = '';
+            if (value.length === 1) {
+                message = 'L\'image est trop volumineuse';
+            } else {
+                message = 'Une ou plusieurs images sont trop volumineuses';
+            }
+
+            return !invalid ? { success: true } : { error: message };
+        },
     };
 
 
     Object.keys(data).map((key) => {
         if (validation[key]) {
             const rules = validation[key];
-            const { required = false, rule = false } = rules;
+            const { required = false, rule = false, maxSize = 2000000 } = rules;
             const value = data[key];
 
             if (required && !value) {
@@ -31,13 +50,19 @@ export default (data, validation) => {
                 return error;
             }
 
-            if (rule) {
+            if (rule && !!value) {
                 const regexFunction = regex[rule];
                 let params = { value };
                 if (rule === 'password') {
                     params = {
                         ...params,
                         confirmation: data.confirmation,
+                    };
+                }
+                if (rule === 'sizeImage') {
+                    params = {
+                        ...params,
+                        maxSize,
                     };
                 }
                 const validate = regexFunction(params);
