@@ -12,7 +12,7 @@ import {
  * @constructor
  */
 const Form = (props) => {
-    const { elements, handleSubmit, handleChange, closePanel, errors, data, columns } = props;
+    const { elements, handleSubmit, handleChange, handleUpload, closePanel, errors, data, columns } = props;
 
     const classNames = {
         1: 'full',
@@ -41,6 +41,7 @@ const Form = (props) => {
                                             key={`field_${key.name}`}
                                             attributes={key}
                                             handleChange={handleChange}
+                                            handleUpload={handleUpload}
                                             value={data[key.name]}
                                             error={errors && !!errors[key.name]}
                                         />
@@ -71,6 +72,7 @@ Form.propTypes = {
     elements: PropTypes.oneOfType([PropTypes.array]),
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
+    handleUpload: PropTypes.func,
     closePanel: PropTypes.func,
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     data: PropTypes.oneOfType([PropTypes.object]),
@@ -81,6 +83,7 @@ Form.defaultProps = {
     elements: [],
     handleSubmit: () => {},
     handleChange: () => {},
+    handleUpload: () => {},
     closePanel: () => {},
     errors: false,
     data: {},

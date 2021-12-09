@@ -7,7 +7,9 @@ const createModal = ({ params = {}, content = null, context = '' } = {}) => ({
 
 const actions = {
     destroy: (key, content) => createModal({
-        id: key.id,
+        params: {
+            id: key.id,
+        },
         content: content(key),
         context: 'destroy',
     }),

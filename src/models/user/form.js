@@ -46,6 +46,10 @@ export default {
         },
         {
             element: 'upload',
+            name: 'userImage',
+            multiple: false,
+            maxNumber: 1,
+            label: 'Image utilisateur',
             column: 2,
         },
     ],

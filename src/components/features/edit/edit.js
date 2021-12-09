@@ -66,8 +66,28 @@ const Edit = (props) => {
         });
     };
 
+    const handleUpload = (key, imageList) => {
+        const images = imageList.map(image => ({
+            base64: image.data_url,
+        }));
+
+        setData({
+            ...data,
+            [key]: images,
+        });
+    };
+
     return (
-        <Form {...props} elements={elements} data={data} handleSubmit={handleSubmit} handleChange={handleChange} errors={errors} columns={2} />
+        <Form
+            {...props}
+            elements={elements}
+            data={data}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            handleUpload={handleUpload}
+            errors={errors}
+            columns={2}
+        />
     );
 };
 
