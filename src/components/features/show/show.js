@@ -8,23 +8,25 @@ import PropTypes from 'prop-types';
  * @constructor
  */
 const Show = (props) => {
-    const { state } = props;
-    const { detail } = state;
-    const { last_name, first_name } = detail;
+    const { state, detail } = props;
 
     return (
         <div>
-            <p>{`${first_name} ${last_name}`}</p>
+            {
+                detail && detail(state.detail)
+            }
         </div>
     );
 };
 
 Show.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
+    detail: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 };
 
 Show.defaultProps = {
     state: {},
+    detail: false,
 };
 
 export default Show;

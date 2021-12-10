@@ -139,7 +139,16 @@ export default ({
     mapDispatch,
     mapState,
 } = {}) => {
-    const { card = false, panels = false, modals = false, form = false, creators = false, paramsList = {} } = model || false;
+    const {
+        card = false,
+        detail = false,
+        panels = false,
+        modals = false,
+        form = false,
+        creators = false,
+        paramsList = {},
+        withDelete = true,
+    } = model || false;
     const { GetCurrent } = setScreenSelector(user.name);
 
     const mapStateToProps = state => ({
@@ -160,9 +169,12 @@ export default ({
         ...mapDispatch && mapDispatch(dispatch),
 
         ...card && { card },
+        ...detail && { detail },
         ...panels && { panels },
         ...modals && { modals },
         ...form && { form },
+
+        withDelete,
     });
 
     return withRouter(connect(mapStateToProps, mapDispatchToProps)(component));

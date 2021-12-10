@@ -30,7 +30,17 @@ const {
  */
 const List = (props) => {
     const {
-        state, getDetail, getMore, type, openModal, content, loading, openPanel, modals = {},
+        state,
+        detail,
+        getDetail,
+        getMore,
+        type,
+        openModal,
+        content,
+        loading,
+        openPanel,
+        withDelete,
+        modals = {},
     } = props;
     const {
         model, list, pagination, current,
@@ -102,21 +112,29 @@ const List = (props) => {
                                             icon={HiPencil}
                                             disabled={isDisabled(permission.update)}
                                         />
-                                        <Button
-                                            action={() => remove(key, isUserAndMe)}
-                                            className="button trash"
-                                            icon={HiTrash}
-                                            disabled={isDisabled(permission.delete && !isUserAndMe)}
-                                        />
+                                        {
+                                            withDelete && (
+                                                <Button
+                                                    action={() => remove(key, isUserAndMe)}
+                                                    className="button trash"
+                                                    icon={HiTrash}
+                                                    disabled={isDisabled(permission.delete && !isUserAndMe)}
+                                                />
+                                            )
+                                        }
                                     </div>
-                                    <div className="button-container right">
-                                        <Button
-                                            action={() => show(key.id)}
-                                            className="button show"
-                                            icon={HiSearch}
-                                            disabled={isDisabled(permission.show)}
-                                        />
-                                    </div>
+                                    {
+                                        detail && (
+                                            <div className="button-container right">
+                                                <Button
+                                                    action={() => show(key.id)}
+                                                    className="button show"
+                                                    icon={HiSearch}
+                                                    disabled={isDisabled(permission.show)}
+                                                />
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -131,18 +149,22 @@ List.propTypes = {
     type: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
     modals: PropTypes.oneOfType([PropTypes.object]),
+    detail: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     loading: PropTypes.element,
     getDetail: PropTypes.func,
     getMore: PropTypes.func,
     openPanel: PropTypes.func,
     openModal: PropTypes.func,
     content: PropTypes.func,
+    withDelete: PropTypes.bool,
 };
 
 List.defaultProps = {
     type: 'small',
     state: {},
     modals: {},
+    detail: false,
+    withDelete: true,
     loading: (<div />),
     getDetail: () => {},
     getMore: () => {},

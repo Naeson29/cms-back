@@ -3,6 +3,7 @@ import card from './card';
 import form from './form';
 import panels from './panels';
 import modals from './modals';
+import detail from './detail';
 
 const name = 'user';
 
@@ -20,6 +21,7 @@ const { creators } = userActions();
 export default {
     name,
     card,
+    detail,
     form,
     modals,
     panels,
