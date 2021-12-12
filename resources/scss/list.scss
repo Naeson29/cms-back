@@ -25,9 +25,15 @@
     min-height : 12rem;
     background-color: transparent;
 
-    @media (min-width: 1201px) {
+    @media (min-width: 1451px) {
       &.small {
         width : 25%;
+      }
+    }
+
+    @media (max-width: 1450px) {
+      &.small {
+        width : 33.33%;
       }
     }
 
@@ -43,13 +49,7 @@
       }
     }
 
-    @media (max-width: 768px) {
-      &.small {
-        width : 50%;
-      }
-    }
-
-    @media (max-width: 468px) {
+    @media (max-width: 568px) {
       &.small {
         width : 100%;
       }
