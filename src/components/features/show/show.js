@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
@@ -9,14 +8,7 @@ import PropTypes from 'prop-types';
  */
 const Show = (props) => {
     const { state, detail } = props;
-
-    return (
-        <div>
-            {
-                detail && detail(state.detail)
-            }
-        </div>
-    );
+    return detail ? detail(state.detail) : null;
 };
 
 Show.propTypes = {

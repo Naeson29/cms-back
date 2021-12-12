@@ -31,7 +31,7 @@ const {
 const List = (props) => {
     const {
         state,
-        detail,
+        panels,
         getDetail,
         getMore,
         type,
@@ -106,12 +106,16 @@ const List = (props) => {
                                 }
                                 <div className="action">
                                     <div className="button-container left">
-                                        <Button
-                                            action={() => update(key.id)}
-                                            className="button edit"
-                                            icon={HiPencil}
-                                            disabled={isDisabled(permission.update)}
-                                        />
+                                        {
+                                            (panels && panels.update) && (
+                                                <Button
+                                                    action={() => update(key.id)}
+                                                    className="button edit"
+                                                    icon={HiPencil}
+                                                    disabled={isDisabled(permission.update)}
+                                                />
+                                            )
+                                        }
                                         {
                                             withDelete && (
                                                 <Button
@@ -124,7 +128,7 @@ const List = (props) => {
                                         }
                                     </div>
                                     {
-                                        detail && (
+                                        (panels && panels.show) && (
                                             <div className="button-container right">
                                                 <Button
                                                     action={() => show(key.id)}
@@ -149,7 +153,7 @@ List.propTypes = {
     type: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
     modals: PropTypes.oneOfType([PropTypes.object]),
-    detail: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     loading: PropTypes.element,
     getDetail: PropTypes.func,
     getMore: PropTypes.func,
@@ -163,7 +167,7 @@ List.defaultProps = {
     type: 'small',
     state: {},
     modals: {},
-    detail: false,
+    panels: false,
     withDelete: true,
     loading: (<div />),
     getDetail: () => {},

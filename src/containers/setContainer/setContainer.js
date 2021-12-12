@@ -103,8 +103,12 @@ const setPanelFunctions = dispatch => ({
  * @returns {{getList: Default.propTypes.getList, getDetail: List.propTypes.getDetail, getMore: List.propTypes.getMore, update: update, destroy: destroy}}
  */
 const setScreenFunctions = (dispatch, creators, paramsList) => ({
-    getList: () => {
-        if (creators) dispatch(creators.search.request(paramsList));
+    getList: (parameters = {}) => {
+        if (creators) {
+            dispatch(creators.search.request({
+                ...paramsList, ...parameters,
+            }));
+        }
     },
     getDetail: (id) => {
         if (creators) dispatch(creators.read.request(id));

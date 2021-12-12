@@ -64,28 +64,22 @@
   }
   
   .detail-user {
-    flex: 1;
     display: flex;
-    align-items: flex-start;
     margin-top: 3rem;
 
     @media (max-width: 768px) {
       flex-direction: column;
     }
 
-    .image, .infos {
-      flex:1;
-      width:50%;
-
-      @media (max-width: 768px) {
-        width:100%;
-      }
-    }
-
     .image {
       display: flex;
       justify-content: center;
       align-items: center;
+      width:40%;
+
+      @media (max-width: 768px) {
+        width:100%;
+      }
 
       img {
         width:60%;
@@ -101,10 +95,16 @@
     .infos {
       display: flex;
       flex-direction: column;
+      width:60%;
+      padding-left:2rem;
+      border-left: 1px solid rgba(0,0,0,0.2);
 
       @media (max-width: 768px) {
         align-items: center;
         margin-top:1.5rem;
+        width:100%;
+        border-left: none;
+        padding-left: 0;;
       }
 
       .name {

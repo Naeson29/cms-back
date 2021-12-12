@@ -12,7 +12,7 @@ import { panelUtility } from '../../utilities';
 
 const {
     isOpen,
-    actions
+    actions,
 } = panelUtility;
 
 /**
@@ -22,17 +22,21 @@ const {
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { openPanel, closePanel, state, title } = props;
+    const { openPanel, closePanel, state, title, panels } = props;
     const { panel } = state;
 
     return (
         <div className="header-screen">
             <div className="content left">
-                <Button
-                    action={() => (isOpen(panel) ? closePanel() : openPanel(actions.create))}
-                    icon={isOpen(panel) ? HiArrowCircleLeft : HiPlusCircle}
-                    className="button"
-                />
+                {
+                    (panels && panels.create) && (
+                        <Button
+                            action={() => (isOpen(panel) ? closePanel() : openPanel(actions.create))}
+                            icon={isOpen(panel) ? HiArrowCircleLeft : HiPlusCircle}
+                            className="button"
+                        />
+                    )
+                }
                 <span>{title}</span>
             </div>
             <div className="content right" />
@@ -45,6 +49,7 @@ HeaderScreen.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     openPanel: PropTypes.func,
     closePanel: PropTypes.func,
+    panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 HeaderScreen.defaultProps = {
@@ -52,6 +57,7 @@ HeaderScreen.defaultProps = {
     state: {},
     openPanel: () => {},
     closePanel: () => {},
+    panels: false,
 };
 
 export default HeaderScreen;
