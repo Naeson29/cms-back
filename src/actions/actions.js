@@ -46,6 +46,16 @@ export const authentication = () => {
     };
 };
 
+export const defaultAction = (name = '') => {
+    const types = createDefaultModelActionTypes(name);
+    const creators = createDefaultModelActionCreators(types);
+
+    return {
+        types,
+        creators,
+    };
+};
+
 export const user = () => {
     const defaultTypes = {
         ...createDefaultModelActionTypes('user'),

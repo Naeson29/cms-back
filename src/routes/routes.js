@@ -1,4 +1,7 @@
-import { user } from '../models';
+import {
+    user,
+    publication,
+} from '../models';
 import { setContainer } from '../containers';
 
 const panel = true;
@@ -21,6 +24,17 @@ const index = [{
         modal,
     }),
     id: 2,
+},
+{
+    exact: true,
+    path: '/publication',
+    name: 'Publication',
+    component: setContainer({
+        model: publication,
+        panel,
+        modal,
+    }),
+    id: 3,
 }];
 
 export default index;

@@ -38,3 +38,5 @@ export class UserApi extends createModelApiClass(BearerApi, '/users') {
 
     revoke = () => this.post({ url: '/revoke' });
 }
+
+export class PublicationApi extends createModelApiClass(BearerApi, '/publications') {}

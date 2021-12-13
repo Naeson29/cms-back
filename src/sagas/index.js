@@ -1,5 +1,6 @@
 export {
     authenticationSaga,
     userSaga,
-    navigationSaga
+    navigationSaga,
+    publicationSaga,
 } from './sagas';

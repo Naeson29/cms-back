@@ -11,11 +11,13 @@ import {
     authenticationActions,
     modalActions,
     panelActions,
+    defaultActions,
 } from '../actions';
 
 import {
     AuthenticationApi,
     UserApi,
+    PublicationApi,
 } from '../api';
 
 let sagaHistory;
@@ -118,6 +120,58 @@ export const userSaga = () => {
         yield* defaultSagas.root();
         yield takeEvery(types.GET_ME.REQUEST, getMe);
         yield takeEvery(types.GET_ME.FAILURE, getMeFailure);
+        yield takeEvery(types.DESTROY.REQUEST, onDelete);
+        yield takeEvery(types.CREATE.SUCCESS, createSuccess);
+        yield takeEvery(types.UPDATE.SUCCESS, updateSuccess);
+        yield takeEvery(types.DESTROY.SUCCESS, destroySuccess);
+        yield takeEvery(types.CREATE.FAILURE, createFailure);
+        yield takeEvery(types.UPDATE.FAILURE, updateFailure);
+        yield takeEvery(types.DESTROY.FAILURE, destroyFailure);
+    }
+
+    return {
+        root,
+    };
+};
+
+export const publicationSaga = () => {
+    const { types, creators } = defaultActions('publication');
+    const defaultSagas = createModelApiSagas(types, creators, PublicationApi);
+
+    function* createSuccess() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.success, "L'utilisateur a été crée");
+    }
+
+    function* createFailure() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.error, 'Echec de la création');
+    }
+
+    function* updateSuccess() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.success, "L'utilisateur a été modifié");
+    }
+
+    function* updateFailure() {
+        yield put(panelActions().creators.close.do());
+        yield call(toast.error, 'Echec de la modification');
+    }
+
+    function* onDelete() {
+        yield put(modalActions().creators.close.do());
+    }
+
+    function* destroySuccess() {
+        yield call(toast.success, "L'utilisateur a été supprimé");
+    }
+
+    function* destroyFailure() {
+        yield call(toast.error, 'Echec de la suppression');
+    }
+
+    function* root() {
+        yield* defaultSagas.root();
         yield takeEvery(types.DESTROY.REQUEST, onDelete);
         yield takeEvery(types.CREATE.SUCCESS, createSuccess);
         yield takeEvery(types.UPDATE.SUCCESS, updateSuccess);

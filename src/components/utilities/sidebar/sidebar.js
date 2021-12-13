@@ -19,8 +19,8 @@ const Navs = [
     },
     {
         id: 3,
-        path: '/slider',
-        label: 'Medias',
+        path: '/publication',
+        label: 'Publications',
         icon: HiPhotograph,
     },
     {

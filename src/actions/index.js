@@ -1,5 +1,6 @@
 export {
     authentication as authenticationActions,
+    defaultAction as defaultActions,
     user as userActions,
     modal as modalActions,
     panel as panelActions,

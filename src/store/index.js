@@ -9,7 +9,8 @@ import rootReducer from '../reducers';
 import {
     authenticationSaga,
     userSaga,
-    navigationSaga
+    navigationSaga,
+    publicationSaga,
 } from '../sagas';
 
 const { store, sagaMiddleware } = configureStore(rootReducer, STORE_PERSIST_CONFIGURATION);
@@ -23,3 +24,4 @@ export default store;
 sagaMiddleware.run(authenticationSaga().root);
 sagaMiddleware.run(navigationSaga().root, { history });
 sagaMiddleware.run(userSaga().root);
+sagaMiddleware.run(publicationSaga().root);
