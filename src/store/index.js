@@ -10,8 +10,10 @@ import {
     authenticationSaga,
     userSaga,
     navigationSaga,
-    publicationSaga,
+    defaultSaga,
 } from '../sagas';
+
+import listeners from './listeners';
 
 const { store, sagaMiddleware } = configureStore(rootReducer, STORE_PERSIST_CONFIGURATION);
 export const persist = persistStore(store);
@@ -24,4 +26,7 @@ export default store;
 sagaMiddleware.run(authenticationSaga().root);
 sagaMiddleware.run(navigationSaga().root, { history });
 sagaMiddleware.run(userSaga().root);
-sagaMiddleware.run(publicationSaga().root);
+
+listeners.forEach((listener) => {
+    sagaMiddleware.run(defaultSaga(listener).root);
+});

@@ -2,5 +2,5 @@ export {
     authenticationSaga,
     userSaga,
     navigationSaga,
-    publicationSaga,
+    defaultSaga,
 } from './sagas';

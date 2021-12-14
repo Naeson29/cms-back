@@ -17,7 +17,7 @@ import {
 import {
     AuthenticationApi,
     UserApi,
-    PublicationApi,
+    defaultApi,
 } from '../api';
 
 let sagaHistory;
@@ -134,9 +134,9 @@ export const userSaga = () => {
     };
 };
 
-export const publicationSaga = () => {
-    const { types, creators } = defaultActions('publication');
-    const defaultSagas = createModelApiSagas(types, creators, PublicationApi);
+export const defaultSaga = (object) => {
+    const { types, creators } = defaultActions(object.name);
+    const defaultSagas = createModelApiSagas(types, creators, defaultApi(object.path));
 
     function* createSuccess() {
         yield put(panelActions().creators.close.do());

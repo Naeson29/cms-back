@@ -5,7 +5,7 @@ import panels from './panels';
 import modals from './modals';
 import detail from './detail';
 
-const name = 'user';
+const name = 'publication';
 
 const paramsList = {
     params: {
@@ -13,7 +13,7 @@ const paramsList = {
     },
 };
 
-const { creators } = defaultActions('publication');
+const { creators } = defaultActions(name);
 
 export default {
     name,

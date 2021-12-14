@@ -5,7 +5,9 @@ import panelReducer from './panel';
 import modalReducer from './modal';
 import authenticationReducer from './authentication';
 import userReducer from './user';
-import publicationReducer from './publication';
+import defaultReducer from './default';
+
+const reducers = ['publication'];
 
 export default combineReducers({
     routing: routerReducer,
@@ -13,5 +15,5 @@ export default combineReducers({
     modal: modalReducer,
     authentication: authenticationReducer,
     user: userReducer,
-    publication: publicationReducer,
+    ...reducers.forEach(reducer => ({ [reducer]: defaultReducer(reducer) })),
 });

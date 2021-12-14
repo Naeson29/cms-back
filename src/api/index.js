@@ -1,5 +1,5 @@
 export {
     AuthenticationApi,
     UserApi,
-    PublicationApi,
+    defaultApi,
 } from './api';

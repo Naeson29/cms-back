@@ -3,14 +3,14 @@ import { createModelReducer } from '../../../react-core';
 
 const { types } = userActions();
 
-export const initialState = {
+const initialState = {
     data: {},
     views: {},
     current: {},
 };
 const standardReducer = createModelReducer(initialState, types);
 
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     const { payload } = action;
 
     switch (action.type) {
