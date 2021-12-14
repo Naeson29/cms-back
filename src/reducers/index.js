@@ -15,5 +15,7 @@ export default combineReducers({
     modal: modalReducer,
     authentication: authenticationReducer,
     user: userReducer,
-    ...reducers.forEach(reducer => ({ [reducer]: defaultReducer(reducer) })),
+    ...reducers.reduce((o, key) => ({
+        ...o, [key]: defaultReducer(key),
+    }), {}),
 });
