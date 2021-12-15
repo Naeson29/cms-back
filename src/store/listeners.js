@@ -1,4 +1,10 @@
-export default [{
-    name: 'publication',
-    path: 'publications',
-}];
+export default [
+    {
+        name: 'user',
+        path: 'users',
+    },
+    {
+        name: 'publication',
+        path: 'publications',
+    },
+];

@@ -1,2 +1,7 @@
-export { default as user } from './user';
-export { default as publication } from './publication';
+import user from './user';
+import publication from './publication';
+
+
+export default {
+    user, publication,
+};

@@ -33,10 +33,10 @@ export class AuthenticationApi extends AuthApi {
     });
 }
 
-export class UserApi extends createModelApiClass(BearerApi, '/users') {
+export const defaultApi = path => class Api extends createModelApiClass(BearerApi, `/${path}`) {};
+
+export class UserApi extends defaultApi('user') {
     getMe = () => this.get({ url: '/me' });
 
     revoke = () => this.post({ url: '/revoke' });
 }
-
-export const defaultApi = path => class Api extends createModelApiClass(BearerApi, `/${path}`) {};

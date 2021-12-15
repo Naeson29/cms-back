@@ -6,6 +6,8 @@ import modals from './modals';
 import detail from './detail';
 
 const name = 'user';
+const path = 'users';
+const routeName = 'Users';
 
 const paramsList = {
     params: {
@@ -20,6 +22,8 @@ const { creators } = userActions();
 
 export default {
     name,
+    routeName,
+    path,
     card,
     detail,
     form,

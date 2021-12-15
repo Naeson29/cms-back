@@ -15,4 +15,12 @@ export default {
             show: 'Fiche utilisateur',
         },
     },
+    publication: {
+        title: {
+            default: 'Publications',
+            create: 'Ajouter une nouvelle publication',
+            update: 'Modifier la publication',
+            show: 'Détail de la publication',
+        },
+    },
 };

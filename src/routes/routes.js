@@ -1,41 +1,32 @@
-import {
-    user,
-    publication,
-} from '../models';
+import models from '../models';
 import { setContainer } from '../containers';
 
 const panel = true;
 const modal = true;
+
+let id = 1;
 
 const index = [{
     exact: true,
     path: '/',
     name: 'Dashboard',
     component: setContainer(),
-    id: 1,
+    id,
 },
-{
-    exact: true,
-    path: '/user',
-    name: 'Users',
-    component: setContainer({
-        model: user,
-        panel,
-        modal,
-    }),
-    id: 2,
-},
-{
-    exact: true,
-    path: '/publication',
-    name: 'Publication',
-    component: setContainer({
-        model: publication,
-        panel,
-        modal,
-    }),
-    id: 3,
-}];
+...Object.keys(models).map((key) => {
+    id += 1;
+    return {
+        exact: true,
+        path: `/${models[key].name}`,
+        name: models[key].routeName,
+        component: setContainer({
+            model: models[key],
+            panel,
+            modal,
+        }),
+        id,
+    };
+})];
 
 export default index;
 
