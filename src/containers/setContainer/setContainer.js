@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // models
-import models from '../../models';
+import user from '../../models/user';
 
 // selectors
 import {
@@ -153,7 +153,7 @@ export default ({
         paramsList = {},
         withDelete = true,
     } = model || false;
-    const { GetCurrent } = setScreenSelector(models.user.name);
+    const { GetCurrent } = setScreenSelector(user.name);
 
     const mapStateToProps = state => ({
         state: {
