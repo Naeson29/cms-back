@@ -23,10 +23,12 @@ sagaMiddleware.run(navigationSaga().root, { history });
 sagaMiddleware.run(userSaga().root);
 
 Object.keys(models).forEach((key) => {
-    const { name, path } = models[key];
-    sagaMiddleware.run(defaultSaga({
-        name, path,
-    }).root);
+    const { name = '', path = '' } = models[key];
+    if (name && path) {
+        sagaMiddleware.run(defaultSaga({
+            name, path,
+        }).root);
+    }
 });
 
 export default store;

@@ -3,7 +3,10 @@ import { setContainer } from '../containers';
 const routes = (models) => {
     const panel = true;
     const modal = true;
+    const defaultRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].routeName);
+
     let id = 1;
+
     return [{
         exact: true,
         path: '/',
@@ -11,7 +14,7 @@ const routes = (models) => {
         component: setContainer(),
         id,
     },
-    ...Object.keys(models).map((key) => {
+    ...defaultRoutes.map((key) => {
         id += 1;
         return {
             exact: true,

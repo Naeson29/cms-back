@@ -8,7 +8,7 @@ import userReducer from './user';
 import defaultReducer from './default';
 import models from '../models';
 
-const defaultReducers = Object.keys(models).map(key => models[key].name);
+const defaultReducers = Object.keys(models).filter(key => !!models[key].name).map(key => models[key].name);
 
 export default combineReducers({
     ...defaultReducers.reduce((o, key) => ({
