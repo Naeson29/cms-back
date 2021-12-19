@@ -4,8 +4,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { STORE_PERSIST_CONFIGURATION } from './configuration';
 import configureStore from './configure';
 import rootReducer from '../reducers';
+import models from '../models';
 
-// import sagas
 import {
     authenticationSaga,
     userSaga,
@@ -13,20 +13,25 @@ import {
     defaultSaga,
 } from '../sagas';
 
-import listeners from './listeners';
-
 const { store, sagaMiddleware } = configureStore(rootReducer, STORE_PERSIST_CONFIGURATION);
-export const persist = persistStore(store);
-export const history = createBrowserHistory({}, store);
+const persist = persistStore(store);
+const history = createBrowserHistory({}, store);
 syncHistoryWithStore(history, store);
 
-export default store;
-
-// run sagas listeners
 sagaMiddleware.run(authenticationSaga().root);
 sagaMiddleware.run(navigationSaga().root, { history });
 sagaMiddleware.run(userSaga().root);
 
-listeners.forEach((listener) => {
-    sagaMiddleware.run(defaultSaga(listener).root);
+Object.keys(models).forEach((key) => {
+    const { name, path } = models[key];
+    sagaMiddleware.run(defaultSaga({
+        name, path,
+    }).root);
 });
+
+export default store;
+
+export {
+    persist,
+    history,
+};

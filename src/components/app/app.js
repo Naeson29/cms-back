@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import {
     Route, Switch,
 } from 'react-router-dom';
+import models from '../../models';
 import routes from '../../routes';
 
 // features
@@ -25,6 +26,8 @@ class App extends Component {
         this.state = {
             menu: false,
         };
+
+        this.routes = routes(models);
 
         props.load();
 
@@ -58,7 +61,7 @@ class App extends Component {
                 <div className="content-app">
                     <Switch>
                         {
-                            routes.map(route => (
+                            this.routes.map(route => (
                                 <Route
                                     key={route.id}
                                     exact={route.exact}

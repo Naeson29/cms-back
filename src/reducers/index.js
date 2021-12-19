@@ -6,16 +6,17 @@ import modalReducer from './modal';
 import authenticationReducer from './authentication';
 import userReducer from './user';
 import defaultReducer from './default';
+import models from '../models';
 
-const reducers = ['publication'];
+const defaultReducers = Object.keys(models).map(key => models[key].name);
 
 export default combineReducers({
+    ...defaultReducers.reduce((o, key) => ({
+        ...o, [key]: defaultReducer(key),
+    }), {}),
     routing: routerReducer,
     panel: panelReducer,
     modal: modalReducer,
     authentication: authenticationReducer,
     user: userReducer,
-    ...reducers.reduce((o, key) => ({
-        ...o, [key]: defaultReducer(key),
-    }), {}),
 });
