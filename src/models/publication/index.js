@@ -15,6 +15,8 @@ const paramsList = {
     },
 };
 
+const cardType = 'medium';
+
 const { creators } = defaultActions(name);
 
 export default {
@@ -22,6 +24,7 @@ export default {
     routeName,
     path,
     card,
+    cardType,
     detail,
     form,
     modals,

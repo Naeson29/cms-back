@@ -7,6 +7,18 @@ body {
   font-family : 'Roboto', cursive;
   font-size   :14px;
 
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+      background: $grey-background; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+      background: $primary-color; 
+  }
+
   &.lock {
     overflow: hidden;
   }

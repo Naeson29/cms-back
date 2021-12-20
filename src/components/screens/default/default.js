@@ -16,7 +16,7 @@ class Default extends Component {
     render() {
         const { props } = this;
         const { t, state, panels, modals, card, form } = props;
-        const { model = 'default', loadings = {}, panel = {}, list = false } = state;
+        const { model = 'default', loadings = {}, panel = {}, list = false, cardType = 'small' } = state;
         return (
             <div className={`fragment ${model}`}>
                 <HeaderScreen
@@ -27,7 +27,7 @@ class Default extends Component {
                     loadings.list ? <Loading /> : list && (
                         <List
                             {...props}
-                            type="small"
+                            type={cardType}
                             content={card}
                             modals={modals}
                             loading={<Loading className="loading-list" />}

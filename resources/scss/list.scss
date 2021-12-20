@@ -29,11 +29,17 @@
       &.small {
         width : 25%;
       }
+      &.medium {
+        width : 50%;
+      }
     }
 
     @media (max-width: 1450px) {
       &.small {
         width : 33.33%;
+      }
+      &.medium {
+        width : 50%;
       }
     }
 
@@ -41,16 +47,25 @@
       &.small {
         width : 50%;
       }
+      &.medium {
+        width : 100%;
+      }
     }
 
     @media (max-width: 1024px) {
       &.small {
         width : 50%;
       }
+      &.medium {
+        width : 100%;
+      }
     }
 
     @media (max-width: 568px) {
       &.small {
+        width : 100%;
+      }
+      &.medium {
         width : 100%;
       }
     }

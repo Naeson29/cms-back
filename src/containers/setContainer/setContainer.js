@@ -145,6 +145,7 @@ export default ({
 } = {}) => {
     const {
         card = false,
+        cardType = 'small',
         detail = false,
         panels = false,
         modals = false,
@@ -162,6 +163,8 @@ export default ({
             ...modal && setModalState(state, setModalSelector),
             ...panel && setPanelState(state, setPanelSelector),
             ...model && setScreenState(state, setScreenSelector(model.name)),
+
+            cardType,
         },
         ...mapState && mapState(state),
     });
