@@ -8,7 +8,7 @@ export default (key) => {
         <div className="card-user">
             <div
                 style={{
-                    backgroundImage: `url(${image ? getImage(image, 'thumb') : './img/avatar.png'})`,
+                    backgroundImage: `url(${image ? getImage(image.data, 'thumb') : './img/avatar.png'})`,
                 }}
                 className="image"
             />

@@ -3,7 +3,7 @@ import React from 'react';
 import { getImage } from '../../utilities/functions';
 
 export default (key) => {
-    const { title, content, image } = key;
+    const { title, content, images } = key;
 
     return (
         <div className="card-publication">
@@ -12,13 +12,23 @@ export default (key) => {
                 <p className="content">{content}</p>
             </div>
             {
-                image && (
+                images && (
                     <div
                         style={{
-                            backgroundImage: `url(${getImage(image, 'medium')})`,
+                            backgroundImage: `url(${getImage(images.data[0], 'medium')})`,
                         }}
                         className="image"
-                    />
+                    >
+                        {
+                            images.data.length > 1 && (
+                                <div className="numberMore">
+                                    +
+                                    {' '}
+                                    {images.data.length - 1}
+                                </div>
+                            )
+                        }
+                    </div>
                 )
             }
         </div>
