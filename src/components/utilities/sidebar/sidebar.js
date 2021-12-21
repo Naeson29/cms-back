@@ -1,4 +1,4 @@
-import { HiHome } from 'react-icons/hi';
+import { ImHome } from 'react-icons/im';
 
 const rootPath = '/';
 
@@ -11,8 +11,8 @@ const Navs = (models) => {
         {
             id: 1,
             path: rootPath,
-            label: 'dashboard',
-            icon: HiHome,
+            label: 'Accueil',
+            icon: ImHome,
         },
         ...items.map((item) => {
             const { name, menuLabel, menuIcon } = item;

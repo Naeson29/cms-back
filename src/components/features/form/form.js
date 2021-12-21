@@ -12,7 +12,19 @@ import {
  * @constructor
  */
 const Form = (props) => {
-    const { elements, handleSubmit, handleChange, handleUpload, closePanel, errors, data, columns } = props;
+    const {
+        elements,
+        handleSubmit,
+        handleChange,
+        handleUpload,
+        closePanel,
+        errors,
+        data,
+        columns,
+        action,
+    } = props;
+
+    const isUpdate = action === 'update';
 
     const classNames = {
         1: 'full',
@@ -61,7 +73,7 @@ const Form = (props) => {
                 <Button
                     action={handleSubmit}
                     className="button submit"
-                    text="Ajouter"
+                    text={isUpdate ? 'Modifier' : 'Ajouter'}
                 />
             </div>
         </form>
@@ -77,6 +89,7 @@ Form.propTypes = {
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     data: PropTypes.oneOfType([PropTypes.object]),
     columns: PropTypes.number,
+    action: PropTypes.string,
 };
 
 Form.defaultProps = {
@@ -88,6 +101,7 @@ Form.defaultProps = {
     errors: false,
     data: {},
     columns: 1,
+    action: 'create',
 };
 
 export default Form;

@@ -2,8 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-    HiLogout, HiCog, HiMenu,
+    HiLogout,
 } from 'react-icons/hi';
+import {
+    AiOutlineMenuUnfold, AiOutlineMenuFold, AiFillSetting,
+} from 'react-icons/ai';
 
 import { Button } from '..';
 
@@ -27,19 +30,22 @@ const Header = (props) => {
                     >
                         <NavLink to="/" className="navbar-brand" replace>
                             <img src="./img/logo.png" alt="Logo" />
-                            <span>Backoffice</span>
+                            <div>
+                                <span>B.O</span>
+                                <span>v1</span>
+                            </div>
                         </NavLink>
                     </div>
                     <Button
                         action={() => toggle(!menu)}
                         className="menu-burger"
-                        icon={HiMenu}
+                        icon={!menu ? AiOutlineMenuUnfold : AiOutlineMenuFold}
                     />
                 </div>
 
                 <div className="navbar-nav-right">
                     <NavLink to="/parameters" replace>
-                        <HiCog className="icon" />
+                        <AiFillSetting className="icon" />
                     </NavLink>
                     <Button
                         action={() => logout()}

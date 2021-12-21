@@ -1,4 +1,4 @@
-import { HiUser } from 'react-icons/hi';
+import { ImUsers } from 'react-icons/im';
 import { userActions } from '../../actions';
 import card from './card';
 import form from './form';
@@ -14,7 +14,7 @@ const routeName = 'Users';
 
 const menuLabel = 'Utilisateurs';
 
-const menuIcon = HiUser;
+const menuIcon = ImUsers;
 
 const paramsList = {
     params: {

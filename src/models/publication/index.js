@@ -1,4 +1,4 @@
-import { HiNewspaper } from 'react-icons/hi';
+import { BiNews } from 'react-icons/bi';
 import { defaultActions } from '../../actions';
 import card from './card';
 import form from './form';
@@ -14,7 +14,7 @@ const routeName = 'Publications';
 
 const menuLabel = 'Publications';
 
-const menuIcon = HiNewspaper;
+const menuIcon = BiNews;
 
 const paramsList = {
     params: {
