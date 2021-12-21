@@ -1,4 +1,5 @@
 export default {
+    columns: 2,
     elements: [
         {
             element: 'input',

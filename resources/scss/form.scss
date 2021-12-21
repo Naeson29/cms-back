@@ -42,11 +42,10 @@
     }
 
     .container-field {  
-      .input {
+      .input, .textarea {
         border-radius: 4px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         padding: 0 .5rem;
-        height:35px;
         color: $black_text;
         font-size: 13px;
 
@@ -59,6 +58,17 @@
           color: rgba(0, 0, 0, 0.4);
           font-size: 13px;
         }
+      }
+
+      .input {
+        height:35px;
+      }
+
+      .textarea {
+        height: 180px;
+        resize: none;
+        outline: none;
+        padding:.5rem;
       }
     }
 

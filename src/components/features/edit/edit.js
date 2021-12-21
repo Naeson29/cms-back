@@ -24,7 +24,7 @@ const Edit = (props) => {
     const { form, state, action, create, update, openModal } = props;
     const { detail } = state;
     const isUpdate = action === 'update';
-    const { elements = [], validation = false } = form;
+    const { elements = [], validation = false, columns = 1 } = form;
 
     const getValue = (item) => {
         let valueElement = '';
@@ -87,7 +87,7 @@ const Edit = (props) => {
             handleChange={handleChange}
             handleUpload={handleUpload}
             errors={errors}
-            columns={2}
+            columns={columns}
         />
     );
 };
