@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { sidebarUtility } from '../../utilities';
 
-const  {
+const {
     Navs, isRoot, isRootPath,
 } = sidebarUtility;
 
@@ -15,7 +15,7 @@ const  {
  */
 const Sidebar = (props) => {
     const { propsMenu } = props;
-    const { toggle, menu } = propsMenu;
+    const { toggle, menu, models = {} } = propsMenu;
 
     return (
         <div className={`sidebar ${!menu ? 'isClose' : 'isOpen'}`}>
@@ -23,7 +23,7 @@ const Sidebar = (props) => {
                 <nav className="navbar">
                     <ul className="nav navbar-nav">
                         {
-                            Navs.map((key) => {
+                            Navs(models).map((key) => {
                                 const isActive = () => isRootPath(props);
                                 const Icon = key.icon;
 

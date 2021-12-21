@@ -1,9 +1,10 @@
 import { setContainer } from '../containers';
 
 const routes = (models) => {
+    const modelRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].routeName).map(model => models[model]);
+
     const panel = true;
     const modal = true;
-    const defaultRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].routeName);
 
     let id = 1;
 
@@ -14,14 +15,15 @@ const routes = (models) => {
         component: setContainer(),
         id,
     },
-    ...defaultRoutes.map((key) => {
+    ...modelRoutes.map((model) => {
+        const { name, routeName } = model;
         id += 1;
         return {
             exact: true,
-            path: `/${models[key].name}`,
-            name: models[key].routeName,
+            path: `/${name}`,
+            name: routeName,
             component: setContainer({
-                model: models[key],
+                model,
                 panel,
                 modal,
             }),

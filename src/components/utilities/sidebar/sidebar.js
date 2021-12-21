@@ -1,35 +1,31 @@
-import {
-    HiHome, HiUser, HiPhotograph, HiNewspaper,
-} from 'react-icons/hi';
+import { HiHome } from 'react-icons/hi';
 
 const rootPath = '/';
 
-const Navs = [
-    {
-        id: 1,
-        path: '/',
-        label: 'dashboard',
-        icon: HiHome,
-    },
-    {
-        id: 2,
-        path: '/user',
-        label: 'Utilisateurs',
-        icon: HiUser,
-    },
-    {
-        id: 3,
-        path: '/publication',
-        label: 'Publications',
-        icon: HiPhotograph,
-    },
-    {
-        id: 4,
-        path: '/news',
-        label: 'News',
-        icon: HiNewspaper,
-    },
-];
+const Navs = (models) => {
+    const items = Object.keys(models).filter(key => !!models[key].name).map(model => models[model]);
+
+    let id = 1;
+
+    return [
+        {
+            id: 1,
+            path: rootPath,
+            label: 'dashboard',
+            icon: HiHome,
+        },
+        ...items.map((item) => {
+            const { name, menuLabel, menuIcon } = item;
+            id += 1;
+            return {
+                id,
+                path: name,
+                label: menuLabel,
+                icon: menuIcon,
+            };
+        }),
+    ];
+};
 
 /**
  *

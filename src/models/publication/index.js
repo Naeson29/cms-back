@@ -1,3 +1,4 @@
+import { HiNewspaper } from 'react-icons/hi';
 import { defaultActions } from '../../actions';
 import card from './card';
 import form from './form';
@@ -6,8 +7,14 @@ import modals from './modals';
 import detail from './detail';
 
 const name = 'publication';
+
 const path = 'publications';
+
 const routeName = 'Publications';
+
+const menuLabel = 'Publications';
+
+const menuIcon = HiNewspaper;
 
 const paramsList = {
     params: {
@@ -23,6 +30,8 @@ export default {
     name,
     routeName,
     path,
+    menuLabel,
+    menuIcon,
     card,
     cardType,
     detail,

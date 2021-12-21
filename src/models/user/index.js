@@ -1,3 +1,4 @@
+import { HiUser } from 'react-icons/hi';
 import { userActions } from '../../actions';
 import card from './card';
 import form from './form';
@@ -6,8 +7,14 @@ import modals from './modals';
 import detail from './detail';
 
 const name = 'user';
+
 const path = 'users';
+
 const routeName = 'Users';
+
+const menuLabel = 'Utilisateurs';
+
+const menuIcon = HiUser;
 
 const paramsList = {
     params: {
@@ -24,6 +31,8 @@ export default {
     name,
     routeName,
     path,
+    menuLabel,
+    menuIcon,
     card,
     detail,
     form,

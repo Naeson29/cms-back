@@ -45,7 +45,7 @@ class App extends Component {
         const { menu } = state;
 
         const propsMenu = {
-            menu, toggle: this.toggleMenu,
+            menu, toggle: this.toggleMenu, models,
         };
 
         return (
