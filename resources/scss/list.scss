@@ -12,7 +12,11 @@
   }
 
   @media (max-width: 768px) {
-    padding : 1.5rem .8rem 50px .8rem;
+    padding : 1.5rem .8rem;
+  }
+
+  @media (max-width: 568px) {
+    padding : 1.5rem .3rem;
   }
 
   .loading-list {
@@ -75,6 +79,10 @@
       justify-content: space-between;
       margin:0 .8rem;
       padding: 1.5rem;
+
+      @media (max-width: 568px) {
+        padding: 1rem;
+      }
       background-color: #fbfbfb;
       border : $grey-border;
 

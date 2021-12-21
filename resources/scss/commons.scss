@@ -55,6 +55,12 @@ body {
         width: auto;
         min-width: 280px;
 
+        @media (max-width: 568px) {
+          width: 100%;
+          top:0;
+          right:0;
+        }
+
         .toast-content {
           min-height: 50px;
           padding:0 10px;
