@@ -12,9 +12,12 @@ import toasts from './toast';
 
 const { defaultErrors, defaultSuccess, success } = toasts;
 
+const theme = 'colored';
+const paramToast = { theme };
+
 function* createSuccess(name) {
     yield put(panelActions().creators.close.do());
-    yield call(toast.success, success[name] ? success[name].create : defaultSuccess.create);
+    yield call(() => toast.success(success[name] ? success[name].create : defaultSuccess.create, paramToast));
 }
 
 function* createFailure() {
@@ -24,7 +27,7 @@ function* createFailure() {
 
 function* updateSuccess(name) {
     yield put(panelActions().creators.close.do());
-    yield call(toast.success, success[name] ? success[name].update : defaultSuccess.update);
+    yield call(() => toast.success(success[name] ? success[name].update : defaultSuccess.update, paramToast));
 }
 
 function* updateFailure() {
@@ -37,11 +40,11 @@ function* onDelete() {
 }
 
 function* destroySuccess(name) {
-    yield call(toast.success, success[name] ? success[name].delete : defaultSuccess.delete);
+    yield call(() => toast.success(success[name] ? success[name].delete : defaultSuccess.delete, paramToast));
 }
 
 function* destroyFailure() {
-    yield call(toast.error, defaultErrors.delete);
+    yield call(() => toast.error(defaultErrors.delete, paramToast));
 }
 
 function* defaultRoot(name, types, defaultSagas) {
