@@ -8,7 +8,7 @@ export default (key) => {
     return (
         <div className="detail-user">
             <div className="image">
-                <img src={image ? getImage(key.image, 'medium') : './img/avatar.png'} alt="" />
+                <img src={image ? getImage(image.data, 'medium') : './img/avatar.png'} alt="" />
             </div>
             <div className="infos">
                 <p className="name">{`${first_name} ${last_name}`}</p>
