@@ -13,10 +13,10 @@ export default (key) => {
 
     return (
         <div className="detail-publication">
-            <div>
+            <div className="slide slide-publication">
                 <Carousel>
                     {slideImages.map((slideImage, index) => (
-                        <div key={index.toString()}>
+                        <div className="slide-item" key={index.toString()} style={{ backgroundImage: `url(${slideImage.url})` }}>
                             <img src={slideImage.url} alt="" />
                         </div>
                     ))}
