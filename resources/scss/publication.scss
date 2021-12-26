@@ -63,23 +63,36 @@
 
   .detail-publication {
 
-    .slide {
-      width:100%;
-      height:350px;
-
-      &.slide-publication {
-        padding:15px;
-      }
+    .slide-publication {     
+      padding:15px;
 
       .slide-item {
         width:100%;
-        height:100%;
+        height:350px;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+      }
 
-        img {
-          display: none;
+      .thumbs {
+        display: flex;
+        height:50px;
+        margin-bottom: 0;
+        
+        .thumb {
+          width: 50px !important;
+
+          &.selected, &:hover {
+            border:2px solid $primary-color;
+          }
+        }
+
+        .slide-thumb {
+          height:100%;
+          width:5Opx;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
         }
       }
     }
