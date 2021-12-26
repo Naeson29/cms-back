@@ -74,27 +74,34 @@
         background-repeat: no-repeat;
       }
 
-      .thumbs {
-        display: flex;
-        height:50px;
-        margin-bottom: 0;
-        
-        .thumb {
-          width: 50px !important;
+      .thumbs-wrapper {
+        margin:0;
+        padding:10px;
+        background-color: $grey-background;
 
-          &.selected, &:hover {
-            border:2px solid $primary-color;
+        .thumbs {
+          display: flex;
+          margin-bottom: 0;
+          
+          .thumb {
+            height:50px;
+            width: 50px !important;
+            border:2px solid transparent;
+
+            &.selected, &:hover {
+              border:2px solid $primary-color;
+            }
+          }
+
+          .slide-thumb {
+            height:100%;
+            width:100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
           }
         }
-
-        .slide-thumb {
-          height:100%;
-          width:5Opx;
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat;
-        }
-      }
+      }      
     }
   }
 }
