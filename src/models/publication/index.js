@@ -19,6 +19,10 @@ const menuIcon = BiNews;
 const paramsList = {
     params: {
         limit: 50,
+        order: {
+            column: 'created_at',
+            desc: true,
+        },
     },
 };
 

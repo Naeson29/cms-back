@@ -34,14 +34,16 @@ const Slider = (props) => {
 };
 
 Slider.propTypes = {
-    images: PropTypes.oneOfType([PropTypes.array]),
+    images: PropTypes.oneOfType([PropTypes.object]),
     className: PropTypes.string,
     showIndicators: PropTypes.bool,
     showStatus: PropTypes.bool,
 };
 
 Slider.defaultProps = {
-    images: [],
+    images: {
+        data: [],
+    },
     className: '',
     showIndicators: false,
     showStatus: false,

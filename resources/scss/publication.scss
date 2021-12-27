@@ -9,17 +9,8 @@
       position: relative;
       z-index: 1;
       margin-top: 1rem;;
-      
-      @media (min-width: 1025px) {
-        width: 100%;
-        height: 12rem;
-      }
-
-      @media (max-width: 1024px) {
-        width: 100%;
-        height: 10rem;
-      }
-
+      width: 100%;
+      padding-bottom:40%;
       border-radius: .3rem;
       background-repeat:no-repeat;
       background-position: center center;
@@ -58,50 +49,95 @@
       @media (max-width: 1024px) {
         font-size: 13px;
       }
+
+      span {
+        color:rgba(0,0,0,0.3);
+        font-size:12px;
+        margin-top:.3rem;
+        font-weight: normal;
+      }
     }
   }
 
   .detail-publication {
+    flex:1;
+    display: flex;
 
-    .slide-publication {     
-      padding:15px;
+    .body, .options {
+      flex:1;
+      padding:20px;
 
-      .slide-item {
-        width:100%;
-        height:350px;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
+      .title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        color: $primary-color;
+        font-size: 18px;
+        margin-bottom:15px;
+
+        span {
+          color:rgba(0,0,0,0.3);
+          font-size:13px;
+          margin-top:.3rem;
+        }
+      }
+    }
+
+    .body {
+      border-right: 1px solid rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+
+      .body, .options {
+        flex:0;
       }
 
-      .thumbs-wrapper {
-        margin:0;
-        padding:10px;
-        background-color: $grey-background;
+      .body {
+        border:none;
+      }
+    }
 
-        .thumbs {
-          display: flex;
-          margin-bottom: 0;
-          
-          .thumb {
-            height:50px;
-            width: 50px !important;
-            border:2px solid transparent;
+    .options {
 
-            &.selected, &:hover {
-              border:2px solid $primary-color;
+      .slide-publication {   
+        .slide-item {
+          width:100%;
+          padding-bottom:50%;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+  
+        .thumbs-wrapper {
+          margin:0;
+          padding:10px;
+  
+          .thumbs {
+            display: flex;
+            margin-bottom: 0;
+            
+            .thumb {
+              height:50px;
+              width: 50px !important;
+              border:2px solid transparent;
+  
+              &.selected, &:hover {
+                border:2px solid $primary-color;
+              }
+            }
+  
+            .slide-thumb {
+              height:100%;
+              width:100%;
+              background-position: center;
+              background-size: cover;
+              background-repeat: no-repeat;
             }
           }
-
-          .slide-thumb {
-            height:100%;
-            width:100%;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-          }
-        }
-      }      
+        }      
+      }
     }
   }
 }

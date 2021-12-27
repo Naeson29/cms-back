@@ -39,10 +39,13 @@ const getSlideImages = images => JSON.parse(images).map((key, index) => ({
     image: getImage(key, 'medium'),
 }));
 
+const truncate = (str, length) => (str.length > length ? `${str.substring(0, length)}...` : str);
+
 export {
     scrollBody,
     hasMorePage,
     parseJson,
     getImage,
     getSlideImages,
+    truncate,
 };
