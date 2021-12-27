@@ -32,7 +32,7 @@ function* updateSuccess(name) {
 
 function* updateFailure() {
     yield put(panelActions().creators.close.do());
-    yield call(toast.error, defaultErrors.update);
+    yield call(() => toast.error(defaultErrors.update, paramToast));
 }
 
 function* onDelete() {

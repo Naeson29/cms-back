@@ -47,7 +47,7 @@ const Edit = (props) => {
     const handleSubmit = () => {
         let validator = { success: true };
 
-        if (!validation) {
+        if (validation) {
             validator = validatorUtility(data, validation);
         }
         if (validator.success) {

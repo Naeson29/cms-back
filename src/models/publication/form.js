@@ -17,6 +17,9 @@ export default {
         },
     ],
     validation: {
-
+        title: {
+            name: 'titre',
+            required: true,
+        },
     },
 };
