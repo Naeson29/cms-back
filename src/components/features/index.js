@@ -13,4 +13,5 @@ export { default as Textarea } from './textarea';
 export { default as Upload } from './upload';
 export { default as Loading } from './loading';
 export { default as Sidebar } from './sidebar';
+export { default as Slider } from './slider';
 export { default as privateRoutes } from './privateRoutes';
