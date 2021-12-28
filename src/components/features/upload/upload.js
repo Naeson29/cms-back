@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ImageUploading from 'react-images-uploading';
 import { HiTrash } from 'react-icons/hi';
-import { RiChatDeleteFill } from 'react-icons/ri';
+import { TiDelete } from 'react-icons/ti';
 import { Button } from '..';
 
 
@@ -43,18 +43,20 @@ const Upload = (props) => {
                                 <div className="images-list">
                                     {
                                         imageList.map((image, index) => (
-                                            <div key={index.toString()} className="image-item" style={{ backgroundImage: `url('${image.data_url}')` }}>
-                                                <Button
-                                                    action={() => onImageRemove(index)}
-                                                    className="button trash"
-                                                    icon={RiChatDeleteFill}
-                                                />
+                                            <div key={index.toString()} className="image-item">
+                                                <div className="image-bg" style={{ backgroundImage: `url('${image.data_url}')` }}>
+                                                    <Button
+                                                        action={() => onImageRemove(index)}
+                                                        className="button trash"
+                                                        icon={TiDelete}
+                                                    />
+                                                </div>
                                             </div>
                                         ))
                                     }
                                 </div>
                                 {
-                                    imageList.length > 0 && (
+                                    imageList.length > 1 && (
                                         <div className="remove-all">
                                             <Button
                                                 action={onImageRemoveAll}

@@ -15,6 +15,14 @@ export default {
             name: 'content',
             column: 1,
         },
+        {
+            element: 'upload',
+            name: 'imagesUpload',
+            multiple: true,
+            maxNumber: 5,
+            label: 'Images publication',
+            column: 2,
+        },
     ],
     validation: {
         title: {
