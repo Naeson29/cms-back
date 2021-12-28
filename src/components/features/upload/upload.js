@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ImageUploading from 'react-images-uploading';
+import { HiTrash } from 'react-icons/hi';
+import { RiChatDeleteFill } from 'react-icons/ri';
+import { Button } from '..';
 
 
 const Upload = (props) => {
@@ -25,7 +28,6 @@ const Upload = (props) => {
                 imageList,
                 onImageUpload,
                 onImageRemoveAll,
-                onImageUpdate,
                 onImageRemove,
                 isDragging,
                 dragProps,
@@ -37,18 +39,31 @@ const Upload = (props) => {
                     </button>
                     {
                         imageList.length > 0 && (
-                            <div>
-                                <button type="button" onClick={onImageRemoveAll}>Remove all images</button>
-                                {
-                                    imageList.map((image, index) => (
-                                        <div key={index.toString()} className="image-item">
-                                            <img src={image.data_url} alt="" width="100" />
-                                            <div className="image-item__btn-wrapper">
-                                                <button type="button" onClick={() => onImageUpdate(index)}>Update</button>
-                                                <button type="button" onClick={() => onImageRemove(index)}>Remove</button>
+                            <div className="content-upload">
+                                <div className="images-list">
+                                    {
+                                        imageList.map((image, index) => (
+                                            <div key={index.toString()} className="image-item" style={{ backgroundImage: `url('${image.data_url}')` }}>
+                                                <Button
+                                                    action={() => onImageRemove(index)}
+                                                    className="button trash"
+                                                    icon={RiChatDeleteFill}
+                                                />
                                             </div>
+                                        ))
+                                    }
+                                </div>
+                                {
+                                    imageList.length > 0 && (
+                                        <div className="remove-all">
+                                            <Button
+                                                action={onImageRemoveAll}
+                                                className="button trash"
+                                                icon={HiTrash}
+                                                text="Tout supprimer"
+                                            />
                                         </div>
-                                    ))
+                                    )
                                 }
                             </div>
                         )

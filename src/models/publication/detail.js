@@ -18,8 +18,14 @@ export default (key) => {
                 <p>{content}</p>
             </div>
             <div className="options">
-                <p className="title">Médias</p>
-                <Slider images={images} className="slide-publication" />
+                {
+                    images && (
+                        <div>
+                            <p className="title">Médias</p>
+                            <Slider images={images} className="slide-publication" />
+                        </div>
+                    )
+                }
             </div>
         </div>
     );
