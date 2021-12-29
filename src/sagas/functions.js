@@ -22,7 +22,7 @@ function* createSuccess(name) {
 
 function* createFailure() {
     yield put(panelActions().creators.close.do());
-    yield call(toast.error, defaultErrors.create);
+    yield call(() => toast.error(defaultErrors.create, paramToast));
 }
 
 function* updateSuccess(name) {

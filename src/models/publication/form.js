@@ -16,6 +16,13 @@ export default () => ({
             column: 1,
         },
         {
+            element: 'input',
+            name: 'type',
+            type: 'hidden',
+            value: 1,
+            column: 1,
+        },
+        {
             element: 'upload',
             name: 'imagesUpload',
             multiple: true,
