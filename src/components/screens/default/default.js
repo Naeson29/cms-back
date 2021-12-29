@@ -61,7 +61,7 @@ Default.propTypes = {
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     card: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    form: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+    form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 };
 
 Default.defaultProps = {

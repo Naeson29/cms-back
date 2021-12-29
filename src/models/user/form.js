@@ -1,4 +1,4 @@
-export default {
+export default action => ({
     columns: 2,
     elements: [
         {
@@ -22,22 +22,26 @@ export default {
             name: 'email',
             column: 1,
         },
-        {
-            element: 'input',
-            label: 'Mot de passe',
-            placeholder: '*************',
-            name: 'password',
-            type: 'password',
-            column: 1,
-        },
-        {
-            element: 'input',
-            label: 'Confirmation',
-            placeholder: 'Confirmation du mot de passe',
-            name: 'confirmation',
-            type: 'password',
-            column: 1,
-        },
+        ...action === 'create' ? [
+            {
+                element: 'input',
+                label: 'Mot de passe',
+                placeholder: '*************',
+                name: 'password',
+                type: 'password',
+                column: 1,
+                update: false,
+            },
+            {
+                element: 'input',
+                label: 'Confirmation',
+                placeholder: 'Confirmation du mot de passe',
+                name: 'confirmation',
+                type: 'password',
+                column: 1,
+                update: false,
+            },
+        ] : [],
         {
             element: 'input',
             name: 'role',
@@ -68,18 +72,20 @@ export default {
             name: 'nom',
             required: true,
         },
-        password: {
-            name: 'mot de passe',
-            required: true,
-            rule: 'password',
-        },
-        confirmation: {
-            name: 'confirmation',
-            required: true,
+        ...action === 'create' && {
+            password: {
+                name: 'mot de passe',
+                required: true,
+                rule: 'password',
+            },
+            confirmation: {
+                name: 'confirmation',
+                required: true,
+            },
         },
         imagesUpload: {
             rule: 'sizeImage',
             maxSize: 2000000,
         },
     },
-};
+});

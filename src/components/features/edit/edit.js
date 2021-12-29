@@ -24,7 +24,7 @@ const Edit = (props) => {
     const { form, state, action, create, update, openModal } = props;
     const { detail } = state;
     const isUpdate = action === 'update';
-    const { elements = [], validation = false, columns = 1 } = form;
+    const { elements = [], validation = false, columns = 1 } = form(action);
 
     const getValue = (item) => {
         let valueElement = '';
@@ -93,7 +93,7 @@ const Edit = (props) => {
 };
 
 Edit.propTypes = {
-    form: PropTypes.oneOfType([PropTypes.object]),
+    form: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
     action: PropTypes.string,
     create: PropTypes.func,
@@ -102,7 +102,7 @@ Edit.propTypes = {
 };
 
 Edit.defaultProps = {
-    form: {},
+    form: () => ({}),
     state: {},
     action: 'create',
     create: () => {},

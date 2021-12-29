@@ -1,4 +1,4 @@
-export default {
+export default () => ({
     columns: 2,
     elements: [
         {
@@ -30,4 +30,4 @@ export default {
             required: true,
         },
     },
-};
+});
