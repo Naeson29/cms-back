@@ -27,7 +27,17 @@ const Filter = (props) => {
             />
             {
                 open && (
-                    <div className="filter-box" />
+                    <div className="filter-box">
+                        <div className="filter-content border">
+                            <p className="title">Rechercher</p>
+                        </div>
+                        <div className="filter-content border">
+                            <p className="title">Classer</p>
+                        </div>
+                        <div className="filter-content">
+                            <p className="title">Filtrer</p>
+                        </div>
+                    </div>
                 )
             }
         </div>

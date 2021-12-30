@@ -1,6 +1,12 @@
 * {
   margin:0;
   padding:0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
@@ -189,15 +195,30 @@ body {
               align-items: center;
 
               .filter-box {
+                width: 100%;
                 position: absolute;
                 top:100%;
                 right:0;
-                width:100%;
-                height: 200px;
                 background-color: $grey-light-background;
                 z-index: 1;
                 border-bottom: 1px solid rgba(0,0,0,0.1);
                 border-top: 1px solid rgba(0,0,0,0.1);
+                display: flex;
+                padding: .8rem;
+
+                .filter-content {
+                  flex:1;
+                  display: flex;
+                  flex-direction: column;
+                  padding: 0.3rem 0.6rem;
+
+                  &.border {
+                    border-right:1px solid rgba(0,0,0,0.1)
+                  }
+                  .title {
+                    font-size: 15px;
+                  }
+                }
               }
             }
           }

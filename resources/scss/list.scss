@@ -76,9 +76,12 @@
 
     .card {
       flex:1;
+      display: flex;
       justify-content: space-between;
+      flex-direction: column;
       margin:0 .8rem;
       padding: 1.5rem;
+      border-radius: 6px;
 
       @media (max-width: 568px) {
         padding: 1rem;
