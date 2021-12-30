@@ -43,7 +43,11 @@ const HeaderScreen = (props) => {
                 <span>{title}</span>
             </div>
             <div className="content right">
-                <Filter />
+                {
+                    (!panels || !isOpen(panel)) && (
+                        <Filter />
+                    )
+                }
             </div>
         </div>
     );
