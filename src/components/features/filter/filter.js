@@ -22,7 +22,7 @@ const Filter = (props) => {
         <div className="filter">
             <Button
                 action={toogleFilter}
-                className="button square"
+                className="button button-filter"
                 icon={BsFilterSquareFill}
             />
             {

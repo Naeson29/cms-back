@@ -194,8 +194,10 @@ body {
                 right:0;
                 width:100%;
                 height: 200px;
-                background-color: rgba(255,255,255,0.9);
+                background-color: $grey-light-background;
                 z-index: 1;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+                border-top: 1px solid rgba(0,0,0,0.1);
               }
             }
           }
@@ -204,7 +206,7 @@ body {
             cursor: pointer;
             background-color: transparent;
 
-            &.circle {
+            &.add {
               .icon {
                 fill : $primary-color;
                 @media (min-width: 1025px) {
@@ -220,7 +222,7 @@ body {
                 }
               }
             }    
-            &.square {
+            &.button-filter {
               .icon {
                 fill : $primary-color;
                 @media (min-width: 1025px) {

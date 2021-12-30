@@ -36,7 +36,7 @@ const HeaderScreen = (props) => {
                         <Button
                             action={() => (isOpen(panel) ? closePanel() : openPanel(actions.create))}
                             icon={isOpen(panel) ? HiArrowCircleLeft : HiPlusCircle}
-                            className="button circle"
+                            className="button add"
                         />
                     )
                 }
