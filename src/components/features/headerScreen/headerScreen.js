@@ -5,7 +5,10 @@ import {
 } from 'react-icons/hi';
 
 // Feature
-import { Button } from '..';
+import {
+    Button,
+    Filter,
+} from '..';
 
 // Utils
 import { panelUtility } from '../../utilities';
@@ -33,13 +36,15 @@ const HeaderScreen = (props) => {
                         <Button
                             action={() => (isOpen(panel) ? closePanel() : openPanel(actions.create))}
                             icon={isOpen(panel) ? HiArrowCircleLeft : HiPlusCircle}
-                            className="button"
+                            className="button circle"
                         />
                     )
                 }
                 <span>{title}</span>
             </div>
-            <div className="content right" />
+            <div className="content right">
+                <Filter />
+            </div>
         </div>
     );
 };

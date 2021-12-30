@@ -14,4 +14,5 @@ export { default as Upload } from './upload';
 export { default as Loading } from './loading';
 export { default as Sidebar } from './sidebar';
 export { default as Slider } from './slider';
+export { default as Filter } from './filter';
 export { default as privateRoutes } from './privateRoutes';

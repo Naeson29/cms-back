@@ -142,6 +142,7 @@ body {
           height : $header-height;
           display : flex;
           align-items : center;
+          justify-content: space-between;
 
           box-shadow: 0 -1px 3px 1px rgba(0,0,0,0.35);
           -webkit-box-shadow: 0 -1px 3px 1px rgba(0,0,0,0.35);
@@ -165,6 +166,7 @@ body {
           }
 
           .content {
+            height: 100%;
             display: flex;
             align-items: center;
 
@@ -179,26 +181,59 @@ body {
             &.left {
               justify-content: flex-start;
             }
+
+            .filter {
+              height:inherit;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              .filter-box {
+                position: absolute;
+                top:100%;
+                right:0;
+                width:100%;
+                height: 200px;
+                background-color: rgba(255,255,255,0.9);
+                z-index: 1;
+              }
+            }
           }
 
           .button {
             cursor: pointer;
             background-color: transparent;
 
-            .icon {
-              fill : $primary-color;
-              @media (min-width: 1025px) {
-                height: 40px;
-                width: 40px;
-                margin-right: 15px;
+            &.circle {
+              .icon {
+                fill : $primary-color;
+                @media (min-width: 1025px) {
+                  height: 40px;
+                  width: 40px;
+                  margin-right: 15px;
+                }
+  
+                @media (max-width: 1024px) {
+                  height: 38px;
+                  width: 38px;
+                  margin-right: 10px;
+                }
               }
-
-              @media (max-width: 1024px) {
-                height: 38px;
-                width: 38px;
-                margin-right: 10px;
+            }    
+            &.square {
+              .icon {
+                fill : $primary-color;
+                @media (min-width: 1025px) {
+                  height: 30px;
+                  width: 30px;
+                }
+  
+                @media (max-width: 1024px) {
+                  height: 28px;
+                  width: 28px;
+                }
               }
-            }
+            }                 
           }
         }
       }
