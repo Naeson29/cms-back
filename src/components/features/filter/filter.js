@@ -28,14 +28,16 @@ const {
  */
 const Filter = (props) => {
     const { state, getList } = props;
-    const { params, orderColumns } = state;
-    const { order } = params;
+    const { params = {}, orderColumns } = state;
+    const { order = {} } = params;
 
     const [open, setFilter] = useState(false);
     const [paramsFilter, setParams] = useState({});
 
     useEffect(() => {
-        setParams(params);
+        if (Object.keys(params).length > 0) {
+            setParams(params);
+        }
     }, [params]);
 
     const toogleFilter = () => setFilter(!open);
