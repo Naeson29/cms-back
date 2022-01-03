@@ -226,7 +226,6 @@ body {
                   .content-search {
                     display: flex;
                     align-items: center;
-                    max-width: 400px;
 
                     .container-field {
                       flex: 1;
@@ -317,7 +316,7 @@ body {
               }              
             }
             &.button-apply {    
-              margin-left:1rem;
+              margin-right:1rem;
               border-radius: 4px;
               background-color: $primary-color;
 

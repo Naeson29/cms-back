@@ -67,11 +67,6 @@ const Filter = (props) => {
 
     return (
         <div className="filter">
-            <Button
-                action={toogleFilter}
-                className="button button-filter"
-                icon={BsFilterSquareFill}
-            />
             {
                 open && (
                     <Button
@@ -81,6 +76,11 @@ const Filter = (props) => {
                     />
                 )
             }
+            <Button
+                action={toogleFilter}
+                className="button button-filter"
+                icon={BsFilterSquareFill}
+            />
             {
                 open && (
                     <div className="filter-box">
