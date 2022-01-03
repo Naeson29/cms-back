@@ -34,6 +34,11 @@ export default (model) => {
         ({ loading = true }) => loading,
     );
 
+    const ParamsList = createSelector(
+        createModelIndexViewSelector(model),
+        ({ params = {} }) => params,
+    );
+
     const LoadingDetail = createSelector(
         createModelShowViewSelector(model),
         ({ loading }) => loading,
@@ -54,6 +59,7 @@ export default (model) => {
         List,
         Detail,
         Pagination,
+        ParamsList,
         LoadingList,
         LoadingDetail,
         LoadingDestroy,

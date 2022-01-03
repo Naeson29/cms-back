@@ -25,6 +25,21 @@ const paramsList = {
     },
 };
 
+const orderColumns = [
+    {
+        label: 'Prénom',
+        value: 'first_name',
+    },
+    {
+        label: 'Nom',
+        value: 'last_name',
+    },
+    {
+        label: 'Date de création',
+        value: 'created_at',
+    },
+];
+
 const { creators } = userActions();
 
 export default {
@@ -39,5 +54,6 @@ export default {
     modals,
     panels,
     paramsList,
+    orderColumns,
     creators,
 };

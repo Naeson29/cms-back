@@ -19,7 +19,14 @@ const orderSelect = {
     ],
 };
 
+const columnSelect = {
+    name: 'column',
+    className: 'select-column',
+    options: [],
+};
+
 export default {
     searchInput,
+    columnSelect,
     orderSelect,
 };

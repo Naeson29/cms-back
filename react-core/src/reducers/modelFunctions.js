@@ -3,17 +3,24 @@ export const defaultNone = state => ({
     ...state,
 });
 
-export const defaultRequest = (state, section) => ({
-    ...state,
-    views: {
-        ...state.views,
-        [section]: {
-            ...state.views[section],
-            error: null,
-            loading: true,
+export const defaultRequest = (state, section, action = {}) => {
+    const { payload = {} } = action;
+
+    return {
+        ...state,
+        views: {
+            ...state.views,
+            [section]: {
+                ...state.views[section],
+                error: null,
+                loading: true,
+                ...payload.params && {
+                    params: payload.params,
+                },
+            },
         },
-    },
-});
+    };
+};
 
 export const defaultFailure = (state, payload, section) => ({
     ...state,

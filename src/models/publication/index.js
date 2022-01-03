@@ -26,6 +26,17 @@ const paramsList = {
     },
 };
 
+const orderColumns = [
+    {
+        label: 'Titre de publication',
+        value: 'title',
+    },
+    {
+        label: 'Date de création',
+        value: 'created_at',
+    },
+];
+
 const cardType = 'medium';
 
 const { creators } = defaultActions(name);
@@ -43,5 +54,6 @@ export default {
     modals,
     panels,
     paramsList,
+    orderColumns,
     creators,
 };

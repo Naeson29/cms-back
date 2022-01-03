@@ -18,7 +18,7 @@ const Select = (props) => {
                 name={name}
                 className={`select ${className} ${(error ? ' error' : '')}`}
                 defaultValue={value}
-                onChange={e => handleChange(name, e)}
+                onChange={e => handleChange(name, e.target.value)}
             >
                 {
                     options.map((option, index) => (

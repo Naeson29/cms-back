@@ -13,7 +13,7 @@ export const createModelReducer = (initialState = {}, {
     switch (action.type) {
     case undefined: return state;
     // SEARCH
-    case SEARCH.REQUEST: return functions.searchRequest(state, 'index');
+    case SEARCH.REQUEST: return functions.searchRequest(state, 'index', action);
     case SEARCH.SUCCESS: return functions.searchSuccess(state, action.payload, 'index', action);
     case SEARCH.FAILURE: return functions.searchFailure(state, action.payload, 'index', action);
     // MORE

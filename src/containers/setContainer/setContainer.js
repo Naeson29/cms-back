@@ -53,8 +53,9 @@ const setPanelState = (state, selector) => {
  * @returns {{current, pagination, detail, list, loadings: {edit, destroy, detail, list}}}
  */
 const setScreenState = (state, selectors) => {
-    const { List, Detail, Pagination, LoadingDestroy, LoadingDetail, LoadingList, LoadingEdit } = selectors;
+    const { List, Detail, Pagination, LoadingDestroy, LoadingDetail, LoadingList, LoadingEdit, ParamsList } = selectors;
     return {
+        params: ParamsList(state),
         list: List(state),
         detail: Detail(state),
         pagination: Pagination(state),
@@ -152,6 +153,7 @@ export default ({
         form = false,
         creators = false,
         paramsList = {},
+        orderColumns = [],
         withDelete = true,
     } = model || false;
     const { GetCurrent } = setScreenSelector(user.name);
@@ -164,6 +166,7 @@ export default ({
             ...panel && setPanelState(state, setPanelSelector),
             ...model && setScreenState(state, setScreenSelector(model.name)),
 
+            orderColumns,
             cardType,
         },
         ...mapState && mapState(state),

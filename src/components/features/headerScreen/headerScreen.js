@@ -45,7 +45,7 @@ const HeaderScreen = (props) => {
             <div className="content right">
                 {
                     (!panels || !isOpen(panel)) && (
-                        <Filter />
+                        <Filter {...props} />
                     )
                 }
             </div>
