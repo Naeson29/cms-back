@@ -153,6 +153,7 @@ export default ({
         form = false,
         creators = false,
         paramsList = {},
+        paramSearch = {},
         orderColumns = [],
         withDelete = true,
     } = model || false;
@@ -166,6 +167,7 @@ export default ({
             ...panel && setPanelState(state, setPanelSelector),
             ...model && setScreenState(state, setScreenSelector(model.name)),
 
+            paramSearch,
             orderColumns,
             cardType,
         },

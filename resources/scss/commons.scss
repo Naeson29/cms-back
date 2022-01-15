@@ -303,10 +303,10 @@ body {
                   margin-right: 10px;
                 }
               }
-            }    
+            }   
             &.button-filter {
               .icon {
-                fill : $primary-color;     
+                fill : $primary-color;   
                 @media (min-width: 1025px) {
                   height: 30px;
                   width: 30px;
@@ -315,14 +315,12 @@ body {
                 @media (max-width: 1024px) {
                   height: 28px;
                   width: 28px;
-                }
+                }            
               }              
             }
-            &.button-apply {    
-              margin-right:1rem;
-              border-radius: 4px;
-              background-color: $primary-color;
-
+            &.button-apply, &.button-edit {
+              background-color: $primary-color; 
+              border-radius: 4px;  
               @media (min-width: 1025px) {
                 height: 30px;
                 width: 30px;
@@ -331,12 +329,15 @@ body {
               @media (max-width: 1024px) {
                 height: 28px;
                 width: 28px;
-              }          
+              }
               .icon {
                 fill : $white;    
                 width:80%;
                 height:80%;            
               }
+            }
+            &.button-apply {    
+              margin-right:1rem;           
             }              
           }
         }

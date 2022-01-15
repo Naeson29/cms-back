@@ -26,7 +26,7 @@ function* createFailure() {
 }
 
 function* updateSuccess(name) {
-    yield put(panelActions().creators.close.do());
+    // yield put(panelActions().creators.close.do());
     yield call(() => toast.success(success[name] ? success[name].update : defaultSuccess.update, paramToast));
 }
 

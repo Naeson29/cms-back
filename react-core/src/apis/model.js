@@ -37,7 +37,9 @@ export const createModelApiClass = (HttpApi, path) => {
          * @param {object} [params={}]
          * @return {AxiosPromise}
          */
-        search = ({ params = {}, ...options } = {}) => this.get({ url: this.path, params, options });
+        search = ({ params = {}, ...options } = {}) => this.get({
+            url: this.path, params, options,
+        });
 
         /**
          *
@@ -45,7 +47,9 @@ export const createModelApiClass = (HttpApi, path) => {
          * @param {object} [params={}]
          * @return {AxiosPromise}
          */
-        more = ({ params = {}, ...options } = {}) => this.get({ url: this.path, params, options });
+        more = ({ params = {}, ...options } = {}) => this.get({
+            url: this.path, params, options,
+        });
 
         /**
          *
@@ -53,7 +57,9 @@ export const createModelApiClass = (HttpApi, path) => {
          * @param {string} id
          * @return {AxiosPromise}
          */
-        read = ({ id, params = {}, ...options }) => this.get({ url: `${this.path}/${id}`, params, options });
+        read = ({ id, params = {}, ...options }) => this.get({
+            url: `${this.path}/${id}`, params, options,
+        });
 
         /**
          *
@@ -61,7 +67,9 @@ export const createModelApiClass = (HttpApi, path) => {
          * @param {object} [data={}]
          * @return {AxiosPromise}
          */
-        create = ({ data = {}, ...options }) => this.post({ url: this.path, data, options });
+        create = ({ data = {}, ...options }) => this.post({
+            url: this.path, data, options,
+        });
 
         /**
          *
@@ -70,7 +78,9 @@ export const createModelApiClass = (HttpApi, path) => {
          * @param {object} [data={}]
          * @return {AxiosPromise}
          */
-        update = ({ id, data = {}, ...options }) => this.put({ url: `${this.path}/${id}`, data, options });
+        update = ({ id, data = {}, ...options }) => this.put({
+            url: `${this.path}/${id}`, data, options,
+        });
 
         /**
          *
@@ -78,7 +88,9 @@ export const createModelApiClass = (HttpApi, path) => {
          * @param {string} id
          * @return {AxiosPromise}
          */
-        destroy = ({ id, ...options }) => this.delete({ url: `${this.path}/${id}`, options });
+        destroy = ({ id, ...options }) => this.delete({
+            url: `${this.path}/${id}`, options,
+        });
     }
 
     return ModelApi;

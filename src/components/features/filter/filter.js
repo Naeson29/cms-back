@@ -28,11 +28,12 @@ const {
  */
 const Filter = (props) => {
     const { state, getList } = props;
-    const { params = {}, orderColumns } = state;
+    const { params = {}, orderColumns, paramSearch } = state;
     const { order = {} } = params;
 
     const [open, setFilter] = useState(false);
     const [paramsFilter, setParams] = useState({});
+    const [searchString, setSearchString] = useState('');
 
     useEffect(() => {
         if (Object.keys(params).length > 0) {
@@ -59,6 +60,20 @@ const Filter = (props) => {
                 column: paramsFilter[key].column,
                 [value]: true,
             },
+        });
+    };
+
+    const handleChangeSearch = (key, value) => {
+        setSearchString(value);
+        setParams({
+            ...paramsFilter,
+            filter: [
+                {
+                    column: key,
+                    operator: 'LIKE',
+                    value,
+                },
+            ],
         });
     };
 
@@ -89,9 +104,17 @@ const Filter = (props) => {
                         <div className="filter-content border">
                             <p className="title">Rechercher</p>
                             <div className="content-search">
-                                <Input attributes={searchInput} />
+                                <Input
+                                    attributes={{
+                                        ...searchInput,
+                                        name: paramSearch.column,
+                                    }}
+                                    value={searchString}
+                                    handleChange={handleChangeSearch}
+                                    handleKeypress={applyFilter}
+                                />
                                 <Button
-                                    action={() => {}}
+                                    action={applyFilter}
                                     className="button button-search"
                                     icon={BiSearchAlt2}
                                 />

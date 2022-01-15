@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Input = (props) => {
-    const { attributes, value, error, handleChange } = props;
+    const { attributes, value, error, handleChange, handleKeypress } = props;
     const {
         label = '', type = 'text', name = 'input', className = 'input', placeholder = '',
     } = attributes;
+
+    const onKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleKeypress();
+        }
+    };
 
     return (
         <div className={type !== 'hidden' ? 'container-field' : ''}>
@@ -20,7 +26,8 @@ const Input = (props) => {
                 className={className + (error ? ' error' : '')}
                 placeholder={placeholder}
                 defaultValue={value}
-                onChange={e => handleChange(name, e)}
+                onChange={e => handleChange(name, e.target.value)}
+                onKeyPress={onKeyPress}
                 autoComplete="new-password"
             />
         </div>
@@ -30,6 +37,7 @@ const Input = (props) => {
 Input.propTypes = {
     attributes: PropTypes.oneOfType([PropTypes.object]),
     handleChange: PropTypes.func,
+    handleKeypress: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     error: PropTypes.bool,
 };
@@ -37,6 +45,7 @@ Input.propTypes = {
 Input.defaultProps = {
     attributes: {},
     handleChange: () => {},
+    handleKeypress: () => {},
     value: '',
     error: false,
 };

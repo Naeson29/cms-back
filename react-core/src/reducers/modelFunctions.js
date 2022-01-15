@@ -188,13 +188,13 @@ export const destroyRequest = defaultRequest;
 
 export const destroySuccess = (state, { data }, section) => {
     const { views } = state;
-    delete state.data[data.id];
-    const results = views.index.results.filter(key => key !== data.id);
 
     return {
         ...state,
         data: {
-            ...state.data,
+            ...Object.keys(state.data).filter(key => key !== data.id).reduce((obj, key) => ({
+                ...obj, [key]: state.data[key],
+            }), {}),
         },
         views: {
             ...views,
@@ -206,7 +206,7 @@ export const destroySuccess = (state, { data }, section) => {
             },
             index: {
                 ...views.index,
-                results: [...results],
+                results: [...views.index.results.filter(key => key !== data.id)],
             },
         },
     };

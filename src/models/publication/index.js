@@ -26,6 +26,10 @@ const paramsList = {
     },
 };
 
+const paramSearch = {
+    column: 'title',
+};
+
 const orderColumns = [
     {
         label: 'Titre de publication',
@@ -54,6 +58,7 @@ export default {
     modals,
     panels,
     paramsList,
+    paramSearch,
     orderColumns,
     creators,
 };

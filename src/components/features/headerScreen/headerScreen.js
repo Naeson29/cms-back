@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    HiArrowCircleLeft, HiPlusCircle,
+    HiArrowCircleLeft, HiPlusCircle, HiPencil,
 } from 'react-icons/hi';
 
 // Feature
@@ -11,12 +11,19 @@ import {
 } from '..';
 
 // Utils
-import { panelUtility } from '../../utilities';
+import {
+    panelUtility,
+    permissionUtility,
+} from '../../utilities';
 
 const {
     isOpen,
     actions,
 } = panelUtility;
+
+const {
+    getPermissionModel,
+} = permissionUtility;
 
 /**
  *
@@ -25,8 +32,24 @@ const {
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { openPanel, closePanel, state, title, panels } = props;
-    const { panel } = state;
+    const { openPanel, closePanel, getDetail, state, title, panels } = props;
+    const { panel, current, model, detail } = state;
+    const { permissions } = current;
+    const permission = getPermissionModel(permissions, model);
+
+    /**
+     *
+     * @param id
+     */
+    const update = () => {
+        if (detail.id) {
+            openPanel(panelUtility.actions.update);
+            getDetail(detail.id);
+        }
+    };
+
+    const hasFilter = !panels || !isOpen(panel);
+    const hasEdit = (panels && (isOpen(panel) && panel.action === 'show') && permission.update);
 
     return (
         <div className="header-screen">
@@ -44,8 +67,17 @@ const HeaderScreen = (props) => {
             </div>
             <div className="content right">
                 {
-                    (!panels || !isOpen(panel)) && (
+                    hasFilter && (
                         <Filter {...props} />
+                    )
+                }
+                {
+                    hasEdit && (
+                        <Button
+                            action={update}
+                            className="button button-edit"
+                            icon={HiPencil}
+                        />
                     )
                 }
             </div>
@@ -58,6 +90,7 @@ HeaderScreen.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     openPanel: PropTypes.func,
     closePanel: PropTypes.func,
+    getDetail: PropTypes.func,
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
@@ -66,6 +99,7 @@ HeaderScreen.defaultProps = {
     state: {},
     openPanel: () => {},
     closePanel: () => {},
+    getDetail: () => {},
     panels: false,
 };
 

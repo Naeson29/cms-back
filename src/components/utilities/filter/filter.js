@@ -1,5 +1,4 @@
 const searchInput = {
-    name: 'search',
     className: 'search',
     placeholder: 'Texte de la recherche...',
 };

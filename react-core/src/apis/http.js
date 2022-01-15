@@ -4,7 +4,10 @@
  */
 
 import Axios from 'axios';
-import { mergeWithConcat, serializeParams } from '../helpers';
+import {
+    mergeWithConcat,
+    serializeParams,
+} from '../helpers';
 
 export const METHODS = {
     GET: 'get',
@@ -104,11 +107,15 @@ export const createHttpApiClass = (axiosRequestConfiguration) => {
                 const [url, params = {}, options = {}] = args;
                 // eslint-disable-next-line max-len, no-console
                 console.warn('Usage HttpApi.get(url, params, options) is deprecated and will be deleted in the final version of react-core@1. Please migrate to HttpApi.get({ url, params, options }) as soon as possible !');
-                return this.request(METHODS.GET)({ url, params, ...options });
+                return this.request(METHODS.GET)({
+                    url, params, ...options,
+                });
             }
 
             const { url, params = {}, options = {} } = args[0];
-            return this.request(METHODS.GET)({ url, params, ...options });
+            return this.request(METHODS.GET)({
+                url, params, ...options,
+            });
         }
 
         /**
@@ -126,11 +133,15 @@ export const createHttpApiClass = (axiosRequestConfiguration) => {
                 const [url, data = {}, options = {}] = args;
                 // eslint-disable-next-line max-len, no-console
                 console.warn('Usage HttpApi.post(url, data, options) is deprecated and will be deleted in the final version of react-core@1. Please migrate to HttpApi.post({ url, data, options }) as soon as possible !');
-                return this.request(METHODS.POST)({ url, data, ...options });
+                return this.request(METHODS.POST)({
+                    url, data, ...options,
+                });
             }
 
             const { url, data = {}, options = {} } = args[0];
-            return this.request(METHODS.POST)({ url, data, ...options });
+            return this.request(METHODS.POST)({
+                url, data, ...options,
+            });
         }
 
         /**
@@ -148,11 +159,15 @@ export const createHttpApiClass = (axiosRequestConfiguration) => {
                 const [url, data = {}, options = {}] = args;
                 // eslint-disable-next-line max-len, no-console
                 console.warn('Usage HttpApi.put(url, data, options) is deprecated and will be deleted in the final version of react-core@1. Please migrate to HttpApi.put({ url, data, options }) as soon as possible !');
-                return this.request(METHODS.PUT)({ url, data, ...options });
+                return this.request(METHODS.PUT)({
+                    url, data, ...options,
+                });
             }
 
             const { url, data = {}, options = {} } = args[0];
-            return this.request(METHODS.PUT)({ url, data, ...options });
+            return this.request(METHODS.PUT)({
+                url, data, ...options,
+            });
         }
 
         /**
@@ -170,11 +185,15 @@ export const createHttpApiClass = (axiosRequestConfiguration) => {
                 const [url, data = {}, options = {}] = args;
                 // eslint-disable-next-line max-len, no-console
                 console.warn('Usage HttpApi.patch(url, data, options) is deprecated and will be deleted in the final version of react-core@1. Please migrate to HttpApi.patch({ url, data, options }) as soon as possible !');
-                return this.request(METHODS.PATCH)({ url, data, ...options });
+                return this.request(METHODS.PATCH)({
+                    url, data, ...options,
+                });
             }
 
             const { url, data = {}, options = {} } = args[0];
-            return this.request(METHODS.PATCH)({ url, data, ...options });
+            return this.request(METHODS.PATCH)({
+                url, data, ...options,
+            });
         }
 
         /**
@@ -191,11 +210,15 @@ export const createHttpApiClass = (axiosRequestConfiguration) => {
                 const [url, options = {}] = args;
                 // eslint-disable-next-line max-len, no-console
                 console.warn('Usage HttpApi.delete(url, options) is deprecated and will be deleted in the final version of react-core@1. Please migrate to HttpApi.delete({ url, options }) as soon as possible !');
-                return this.request(METHODS.DELETE)({ url, ...options });
+                return this.request(METHODS.DELETE)({
+                    url, ...options,
+                });
             }
 
             const { url, options = {} } = args[0];
-            return this.request(METHODS.DELETE)({ url, ...options });
+            return this.request(METHODS.DELETE)({
+                url, ...options,
+            });
         }
     }
 
