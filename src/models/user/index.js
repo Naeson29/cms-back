@@ -26,8 +26,10 @@ const paramsList = {
 };
 
 const paramSearch = {
-    columns: ['first_name', 'last_name'],
-    placeholder: 'Prénom ou nom...',
+    columns: [
+        "concat(first_name, ' ', last_name)",
+    ],
+    placeholder: 'Prénom et/ou nom...',
 };
 
 const orderColumns = [
