@@ -1,8 +1,3 @@
-const searchInput = {
-    className: 'search',
-    placeholder: 'Texte de la recherche...',
-};
-
 const orderSelect = {
     name: 'order',
     className: 'select-order',
@@ -25,7 +20,6 @@ const columnSelect = {
 };
 
 export default {
-    searchInput,
     columnSelect,
     orderSelect,
 };

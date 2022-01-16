@@ -15,7 +15,6 @@ import {
 import { filterUtility } from '../../utilities';
 
 const {
-    searchInput,
     orderSelect,
     columnSelect,
 } = filterUtility;
@@ -28,7 +27,8 @@ const {
  */
 const Filter = (props) => {
     const { state, getList } = props;
-    const { params = {}, orderColumns, paramSearch } = state;
+    const { params = {}, orderColumns, paramSearch = {} } = state;
+    const { columns = [], placeholder = '' } = paramSearch;
     const { order = {} } = params;
 
     const [open, setFilter] = useState(false);
@@ -67,12 +67,12 @@ const Filter = (props) => {
         setSearchString(value);
         setParams({
             ...paramsFilter,
-            filter: [
-                {
-                    column: key,
+            search: [
+                ...columns.map(column => ({
+                    column,
                     operator: 'LIKE',
                     value,
-                },
+                })),
             ],
         });
     };
@@ -106,8 +106,9 @@ const Filter = (props) => {
                             <div className="content-search">
                                 <Input
                                     attributes={{
-                                        ...searchInput,
-                                        name: paramSearch.column,
+                                        className: 'search',
+                                        name: 'search',
+                                        placeholder,
                                     }}
                                     value={searchString}
                                     handleChange={handleChangeSearch}

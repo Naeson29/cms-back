@@ -26,7 +26,8 @@ const paramsList = {
 };
 
 const paramSearch = {
-    column: 'first_name',
+    columns: ['first_name', 'last_name'],
+    placeholder: 'Prénom ou nom...',
 };
 
 const orderColumns = [
