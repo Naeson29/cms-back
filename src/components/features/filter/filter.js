@@ -4,7 +4,10 @@ import React, {
 } from 'react';
 import { BsFilterSquareFill } from 'react-icons/bs';
 import { BiSearchAlt2 } from 'react-icons/bi';
-import { HiCheck } from 'react-icons/hi';
+import {
+    HiCheck,
+    HiX,
+} from 'react-icons/hi';
 import PropTypes from 'prop-types';
 import {
     Button,
@@ -34,6 +37,7 @@ const Filter = (props) => {
     const [open, setFilter] = useState(false);
     const [paramsFilter, setParams] = useState({});
     const [searchString, setSearchString] = useState('');
+    const [searching, setSearching] = useState(false);
 
     useEffect(() => {
         if (Object.keys(params).length > 0) {
@@ -77,9 +81,24 @@ const Filter = (props) => {
         });
     };
 
-    const applyFilter = () => {
+    const launchList = () => {
         getList({ params: paramsFilter });
         setFilter(false);
+    };
+
+    const applyFilter = () => {
+        if (paramsFilter.search) {
+            setSearching(!!searchString);
+        }
+        launchList();
+    };
+
+    const cleanSearch = () => {
+        setSearching(false);
+        setSearchString('');
+        delete paramsFilter.search;
+        setParams(paramsFilter);
+        launchList();
     };
 
     return (
@@ -119,6 +138,15 @@ const Filter = (props) => {
                                     className="button button-search"
                                     icon={BiSearchAlt2}
                                 />
+                                {
+                                    searching && (
+                                        <Button
+                                            action={cleanSearch}
+                                            className="button button-clean"
+                                            icon={HiX}
+                                        />
+                                    )
+                                }
                             </div>
                         </div>
                         <div className="filter-content border">

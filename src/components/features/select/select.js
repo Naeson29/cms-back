@@ -8,7 +8,7 @@ const Select = (props) => {
     } = attributes;
 
     return (
-        <div className="container-field">
+        <div className={`container-field container-${name}`}>
             {
                 label && (
                     <p className="label">{label}</p>

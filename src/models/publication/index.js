@@ -28,7 +28,7 @@ const paramsList = {
 
 const paramSearch = {
     columns: ['title', 'content'],
-    placeholder: 'Titre, contenu de la publication...',
+    placeholder: 'Titre, contenu...',
 };
 
 const orderColumns = [
