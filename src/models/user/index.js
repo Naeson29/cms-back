@@ -25,6 +25,10 @@ const paramsList = {
     },
 };
 
+const paramSearch = {
+    column: 'first_name',
+};
+
 const orderColumns = [
     {
         label: 'Prénom',
@@ -54,6 +58,7 @@ export default {
     modals,
     panels,
     paramsList,
+    paramSearch,
     orderColumns,
     creators,
 };
