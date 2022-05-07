@@ -6,16 +6,19 @@ import panels from './panels';
 import modals from './modals';
 import detail from './detail';
 
+// strings
 const name = 'publication';
-
 const path = 'publications';
-
 const routeName = 'Publications';
-
 const menuLabel = 'Publications';
-
 const menuIcon = BiNews;
+const cardType = 'medium';
 
+// creators
+const { creators } = defaultActions(name);
+
+
+// list params
 const paramsList = {
     params: {
         limit: 50,
@@ -25,12 +28,10 @@ const paramsList = {
         },
     },
 };
-
 const paramSearch = {
     columns: ['title', 'content'],
     placeholder: 'Titre, contenu...',
 };
-
 const orderColumns = [
     {
         label: 'Titre de publication',
@@ -41,10 +42,6 @@ const orderColumns = [
         value: 'created_at',
     },
 ];
-
-const cardType = 'medium';
-
-const { creators } = defaultActions(name);
 
 export default {
     name,

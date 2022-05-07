@@ -6,16 +6,17 @@ import panels from './panels';
 import modals from './modals';
 import detail from './detail';
 
+// strings
 const name = 'user';
-
 const path = 'users';
-
 const routeName = 'Users';
-
 const menuLabel = 'Utilisateurs';
-
 const menuIcon = ImUsers;
 
+// creators
+const { creators } = userActions();
+
+// lits params
 const paramsList = {
     params: {
         limit: 50,
@@ -24,14 +25,12 @@ const paramsList = {
         },
     },
 };
-
 const paramSearch = {
     columns: [
         "concat(first_name, ' ', last_name)",
     ],
     placeholder: 'Prénom et/ou nom...',
 };
-
 const orderColumns = [
     {
         label: 'Prénom',
@@ -46,8 +45,6 @@ const orderColumns = [
         value: 'created_at',
     },
 ];
-
-const { creators } = userActions();
 
 export default {
     name,
