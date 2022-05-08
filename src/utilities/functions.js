@@ -41,6 +41,8 @@ const getSlideImages = images => JSON.parse(images).map((key, index) => ({
 
 const truncate = (str, length) => (str.length > length ? `${str.substring(0, length)}...` : str);
 
+const initials = str => str.substring(0, 1);
+
 export {
     scrollBody,
     hasMorePage,
@@ -48,4 +50,5 @@ export {
     getImage,
     getSlideImages,
     truncate,
+    initials,
 };

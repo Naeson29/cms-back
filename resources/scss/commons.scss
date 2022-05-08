@@ -2,7 +2,7 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 a {
@@ -22,7 +22,7 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-      background: $primary-color; 
+      background: $sidebar-cursor; 
   }
 
   &.lock {

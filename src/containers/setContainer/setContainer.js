@@ -155,6 +155,7 @@ export default ({
         paramsList = {},
         paramSearch = {},
         orderColumns = [],
+        filterColumns = [],
         withDelete = true,
     } = model || false;
     const { GetCurrent } = setScreenSelector(user.name);
@@ -169,6 +170,7 @@ export default ({
 
             paramSearch,
             orderColumns,
+            filterColumns,
             cardType,
         },
         ...mapState && mapState(state),

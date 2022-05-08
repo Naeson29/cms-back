@@ -59,6 +59,7 @@
     "react-input-mask": "^2.0.4",
     "react-loader-spinner": "^4.0.0",
     "react-modal": "3.14.4",
+    "react-multi-select-component": "^4.2.5",
     "react-redux": "7.2.6",
     "react-responsive-carousel": "^3.2.22",
     "react-router-dom": "^5.2.0",

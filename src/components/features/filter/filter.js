@@ -13,6 +13,7 @@ import {
     Button,
     Input,
     Select,
+    SelectMultiple,
 } from '..';
 
 import { filterUtility } from '../../utilities';
@@ -30,7 +31,7 @@ const {
  */
 const Filter = (props) => {
     const { state, getList } = props;
-    const { params = {}, orderColumns, paramSearch = {} } = state;
+    const { params = {}, orderColumns, filterColumns, paramSearch = {} } = state;
     const { columns = [], placeholder = '' } = paramSearch;
     const { order = {} } = params;
 
@@ -38,6 +39,7 @@ const Filter = (props) => {
     const [paramsFilter, setParams] = useState({});
     const [searchString, setSearchString] = useState('');
     const [searching, setSearching] = useState(false);
+    const [selectedMultiple, setSelectedMultiple] = useState([]);
 
     useEffect(() => {
         if (Object.keys(params).length > 0) {
@@ -64,6 +66,15 @@ const Filter = (props) => {
                 column: paramsFilter[key].column,
                 [value]: true,
             },
+        });
+    };
+
+    const handleChangeFilter = (value) => {
+        setSelectedMultiple(value);
+        const filter = value.map(key => key.value);
+        setParams({
+            ...paramsFilter,
+            filter: filterColumns.length !== filter.length ? filter : [],
         });
     };
 
@@ -169,6 +180,13 @@ const Filter = (props) => {
                         </div>
                         <div className="filter-content">
                             <p className="title">Filtrer</p>
+                            <SelectMultiple
+                                attributes={{
+                                    options: filterColumns,
+                                }}
+                                value={selectedMultiple}
+                                handleChange={handleChangeFilter}
+                            />
                         </div>
                     </div>
                 )

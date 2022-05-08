@@ -1,30 +1,45 @@
 
 import React from 'react';
 import moment from 'moment';
+import { HiCheckCircle } from 'react-icons/hi';
 import {
     getImage,
     truncate,
+    initials,
 } from '../../utilities/functions';
 
 export default (key) => {
-    const { title, content, images, created } = key;
+    const { title, content, images, created, user, published } = key;
     const date = `${moment(created).format('DD/MM/YYYY')} à ${moment(created).format('HH[h]mm')}`;
+    const userdata = user.data;
+    const userImage = userdata.image;
 
     return (
         <div className="card-publication">
-            <div>
+            <div className="title-section">
                 <p className="title">
-                    {title}
-                    {' '}
-                    <span>{date}</span>
+                    <span>{title}</span>
+                    <span className="date">
+                        <HiCheckCircle className={`published ${published ? 'active' : ''}`} />
+                        {date}
+                    </span>
                 </p>
-                <p className="content">{truncate(content, 200)}</p>
+                <div className="user-section">
+                    <div
+                        style={{
+                            backgroundImage: `url(${userImage ? getImage(userImage.data, 'thumb') : './img/avatar.png'})`,
+                        }}
+                        className="image-user"
+                    />
+                    <p className="initials">{`${initials(userdata.first_name)}.${initials(userdata.last_name)}`}</p>
+                </div>
             </div>
+            <p className="content">{truncate(content, 200)}</p>
             {
                 images && (
                     <div
                         style={{
-                            backgroundImage: `url(${getImage(images.data[0], 'medium')})`,
+                            backgroundImage: `url(${getImage(images.data[0], 'normal')})`,
                         }}
                         className="image"
                     >

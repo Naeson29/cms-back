@@ -10,6 +10,7 @@ export { default as Panel } from './panel';
 export { default as Button } from './button';
 export { default as Input } from './input';
 export { default as Select } from './select';
+export { default as SelectMultiple } from './selectMultiple';
 export { default as Textarea } from './textarea';
 export { default as Upload } from './upload';
 export { default as Loading } from './loading';

@@ -42,6 +42,24 @@ const orderColumns = [
         value: 'created_at',
     },
 ];
+const filterColumns = [
+    {
+        label: 'Publiée',
+        value: {
+            column: 'published',
+            operator: '=',
+            value: 1,
+        },
+    },
+    {
+        label: 'Non publiée',
+        value: {
+            column: 'published',
+            operator: '=',
+            value: 0,
+        },
+    },
+];
 
 export default {
     name,
@@ -58,5 +76,6 @@ export default {
     paramsList,
     paramSearch,
     orderColumns,
+    filterColumns,
     creators,
 };
