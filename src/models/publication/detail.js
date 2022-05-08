@@ -15,7 +15,7 @@ export default (key) => {
                     {' '}
                     <span>{date}</span>
                 </p>
-                <p>{content}</p>
+                <p className="text-detail">{content}</p>
             </div>
             <div className="options">
                 {
