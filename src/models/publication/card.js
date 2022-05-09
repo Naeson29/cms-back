@@ -19,9 +19,9 @@ export default (key) => {
             <div className="title-section">
                 <p className="title">
                     <span>{title}</span>
-                    <span className="date">
-                        <HiCheckCircle className={`published ${published ? 'active' : ''}`} />
-                        {date}
+                    <span className="published">
+                        <HiCheckCircle className={`icon ${published ? 'active' : ''}`} />
+                        {!published ? 'Non publiée' : 'Publiée'}
                     </span>
                 </p>
                 <div className="user-section">
@@ -35,6 +35,7 @@ export default (key) => {
                 </div>
             </div>
             <p className="content">{truncate(content, 200)}</p>
+            <p className="created-date">{date}</p>
             {
                 images && (
                     <div
