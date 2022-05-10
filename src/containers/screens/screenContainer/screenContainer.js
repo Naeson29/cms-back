@@ -2,23 +2,23 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // models
-import user from '../../models/user';
+import user from '../../../models/user';
 
 // selectors
 import {
     setScreenSelector,
     setModalSelector,
     setPanelSelector,
-} from '../../selectors';
+} from '../../../selectors';
 
 // creators
 import {
     modalActions,
     panelActions,
-} from '../../actions';
+} from '../../../actions';
 
 // Screen
-import { Default } from '../../components/screens';
+import { Default } from '../../../components/screens';
 
 /**
  *

@@ -5,6 +5,7 @@ import {
     createHttpApiSaga, createHttpSaga, createModelApiSagas,
 } from '../../react-core';
 import {
+    initActions,
     navigationActions,
     userActions,
     authenticationActions,
@@ -12,6 +13,7 @@ import {
 } from '../actions';
 
 import {
+    InitApi,
     AuthenticationApi,
     UserApi,
     defaultApi,
@@ -77,6 +79,7 @@ export const authenticationSaga = () => {
 export const userSaga = () => {
     const { types, creators } = userActions();
     const getMe = createHttpApiSaga(creators.getMe, UserApi, 'getMe');
+    const init = createHttpApiSaga(initActions().creators.init, InitApi, 'init');
 
     function* getMeFailure() {
         yield put(navigationActions().creators.push.do('/login'));
@@ -85,6 +88,7 @@ export const userSaga = () => {
     function* root() {
         yield takeEvery(types.GET_ME.REQUEST, getMe);
         yield takeEvery(types.GET_ME.FAILURE, getMeFailure);
+        yield takeEvery(types.GET_ME.SUCCESS, init);
     }
 
     return {

@@ -2,7 +2,7 @@ import {
     authenticationActions,
 } from '../../../actions';
 
-const { creators } = authenticationActions()
+const { creators } = authenticationActions();
 
 export default {
     mapState: () => ({

@@ -1,5 +1,7 @@
 import { BiNews } from 'react-icons/bi';
-import { defaultActions } from '../../actions';
+import {
+    defaultActions,
+} from '../../actions';
 import card from './card';
 import form from './form';
 import panels from './panels';
@@ -28,10 +30,12 @@ const paramsList = {
         },
     },
 };
+
 const paramSearch = {
     columns: ['title', 'content'],
     placeholder: 'Titre, contenu...',
 };
+
 const orderColumns = [
     {
         label: 'Titre de publication',
@@ -42,6 +46,7 @@ const orderColumns = [
         value: 'created_at',
     },
 ];
+
 const filterColumns = [
     {
         label: 'Publiée',

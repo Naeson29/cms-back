@@ -241,6 +241,10 @@ body {
                         font-size: 13px;
                         height:35px;
                         width:100%;
+
+                        &::placeholder {
+                          color : rgb(109, 109, 109);
+                        }
                       }  
                     }
                     
@@ -267,7 +271,7 @@ body {
                     .container-field {
                       flex: 1;
 
-                      &.container-column {
+                      &.container-column, &.container-published {
                         margin-right:.8rem;
                       }
 
@@ -350,6 +354,32 @@ body {
           color: $black_text;
           font-size: 13px;
           background-color: $white;
+          height:35px;
+        }
+
+        .multi-select {
+          height:35px;
+          .dropdown-container {
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: $black_text;
+            font-size: 13px;
+          }
+          .dropdown-heading {
+            .gray {
+              color: rgb(109, 109, 109);
+            }
+          }
+          .dropdown-container, .dropdown-heading {
+            height:100%;
+          }
+          .dropdown-content {
+            padding-top:0;
+
+            .panel-content {
+              border-radius: 0;
+            }
+          }
         }
       }
     }

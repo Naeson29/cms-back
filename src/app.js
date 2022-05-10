@@ -17,7 +17,7 @@ import store, {
 import { auth } from './routes';
 
 import {
-    setContainer,
+    featureContainer,
     appContainer,
     authenticationContainer,
     privateRoutesContainer,
@@ -38,7 +38,7 @@ require('moment/locale/fr.js');
  * @constructor
  */
 export default () => {
-    const PrivateRoutes = setContainer({
+    const PrivateRoutes = featureContainer({
         component: privateRoutes,
         mapState: privateRoutesContainer.mapState,
     });
@@ -53,7 +53,7 @@ export default () => {
                                 exact
                                 path={auth.login.path}
                                 name={auth.login.name}
-                                component={setContainer({
+                                component={featureContainer({
                                     component: authentication,
                                     mapDispatch: authenticationContainer.mapDispatch,
                                     mapState: authenticationContainer.mapState,
@@ -62,9 +62,10 @@ export default () => {
                             <PrivateRoutes
                                 path="/"
                                 name="App"
-                                Fragment={setContainer({
+                                Fragment={featureContainer({
                                     component: app,
                                     mapDispatch: appContainer.mapDispatch,
+                                    mapState: appContainer.mapState,
                                 })}
                             />
                         </Switch>

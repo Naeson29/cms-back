@@ -1,4 +1,4 @@
-import { setContainer } from '../containers';
+import { screenContainer } from '../containers';
 
 const routes = (models) => {
     const modelRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].routeName).map(model => models[model]);
@@ -12,7 +12,7 @@ const routes = (models) => {
         exact: true,
         path: '/',
         name: 'Dashboard',
-        component: setContainer(),
+        component: screenContainer(),
         id,
     },
     ...modelRoutes.map((model) => {
@@ -22,7 +22,7 @@ const routes = (models) => {
             exact: true,
             path: `/${name}`,
             name: routeName,
-            component: setContainer({
+            component: screenContainer({
                 model,
                 panel,
                 modal,

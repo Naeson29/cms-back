@@ -42,7 +42,12 @@ class App extends Component {
 
     render() {
         const { props, state } = this;
+        const { loaded, initLoading } = props;
         const { menu } = state;
+
+        if (initLoading) {
+            return null;
+        }
 
         const propsMenu = {
             menu, toggle: this.toggleMenu, models,
@@ -87,10 +92,14 @@ class App extends Component {
 
 App.propTypes = {
     load: PropTypes.func,
+    loaded: PropTypes.bool,
+    initLoading: PropTypes.bool,
 };
 
 App.defaultProps = {
     load: () => {},
+    loaded: false,
+    initLoading: true,
 };
 
 export default App;

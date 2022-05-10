@@ -180,13 +180,16 @@ const Filter = (props) => {
                         </div>
                         <div className="filter-content">
                             <p className="title">Filtrer</p>
-                            <SelectMultiple
-                                attributes={{
-                                    options: filterColumns,
-                                }}
-                                value={selectedMultiple}
-                                handleChange={handleChangeFilter}
-                            />
+                            <div className="content-order">
+                                <SelectMultiple
+                                    attributes={{
+                                        options: filterColumns,
+                                        name: 'published',
+                                    }}
+                                    value={selectedMultiple}
+                                    handleChange={handleChangeFilter}
+                                />
+                            </div>
                         </div>
                     </div>
                 )

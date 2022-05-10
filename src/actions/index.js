@@ -1,4 +1,5 @@
 export {
+    init as initActions,
     authentication as authenticationActions,
     defaultAction as defaultActions,
     user as userActions,

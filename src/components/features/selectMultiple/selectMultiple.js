@@ -7,12 +7,24 @@ const SelectMultiple = (props) => {
 
     const {
         label = '',
-        name = 'select',
-        className = '',
+        name = 'multi-select',
+        className = 'multi-select',
         options = [],
         hasSelectAll = true,
         disableSearch = true,
     } = attributes;
+
+    const strings = {
+        allItemsAreSelected: 'Tout est sélectionné',
+        clearSearch: 'Effacer la recherche',
+        clearSelected: 'Effacer la sélection',
+        noOptions: 'Aucune option',
+        search: 'Recherche',
+        selectAll: 'Tout sélectionner',
+        selectAllFiltered: 'Tout sélectionner (Filtrés)',
+        selectSomeItems: 'Sélectionner...',
+        create: 'Créer',
+    };
 
     return (
         <div className={`container-field container-${name}`}>
@@ -29,6 +41,7 @@ const SelectMultiple = (props) => {
                 labelledBy="Select"
                 hasSelectAll={hasSelectAll}
                 disableSearch={disableSearch}
+                overrideStrings={strings}
             />
         </div>
     );

@@ -56,6 +56,17 @@ export const defaultAction = (name = '') => {
     };
 };
 
+export const init = () => {
+    const types = {
+        INIT: createDefaultHttpActionTypes('init', 'INIT'),
+    };
+    const creators = createDefaultHttpCreators(types);
+    return {
+        types,
+        creators,
+    };
+};
+
 export const user = () => {
     const defaultTypes = {
         ...createDefaultModelActionTypes('user'),
