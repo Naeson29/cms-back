@@ -7,7 +7,7 @@ import {
     HeaderScreen, List, Panel, Modal, Loading,
 } from '../../features';
 
-class Default extends Component {
+class ScreenList extends Component {
     constructor(props) {
         super(props);
         props.getList();
@@ -54,7 +54,7 @@ class Default extends Component {
     }
 }
 
-Default.propTypes = {
+ScreenList.propTypes = {
     t: PropTypes.func,
     getList: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
@@ -64,7 +64,7 @@ Default.propTypes = {
     form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 };
 
-Default.defaultProps = {
+ScreenList.defaultProps = {
     t: () => {},
     getList: () => {},
     state: {},
@@ -74,4 +74,4 @@ Default.defaultProps = {
     form: false,
 };
 
-export default withTranslation('default')(Default);
+export default withTranslation('default')(ScreenList);

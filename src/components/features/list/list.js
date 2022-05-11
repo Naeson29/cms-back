@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PropTypes from 'prop-types';
 import {
@@ -47,14 +48,16 @@ const List = (props) => {
     } = state;
     const { permissions } = current;
     const permission = getPermissionModel(permissions, model);
+    const history = useHistory();
 
     /**
      *
      * @param id
      */
     const show = (id) => {
-        openPanel(panelUtility.actions.show);
+        // openPanel(panelUtility.actions.show);
         getDetail(id);
+        history.push(`/invoices`);
     };
 
     /**

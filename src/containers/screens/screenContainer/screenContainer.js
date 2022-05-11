@@ -18,7 +18,7 @@ import {
 } from '../../../actions';
 
 // Screen
-import { Default } from '../../../components/screens';
+import { screenList } from '../../../components/screens';
 
 /**
  *
@@ -147,7 +147,7 @@ const setScreenFunctions = (dispatch, creators, paramsList) => ({
 
 export default ({
     model,
-    component = Default,
+    component = screenList,
     modal = false,
     panel = false,
     auth = true,

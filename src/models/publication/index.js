@@ -66,9 +66,22 @@ const filterColumns = [
     },
 ];
 
+const actions = [
+    {
+        value: 'index',
+    },
+    {
+        value: 'show',
+    },
+    {
+        value: 'update',
+    },
+];
+
 export default {
     name,
     routeName,
+    actions,
     path,
     menuLabel,
     menuIcon,

@@ -1,4 +1,8 @@
 import { screenContainer } from '../containers';
+import {
+    screenList,
+    screenShow,
+} from '../components/screens';
 
 const routes = (models) => {
     const modelRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].routeName).map(model => models[model]);
@@ -8,28 +12,42 @@ const routes = (models) => {
 
     let id = 1;
 
-    return [{
+    const screens = {
+        index: screenList,
+        show: screenShow,
+    };
+
+    const routeList = [{
         exact: true,
         path: '/',
         name: 'Dashboard',
         component: screenContainer(),
         id,
-    },
-    ...modelRoutes.map((model) => {
-        const { name, routeName } = model;
-        id += 1;
-        return {
-            exact: true,
-            path: `/${name}`,
-            name: routeName,
-            component: screenContainer({
-                model,
-                panel,
-                modal,
-            }),
-            id,
-        };
-    })];
+    }];
+
+    modelRoutes.forEach((model) => {
+        const { name, routeName, actions = [] } = model;
+
+        actions.forEach((action) => {
+            id += 1;
+            const pathName = action.value !== 'index' ? `${name}-${action.value}` : name;
+
+            routeList.push({
+                exact: true,
+                path: `/${pathName}`,
+                name: routeName,
+                component: screenContainer({
+                    model,
+                    component: screens[action.value],
+                    panel,
+                    modal,
+                }),
+                id,
+            });
+        });
+    });
+
+    return routeList;
 };
 
 export default routes;

@@ -46,10 +46,23 @@ const orderColumns = [
     },
 ];
 
+const actions = [
+    {
+        value: 'index',
+    },
+    {
+        value: 'show',
+    },
+    {
+        value: 'update',
+    },
+];
+
 export default {
     name,
     routeName,
     path,
+    actions,
     menuLabel,
     menuIcon,
     card,
