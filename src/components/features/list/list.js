@@ -18,7 +18,7 @@ import { hasMorePage } from '../../../utilities/functions';
 import { Button } from '..';
 
 const {
-    getPermissionModel, isDisabled,
+    getPermissionModel,
 } = permissionUtility;
 
 
@@ -53,10 +53,8 @@ const List = (props) => {
      * @param id
      */
     const show = (id) => {
-        if (permission.show) {
-            openPanel(panelUtility.actions.show);
-            getDetail(id);
-        }
+        openPanel(panelUtility.actions.show);
+        getDetail(id);
     };
 
     /**
@@ -64,19 +62,17 @@ const List = (props) => {
      * @param key
      * @param userMe
      */
-    const remove = (key, permissionRemove) => {
-        if (permission.delete && permissionRemove) openModal(modalUtility.actions.destroy(key, modals.destroy));
+    const remove = (key) => {
+        openModal(modalUtility.actions.destroy(key, modals.destroy));
     };
 
     /**
      *
      * @param id
      */
-    const update = (id, permissionUpdate) => {
-        if (permission.update && permissionUpdate) {
-            openPanel(panelUtility.actions.update);
-            getDetail(id);
-        }
+    const update = (id) => {
+        openPanel(panelUtility.actions.update);
+        getDetail(id);
     };
 
     const hasMore = hasMorePage(pagination);
@@ -97,6 +93,10 @@ const List = (props) => {
                     const permissionRemove = !userModel || (userModel && (current.id !== key.id) && (current.role < key.role));
                     const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role < key.role));
 
+                    const hasUpdate = (panels && panels.update) && (permission.update && permissionUpdate);
+                    const hasDelete = withDelete && (permission.delete && permissionRemove);
+                    const hasShow = (panels && panels.show) && permission.show;
+
                     return (
                         <div
                             className={`card-container ${type}`}
@@ -109,34 +109,31 @@ const List = (props) => {
                                 <div className="action">
                                     <div className="button-container left">
                                         {
-                                            (panels && panels.update) && (
+                                            hasUpdate && (
                                                 <Button
-                                                    action={() => update(key.id, permissionUpdate)}
+                                                    action={() => update(key.id)}
                                                     className="button edit"
                                                     icon={HiPencil}
-                                                    disabled={isDisabled(!permission.update || !permissionUpdate)}
                                                 />
                                             )
                                         }
                                         {
-                                            withDelete && (
+                                            hasDelete && (
                                                 <Button
-                                                    action={() => remove(key, permissionRemove)}
+                                                    action={() => remove(key)}
                                                     className="button trash"
                                                     icon={HiTrash}
-                                                    disabled={isDisabled(!permission.delete || !permissionRemove)}
                                                 />
                                             )
                                         }
                                     </div>
                                     {
-                                        (panels && panels.show) && (
+                                        hasShow && (
                                             <div className="button-container right">
                                                 <Button
                                                     action={() => show(key.id)}
                                                     className="button show"
                                                     icon={HiSearch}
-                                                    disabled={isDisabled(!permission.show)}
                                                 />
                                             </div>
                                         )
