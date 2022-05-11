@@ -1,5 +1,5 @@
 export {
-    InitApi,
+    AppApi,
     AuthenticationApi,
     UserApi,
     defaultApi,

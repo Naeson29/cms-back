@@ -1,19 +1,19 @@
 import { createSelector } from 'reselect';
 
-const getInitSubState = ({ init = {} }) => init;
+const getAppSubState = ({ app = {} }) => app;
 
 const GetData = createSelector(
-    getInitSubState,
+    getAppSubState,
     ({ data }) => data,
 );
 
 const GetErrors = createSelector(
-    getInitSubState,
+    getAppSubState,
     ({ errors }) => errors,
 );
 
 const GetLoading = createSelector(
-    getInitSubState,
+    getAppSubState,
     ({ loading }) => loading,
 );
 

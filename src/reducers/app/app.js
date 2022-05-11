@@ -1,7 +1,7 @@
-import { initActions } from '../../actions';
+import { appActions } from '../../actions';
 import { createModelReducer } from '../../../react-core';
 
-const { types } = initActions();
+const { types } = appActions();
 
 export const initialState = {
     data: {},
@@ -15,19 +15,19 @@ export const reducer = (state = initialState, action) => {
     const { payload } = action;
 
     switch (action.type) {
-    case types.INIT.REQUEST: {
+    case types.APP.REQUEST: {
         return {
             ...state,
         };
     }
-    case types.INIT.FAILURE: {
+    case types.APP.FAILURE: {
         return {
             data: {},
             errors: action?.payload,
             loading: false,
         };
     }
-    case types.INIT.SUCCESS: {
+    case types.APP.SUCCESS: {
         return {
             data: payload,
             errors: false,

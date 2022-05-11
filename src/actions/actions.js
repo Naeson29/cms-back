@@ -56,9 +56,9 @@ export const defaultAction = (name = '') => {
     };
 };
 
-export const init = () => {
+export const app = () => {
     const types = {
-        INIT: createDefaultHttpActionTypes('init', 'INIT'),
+        APP: createDefaultHttpActionTypes('app', 'APP'),
     };
     const creators = createDefaultHttpCreators(types);
     return {

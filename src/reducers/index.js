@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import initReducer from './init';
+import appReducer from './app';
 import panelReducer from './panel';
 import modalReducer from './modal';
 import authenticationReducer from './authentication';
@@ -16,7 +16,7 @@ export default combineReducers({
         ...o, [key]: defaultReducer(key),
     }), {}),
     routing: routerReducer,
-    init: initReducer,
+    app: appReducer,
     panel: panelReducer,
     modal: modalReducer,
     authentication: authenticationReducer,

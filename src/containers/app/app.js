@@ -5,7 +5,7 @@ import {
 
 // selectors
 import {
-    setInitSelector,
+    setAppSelector,
 } from '../../selectors';
 
 /**
@@ -14,7 +14,7 @@ import {
  * @param selector
  * @returns {{modal}}
  */
-const setInitState = (state, selector) => {
+const setAppState = (state, selector) => {
     const { GetData, GetLoading, GetErrors } = selector;
     return {
         initData: GetData(state),
@@ -26,7 +26,7 @@ const setInitState = (state, selector) => {
 
 export default {
     mapState: state => ({
-        ...setInitState(state, setInitSelector),
+        ...setAppState(state, setAppSelector),
     }),
     mapDispatch: dispatch => ({
         load: () => {
