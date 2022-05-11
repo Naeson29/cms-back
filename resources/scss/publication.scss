@@ -34,85 +34,60 @@
       }
     }
 
-    .title-section {
+    .header-section {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: .8rem;
 
       .title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        color : $primary-color;
-        @media (min-width: 1025px) {
-          font-size: 16px;
-        }
-  
-        @media (max-width: 1024px) {
-          font-size: 15px;
-        }
-  
-        .published {
-          color:$black-text;
-          font-size:14px;
-          margin-top:1em;
-          font-weight: normal;
-          display: flex;
-          align-items: center;
-          
-          .icon {
-            margin-right: .5rem;
-            color:$gray;
-            width: 1.5rem;
-            height: 1.5rem;
-
-            &.active {
-              color:$green;
-            }
-          }
-        }
+        color: $primary-color;
+        font-size: 16px;
+        margin-right: 1rem;
       }
-      .user-section {
+
+      .published {
+        color:$black-text;
+        font-size:14px;
+        font-weight: normal;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
         align-items: center;
-  
-        p {
-          text-transform: capitalize;
-          color:$primary-color;
-          font-size: 13px;
+        
+        .icon {
+          margin-right: .5rem;
+          color:$gray;
+          width: 1.5rem;
+          height: 1.5rem;
+
+          &.active {
+            color:$green;
+          }
         }
-        .image-user {
-          @media (min-width: 1025px) {
-            width: 2.6rem;
-            height: 2.6rem;
-          }
-  
-          @media (max-width: 1024px) {
-            width: 2.4rem;
-            height: 2.4rem;
-          }
-          margin-bottom:.5rem;
-          border-radius: 100%;
-          background-repeat:no-repeat;
-          background-position: center center;
-          background-size: cover;
-          -webkit-box-shadow: 3px 3px 5px -1px rgba(0, 0, 0, 0.6);
-          box-shadow: 3px 3px 5px -1px rgba(0, 0, 0, 0.6);
-        }  
-      }      
-    }    
+      }  
+    } 
 
     .content {
       color: $black-text;
       margin-top: 1.2rem;
+      margin-bottom: .4rem;
       line-height: 1.5;
     }
 
-    .created-date {
-      color: rgba(0,0,0,.5);
-      font-size: 14px;
-      margin-top:.6rem;
+    .info-section {
+      padding:0 5px;
+      padding-top: .4rem;
+      display: flex;
+      justify-content: flex-end;
+
+      .created-at {
+        color: rgba(0,0,0,.5);
+        font-size: 14px;
+        margin-top:.6rem;
+
+        span {
+          text-transform: capitalize;
+        }
+      }
     }
   }
 

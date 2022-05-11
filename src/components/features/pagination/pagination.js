@@ -14,7 +14,7 @@ import { Button } from '..';
  */
 const Pagination = (props) => {
     const { state, paginate } = props;
-    const { pagination } = state;
+    const { pagination, loadings } = state;
     const { current_page, last_page } = pagination;
 
     const navigate = (direction) => {
@@ -32,7 +32,7 @@ const Pagination = (props) => {
             }
         }
 
-        if (page) paginate(page);
+        if (page && !loadings.list) paginate(page);
     };
 
     return (
