@@ -62,18 +62,18 @@ const List = (props) => {
     /**
      *
      * @param key
-     * @param isUserAndMe
+     * @param userMe
      */
-    const remove = (key, isUserAndMe = false) => {
-        if (permission.delete && !isUserAndMe) openModal(modalUtility.actions.destroy(key, modals.destroy));
+    const remove = (key, permissionRemove) => {
+        if (permission.delete && permissionRemove) openModal(modalUtility.actions.destroy(key, modals.destroy));
     };
 
     /**
      *
      * @param id
      */
-    const update = (id) => {
-        if (permission.update) {
+    const update = (id, permissionUpdate) => {
+        if (permission.update && permissionUpdate) {
             openPanel(panelUtility.actions.update);
             getDetail(id);
         }
@@ -93,7 +93,9 @@ const List = (props) => {
         >
             {
                 list.map((key, index) => {
-                    const isUserAndMe = (model === 'user') && (current.id === key.id);
+                    const userModel = (model === 'user');
+                    const permissionRemove = !userModel || (userModel && (current.id !== key.id) && (current.role < key.role));
+                    const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role < key.role));
 
                     return (
                         <div
@@ -109,20 +111,20 @@ const List = (props) => {
                                         {
                                             (panels && panels.update) && (
                                                 <Button
-                                                    action={() => update(key.id)}
+                                                    action={() => update(key.id, permissionUpdate)}
                                                     className="button edit"
                                                     icon={HiPencil}
-                                                    disabled={isDisabled(permission.update)}
+                                                    disabled={isDisabled(permission.update && permissionUpdate)}
                                                 />
                                             )
                                         }
                                         {
                                             withDelete && (
                                                 <Button
-                                                    action={() => remove(key, isUserAndMe)}
+                                                    action={() => remove(key, permissionRemove)}
                                                     className="button trash"
                                                     icon={HiTrash}
-                                                    disabled={isDisabled(permission.delete && !isUserAndMe)}
+                                                    disabled={isDisabled(permission.delete && permissionRemove)}
                                                 />
                                             )
                                         }
