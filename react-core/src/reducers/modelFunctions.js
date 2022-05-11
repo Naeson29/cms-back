@@ -100,6 +100,38 @@ export const moreSuccess = (state, { data, current_page, per_page, total, last_p
 export const moreFailure = defaultFailure;
 /* MORE END */
 
+/* PAGINATE START */
+export const paginateRequest = defaultRequest;
+
+export const paginateSuccess = (state, { data, current_page, per_page, total, last_page }, section) => ({ // eslint-disable-line camelcase
+    ...state,
+    data: {
+        ...state.data,
+        ...data.reduce((acc, current) => ({
+            ...acc, [current.id]: current,
+        }), {}),
+    },
+    views: {
+        ...state.views,
+        [section]: {
+            ...state.views[section],
+            results: data.map(({ id }) => id),
+            pagination: {
+                current_page,
+                last_page,
+                per_page,
+                total,
+            },
+            loading: false,
+            error: null,
+        },
+    },
+});
+
+export const paginateFailure = defaultFailure;
+/* PAGINATE END */
+
+
 /* CREATE START */
 export const createRequest = defaultRequest;
 

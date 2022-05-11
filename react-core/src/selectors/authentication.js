@@ -23,7 +23,10 @@ export const createAuthorizationHeaderSelector = ({
     headerPrefix = DEFAULT_AUTHENTICATION_HEADER_PREFIX,
     headerSuffix = DEFAULT_AUTHENTICATION_HEADER_SUFFIX,
 } = {}) => createSelector(
-    createAuthenticationTokenSelector({ stateKey, tokenField }),
+    createAuthenticationTokenSelector({
+        stateKey,
+        tokenField,
+    }),
     token => (token ? { [headerKey]: `${headerPrefix}${token}${headerSuffix}` } : null),
 );
 

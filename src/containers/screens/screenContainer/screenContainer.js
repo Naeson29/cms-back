@@ -124,6 +124,16 @@ const setScreenFunctions = (dispatch, creators, paramsList) => ({
             }));
         }
     },
+    paginate: (page) => {
+        if (creators) {
+            dispatch(creators.paginate.request({
+                params: {
+                    ...paramsList.params,
+                    page,
+                },
+            }));
+        }
+    },
     create: (data) => {
         if (creators) dispatch(creators.create.request(data));
     },

@@ -8,6 +8,7 @@ import {
 import {
     Button,
     Filter,
+    Pagination,
 } from '..';
 
 // Utils
@@ -33,7 +34,7 @@ const {
  */
 const HeaderScreen = (props) => {
     const { openPanel, closePanel, getDetail, state, title, panels } = props;
-    const { panel, current, model, detail } = state;
+    const { panel, current, model, detail, list = [] } = state;
     const { permissions } = current;
     const permission = getPermissionModel(permissions, model);
 
@@ -48,8 +49,8 @@ const HeaderScreen = (props) => {
         }
     };
 
-    const hasFilter = !panels || !isOpen(panel);
-    const hasEdit = (panels && (isOpen(panel) && panel.action === 'show') && permission.update);
+    const hasList = (!panels || !isOpen(panel)) && list.length > 0;
+    const hasEdit = (panels && isOpen(panel && panel.action === 'show') && permission.update);
 
     return (
         <div className="header-screen">
@@ -64,10 +65,15 @@ const HeaderScreen = (props) => {
                     )
                 }
                 <span>{title}</span>
+                {
+                    hasList && (
+                        <Pagination {...props} />
+                    )
+                }
             </div>
             <div className="content right">
                 {
-                    hasFilter && (
+                    hasList && (
                         <Filter {...props} />
                     )
                 }

@@ -194,6 +194,38 @@ body {
               justify-content: flex-start;
             }
 
+            .pagination {
+              display: flex;
+              align-items: center;
+              margin-left: 2.5rem;
+
+              .pagination-current {
+                margin:0 1.5rem;
+                font-size: 15px;
+                color:$black_text;
+              }
+
+              .pagination-nav {
+                .button-paginate {
+                  width:30px;
+                  height:30px;
+                  background-color: $white;
+                  border-radius: 4px;
+                  border:1px solid rgba(0, 0, 0, 0.2);
+
+                  &.disabled {
+                    opacity: .5;
+                  }
+
+                  .icon {
+                    fill : $primary-color;
+                    height: 30px;
+                    width: 30px;                        
+                  }
+                }
+              }
+            }
+
             .filter {
               height:inherit;
               display: flex;

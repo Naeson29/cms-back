@@ -46,6 +46,29 @@ export const createDefaultModelActionCreators = types => ({
             };
         },
     },
+    paginate: {
+        request(data, meta = null) {
+            return {
+                type: types.PAGINATE.REQUEST,
+                payload: data,
+                meta,
+            };
+        },
+        success(data, meta = null) {
+            return {
+                type: types.PAGINATE.SUCCESS,
+                payload: data,
+                meta,
+            };
+        },
+        failure(data, meta = null) {
+            return {
+                type: types.PAGINATE.FAILURE,
+                payload: data,
+                meta,
+            };
+        },
+    },
     create: {
         request(data, meta = null) {
             return {

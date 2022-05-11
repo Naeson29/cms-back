@@ -12,7 +12,7 @@ import {
     permissionUtility,
 } from '../../utilities';
 
-import { hasMorePage } from '../../../utilities/functions';
+// import { hasMorePage } from '../../../utilities/functions';
 
 // features
 import { Button } from '..';
@@ -75,7 +75,7 @@ const List = (props) => {
         getDetail(id);
     };
 
-    const hasMore = hasMorePage(pagination);
+    const hasMore = false; // hasMorePage(pagination);
 
     return (
         <InfiniteScroll

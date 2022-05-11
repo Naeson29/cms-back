@@ -23,7 +23,7 @@ const { creators } = defaultActions(name);
 // list params
 const paramsList = {
     params: {
-        limit: 50,
+        limit: 6,
         order: {
             column: 'created_at',
             desc: true,

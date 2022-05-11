@@ -10,7 +10,7 @@ const Button = (props) => {
     return (
         <button
             onClick={action}
-            className={`${className} ${disabled}`}
+            className={`${className} ${disabled ? 'disabled' : ''}`}
             type="button"
         >
             {
@@ -27,7 +27,7 @@ const Button = (props) => {
 
 Button.propTypes = {
     className: PropTypes.string,
-    disabled: PropTypes.string,
+    disabled: PropTypes.bool,
     text: PropTypes.string,
     icon: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     action: PropTypes.func,
@@ -35,7 +35,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
     className: '',
-    disabled: '',
+    disabled: false,
     text: '',
     icon: false,
     action: () => {},
