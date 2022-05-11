@@ -114,7 +114,7 @@ const List = (props) => {
                                                     action={() => update(key.id, permissionUpdate)}
                                                     className="button edit"
                                                     icon={HiPencil}
-                                                    disabled={isDisabled(permission.update && permissionUpdate)}
+                                                    disabled={isDisabled(!permission.update || !permissionUpdate)}
                                                 />
                                             )
                                         }
@@ -124,7 +124,7 @@ const List = (props) => {
                                                     action={() => remove(key, permissionRemove)}
                                                     className="button trash"
                                                     icon={HiTrash}
-                                                    disabled={isDisabled(permission.delete && permissionRemove)}
+                                                    disabled={isDisabled(!permission.delete || !permissionRemove)}
                                                 />
                                             )
                                         }
@@ -136,7 +136,7 @@ const List = (props) => {
                                                     action={() => show(key.id)}
                                                     className="button show"
                                                     icon={HiSearch}
-                                                    disabled={isDisabled(permission.show)}
+                                                    disabled={isDisabled(!permission.show)}
                                                 />
                                             </div>
                                         )

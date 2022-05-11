@@ -1,6 +1,6 @@
 const getPermissionModel = (permissions, model) => (permissions !== undefined ? permissions.data[model] : {});
 
-const isDisabled = permission => (!permission ? 'disabled' : '');
+const isDisabled = disabled => (disabled ? 'disabled' : '');
 
 export default {
     getPermissionModel,
