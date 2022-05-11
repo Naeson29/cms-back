@@ -36,7 +36,7 @@ export class AuthenticationApi extends AuthApi {
 export const defaultApi = path => class Api extends createModelApiClass(BearerApi, `/${path}`) {};
 
 export class AppApi extends defaultApi('app') {
-    app = () => this.get({ url: '/app' });
+    app = () => this.get({ url: '/init' });
 }
 
 export class UserApi extends defaultApi('user') {

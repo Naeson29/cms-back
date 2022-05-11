@@ -57,6 +57,12 @@ body {
       bottom : 0;
       z-index : 1;
 
+      &.app-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       .toast-container {
         width: auto;
         min-width: 280px;

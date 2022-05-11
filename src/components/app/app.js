@@ -14,7 +14,7 @@ import routes from '../../routes';
 
 // features
 import {
-    Header, Sidebar,
+    Header, Sidebar, Loading,
 } from '../features';
 
 import { scrollBody } from '../../utilities/functions';
@@ -42,11 +42,15 @@ class App extends Component {
 
     render() {
         const { props, state } = this;
-        const { loaded, initLoading } = props;
+        const { appLoaded } = props;
         const { menu } = state;
 
-        if (initLoading) {
-            return null;
+        if (!appLoaded) {
+            return (
+                <div className="container-app app-loading">
+                    <Loading />
+                </div>
+            );
         }
 
         const propsMenu = {
@@ -92,14 +96,12 @@ class App extends Component {
 
 App.propTypes = {
     load: PropTypes.func,
-    loaded: PropTypes.bool,
-    initLoading: PropTypes.bool,
+    appLoaded: PropTypes.bool,
 };
 
 App.defaultProps = {
     load: () => {},
-    loaded: false,
-    initLoading: true,
+    appLoaded: false,
 };
 
 export default App;

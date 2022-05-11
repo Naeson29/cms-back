@@ -17,10 +17,10 @@ import {
 const setAppState = (state, selector) => {
     const { GetData, GetLoading, GetErrors } = selector;
     return {
-        initData: GetData(state),
-        initError: GetErrors(state),
-        initLoading: GetLoading(state),
-        loaded: !GetLoading(state) && !GetErrors(state),
+        appData: GetData(state),
+        appError: GetErrors(state),
+        appLoading: GetLoading(state),
+        appLoaded: !GetLoading(state) && !GetErrors(state),
     };
 };
 
