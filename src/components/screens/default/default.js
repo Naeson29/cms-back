@@ -29,14 +29,19 @@ class Default extends Component {
 
         switch (action) {
         case 'index': {
-            return loadings.list ? <Loading /> : list && (
-                <List
-                    {...props}
-                    type={card.type}
-                    content={card.component}
-                    modals={modals}
-                    loading={<Loading className="loading-list" />}
-                />
+            return list && (
+                <div>
+                    <List
+                        {...props}
+                        type={card.type}
+                        content={card.component}
+                        modals={modals}
+                        loading={<Loading className="loading-list" />}
+                    />
+                    {
+                        loadings.list && <Loading />
+                    }
+                </div>
             );
         }
         case 'show': {

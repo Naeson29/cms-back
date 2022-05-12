@@ -31,8 +31,11 @@ const {
  */
 const Filter = (props) => {
     const { state, getList } = props;
-    const { params = {}, orderColumns, filter, search = {} } = state;
-    const { columns = [], placeholder = '' } = search;
+    const { params = {}, parametersList } = state;
+
+    const { orders, filters, searches } = parametersList;
+
+    const { columns = [], placeholder = '' } = searches;
     const { order = {} } = params;
 
     const [open, setFilter] = useState(false);
@@ -74,7 +77,7 @@ const Filter = (props) => {
         const filterValue = value.map(key => key.value);
         setParams({
             ...filterParams,
-            filter: filter.length !== filterValue.length ? filterValue : [],
+            filter: filters.length !== filterValue.length ? filterValue : [],
         });
     };
 
@@ -166,7 +169,7 @@ const Filter = (props) => {
                                 <Select
                                     attributes={{
                                         ...columnSelect,
-                                        options: orderColumns,
+                                        options: orders,
                                     }}
                                     value={order.column}
                                     handleChange={handleChangeColumn}
@@ -183,7 +186,7 @@ const Filter = (props) => {
                             <div className="content-order">
                                 <SelectMultiple
                                     attributes={{
-                                        options: filter,
+                                        options: filters,
                                         name: 'published',
                                     }}
                                     value={selectedMultiple}

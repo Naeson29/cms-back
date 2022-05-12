@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-    HiPlusCircle, HiPencil,
+    HiPlusCircle, HiPencil, HiArrowCircleLeft,
 } from 'react-icons/hi';
 
 // Feature
@@ -51,27 +51,19 @@ const HeaderScreen = (props) => {
     return (
         <div className="header-screen">
             <div className="content left">
-                {
-                    index && (
-                        <Button
-                            action={create}
-                            icon={HiPlusCircle}
-                            className="button add"
-                        />
-                    )
-                }
+                <Button
+                    action={index ? create : () => history.goBack()}
+                    icon={index ? HiPlusCircle : HiArrowCircleLeft}
+                    className="button add"
+                />
                 <span>{title}</span>
                 {
-                    toolsList && (
-                        <Pagination {...props} />
-                    )
+                    toolsList && <Pagination {...props} />
                 }
             </div>
             <div className="content right">
                 {
-                    toolsList && (
-                        <Filter {...props} />
-                    )
+                    toolsList && <Filter {...props} />
                 }
                 {
                     buttonEdit && (

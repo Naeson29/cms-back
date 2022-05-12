@@ -35,13 +35,13 @@ export default {
                 },
             },
         },
-        search: {
+        searches: {
             columns: [
                 "concat(first_name, ' ', last_name)",
             ],
             placeholder: 'Prénom et/ou nom...',
         },
-        order: [
+        orders: [
             {
                 label: 'Prénom',
                 value: 'first_name',
