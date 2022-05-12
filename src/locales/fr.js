@@ -4,12 +4,12 @@ export default {
     },
     default: {
         title: {
-            default: 'Titre de la page',
+            index: 'Titre de la page',
         },
     },
     user: {
         title: {
-            default: 'Utilisateurs',
+            index: 'Utilisateurs',
             create: 'Ajouter un nouvel utilisateur',
             update: 'Modifier l\'utilisateur',
             show: 'Fiche utilisateur',
@@ -17,7 +17,7 @@ export default {
     },
     publication: {
         title: {
-            default: 'Publications',
+            index: 'Publications',
             create: 'Ajouter une nouvelle publication',
             update: 'Modifier la publication',
             show: 'Détail de la publication',

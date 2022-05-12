@@ -1,7 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-    HiArrowCircleLeft, HiPlusCircle, HiPencil,
+    HiPlusCircle, HiPencil,
 } from 'react-icons/hi';
 
 // Feature
@@ -13,14 +14,8 @@ import {
 
 // Utils
 import {
-    panelUtility,
     permissionUtility,
 } from '../../utilities';
-
-const {
-    isOpen,
-    actions,
-} = panelUtility;
 
 const {
     getPermissionModel,
@@ -33,52 +28,53 @@ const {
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { openPanel, closePanel, getDetail, state, title, panels } = props;
-    const { panel, current, model, detail, list = [] } = state;
+    const { state, title } = props;
+    const { path, action, current, model, detail, list = [] } = state;
     const { permissions } = current;
+    const history = useHistory();
     const permission = getPermissionModel(permissions, model);
 
-    /**
-     *
-     * @param id
-     */
     const update = () => {
-        if (detail.id) {
-            openPanel(panelUtility.actions.update);
-            getDetail(detail.id);
-        }
+        history.push(`/${path}/edit/${detail.id}`);
     };
 
-    const hasList = (!panels || !isOpen(panel)) && list.length > 0;
-    const hasEdit = (panels && isOpen(panel && panel.action === 'show') && permission.update);
+    const create = () => {
+        history.push(`/${path}/create`);
+    };
+
+    const index = action === 'index';
+    const show = action === 'show';
+
+    const toolsList = index && list.length > 0;
+    const buttonEdit = show && permission.update;
 
     return (
         <div className="header-screen">
             <div className="content left">
                 {
-                    (panels && panels.create) && (
+                    index && (
                         <Button
-                            action={() => (isOpen(panel) ? closePanel() : openPanel(actions.create))}
-                            icon={isOpen(panel) ? HiArrowCircleLeft : HiPlusCircle}
+                            action={create}
+                            icon={HiPlusCircle}
                             className="button add"
                         />
                     )
                 }
                 <span>{title}</span>
                 {
-                    hasList && (
+                    toolsList && (
                         <Pagination {...props} />
                     )
                 }
             </div>
             <div className="content right">
                 {
-                    hasList && (
+                    toolsList && (
                         <Filter {...props} />
                     )
                 }
                 {
-                    hasEdit && (
+                    buttonEdit && (
                         <Button
                             action={update}
                             className="button button-edit"
@@ -94,19 +90,11 @@ const HeaderScreen = (props) => {
 HeaderScreen.propTypes = {
     title: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
-    openPanel: PropTypes.func,
-    closePanel: PropTypes.func,
-    getDetail: PropTypes.func,
-    panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 HeaderScreen.defaultProps = {
     title: '',
     state: {},
-    openPanel: () => {},
-    closePanel: () => {},
-    getDetail: () => {},
-    panels: false,
 };
 
 export default HeaderScreen;

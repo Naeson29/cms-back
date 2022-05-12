@@ -105,43 +105,37 @@ const setPanelFunctions = dispatch => ({
  */
 const setScreenFunctions = (dispatch, creators, params) => ({
     getList: (parameters = {}) => {
-        if (creators) {
-            dispatch(creators.search.request({
-                ...params, ...parameters,
-            }));
-        }
+        dispatch(creators.search.request({
+            ...params, ...parameters,
+        }));
     },
     getDetail: (id) => {
-        if (creators) dispatch(creators.read.request(id));
+        dispatch(creators.read.request(id));
     },
     getMore: (page) => {
-        if (creators) {
-            dispatch(creators.more.request({
-                params: {
-                    ...params.params,
-                    page,
-                },
-            }));
-        }
+        dispatch(creators.more.request({
+            params: {
+                ...params.params,
+                page,
+            },
+        }));
     },
     paginate: (page) => {
-        if (creators) {
-            dispatch(creators.paginate.request({
-                params: {
-                    ...params.params,
-                    page,
-                },
-            }));
-        }
+        dispatch(creators.paginate.request({
+            params: {
+                ...params.params,
+                page,
+            },
+        }));
     },
     create: (data) => {
-        if (creators) dispatch(creators.create.request(data));
+        dispatch(creators.create.request(data));
     },
     update: (id, data) => {
-        if (creators) dispatch(creators.update.request(id, data));
+        dispatch(creators.update.request(id, data));
     },
     destroy: (id) => {
-        if (creators) dispatch(creators.destroy.request(id));
+        dispatch(creators.destroy.request(id));
     },
 });
 
@@ -163,9 +157,6 @@ export default ({
             filters: [],
         },
         renders = {},
-
-
-        panels = false,
         modals = false,
         form = false,
         creators = false,
@@ -179,29 +170,23 @@ export default ({
             path,
             action,
             parametersList: list,
-
+            ...modal && setModalState(state, setModalSelector),
+            ...panel && setPanelState(state, setPanelSelector),
             ...model && {
                 model: model.name,
                 ...setScreenState(state, setScreenSelector(model.name)),
             },
-
-            ...modal && setModalState(state, setModalSelector),
-            ...panel && setPanelState(state, setPanelSelector),
         },
         ...mapState && mapState(state),
     });
 
     const mapDispatchToProps = dispatch => ({
         ...mapDispatch && mapDispatch(dispatch),
-        ...model && setScreenFunctions(dispatch, creators, list.parameters),
-
+        ...creators && setScreenFunctions(dispatch, creators, list.parameters),
         ...modal && setModalFunctions(dispatch),
         ...panel && setPanelFunctions(dispatch),
-
         ...renders.card && { card: renders.card },
         ...renders.detail && { detail: renders.detail },
-
-        ...panels && { panels },
         ...modals && { modals },
         ...form && { form },
 

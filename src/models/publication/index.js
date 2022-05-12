@@ -4,7 +4,6 @@ import {
 } from '../../actions';
 import card from './card';
 import form from './form';
-import panels from './panels';
 import modals from './modals';
 import detail from './detail';
 
@@ -13,13 +12,16 @@ const { creators } = defaultActions(name);
 
 export default {
     name,
-    creators,
-    form,
-    modals,
-    panels,
 
     path: 'publications',
+
     routeName: 'Publications',
+
+    creators,
+
+    form,
+
+    modals,
 
     menu: {
         label: 'Publications',

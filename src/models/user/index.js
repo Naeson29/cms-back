@@ -2,7 +2,6 @@ import { ImUsers } from 'react-icons/im';
 import { userActions } from '../../actions';
 import card from './card';
 import form from './form';
-import panels from './panels';
 import modals from './modals';
 import detail from './detail';
 
@@ -11,14 +10,16 @@ const { creators } = userActions();
 
 export default {
     name,
-    creators,
-    form,
-    modals,
-    panels,
 
     path: 'users',
 
     routeName: 'Users',
+
+    creators,
+
+    form,
+
+    modals,
 
     menu: {
         label: 'Utilisateurs',

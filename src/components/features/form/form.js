@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { Button } from '..';
@@ -17,13 +18,13 @@ const Form = (props) => {
         handleSubmit,
         handleChange,
         handleUpload,
-        closePanel,
         errors,
         data,
         columns,
         action,
     } = props;
 
+    const history = useHistory();
     const isUpdate = action === 'update';
 
     const classNames = {
@@ -66,7 +67,7 @@ const Form = (props) => {
             </div>
             <div className="action">
                 <Button
-                    action={closePanel}
+                    action={() => history.goBack()}
                     className="button cancel"
                     text="Annuler"
                 />
@@ -85,7 +86,6 @@ Form.propTypes = {
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
     handleUpload: PropTypes.func,
-    closePanel: PropTypes.func,
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     data: PropTypes.oneOfType([PropTypes.object]),
     columns: PropTypes.number,
@@ -97,7 +97,6 @@ Form.defaultProps = {
     handleSubmit: () => {},
     handleChange: () => {},
     handleUpload: () => {},
-    closePanel: () => {},
     errors: false,
     data: {},
     columns: 1,

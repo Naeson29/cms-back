@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Utils
-import { panelUtility } from '../../utilities';
-
-const {
-    isOpen, getContent,
-} = panelUtility;
-
 /**
  *
  * @param props
@@ -15,20 +8,18 @@ const {
  * @constructor
  */
 const Panel = (props) => {
-    const { state, panels, loading } = props;
-    const { panel = {}, loadings = {} } = state;
-    const Content = getContent(panel, panels);
-    const isLoading = (loadings.detail || loadings.edit);
+    const { state, content } = props;
+    const { panel = {} } = state;
 
     return (
         <div>
             {
-                isOpen(panel)
+                panel.open
                 && (
                     <div className="panel-container right">
                         <div className="panel">
                             <div className="content-panel">
-                                { isLoading ? loading : <Content {...props} action={panel.action} /> }
+                                { content }
                             </div>
                         </div>
                     </div>
@@ -40,14 +31,12 @@ const Panel = (props) => {
 
 Panel.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
-    panels: PropTypes.oneOfType([PropTypes.object]),
-    loading: PropTypes.element,
+    content: PropTypes.element,
 };
 
 Panel.defaultProps = {
     state: {},
-    panels: {},
-    loading: (<div />),
+    content: (<div />),
 };
 
 export default Panel;

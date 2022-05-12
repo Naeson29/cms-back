@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 
 // features
 import {
-    HeaderScreen, List, Panel, Modal, Loading, Show,
+    HeaderScreen, List, Panel, Modal, Loading, Show, Edit,
 } from '../../features';
 
 class Default extends Component {
@@ -18,13 +18,13 @@ class Default extends Component {
             props.getList();
         }
 
-        if (action === 'show') {
+        if (action === 'show' || action === 'update') {
             props.getDetail(match.params.id);
         }
     }
 
     screen(props) {
-        const { state, modals, card, detail } = props;
+        const { state, modals, card, detail, form, create, update } = props;
         const { action, loadings = {}, list = false } = state;
 
         switch (action) {
@@ -48,10 +48,22 @@ class Default extends Component {
             );
         }
         case 'create': {
-            return loadings.detail ? <Loading /> : (
-                <Show
+            return (
+                <Edit
+                    action={action}
                     state={state}
-                    detail={detail.component}
+                    form={form}
+                    create={create}
+                />
+            );
+        }
+        case 'update': {
+            return loadings.detail ? <Loading /> : (
+                <Edit
+                    action={action}
+                    state={state}
+                    form={form}
+                    update={update}
                 />
             );
         }
@@ -63,26 +75,22 @@ class Default extends Component {
 
     render() {
         const { props } = this;
-        const { t, state, panels, modals, form } = props;
-        const { model = 'default', panel = {} } = state;
+        const { t, state, modals } = props;
+        const { model = 'default', action = 'index' } = state;
 
         return (
             <div className={`fragment ${model}`}>
                 <HeaderScreen
                     {...props}
-                    title={t(`${model}:title:${!panel.open ? 'default' : panel.action}`)}
+                    title={t(`${model}:title:${action}`)}
                 />
-                { this.screen(props) }
                 {
-                    panels && (
-                        <Panel
-                            {...props}
-                            panels={panels}
-                            form={form}
-                            loading={<Loading />}
-                        />
-                    )
+                    this.screen(props)
                 }
+                <Panel
+                    state={state}
+                    content={<div />}
+                />
                 {
                     modals && (
                         <Modal {...props} />

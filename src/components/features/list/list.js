@@ -8,7 +8,6 @@ import {
 
 // Utils
 import {
-    panelUtility,
     modalUtility,
     permissionUtility,
 } from '../../utilities';
@@ -32,14 +31,11 @@ const {
 const List = (props) => {
     const {
         state,
-        panels,
-        getDetail,
         getMore,
         type,
         openModal,
         content,
         loading,
-        openPanel,
         withDelete,
         modals = {},
     } = props;
@@ -55,7 +51,6 @@ const List = (props) => {
      * @param id
      */
     const show = (id) => {
-        // openPanel(panelUtility.actions.show);
         history.push(`/${path}/detail/${id}`);
     };
 
@@ -73,8 +68,7 @@ const List = (props) => {
      * @param id
      */
     const update = (id) => {
-        openPanel(panelUtility.actions.update);
-        getDetail(id);
+        history.push(`/${path}/edit/${id}`);
     };
 
     const hasMore = false; // hasMorePage(pagination);
@@ -95,9 +89,8 @@ const List = (props) => {
                     const permissionRemove = !userModel || (userModel && (current.id !== key.id) && (current.role < key.role));
                     const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role < key.role));
 
-                    const hasUpdate = (panels && panels.update) && (permission.update && permissionUpdate);
+                    const hasUpdate = permission.update && permissionUpdate;
                     const hasDelete = withDelete && (permission.delete && permissionRemove);
-                    const hasShow = (panels && panels.show) && permission.show;
 
                     return (
                         <div
@@ -130,7 +123,7 @@ const List = (props) => {
                                         }
                                     </div>
                                     {
-                                        hasShow && (
+                                        permission.show && (
                                             <div className="button-container right">
                                                 <Button
                                                     action={() => show(key.id)}
@@ -154,11 +147,8 @@ List.propTypes = {
     type: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
     modals: PropTypes.oneOfType([PropTypes.object]),
-    panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     loading: PropTypes.element,
-    getDetail: PropTypes.func,
     getMore: PropTypes.func,
-    openPanel: PropTypes.func,
     openModal: PropTypes.func,
     content: PropTypes.func,
     withDelete: PropTypes.bool,
@@ -168,12 +158,9 @@ List.defaultProps = {
     type: 'small',
     state: {},
     modals: {},
-    panels: false,
     withDelete: true,
     loading: (<div />),
-    getDetail: () => {},
     getMore: () => {},
-    openPanel: () => {},
     openModal: () => {},
     content: () => {},
 };
