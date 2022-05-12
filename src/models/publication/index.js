@@ -8,92 +8,72 @@ import panels from './panels';
 import modals from './modals';
 import detail from './detail';
 
-// strings
 const name = 'publication';
-const path = 'publications';
-const routeName = 'Publications';
-const menuLabel = 'Publications';
-const menuIcon = BiNews;
-const cardType = 'medium';
-
-// creators
 const { creators } = defaultActions(name);
-
-
-// list params
-const paramsList = {
-    params: {
-        limit: 6,
-        order: {
-            column: 'created_at',
-            desc: true,
-        },
-    },
-};
-
-const paramSearch = {
-    columns: ['title', 'content'],
-    placeholder: 'Titre, contenu...',
-};
-
-const orderColumns = [
-    {
-        label: 'Titre de publication',
-        value: 'title',
-    },
-    {
-        label: 'Date de création',
-        value: 'created_at',
-    },
-];
-
-const filterColumns = [
-    {
-        label: 'Publiée',
-        value: {
-            column: 'published',
-            operator: '=',
-            value: 1,
-        },
-    },
-    {
-        label: 'Non publiée',
-        value: {
-            column: 'published',
-            operator: '=',
-            value: 0,
-        },
-    },
-];
-
-const actions = [
-    {
-        value: 'index',
-    },
-    {
-        value: 'show',
-    },
-    {
-        value: 'update',
-    },
-];
 
 export default {
     name,
-    routeName,
-    actions,
-    path,
-    menuLabel,
-    menuIcon,
-    card,
-    cardType,
-    detail,
+    creators,
     form,
     modals,
     panels,
-    paramsList,
-    paramSearch,
-    orderColumns,
-    filterColumns,
-    creators,
+
+    path: 'publications',
+    routeName: 'Publications',
+    menuLabel: 'Publications',
+
+    list: {
+        params: {
+            limit: 6,
+            order: {
+                column: 'created_at',
+                desc: true,
+            },
+        },
+    },
+    search: {
+        columns: ['title', 'content'],
+        placeholder: 'Titre, contenu...',
+    },
+    order: [
+        {
+            label: 'Titre de publication',
+            value: 'title',
+        },
+        {
+            label: 'Date de création',
+            value: 'created_at',
+        },
+    ],
+    filter: [
+        {
+            label: 'Publiée',
+            value: {
+                column: 'published',
+                operator: '=',
+                value: 1,
+            },
+        },
+        {
+            label: 'Non publiée',
+            value: {
+                column: 'published',
+                operator: '=',
+                value: 0,
+            },
+        },
+    ],
+    actions: [
+        { action: 'index' },
+        { action: 'show' },
+        { action: 'update' },
+    ],
+    renders: {
+        card: {
+            type: 'medium',
+            component: card,
+        },
+        detail,
+        menuIcon: BiNews,
+    },
 };

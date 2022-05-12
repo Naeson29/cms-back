@@ -18,7 +18,7 @@ import {
 } from '../../../actions';
 
 // Screen
-import { screenList } from '../../../components/screens';
+import { defaultScreen } from '../../../components';
 
 /**
  *
@@ -103,11 +103,11 @@ const setPanelFunctions = dispatch => ({
  * @param paramsList
  * @returns {{getList: Default.propTypes.getList, getDetail: List.propTypes.getDetail, getMore: List.propTypes.getMore, update: update, destroy: destroy}}
  */
-const setScreenFunctions = (dispatch, creators, paramsList) => ({
+const setScreenFunctions = (dispatch, creators, params) => ({
     getList: (parameters = {}) => {
         if (creators) {
             dispatch(creators.search.request({
-                ...paramsList, ...parameters,
+                ...params, ...parameters,
             }));
         }
     },
@@ -118,7 +118,7 @@ const setScreenFunctions = (dispatch, creators, paramsList) => ({
         if (creators) {
             dispatch(creators.more.request({
                 params: {
-                    ...paramsList.params,
+                    ...params.params,
                     page,
                 },
             }));
@@ -128,7 +128,7 @@ const setScreenFunctions = (dispatch, creators, paramsList) => ({
         if (creators) {
             dispatch(creators.paginate.request({
                 params: {
-                    ...paramsList.params,
+                    ...params.params,
                     page,
                 },
             }));
@@ -147,7 +147,8 @@ const setScreenFunctions = (dispatch, creators, paramsList) => ({
 
 export default ({
     model,
-    component = screenList,
+    component = defaultScreen,
+    action = 'index',
     modal = false,
     panel = false,
     auth = true,
@@ -155,33 +156,33 @@ export default ({
     mapState,
 } = {}) => {
     const {
-        card = false,
-        cardType = 'small',
-        detail = false,
+        list = {},
+        search = {},
+        order = [],
+        filter = [],
+        renders = {},
+
+
         panels = false,
         modals = false,
         form = false,
         creators = false,
-        paramsList = {},
-        paramSearch = {},
-        orderColumns = [],
-        filterColumns = [],
         withDelete = true,
     } = model || false;
     const { GetCurrent } = setScreenSelector(user.name);
 
     const mapStateToProps = state => ({
         state: {
+            action,
+            search,
+            order,
+            filter,
+
             ...auth && { current: GetCurrent(state) },
             ...model && { model: model.name },
             ...modal && setModalState(state, setModalSelector),
             ...panel && setPanelState(state, setPanelSelector),
             ...model && setScreenState(state, setScreenSelector(model.name)),
-
-            paramSearch,
-            orderColumns,
-            filterColumns,
-            cardType,
         },
         ...mapState && mapState(state),
     });
@@ -189,11 +190,12 @@ export default ({
     const mapDispatchToProps = dispatch => ({
         ...modal && setModalFunctions(dispatch),
         ...panel && setPanelFunctions(dispatch),
-        ...model && setScreenFunctions(dispatch, creators, paramsList),
+        ...model && setScreenFunctions(dispatch, creators, list),
         ...mapDispatch && mapDispatch(dispatch),
 
-        ...card && { card },
-        ...detail && { detail },
+        ...renders.card && { card: renders.card },
+        ...renders.detail && { detail: renders.detail },
+
         ...panels && { panels },
         ...modals && { modals },
         ...form && { form },

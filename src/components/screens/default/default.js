@@ -7,33 +7,52 @@ import {
     HeaderScreen, List, Panel, Modal, Loading,
 } from '../../features';
 
-class ScreenList extends Component {
+class Default extends Component {
     constructor(props) {
         super(props);
-        props.getList();
+
+        const { state } = props;
+        const { action } = state;
+
+        if (action === 'index') {
+            props.getList();
+        }
+    }
+
+    screen(props) {
+        const { state, modals, card } = props;
+        const { action, loadings = {}, list = false } = state;
+
+        switch (action) {
+        case 'index': {
+            return loadings.list ? <Loading /> : list && (
+                <List
+                    {...props}
+                    type={card.type}
+                    content={card.component}
+                    modals={modals}
+                    loading={<Loading className="loading-list" />}
+                />
+            );
+        }
+
+        default:
+            return null;
+        }
     }
 
     render() {
         const { props } = this;
-        const { t, state, panels, modals, card, form } = props;
-        const { model = 'default', loadings = {}, panel = {}, list = false, cardType = 'small' } = state;
+        const { t, state, panels, modals, form } = props;
+        const { model = 'default', panel = {} } = state;
+
         return (
             <div className={`fragment ${model}`}>
                 <HeaderScreen
                     {...props}
                     title={t(`${model}:title:${!panel.open ? 'default' : panel.action}`)}
                 />
-                {
-                    loadings.list ? <Loading /> : list && (
-                        <List
-                            {...props}
-                            type={cardType}
-                            content={card}
-                            modals={modals}
-                            loading={<Loading className="loading-list" />}
-                        />
-                    )
-                }
+                { this.screen(props) }
                 {
                     panels && (
                         <Panel
@@ -54,17 +73,17 @@ class ScreenList extends Component {
     }
 }
 
-ScreenList.propTypes = {
+Default.propTypes = {
     t: PropTypes.func,
     getList: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    card: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    card: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 };
 
-ScreenList.defaultProps = {
+Default.defaultProps = {
     t: () => {},
     getList: () => {},
     state: {},
@@ -74,4 +93,4 @@ ScreenList.defaultProps = {
     form: false,
 };
 
-export default withTranslation('default')(ScreenList);
+export default withTranslation('default')(Default);

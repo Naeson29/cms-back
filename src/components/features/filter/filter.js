@@ -31,12 +31,12 @@ const {
  */
 const Filter = (props) => {
     const { state, getList } = props;
-    const { params = {}, orderColumns, filterColumns, paramSearch = {} } = state;
-    const { columns = [], placeholder = '' } = paramSearch;
+    const { params = {}, orderColumns, filter, search = {} } = state;
+    const { columns = [], placeholder = '' } = search;
     const { order = {} } = params;
 
     const [open, setFilter] = useState(false);
-    const [paramsFilter, setParams] = useState({});
+    const [filterParams, setParams] = useState({});
     const [searchString, setSearchString] = useState('');
     const [searching, setSearching] = useState(false);
     const [selectedMultiple, setSelectedMultiple] = useState([]);
@@ -51,9 +51,9 @@ const Filter = (props) => {
 
     const handleChangeColumn = (key, value) => {
         setParams({
-            ...paramsFilter,
+            ...filterParams,
             order: {
-                ...paramsFilter.order,
+                ...filterParams.order,
                 column: value,
             },
         });
@@ -61,9 +61,9 @@ const Filter = (props) => {
 
     const handleChangeOrder = (key, value) => {
         setParams({
-            ...paramsFilter,
+            ...filterParams,
             [key]: {
-                column: paramsFilter[key].column,
+                column: filterParams[key].column,
                 [value]: true,
             },
         });
@@ -71,17 +71,17 @@ const Filter = (props) => {
 
     const handleChangeFilter = (value) => {
         setSelectedMultiple(value);
-        const filter = value.map(key => key.value);
+        const filterValue = value.map(key => key.value);
         setParams({
-            ...paramsFilter,
-            filter: filterColumns.length !== filter.length ? filter : [],
+            ...filterParams,
+            filter: filter.length !== filterValue.length ? filterValue : [],
         });
     };
 
     const handleChangeSearch = (key, value) => {
         setSearchString(value);
         setParams({
-            ...paramsFilter,
+            ...filterParams,
             search: [
                 ...columns.map(column => ({
                     column,
@@ -93,12 +93,12 @@ const Filter = (props) => {
     };
 
     const launchList = () => {
-        getList({ params: paramsFilter });
+        getList({ params: filterParams });
         setFilter(false);
     };
 
     const applyFilter = () => {
-        if (paramsFilter.search) {
+        if (filterParams.search) {
             setSearching(!!searchString);
         }
         launchList();
@@ -107,8 +107,8 @@ const Filter = (props) => {
     const cleanSearch = () => {
         setSearching(false);
         setSearchString('');
-        delete paramsFilter.search;
-        setParams(paramsFilter);
+        delete filterParams.search;
+        setParams(filterParams);
         launchList();
     };
 
@@ -183,7 +183,7 @@ const Filter = (props) => {
                             <div className="content-order">
                                 <SelectMultiple
                                     attributes={{
-                                        options: filterColumns,
+                                        options: filter,
                                         name: 'published',
                                     }}
                                     value={selectedMultiple}

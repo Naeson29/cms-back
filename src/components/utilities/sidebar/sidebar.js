@@ -15,13 +15,13 @@ const Navs = (models) => {
             icon: ImHome,
         },
         ...items.map((item) => {
-            const { name, menuLabel, menuIcon } = item;
+            const { name, menuLabel, renders } = item;
             id += 1;
             return {
                 id,
                 path: name,
                 label: menuLabel,
-                icon: menuIcon,
+                icon: renders.menuIcon,
             };
         }),
     ];

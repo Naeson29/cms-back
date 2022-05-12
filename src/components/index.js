@@ -1,3 +1,6 @@
 export { default as app } from './app';
-export { authentication } from './screens';
+export {
+    authentication,
+    defaultScreen,
+} from './screens';
 export { privateRoutes } from './features';

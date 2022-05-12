@@ -1,8 +1,4 @@
 import { screenContainer } from '../containers';
-import {
-    screenList,
-    screenShow,
-} from '../components/screens';
 
 const routes = (models) => {
     const modelRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].routeName).map(model => models[model]);
@@ -11,11 +7,6 @@ const routes = (models) => {
     const modal = true;
 
     let id = 1;
-
-    const screens = {
-        index: screenList,
-        show: screenShow,
-    };
 
     const routeList = [{
         exact: true,
@@ -28,9 +19,10 @@ const routes = (models) => {
     modelRoutes.forEach((model) => {
         const { name, routeName, actions = [] } = model;
 
-        actions.forEach((action) => {
+        actions.forEach((key) => {
             id += 1;
-            const pathName = action.value !== 'index' ? `${name}-${action.value}` : name;
+            const { action } = key;
+            const pathName = action !== 'index' ? `${name}-${action}` : name;
 
             routeList.push({
                 exact: true,
@@ -38,7 +30,7 @@ const routes = (models) => {
                 name: routeName,
                 component: screenContainer({
                     model,
-                    component: screens[action.value],
+                    action,
                     panel,
                     modal,
                 }),
