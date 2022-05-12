@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 
 // Utils
 import {
-    validatorUtility, modalUtility,
+    validatorUtility,
 } from '../../utilities';
 
 
 // features
 import {
     Form,
-    Error,
 } from '..';
 
 /**
@@ -21,7 +20,8 @@ import {
  * @constructor
  */
 const Edit = (props) => {
-    const { form, state, action, create, update, openModal } = props;
+    const { form, state, action, create, update } = props;
+
     const { detail } = state;
     const isUpdate = action === 'update';
     const { elements = [], validation = false, columns = 1 } = form(action);
@@ -56,7 +56,7 @@ const Edit = (props) => {
         }
         if (validator.error) {
             setErrors(validator.error);
-            openModal(modalUtility.actions.error(<Error errors={validator.error} />));
+            // openModal(modalUtility.actions.error(<Error errors={validator.error} />));
         }
     };
 
@@ -98,7 +98,6 @@ Edit.propTypes = {
     action: PropTypes.string,
     create: PropTypes.func,
     update: PropTypes.func,
-    openModal: PropTypes.func,
 };
 
 Edit.defaultProps = {
@@ -107,7 +106,6 @@ Edit.defaultProps = {
     action: 'create',
     create: () => {},
     update: () => {},
-    openModal: () => {},
 };
 
 export default Edit;

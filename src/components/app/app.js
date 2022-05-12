@@ -42,7 +42,7 @@ class App extends Component {
 
     render() {
         const { props, state } = this;
-        const { appLoaded } = props;
+        const { appLoaded, logout } = props;
         const { menu } = state;
 
         if (!appLoaded) {
@@ -53,19 +53,20 @@ class App extends Component {
             );
         }
 
-        const propsMenu = {
-            menu, toggle: this.toggleMenu, models,
+        const menuProps = {
+            menu,
+            toggle: this.toggleMenu,
         };
 
         return (
             <div className="container-app">
                 <Header
-                    {...props}
-                    propsMenu={propsMenu}
+                    logout={logout}
+                    menuProps={menuProps}
                 />
                 <Sidebar
-                    {...props}
-                    propsMenu={propsMenu}
+                    menuProps={menuProps}
+                    models={models}
                 />
                 <div className="content-app">
                     <Switch>
@@ -96,11 +97,13 @@ class App extends Component {
 
 App.propTypes = {
     load: PropTypes.func,
+    logout: PropTypes.func,
     appLoaded: PropTypes.bool,
 };
 
 App.defaultProps = {
     load: () => {},
+    logout: () => {},
     appLoaded: false,
 };
 

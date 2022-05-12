@@ -17,8 +17,8 @@ import { Button } from '..';
  * @constructor
  */
 const Header = (props) => {
-    const { logout, propsMenu } = props;
-    const { toggle, menu } = propsMenu;
+    const { logout, menuProps } = props;
+    const { toggle, menu } = menuProps;
 
     return (
         <div className="header-app">
@@ -60,12 +60,12 @@ const Header = (props) => {
 
 Header.propTypes = {
     logout: PropTypes.func,
-    propsMenu: PropTypes.oneOfType([PropTypes.object]),
+    menuProps: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Header.defaultProps = {
     logout: () => {},
-    propsMenu: {},
+    menuProps: {},
 };
 
 export default Header;

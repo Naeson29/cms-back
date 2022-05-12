@@ -3,7 +3,7 @@ import { ImHome } from 'react-icons/im';
 const rootPath = '/';
 
 const Navs = (models) => {
-    const items = Object.keys(models).filter(key => !!models[key].name).map(model => models[model]);
+    const items = Object.keys(models).filter(key => !!models[key].menu).map(model => models[model]);
 
     let id = 1;
 
@@ -15,13 +15,14 @@ const Navs = (models) => {
             icon: ImHome,
         },
         ...items.map((item) => {
-            const { name, menuLabel, renders } = item;
+            const { path = '', menu = {} } = item;
+            const { label = '', icon = null } = menu;
             id += 1;
             return {
                 id,
-                path: name,
-                label: menuLabel,
-                icon: renders.menuIcon,
+                path,
+                label,
+                icon,
             };
         }),
     ];

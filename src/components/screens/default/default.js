@@ -4,23 +4,27 @@ import { withTranslation } from 'react-i18next';
 
 // features
 import {
-    HeaderScreen, List, Panel, Modal, Loading,
+    HeaderScreen, List, Panel, Modal, Loading, Show,
 } from '../../features';
 
 class Default extends Component {
     constructor(props) {
         super(props);
 
-        const { state } = props;
+        const { state, match } = props;
         const { action } = state;
 
         if (action === 'index') {
             props.getList();
         }
+
+        if (action === 'show') {
+            props.getDetail(match.params.id);
+        }
     }
 
     screen(props) {
-        const { state, modals, card } = props;
+        const { state, modals, card, detail } = props;
         const { action, loadings = {}, list = false } = state;
 
         switch (action) {
@@ -32,6 +36,22 @@ class Default extends Component {
                     content={card.component}
                     modals={modals}
                     loading={<Loading className="loading-list" />}
+                />
+            );
+        }
+        case 'show': {
+            return loadings.detail ? <Loading /> : (
+                <Show
+                    state={state}
+                    detail={detail.component}
+                />
+            );
+        }
+        case 'create': {
+            return loadings.detail ? <Loading /> : (
+                <Show
+                    state={state}
+                    detail={detail.component}
                 />
             );
         }
@@ -76,6 +96,8 @@ class Default extends Component {
 Default.propTypes = {
     t: PropTypes.func,
     getList: PropTypes.func,
+    getDetail: PropTypes.func,
+    match: PropTypes.oneOfType([PropTypes.object]),
     state: PropTypes.oneOfType([PropTypes.object]),
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
@@ -86,6 +108,8 @@ Default.propTypes = {
 Default.defaultProps = {
     t: () => {},
     getList: () => {},
+    getDetail: () => {},
+    match: {},
     state: {},
     panels: false,
     modals: false,

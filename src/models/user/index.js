@@ -17,48 +17,70 @@ export default {
     panels,
 
     path: 'users',
+
     routeName: 'Users',
-    menuLabel: 'Utilisateurs',
+
+    menu: {
+        label: 'Utilisateurs',
+        icon: ImUsers,
+    },
 
     list: {
-        params: {
-            limit: 50,
-            order: {
-                column: 'first_name',
+        parameters: {
+            params: {
+                limit: 50,
+                order: {
+                    column: 'first_name',
+                },
             },
         },
-    },
-    search: {
-        columns: [
-            "concat(first_name, ' ', last_name)",
+        search: {
+            columns: [
+                "concat(first_name, ' ', last_name)",
+            ],
+            placeholder: 'Prénom et/ou nom...',
+        },
+        order: [
+            {
+                label: 'Prénom',
+                value: 'first_name',
+            },
+            {
+                label: 'Nom',
+                value: 'last_name',
+            },
+            {
+                label: 'Date de création',
+                value: 'created_at',
+            },
         ],
-        placeholder: 'Prénom et/ou nom...',
     },
-    order: [
-        {
-            label: 'Prénom',
-            value: 'first_name',
-        },
-        {
-            label: 'Nom',
-            value: 'last_name',
-        },
-        {
-            label: 'Date de création',
-            value: 'created_at',
-        },
-    ],
+
     actions: [
-        { action: 'index' },
-        { action: 'show' },
-        { action: 'update' },
+        {
+            action: 'index',
+        },
+        {
+            action: 'show',
+            label: 'detail',
+        },
+        {
+            action: 'create',
+            label: 'create',
+        },
+        {
+            action: 'update',
+            label: 'edit',
+        },
     ],
+
     renders: {
         card: {
             type: 'small',
             component: card,
         },
-        detail,
-        menuIcon: ImUsers,
+        detail: {
+            component: detail,
+        },
     },
 };

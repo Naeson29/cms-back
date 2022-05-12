@@ -17,17 +17,35 @@ const routes = (models) => {
     }];
 
     modelRoutes.forEach((model) => {
-        const { name, routeName, actions = [] } = model;
+        const { path, routeName, actions = [] } = model;
 
         actions.forEach((key) => {
             id += 1;
-            const { action } = key;
-            const pathName = action !== 'index' ? `${name}-${action}` : name;
+            const { action, label } = key;
+            let pathName;
+
+            switch (action) {
+            case 'index': {
+                pathName = path;
+                break;
+            }
+            case 'show':
+            case 'update': {
+                pathName = `${path}/${label}/:id`;
+                break;
+            }
+            case 'create': {
+                pathName = `${path}/${label}`;
+                break;
+            }
+            default:
+                pathName = '';
+            }
 
             routeList.push({
                 exact: true,
                 path: `/${pathName}`,
-                name: routeName,
+                name: `${routeName}-${action}`,
                 component: screenContainer({
                     model,
                     action,

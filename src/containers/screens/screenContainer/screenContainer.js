@@ -151,15 +151,17 @@ export default ({
     action = 'index',
     modal = false,
     panel = false,
-    auth = true,
     mapDispatch,
     mapState,
 } = {}) => {
     const {
-        list = {},
-        search = {},
-        order = [],
-        filter = [],
+        path = '',
+        list = {
+            parameters: {},
+            searches: {},
+            orders: [],
+            filters: [],
+        },
         renders = {},
 
 
@@ -173,25 +175,28 @@ export default ({
 
     const mapStateToProps = state => ({
         state: {
+            current: GetCurrent(state),
+            path,
             action,
-            search,
-            order,
-            filter,
+            parametersList: list,
 
-            ...auth && { current: GetCurrent(state) },
-            ...model && { model: model.name },
+            ...model && {
+                model: model.name,
+                ...setScreenState(state, setScreenSelector(model.name)),
+            },
+
             ...modal && setModalState(state, setModalSelector),
             ...panel && setPanelState(state, setPanelSelector),
-            ...model && setScreenState(state, setScreenSelector(model.name)),
         },
         ...mapState && mapState(state),
     });
 
     const mapDispatchToProps = dispatch => ({
+        ...mapDispatch && mapDispatch(dispatch),
+        ...model && setScreenFunctions(dispatch, creators, list.parameters),
+
         ...modal && setModalFunctions(dispatch),
         ...panel && setPanelFunctions(dispatch),
-        ...model && setScreenFunctions(dispatch, creators, list),
-        ...mapDispatch && mapDispatch(dispatch),
 
         ...renders.card && { card: renders.card },
         ...renders.detail && { detail: renders.detail },

@@ -103,30 +103,7 @@ export const moreFailure = defaultFailure;
 /* PAGINATE START */
 export const paginateRequest = defaultRequest;
 
-export const paginateSuccess = (state, { data, current_page, per_page, total, last_page }, section) => ({ // eslint-disable-line camelcase
-    ...state,
-    data: {
-        ...state.data,
-        ...data.reduce((acc, current) => ({
-            ...acc, [current.id]: current,
-        }), {}),
-    },
-    views: {
-        ...state.views,
-        [section]: {
-            ...state.views[section],
-            results: data.map(({ id }) => id),
-            pagination: {
-                current_page,
-                last_page,
-                per_page,
-                total,
-            },
-            loading: false,
-            error: null,
-        },
-    },
-});
+export const paginateSuccess = searchSuccess;
 
 export const paginateFailure = defaultFailure;
 /* PAGINATE END */
@@ -166,6 +143,7 @@ export const createFailure = defaultFailure;
 
 /* READ START */
 export const readRequest = defaultRequest;
+
 export const readFailure = defaultFailure;
 
 export const readSuccess = (state, { data }, section) => ({

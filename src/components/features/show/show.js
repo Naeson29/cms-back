@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 const Show = (props) => {
     const { state, detail } = props;
-    return detail ? detail(state.detail) : null;
+    return state.detail.id ? detail(state.detail) : null;
 };
 
 Show.propTypes = {

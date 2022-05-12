@@ -14,8 +14,8 @@ const {
  * @constructor
  */
 const Sidebar = (props) => {
-    const { propsMenu } = props;
-    const { toggle, menu, models = {} } = propsMenu;
+    const { menuProps, models } = props;
+    const { toggle, menu } = menuProps;
 
     return (
         <div className={`sidebar ${!menu ? 'isClose' : 'isOpen'}`}>
@@ -26,6 +26,7 @@ const Sidebar = (props) => {
                             Navs(models).map((key) => {
                                 const isActive = () => isRootPath(props);
                                 const Icon = key.icon;
+                                const slash = key.id !== 1 ? '/' : '';
 
                                 return (
                                     <li
@@ -35,7 +36,7 @@ const Sidebar = (props) => {
                                         role="presentation"
                                     >
                                         <NavLink
-                                            to={key.path}
+                                            to={slash + key.path}
                                             isActive={isRoot(key.path) ? isActive : undefined}
                                             className="nav-link"
                                             activeClassName="active"
@@ -55,11 +56,13 @@ const Sidebar = (props) => {
 };
 
 Sidebar.propTypes = {
-    propsMenu: PropTypes.oneOfType([PropTypes.object]),
+    models: PropTypes.oneOfType([PropTypes.object]),
+    menuProps: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Sidebar.defaultProps = {
-    propsMenu: {},
+    models: {},
+    menuProps: {},
 };
 
 

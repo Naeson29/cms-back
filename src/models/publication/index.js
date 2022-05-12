@@ -20,60 +20,81 @@ export default {
 
     path: 'publications',
     routeName: 'Publications',
-    menuLabel: 'Publications',
+
+    menu: {
+        label: 'Publications',
+        icon: BiNews,
+    },
 
     list: {
-        params: {
-            limit: 6,
-            order: {
-                column: 'created_at',
-                desc: true,
+        parameters: {
+            params: {
+                limit: 6,
+                order: {
+                    column: 'created_at',
+                    desc: true,
+                },
             },
         },
+        searches: {
+            columns: ['title', 'content'],
+            placeholder: 'Titre, contenu...',
+        },
+        orders: [
+            {
+                label: 'Titre de publication',
+                value: 'title',
+            },
+            {
+                label: 'Date de création',
+                value: 'created_at',
+            },
+        ],
+        filters: [
+            {
+                label: 'Publiée',
+                value: {
+                    column: 'published',
+                    operator: '=',
+                    value: 1,
+                },
+            },
+            {
+                label: 'Non publiée',
+                value: {
+                    column: 'published',
+                    operator: '=',
+                    value: 0,
+                },
+            },
+        ],
     },
-    search: {
-        columns: ['title', 'content'],
-        placeholder: 'Titre, contenu...',
-    },
-    order: [
-        {
-            label: 'Titre de publication',
-            value: 'title',
-        },
-        {
-            label: 'Date de création',
-            value: 'created_at',
-        },
-    ],
-    filter: [
-        {
-            label: 'Publiée',
-            value: {
-                column: 'published',
-                operator: '=',
-                value: 1,
-            },
-        },
-        {
-            label: 'Non publiée',
-            value: {
-                column: 'published',
-                operator: '=',
-                value: 0,
-            },
-        },
-    ],
+
     actions: [
-        { action: 'index' },
-        { action: 'show' },
-        { action: 'update' },
+        {
+            action: 'index',
+        },
+        {
+            action: 'show',
+            label: 'detail',
+        },
+        {
+            action: 'create',
+            label: 'create',
+        },
+        {
+            action: 'update',
+            label: 'edit',
+        },
     ],
+
     renders: {
         card: {
             type: 'medium',
             component: card,
         },
-        detail,
-        menuIcon: BiNews,
+        detail: {
+            component: detail,
+        },
     },
 };

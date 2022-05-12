@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PropTypes from 'prop-types';
 import {
@@ -44,7 +44,7 @@ const List = (props) => {
         modals = {},
     } = props;
     const {
-        model, list, pagination, current,
+        path, model, list, pagination, current,
     } = state;
     const { permissions } = current;
     const permission = getPermissionModel(permissions, model);
@@ -56,8 +56,7 @@ const List = (props) => {
      */
     const show = (id) => {
         // openPanel(panelUtility.actions.show);
-        getDetail(id);
-        history.push(`/invoices`);
+        history.push(`/${path}/detail/${id}`);
     };
 
     /**
