@@ -100,7 +100,7 @@ const setPanelFunctions = dispatch => ({
  * @param paramsList
  * @returns {{getList: Default.propTypes.getList, getDetail: List.propTypes.getDetail, getMore: List.propTypes.getMore, update: update, destroy: destroy}}
  */
-const setScreenFunctions = (dispatch, creators, params) => (!creators ? {} : {
+const setScreenFunctions = (dispatch, { creators }, params) => (!creators ? {} : {
     getList: (parameters = {}) => {
         dispatch(creators.search.request({
             ...params, ...parameters,
@@ -146,7 +146,6 @@ export default ({
     const {
         route = '',
         creators = false,
-        form = false,
         list = {
             parameters: {},
             searches: {},
@@ -186,7 +185,7 @@ export default ({
             ...renders.card && { card: renders.card },
             ...renders.detail && { detail: renders.detail },
             ...renders.modals && { modals: renders.modals },
-            ...form && { form },
+            ...renders.form && { form: renders.form },
         },
 
         ...mapDispatch && mapDispatch(dispatch),
