@@ -11,23 +11,22 @@ class Default extends Component {
     constructor(props) {
         super(props);
 
-        const { state, match } = props;
-        const { action } = state;
+        const { match, screen } = props;
 
-        if (action === 'index') {
+        if (screen === 'index') {
             props.getList();
         }
 
-        if (action === 'show' || action === 'update') {
+        if (screen === 'show' || screen === 'update') {
             props.getDetail(match.params.id);
         }
     }
 
     screen(props) {
-        const { state, modals, card, detail, form, create, update } = props;
-        const { action, loadings = {}, list = false } = state;
+        const { state, card, detail, form, create, update, screen } = props;
+        const { loadings = {}, list = false } = state;
 
-        switch (action) {
+        switch (screen) {
         case 'index': {
             return list && (
                 <div>
@@ -35,7 +34,6 @@ class Default extends Component {
                         {...props}
                         type={card.type}
                         content={card.component}
-                        modals={modals}
                         loading={<Loading className="loading-list" />}
                     />
                     {
@@ -55,7 +53,7 @@ class Default extends Component {
         case 'create': {
             return (
                 <Edit
-                    action={action}
+                    action={screen}
                     state={state}
                     form={form}
                     create={create}
@@ -65,7 +63,7 @@ class Default extends Component {
         case 'update': {
             return loadings.detail ? <Loading /> : (
                 <Edit
-                    action={action}
+                    action={screen}
                     state={state}
                     form={form}
                     update={update}
@@ -80,14 +78,14 @@ class Default extends Component {
 
     render() {
         const { props } = this;
-        const { t, state, modals } = props;
-        const { model = 'default', action = 'index' } = state;
+        const { t, state, modals, screen } = props;
+        const { model = 'default' } = state;
 
         return (
             <div className={`fragment ${model}`}>
                 <HeaderScreen
                     {...props}
-                    title={t(`${model}:title:${action}`)}
+                    title={t(`${model}:title:${screen}`)}
                 />
                 {
                     this.screen(props)
@@ -116,6 +114,7 @@ Default.propTypes = {
     modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     card: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    screen: PropTypes.string,
 };
 
 Default.defaultProps = {
@@ -128,6 +127,7 @@ Default.defaultProps = {
     modals: false,
     card: false,
     form: false,
+    screen: '',
 };
 
 export default withTranslation('default')(Default);

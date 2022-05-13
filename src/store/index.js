@@ -23,10 +23,10 @@ sagaMiddleware.run(navigationSaga().root, { history });
 sagaMiddleware.run(userSaga().root);
 
 Object.keys(models).forEach((key) => {
-    const { name = '', path = '' } = models[key];
-    if (name && path) {
+    const { name = '', route = '' } = models[key];
+    if (name && route) {
         sagaMiddleware.run(defaultSaga({
-            name, path,
+            name, route,
         }).root);
     }
 });

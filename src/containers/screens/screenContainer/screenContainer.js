@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-// models
-import user from '../../../models/user';
-
 // selectors
 import {
     setScreenSelector,
@@ -103,7 +100,7 @@ const setPanelFunctions = dispatch => ({
  * @param paramsList
  * @returns {{getList: Default.propTypes.getList, getDetail: List.propTypes.getDetail, getMore: List.propTypes.getMore, update: update, destroy: destroy}}
  */
-const setScreenFunctions = (dispatch, creators, params) => ({
+const setScreenFunctions = (dispatch, creators, params) => (!creators ? {} : {
     getList: (parameters = {}) => {
         dispatch(creators.search.request({
             ...params, ...parameters,
@@ -142,55 +139,57 @@ const setScreenFunctions = (dispatch, creators, params) => ({
 export default ({
     model,
     component = defaultScreen,
-    action = 'index',
-    modal = false,
-    panel = false,
+    screen = 'index',
     mapDispatch,
     mapState,
 } = {}) => {
     const {
-        path = '',
+        route = '',
+        creators = false,
+        form = false,
         list = {
             parameters: {},
             searches: {},
             orders: [],
             filters: [],
+            delete: true,
         },
         renders = {},
-        modals = false,
-        form = false,
-        creators = false,
-        withDelete = true,
     } = model || false;
-    const { GetCurrent } = setScreenSelector(user.name);
+
+    const { GetCurrent } = setScreenSelector('user');
 
     const mapStateToProps = state => ({
+
+        current: GetCurrent(state),
+        screen,
+        route,
+
         state: {
-            current: GetCurrent(state),
-            path,
-            action,
-            parametersList: list,
-            ...modal && setModalState(state, setModalSelector),
-            ...panel && setPanelState(state, setPanelSelector),
-            ...model && {
-                model: model.name,
-                ...setScreenState(state, setScreenSelector(model.name)),
-            },
+            ...model && { model: model.name },
+            ...model && setScreenState(state, setScreenSelector(model.name)),
+            ...setModalState(state, setModalSelector),
+            ...setPanelState(state, setPanelSelector),
+            screenList: list,
         },
+
         ...mapState && mapState(state),
     });
 
     const mapDispatchToProps = dispatch => ({
-        ...mapDispatch && mapDispatch(dispatch),
-        ...creators && setScreenFunctions(dispatch, creators, list.parameters),
-        ...modal && setModalFunctions(dispatch),
-        ...panel && setPanelFunctions(dispatch),
-        ...renders.card && { card: renders.card },
-        ...renders.detail && { detail: renders.detail },
-        ...modals && { modals },
-        ...form && { form },
 
-        withDelete,
+        ...setModalFunctions(dispatch),
+        ...setPanelFunctions(dispatch),
+        ...setScreenFunctions(dispatch, creators, list.parameters),
+
+        ...renders && {
+            ...renders.card && { card: renders.card },
+            ...renders.detail && { detail: renders.detail },
+            ...renders.modals && { modals: renders.modals },
+            ...form && { form },
+        },
+
+        ...mapDispatch && mapDispatch(dispatch),
     });
 
     return withRouter(connect(mapStateToProps, mapDispatchToProps)(component));

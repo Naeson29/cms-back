@@ -1,41 +1,38 @@
 import { screenContainer } from '../containers';
 
 const routes = (models) => {
-    const modelRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].routeName).map(model => models[model]);
-
-    const panel = true;
-    const modal = true;
+    const modelRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].route).map(model => models[model]);
 
     let id = 1;
 
     const routeList = [{
         exact: true,
         path: '/',
-        name: 'Dashboard',
+        name: 'dashboard',
         component: screenContainer(),
         id,
     }];
 
     modelRoutes.forEach((model) => {
-        const { path, routeName, actions = [] } = model;
+        const { route, screens = [] } = model;
 
-        actions.forEach((key) => {
+        screens.forEach((key) => {
             id += 1;
-            const { action, label } = key;
+            const { screen, label } = key;
             let pathName;
 
-            switch (action) {
+            switch (screen) {
             case 'index': {
-                pathName = path;
+                pathName = route;
                 break;
             }
             case 'show':
             case 'update': {
-                pathName = `${path}/${label}/:id`;
+                pathName = `${route}/${label}/:id`;
                 break;
             }
             case 'create': {
-                pathName = `${path}/${label}`;
+                pathName = `${route}/${label}`;
                 break;
             }
             default:
@@ -45,12 +42,10 @@ const routes = (models) => {
             routeList.push({
                 exact: true,
                 path: `/${pathName}`,
-                name: `${routeName}-${action}`,
+                name: `${route}-${screen}`,
                 component: screenContainer({
                     model,
-                    action,
-                    panel,
-                    modal,
+                    screen,
                 }),
                 id,
             });

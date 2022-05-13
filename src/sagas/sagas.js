@@ -98,7 +98,7 @@ export const userSaga = () => {
 
 export const defaultSaga = (object) => {
     const { types, creators } = defaultActions(object.name);
-    const defaultSagas = createModelApiSagas(types, creators, defaultApi(object.path));
+    const defaultSagas = createModelApiSagas(types, creators, defaultApi(object.route));
 
     return {
         root: () => defaultRoot(object.name, types, defaultSagas),

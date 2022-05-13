@@ -5,21 +5,12 @@ import form from './form';
 import modals from './modals';
 import detail from './detail';
 
-const name = 'user';
-const { creators } = userActions();
-
 export default {
-    name,
+    name: 'user',
 
-    path: 'users',
+    route: 'users',
 
-    routeName: 'Users',
-
-    creators,
-
-    form,
-
-    modals,
+    creators: userActions(),
 
     menu: {
         label: 'Utilisateurs',
@@ -55,22 +46,23 @@ export default {
                 value: 'created_at',
             },
         ],
+        delete: true,
     },
 
-    actions: [
+    screens: [
         {
-            action: 'index',
+            screen: 'index',
         },
         {
-            action: 'show',
+            screen: 'show',
             label: 'detail',
         },
         {
-            action: 'create',
+            screen: 'create',
             label: 'create',
         },
         {
-            action: 'update',
+            screen: 'update',
             label: 'edit',
         },
     ],
@@ -83,5 +75,7 @@ export default {
         detail: {
             component: detail,
         },
+        modals,
+        form,
     },
 };

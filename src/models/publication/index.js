@@ -8,20 +8,13 @@ import modals from './modals';
 import detail from './detail';
 
 const name = 'publication';
-const { creators } = defaultActions(name);
 
 export default {
     name,
 
-    path: 'publications',
+    route: 'publications',
 
-    routeName: 'Publications',
-
-    creators,
-
-    form,
-
-    modals,
+    creators: defaultActions(name),
 
     menu: {
         label: 'Publications',
@@ -70,22 +63,23 @@ export default {
                 },
             },
         ],
+        delete: true,
     },
 
-    actions: [
+    screens: [
         {
-            action: 'index',
+            screen: 'index',
         },
         {
-            action: 'show',
+            screen: 'show',
             label: 'detail',
         },
         {
-            action: 'create',
+            screen: 'create',
             label: 'create',
         },
         {
-            action: 'update',
+            screen: 'update',
             label: 'edit',
         },
     ],
@@ -98,5 +92,7 @@ export default {
         detail: {
             component: detail,
         },
+        modals,
+        form,
     },
 };

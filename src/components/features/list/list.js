@@ -21,6 +21,8 @@ const {
     getPermissionModel,
 } = permissionUtility;
 
+const { actions } = modalUtility;
+
 
 /**
  *
@@ -30,20 +32,14 @@ const {
  */
 const List = (props) => {
     const {
-        state,
-        getMore,
-        type,
-        openModal,
-        content,
-        loading,
-        withDelete,
-        modals = {},
+        type, state, route, current, getMore, openModal, content, loading, modals,
     } = props;
+
     const {
-        path, model, list, pagination, current,
+        model, list, pagination, screenList,
     } = state;
-    const { permissions } = current;
-    const permission = getPermissionModel(permissions, model);
+
+    const permission = getPermissionModel(current.permissions, model);
     const history = useHistory();
 
     /**
@@ -51,7 +47,7 @@ const List = (props) => {
      * @param id
      */
     const show = (id) => {
-        history.push(`/${path}/detail/${id}`);
+        history.push(`/${route}/detail/${id}`);
     };
 
     /**
@@ -60,7 +56,7 @@ const List = (props) => {
      * @param userMe
      */
     const remove = (key) => {
-        openModal(modalUtility.actions.destroy(key, modals.destroy));
+        openModal(actions.destroy(key, modals.destroy));
     };
 
     /**
@@ -68,7 +64,7 @@ const List = (props) => {
      * @param id
      */
     const update = (id) => {
-        history.push(`/${path}/edit/${id}`);
+        history.push(`/${route}/edit/${id}`);
     };
 
     const hasMore = false; // hasMorePage(pagination);
@@ -90,7 +86,7 @@ const List = (props) => {
                     const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role < key.role));
 
                     const hasUpdate = permission.update && permissionUpdate;
-                    const hasDelete = withDelete && (permission.delete && permissionRemove);
+                    const hasDelete = screenList.delete && (permission.delete && permissionRemove);
 
                     return (
                         <div
@@ -145,20 +141,22 @@ const List = (props) => {
 
 List.propTypes = {
     type: PropTypes.string,
+    route: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
+    current: PropTypes.oneOfType([PropTypes.object]),
     modals: PropTypes.oneOfType([PropTypes.object]),
     loading: PropTypes.element,
     getMore: PropTypes.func,
     openModal: PropTypes.func,
     content: PropTypes.func,
-    withDelete: PropTypes.bool,
 };
 
 List.defaultProps = {
     type: 'small',
+    route: '',
     state: {},
+    current: {},
     modals: {},
-    withDelete: true,
     loading: (<div />),
     getMore: () => {},
     openModal: () => {},

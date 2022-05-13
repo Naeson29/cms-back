@@ -31,9 +31,9 @@ const {
  */
 const Filter = (props) => {
     const { state, getList } = props;
-    const { params = {}, parametersList } = state;
+    const { params = {}, screenList } = state;
 
-    const { orders, filters, searches } = parametersList;
+    const { orders, filters, searches } = screenList;
 
     const { columns = [], placeholder = '' } = searches;
     const { order = {} } = params;

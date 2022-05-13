@@ -28,22 +28,22 @@ const {
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { state, title } = props;
-    const { path, action, current, model, detail, list = [] } = state;
+    const { state, title, current, screen, route } = props;
+    const { model, detail, list = [] } = state;
     const { permissions } = current;
     const history = useHistory();
     const permission = getPermissionModel(permissions, model);
 
     const update = () => {
-        history.push(`/${path}/edit/${detail.id}`);
+        history.push(`/${route}/edit/${detail.id}`);
     };
 
     const create = () => {
-        history.push(`/${path}/create`);
+        history.push(`/${route}/create`);
     };
 
-    const index = action === 'index';
-    const show = action === 'show';
+    const index = screen === 'index';
+    const show = screen === 'show';
 
     const toolsList = index && list.length > 0;
     const buttonEdit = show && permission.update;
@@ -81,12 +81,18 @@ const HeaderScreen = (props) => {
 
 HeaderScreen.propTypes = {
     title: PropTypes.string,
+    screen: PropTypes.string,
+    route: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
+    current: PropTypes.oneOfType([PropTypes.object]),
 };
 
 HeaderScreen.defaultProps = {
     title: '',
+    screen: '',
+    route: '',
     state: {},
+    current: {},
 };
 
 export default HeaderScreen;
