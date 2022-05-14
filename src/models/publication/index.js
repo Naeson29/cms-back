@@ -87,12 +87,16 @@ export default {
     renders: {
         card: {
             type: 'medium',
-            component: card,
+            render: card,
         },
         detail: {
-            component: detail,
+            render: detail,
         },
-        modals,
-        form,
+        modals: {
+            render: modals,
+        },
+        form: {
+            render: form,
+        },
     },
 };

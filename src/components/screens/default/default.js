@@ -33,7 +33,7 @@ class Default extends Component {
                     <List
                         {...props}
                         type={card.type}
-                        content={card.component}
+                        content={card.render}
                         loading={<Loading className="loading-list" />}
                     />
                     {
@@ -46,7 +46,7 @@ class Default extends Component {
             return loadings.detail ? <Loading /> : (
                 <Show
                     state={state}
-                    detail={detail.component}
+                    detail={detail.render}
                 />
             );
         }

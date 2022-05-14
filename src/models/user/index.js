@@ -70,12 +70,16 @@ export default {
     renders: {
         card: {
             type: 'small',
-            component: card,
+            render: card,
         },
         detail: {
-            component: detail,
+            render: detail,
         },
-        modals,
-        form,
+        modals: {
+            render: modals,
+        },
+        form: {
+            render: form,
+        },
     },
 };

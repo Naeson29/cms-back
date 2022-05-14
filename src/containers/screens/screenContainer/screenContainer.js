@@ -184,8 +184,8 @@ export default ({
         ...renders && {
             ...renders.card && { card: renders.card },
             ...renders.detail && { detail: renders.detail },
-            ...renders.modals && { modals: renders.modals },
-            ...renders.form && { form: renders.form },
+            ...renders.modals && { modals: renders.modals.render },
+            ...renders.form && { form: renders.form.render },
         },
 
         ...mapDispatch && mapDispatch(dispatch),
