@@ -1,5 +1,6 @@
 import { ImUsers } from 'react-icons/im';
 import { userActions } from '../../actions';
+import list from './list';
 import card from './card';
 import form from './form';
 import modals from './modals';
@@ -17,37 +18,7 @@ export default {
         icon: ImUsers,
     },
 
-    list: {
-        parameters: {
-            params: {
-                limit: 50,
-                order: {
-                    column: 'first_name',
-                },
-            },
-        },
-        searches: {
-            columns: [
-                "concat(first_name, ' ', last_name)",
-            ],
-            placeholder: 'Prénom et/ou nom...',
-        },
-        orders: [
-            {
-                label: 'Prénom',
-                value: 'first_name',
-            },
-            {
-                label: 'Nom',
-                value: 'last_name',
-            },
-            {
-                label: 'Date de création',
-                value: 'created_at',
-            },
-        ],
-        delete: true,
-    },
+    list,
 
     screens: [
         {

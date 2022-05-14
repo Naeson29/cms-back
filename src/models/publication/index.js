@@ -2,6 +2,7 @@ import { BiNews } from 'react-icons/bi';
 import {
     defaultActions,
 } from '../../actions';
+import list from './list';
 import card from './card';
 import form from './form';
 import modals from './modals';
@@ -21,50 +22,7 @@ export default {
         icon: BiNews,
     },
 
-    list: {
-        parameters: {
-            params: {
-                limit: 6,
-                order: {
-                    column: 'created_at',
-                    desc: true,
-                },
-            },
-        },
-        searches: {
-            columns: ['title', 'content'],
-            placeholder: 'Titre, contenu...',
-        },
-        orders: [
-            {
-                label: 'Titre de publication',
-                value: 'title',
-            },
-            {
-                label: 'Date de création',
-                value: 'created_at',
-            },
-        ],
-        filters: [
-            {
-                label: 'Publiée',
-                value: {
-                    column: 'published',
-                    operator: '=',
-                    value: 1,
-                },
-            },
-            {
-                label: 'Non publiée',
-                value: {
-                    column: 'published',
-                    operator: '=',
-                    value: 0,
-                },
-            },
-        ],
-        delete: true,
-    },
+    list,
 
     screens: [
         {
