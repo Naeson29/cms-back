@@ -82,7 +82,7 @@ class Default extends Component {
         const { model = 'default' } = state;
 
         return (
-            <div className={`fragment ${model}`}>
+            <div className={`fragment ${model} ${screen}`}>
                 <HeaderScreen
                     {...props}
                     title={t(`${model}:title:${screen}`)}

@@ -129,6 +129,10 @@ body {
           flex-direction: column;
           padding-top: $header-height;
 
+          &.create, &.update, &.show {
+            background-color: #fbfbfb;
+          }
+
           h2 {
             margin    : 0.9rem 0.9rem 0 0.9rem;
             color     : $primary-color;
