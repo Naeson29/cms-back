@@ -5,9 +5,9 @@ const defaultErrors = {
 };
 
 const defaultSuccess = {
-    create: 'Création effectuée',
-    update: 'Modification effectuée',
-    delete: 'Suppression effectuée',
+    create: 'Création enregistrée',
+    update: 'Modification enregistrée',
+    delete: 'Suppression enregistrée',
 };
 
 const success = {

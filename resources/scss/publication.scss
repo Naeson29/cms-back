@@ -96,7 +96,8 @@
 
     .body, .options {
       flex:1;
-      padding:20px;
+      padding:1.8rem;
+      margin:1rem 0;
 
       .title {
         display: flex;
@@ -107,9 +108,9 @@
         margin-bottom:15px;
 
         span {
-          color:rgba(0,0,0,0.3);
-          font-size:13px;
-          margin-top:.3rem;
+          color: rgba(0,0,0,.5);
+          font-size:14px;
+          margin-top:.5rem;
         }
       }
       .text-detail {
@@ -120,7 +121,7 @@
     }
 
     .body {
-      border-right: 1px solid rgba(0,0,0,0.1);
+      border-right: 1px dotted rgba(0,0,0,0.2);
     }
 
     @media (max-width: 1024px) {

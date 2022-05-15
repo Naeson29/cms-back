@@ -9,7 +9,7 @@ import {
 
 export default (key) => {
     const { title, content, images, created, user, published } = key;
-    const date = `${moment(created).format('DD.MM.YYYY')} à ${moment(created).format('HH[h]mm')}`;
+    const date = `${moment(created).format('DD/MM/YYYY')} à ${moment(created).format('HH[h]mm')}`;
     const userdata = user.data;
 
     return (
