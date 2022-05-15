@@ -3,6 +3,7 @@ import { createActionTypes } from '../types';
 
 export const DEFAULT_MODEL_ACTION_NAMES = [
     'SEARCH',
+    'REFRESH',
     'MORE',
     'PAGINATE',
     'CREATE',

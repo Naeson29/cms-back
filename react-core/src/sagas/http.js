@@ -1,4 +1,8 @@
-import { call, put, select } from 'redux-saga/effects';
+import {
+    call,
+    put,
+    select,
+} from 'redux-saga/effects';
 import { mergeWithConcat } from '../helpers';
 import { getDefaultAuthorizationHeader } from '../selectors/authentication';
 

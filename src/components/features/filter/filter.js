@@ -29,7 +29,7 @@ const {
  * @constructor
  */
 const Filter = (props) => {
-    const { state, getList, openFilter, closeFilter } = props;
+    const { state, refresh, openFilter, closeFilter } = props;
     const { params = {}, screenList, filter, loadings = {} } = state;
     const { orders = [], filters = [], searches = {} } = screenList;
     const { columns = [], placeholder = '' } = searches;
@@ -45,7 +45,7 @@ const Filter = (props) => {
 
     const launchList = () => {
         if (!loadings.list) {
-            getList({ params: filterParams });
+            refresh({ params: filterParams });
             setChange(false);
         }
     };
@@ -202,14 +202,14 @@ const Filter = (props) => {
 
 Filter.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
-    getList: PropTypes.func,
+    refresh: PropTypes.func,
     openFilter: PropTypes.func,
     closeFilter: PropTypes.func,
 };
 
 Filter.defaultProps = {
     state: {},
-    getList: () => {},
+    refresh: () => {},
     openFilter: () => {},
     closeFilter: () => {},
 };

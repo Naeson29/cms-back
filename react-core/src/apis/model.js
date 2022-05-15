@@ -47,6 +47,16 @@ export const createModelApiClass = (HttpApi, path) => {
          * @param {object} [params={}]
          * @return {AxiosPromise}
          */
+        refresh = ({ params = {}, ...options } = {}) => this.get({
+            url: this.path, params, options,
+        });
+
+        /**
+         *
+         * @method ModelApi#search
+         * @param {object} [params={}]
+         * @return {AxiosPromise}
+         */
         more = ({ params = {}, ...options } = {}) => this.get({
             url: this.path, params, options,
         });

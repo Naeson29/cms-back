@@ -4,6 +4,7 @@ export const DEFAULT_MODEL_REDUCER_FUNCTIONS = ModelReducerFunctions;
 
 export const createModelReducer = (initialState = {}, {
     SEARCH = {},
+    REFRESH = {},
     MORE = {},
     PAGINATE = {},
     CREATE = {},
@@ -17,6 +18,10 @@ export const createModelReducer = (initialState = {}, {
     case SEARCH.REQUEST: return functions.searchRequest(state, 'index', action);
     case SEARCH.SUCCESS: return functions.searchSuccess(state, action.payload, 'index', action);
     case SEARCH.FAILURE: return functions.searchFailure(state, action.payload, 'index', action);
+    // SEARCH
+    case REFRESH.REQUEST: return functions.refreshRequest(state, 'index', action);
+    case REFRESH.SUCCESS: return functions.refreshSuccess(state, action.payload, 'index', action);
+    case REFRESH.FAILURE: return functions.refreshFailure(state, action.payload, 'index', action);
     // MORE
     case MORE.REQUEST: return functions.moreRequest(state, 'index');
     case MORE.SUCCESS: return functions.moreSuccess(state, action.payload, 'index', action);

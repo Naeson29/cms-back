@@ -150,6 +150,11 @@ const setScreenFunctions = (dispatch, { creators }, params) => (!creators ? {} :
             },
         }));
     },
+    refresh: (parameters = {}) => {
+        dispatch(creators.refresh.request({
+            ...params, ...parameters,
+        }));
+    },
     create: (data) => {
         dispatch(creators.create.request(data));
     },

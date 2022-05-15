@@ -23,6 +23,29 @@ export const createDefaultModelActionCreators = types => ({
             };
         },
     },
+    refresh: {
+        request(data, meta = null) {
+            return {
+                type: types.REFRESH.REQUEST,
+                payload: data,
+                meta,
+            };
+        },
+        success(data, meta = null) {
+            return {
+                type: types.REFRESH.SUCCESS,
+                payload: data,
+                meta,
+            };
+        },
+        failure(data, meta = null) {
+            return {
+                type: types.REFRESH.FAILURE,
+                payload: data,
+                meta,
+            };
+        },
+    },
     more: {
         request(data, meta = null) {
             return {
