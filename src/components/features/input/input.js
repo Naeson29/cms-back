@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Input = (props) => {
     const { attributes, value, error, handleChange, handleKeypress } = props;
     const {
-        label = '', type = 'text', name = 'input', className = 'input', placeholder = '',
+        label = '', type = 'text', name = 'input', className = 'input', placeholder = '', required = false,
     } = attributes;
 
     const onKeyPress = (e) => {
@@ -17,7 +17,10 @@ const Input = (props) => {
         <div className={type !== 'hidden' ? 'container-field' : ''}>
             {
                 label && (
-                    <p className="label">{label}</p>
+                    <p className="label">
+                        {label}
+                        {required ? ' *' : ''}
+                    </p>
                 )
             }
             <input

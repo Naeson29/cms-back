@@ -2,7 +2,10 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { Button } from '..';
+import {
+    Button,
+    Error,
+} from '..';
 import {
     formUtility,
 } from '../../utilities';
@@ -42,28 +45,35 @@ const Form = (props) => {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <div className="columns">
+            <div className="form-content">
                 {
-                    Object.keys(columnsObject).map((col, index) => (
-                        <div className={classNames[columns]} key={`column_${index.toString()}`}>
-                            {
-                                columnsObject[col].map((key) => {
-                                    const Component = formUtility(key.element);
-                                    return (
-                                        <Component
-                                            key={`field_${key.name}`}
-                                            attributes={key}
-                                            handleChange={handleChange}
-                                            handleUpload={handleUpload}
-                                            value={data[key.name]}
-                                            error={errors && !!errors[key.name]}
-                                        />
-                                    );
-                                })
-                            }
-                        </div>
-                    ))
+                    errors && (
+                        <Error errors={errors} />
+                    )
                 }
+                <div className="columns">
+                    {
+                        Object.keys(columnsObject).map((col, index) => (
+                            <div className={classNames[columns]} key={`column_${index.toString()}`}>
+                                {
+                                    columnsObject[col].map((key) => {
+                                        const Component = formUtility(key.element);
+                                        return (
+                                            <Component
+                                                key={`field_${key.name}`}
+                                                attributes={key}
+                                                handleChange={handleChange}
+                                                handleUpload={handleUpload}
+                                                value={data[key.name]}
+                                                error={errors && !!errors[key.name]}
+                                            />
+                                        );
+                                    })
+                                }
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
             <div className="action">
                 <Button

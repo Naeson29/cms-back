@@ -7,6 +7,7 @@ export default () => ({
             placeholder: 'Titre de la publication...',
             name: 'title',
             column: 1,
+            required: true,
         },
         {
             element: 'textarea',
@@ -27,13 +28,13 @@ export default () => ({
             name: 'imagesUpload',
             multiple: true,
             maxNumber: 5,
-            label: 'Images publication',
+            label: 'Images',
             column: 2,
         },
     ],
     validation: {
         title: {
-            name: 'titre',
+            name: 'Titre',
             required: true,
         },
     },

@@ -6,11 +6,16 @@ const Error = (props) => {
 
     return (
         <div className="errors">
-            {
-                Object.keys(errors).map(key => (
-                    <p key={`error_${key}`}>{errors[key]}</p>
-                ))
-            }
+            <div className="errors-content">
+                {
+                    Object.keys(errors).map(key => (
+                        <p key={`error_${key}`}>
+                            {'* '}
+                            {errors[key]}
+                        </p>
+                    ))
+                }
+            </div>
         </div>
     );
 };

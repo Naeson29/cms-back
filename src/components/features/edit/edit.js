@@ -56,7 +56,6 @@ const Edit = (props) => {
         }
         if (validator.error) {
             setErrors(validator.error);
-            // openModal(modalUtility.actions.error(<Error errors={validator.error} />));
         }
     };
 
