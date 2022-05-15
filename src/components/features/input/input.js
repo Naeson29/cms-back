@@ -33,6 +33,13 @@ const Input = (props) => {
                 onKeyPress={onKeyPress}
                 autoComplete="new-password"
             />
+            {
+                error && (
+                    <p className="error-text">
+                        {error}
+                    </p>
+                )
+            }
         </div>
     );
 };

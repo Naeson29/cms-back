@@ -46,7 +46,7 @@ export default (data, validation) => {
             const value = data[key];
 
             if (required && !value) {
-                error[key] = `La valeur du champ "${rules.name}" est obligatoire`;
+                error[key] = `Le champ "${rules.name}" est obligatoire`;
                 return error;
             }
 

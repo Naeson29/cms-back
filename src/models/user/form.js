@@ -17,7 +17,7 @@ export default action => ({
         },
         {
             element: 'input',
-            label: 'Email',
+            label: 'Adresse email',
             placeholder: 'exemple@mail.fr...',
             name: 'email',
             column: 1,
@@ -60,26 +60,26 @@ export default action => ({
     ],
     validation: {
         email: {
-            name: 'email',
+            name: 'Adresse email',
             required: true,
             rule: 'email',
         },
         first_name: {
-            name: 'prénom',
+            name: 'Prénom',
             required: true,
         },
         last_name: {
-            name: 'nom',
+            name: 'Nom',
             required: true,
         },
         ...action === 'create' && {
             password: {
-                name: 'mot de passe',
+                name: 'Mot de passe',
                 required: true,
                 rule: 'password',
             },
             confirmation: {
-                name: 'confirmation',
+                name: 'Confirmation',
                 required: true,
             },
         },

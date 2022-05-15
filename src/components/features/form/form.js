@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import {
     Button,
-    Error,
 } from '..';
 import {
     formUtility,
@@ -46,11 +45,6 @@ const Form = (props) => {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <div className="form-content">
-                {
-                    errors && (
-                        <Error errors={errors} />
-                    )
-                }
                 <div className="columns">
                     {
                         Object.keys(columnsObject).map((col, index) => (
@@ -65,7 +59,7 @@ const Form = (props) => {
                                                 handleChange={handleChange}
                                                 handleUpload={handleUpload}
                                                 value={data[key.name]}
-                                                error={errors && !!errors[key.name]}
+                                                error={(errors && !!errors[key.name]) && errors[key.name]}
                                             />
                                         );
                                     })

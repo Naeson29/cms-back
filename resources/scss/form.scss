@@ -20,6 +20,10 @@
         border-radius: 4px;
         background-color: $error-form-bg;
         color: $error-text;
+
+        p {
+          padding:.2rem 0;
+        }
       }
     }
     .columns {  
@@ -96,6 +100,13 @@
           resize: none;
           outline: none;
           padding:.5rem;
+        }
+
+        .error-text {
+          color: $error-text;
+          font-size: 14px;
+          margin-top: .6rem;
+          padding-left: .2rem;
         }
       }
   
