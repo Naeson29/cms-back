@@ -36,26 +36,7 @@ export const defaultFailure = (state, payload, section) => ({
 /* DEFAULT END */
 
 /* SEARCH START */
-export const searchRequest = (state, section, action = {}) => {
-    const { payload = {} } = action;
-
-    return {
-        ...state,
-        data: {},
-        views: {
-            ...state.views,
-            [section]: {
-                results: [],
-                error: null,
-                loading: true,
-                pagination: {},
-                ...payload.params && {
-                    params: payload.params,
-                },
-            },
-        },
-    };
-};
+export const searchRequest = defaultRequest;
 
 export const searchSuccess = (state, { data, current_page, per_page, total, last_page }, section) => ({ // eslint-disable-line camelcase
     ...state,

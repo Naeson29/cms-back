@@ -171,13 +171,7 @@ export default ({
     const {
         route = '',
         creators = false,
-        list = {
-            parameters: {},
-            searches: {},
-            orders: [],
-            filters: [],
-            delete: true,
-        },
+        list = {},
         renders = {},
     } = model || false;
 

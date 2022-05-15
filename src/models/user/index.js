@@ -1,4 +1,5 @@
 import { ImUsers } from 'react-icons/im';
+import { model } from '../model';
 import { userActions } from '../../actions';
 import list from './list';
 import card from './card';
@@ -7,6 +8,9 @@ import modals from './modals';
 import detail from './detail';
 
 export default {
+
+    ...model,
+
     name: 'user',
 
     route: 'users',
@@ -18,7 +22,10 @@ export default {
         icon: ImUsers,
     },
 
-    list,
+    list: {
+        ...model.list,
+        ...list,
+    },
 
     screens: [
         {

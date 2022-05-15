@@ -1,4 +1,5 @@
 import { BiNews } from 'react-icons/bi';
+import { model } from '../model';
 import {
     defaultActions,
 } from '../../actions';
@@ -11,6 +12,9 @@ import detail from './detail';
 const name = 'publication';
 
 export default {
+
+    ...model,
+
     name,
 
     route: 'publications',
@@ -22,7 +26,10 @@ export default {
         icon: BiNews,
     },
 
-    list,
+    list: {
+        ...model.list,
+        ...list,
+    },
 
     screens: [
         {

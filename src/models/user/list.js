@@ -27,5 +27,4 @@ export default {
             value: 'created_at',
         },
     ],
-    delete: true,
 };

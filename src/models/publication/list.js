@@ -40,5 +40,5 @@ export default {
             },
         },
     ],
-    delete: true,
+    filter: true,
 };

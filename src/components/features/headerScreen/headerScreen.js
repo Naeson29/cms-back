@@ -29,7 +29,8 @@ const {
  */
 const HeaderScreen = (props) => {
     const { state, title, current, screen, route } = props;
-    const { model, detail, list = [] } = state;
+    const { model, detail, list = [], screenList } = state;
+    const { filter, pagination } = screenList;
     const { permissions } = current;
     const history = useHistory();
     const permission = getPermissionModel(permissions, model);
@@ -45,7 +46,7 @@ const HeaderScreen = (props) => {
     const index = screen === 'index';
     const show = screen === 'show';
 
-    const toolsList = index && list.length > 0;
+    const paginationButton = (index && list.length > 0 && pagination === 'button');
     const buttonEdit = show && permission.update;
 
     return (
@@ -58,12 +59,12 @@ const HeaderScreen = (props) => {
                 />
                 <span>{title}</span>
                 {
-                    toolsList && <Pagination {...props} />
+                    paginationButton && <Pagination {...props} />
                 }
             </div>
             <div className="content right">
                 {
-                    index && <Filter {...props} />
+                    (index && filter) && <Filter {...props} />
                 }
                 {
                     buttonEdit && (

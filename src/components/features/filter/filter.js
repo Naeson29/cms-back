@@ -30,8 +30,8 @@ const {
  */
 const Filter = (props) => {
     const { state, getList, openFilter, closeFilter } = props;
-    const { params = {}, screenList, filter } = state;
-    const { orders, filters, searches } = screenList;
+    const { params = {}, screenList, filter, loadings = {} } = state;
+    const { orders = [], filters = [], searches = {} } = screenList;
     const { columns = [], placeholder = '' } = searches;
     const { order = {} } = params;
 
@@ -44,8 +44,10 @@ const Filter = (props) => {
     const toogleFilter = () => (filter.open ? closeFilter() : openFilter());
 
     const launchList = () => {
-        getList({ params: filterParams });
-        setChange(false);
+        if (!loadings.list) {
+            getList({ params: filterParams });
+            setChange(false);
+        }
     };
 
     const applySearch = () => {

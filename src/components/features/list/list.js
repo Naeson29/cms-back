@@ -12,7 +12,7 @@ import {
     permissionUtility,
 } from '../../utilities';
 
-// import { hasMorePage } from '../../../utilities/functions';
+import { hasMorePage } from '../../../utilities/functions';
 
 // features
 import { Button } from '..';
@@ -67,7 +67,7 @@ const List = (props) => {
         history.push(`/${route}/edit/${id}`);
     };
 
-    const hasMore = false; // hasMorePage(pagination);
+    const hasMore = screenList.pagination === 'scroll' && hasMorePage(pagination);
 
     return (
         <InfiniteScroll
@@ -86,7 +86,7 @@ const List = (props) => {
                     const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role < key.role));
 
                     const hasUpdate = permission.update && permissionUpdate;
-                    const hasDelete = screenList.delete && (permission.delete && permissionRemove);
+                    const hasDelete = screenList.deletion && (permission.delete && permissionRemove);
 
                     return (
                         <div
