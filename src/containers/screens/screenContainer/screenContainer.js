@@ -3,15 +3,17 @@ import { withRouter } from 'react-router-dom';
 
 // selectors
 import {
-    setScreenSelector,
-    setModalSelector,
-    setPanelSelector,
+    getScreenSelector,
+    getModalSelector,
+    getPanelSelector,
+    getFilterSelector,
 } from '../../../selectors';
 
 // creators
 import {
     modalActions,
     panelActions,
+    filterActions,
 } from '../../../actions';
 
 // Screen
@@ -27,6 +29,19 @@ const setModalState = (state, selector) => {
     const { GetModal } = selector;
     return {
         modal: GetModal(state),
+    };
+};
+
+/**
+ *
+ * @param state
+ * @param selector
+ * @returns {{filter}}
+ */
+const setFilterState = (state, selector) => {
+    const { GetFilter } = selector;
+    return {
+        filter: GetFilter(state),
     };
 };
 
@@ -68,7 +83,19 @@ const setScreenState = (state, selectors) => {
 /**
  *
  * @param dispatch
- * @returns {{openModal: List.propTypes.openModal, closeModal: Modals.propTypes.closeModal}}
+ */
+const setFilterFunctions = dispatch => ({
+    openFilter: () => {
+        dispatch(filterActions().creators.open.do({ open: true }));
+    },
+    closeFilter: () => {
+        dispatch(filterActions().creators.close.do());
+    },
+});
+
+/**
+ *
+ * @param dispatch
  */
 const setModalFunctions = dispatch => ({
     openModal: (modal) => {
@@ -82,7 +109,6 @@ const setModalFunctions = dispatch => ({
 /**
  *
  * @param dispatch
- * @returns {{openPanel: List.propTypes.openPanel, closePanel: HeaderScreen.propTypes.closePanel}}
  */
 const setPanelFunctions = dispatch => ({
     openPanel: (panel) => {
@@ -98,7 +124,6 @@ const setPanelFunctions = dispatch => ({
  * @param dispatch
  * @param creators
  * @param paramsList
- * @returns {{getList: Default.propTypes.getList, getDetail: List.propTypes.getDetail, getMore: List.propTypes.getMore, update: update, destroy: destroy}}
  */
 const setScreenFunctions = (dispatch, { creators }, params) => (!creators ? {} : {
     getList: (parameters = {}) => {
@@ -156,7 +181,7 @@ export default ({
         renders = {},
     } = model || false;
 
-    const { GetCurrent } = setScreenSelector('user');
+    const { GetCurrent } = getScreenSelector('user');
 
     const mapStateToProps = state => ({
 
@@ -166,9 +191,10 @@ export default ({
 
         state: {
             ...model && { model: model.name },
-            ...model && setScreenState(state, setScreenSelector(model.name)),
-            ...setModalState(state, setModalSelector),
-            ...setPanelState(state, setPanelSelector),
+            ...model && setScreenState(state, getScreenSelector(model.name)),
+            ...setModalState(state, getModalSelector),
+            ...setPanelState(state, getPanelSelector),
+            ...setFilterState(state, getFilterSelector),
             screenList: list,
         },
 
@@ -179,6 +205,7 @@ export default ({
 
         ...setModalFunctions(dispatch),
         ...setPanelFunctions(dispatch),
+        ...setFilterFunctions(dispatch),
         ...setScreenFunctions(dispatch, creators, list.parameters),
 
         ...renders && {

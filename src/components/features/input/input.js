@@ -28,7 +28,7 @@ const Input = (props) => {
                 name={name}
                 className={className + (error ? ' error' : '')}
                 placeholder={placeholder}
-                defaultValue={value}
+                value={value}
                 onChange={e => handleChange(name, e.target.value)}
                 onKeyPress={onKeyPress}
                 autoComplete="new-password"

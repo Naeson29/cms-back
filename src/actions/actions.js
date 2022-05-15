@@ -124,6 +124,19 @@ export const navigation = () => {
     };
 };
 
+export const filter = () => {
+    const types = {
+        OPEN: createActionTypes('filter', 'OPEN', ['DO']),
+        CLOSE: createActionTypes('filter', 'CLOSE', ['DO']),
+    };
+    const creators = createDefaultSimpleCreators(types);
+    return {
+        types,
+        creators,
+    };
+};
+
+
 export const modal = () => {
     const types = {
         OPEN: createActionTypes('modal', 'OPEN', ['DO']),

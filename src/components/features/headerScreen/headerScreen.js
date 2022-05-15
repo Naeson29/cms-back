@@ -63,7 +63,7 @@ const HeaderScreen = (props) => {
             </div>
             <div className="content right">
                 {
-                    toolsList && <Filter {...props} />
+                    index && <Filter {...props} />
                 }
                 {
                     buttonEdit && (

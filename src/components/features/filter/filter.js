@@ -5,7 +5,6 @@ import React, {
 import { BsFilterSquareFill } from 'react-icons/bs';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import {
-    HiCheck,
     HiX,
 } from 'react-icons/hi';
 import PropTypes from 'prop-types';
@@ -30,27 +29,39 @@ const {
  * @constructor
  */
 const Filter = (props) => {
-    const { state, getList } = props;
-    const { params = {}, screenList } = state;
-
+    const { state, getList, openFilter, closeFilter } = props;
+    const { params = {}, screenList, filter } = state;
     const { orders, filters, searches } = screenList;
-
     const { columns = [], placeholder = '' } = searches;
     const { order = {} } = params;
 
-    const [open, setFilter] = useState(false);
     const [filterParams, setParams] = useState({});
     const [searchString, setSearchString] = useState('');
     const [searching, setSearching] = useState(false);
     const [selectedMultiple, setSelectedMultiple] = useState([]);
+    const [change, setChange] = useState(false);
 
-    useEffect(() => {
-        if (Object.keys(params).length > 0) {
-            setParams(params);
+    const toogleFilter = () => (filter.open ? closeFilter() : openFilter());
+
+    const launchList = () => {
+        getList({ params: filterParams });
+        setChange(false);
+    };
+
+    const applySearch = () => {
+        if (searchString) {
+            setSearching(true);
+            launchList();
         }
-    }, [params]);
+    };
 
-    const toogleFilter = () => setFilter(!open);
+    const cleanSearch = () => {
+        setSearching(false);
+        setSearchString('');
+        delete filterParams.search;
+        setParams(filterParams);
+        setChange(true);
+    };
 
     const handleChangeColumn = (key, value) => {
         setParams({
@@ -60,6 +71,7 @@ const Filter = (props) => {
                 column: value,
             },
         });
+        setChange(true);
     };
 
     const handleChangeOrder = (key, value) => {
@@ -70,6 +82,7 @@ const Filter = (props) => {
                 [value]: true,
             },
         });
+        setChange(true);
     };
 
     const handleChangeFilter = (value) => {
@@ -79,6 +92,7 @@ const Filter = (props) => {
             ...filterParams,
             filter: filters.length !== filterValue.length ? filterValue : [],
         });
+        setChange(true);
     };
 
     const handleChangeSearch = (key, value) => {
@@ -95,44 +109,27 @@ const Filter = (props) => {
         });
     };
 
-    const launchList = () => {
-        getList({ params: filterParams });
-        setFilter(false);
-    };
-
-    const applyFilter = () => {
-        if (filterParams.search) {
-            setSearching(!!searchString);
+    useEffect(() => {
+        if (Object.keys(params).length > 0) {
+            setParams(params);
         }
-        launchList();
-    };
+    }, [params]);
 
-    const cleanSearch = () => {
-        setSearching(false);
-        setSearchString('');
-        delete filterParams.search;
-        setParams(filterParams);
-        launchList();
-    };
+    useEffect(() => {
+        if (change) {
+            launchList();
+        }
+    }, [change]);
 
     return (
         <div className="filter">
-            {
-                open && (
-                    <Button
-                        action={applyFilter}
-                        className="button button-apply"
-                        icon={HiCheck}
-                    />
-                )
-            }
             <Button
                 action={toogleFilter}
                 className="button button-filter"
                 icon={BsFilterSquareFill}
             />
             {
-                open && (
+                filter.open && (
                     <div className="filter-box">
                         <div className="filter-content border">
                             <p className="title">Rechercher</p>
@@ -145,10 +142,10 @@ const Filter = (props) => {
                                     }}
                                     value={searchString}
                                     handleChange={handleChangeSearch}
-                                    handleKeypress={applyFilter}
+                                    handleKeypress={applySearch}
                                 />
                                 <Button
-                                    action={applyFilter}
+                                    action={applySearch}
                                     className="button button-search"
                                     icon={BiSearchAlt2}
                                 />
@@ -204,11 +201,15 @@ const Filter = (props) => {
 Filter.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     getList: PropTypes.func,
+    openFilter: PropTypes.func,
+    closeFilter: PropTypes.func,
 };
 
 Filter.defaultProps = {
     state: {},
     getList: () => {},
+    openFilter: () => {},
+    closeFilter: () => {},
 };
 
 export default Filter;

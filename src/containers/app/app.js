@@ -5,7 +5,7 @@ import {
 
 // selectors
 import {
-    setAppSelector,
+    getAppSelector,
 } from '../../selectors';
 
 /**
@@ -26,7 +26,7 @@ const setAppState = (state, selector) => {
 
 export default {
     mapState: state => ({
-        ...setAppState(state, setAppSelector),
+        ...setAppState(state, getAppSelector),
     }),
     mapDispatch: dispatch => ({
         load: () => {
