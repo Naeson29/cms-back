@@ -220,8 +220,8 @@ body {
 
               .pagination-nav {
                 .button-paginate {
-                  width:30px;
-                  height:30px;
+                  width: 2rem;
+                  height: 2rem;
                   background-color: $white;
                   border-radius: 4px;
                   border:1px solid rgba(0, 0, 0, 0.2);
@@ -232,8 +232,8 @@ body {
 
                   .icon {
                     fill : $primary-color;
-                    height: 30px;
-                    width: 30px;                        
+                    height: 100%;
+                    width: 100%;                        
                   }
                 }
               }
