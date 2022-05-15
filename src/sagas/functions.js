@@ -2,23 +2,22 @@ import {
     takeEvery, put, call,
 } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
 
 import {
     modalActions,
+    navigationActions,
 } from '../actions';
 
 import toasts from './toast';
 
 const { defaultErrors, defaultSuccess, success } = toasts;
-const history = useHistory();
 
 const theme = 'colored';
 const paramToast = { theme };
 
 function* createSuccess(name, route) {
     yield call(() => toast.success(success[name] ? success[name].create : defaultSuccess.create, paramToast));
-    history.push(`/${route}`);
+    yield put(navigationActions().creators.push.do(`/${route}`));
 }
 
 function* createFailure() {
