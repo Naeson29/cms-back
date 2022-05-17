@@ -18,7 +18,7 @@ const Textarea = (props) => {
                 name={name}
                 className={className + (error ? ' error' : '')}
                 placeholder={placeholder}
-                value={value}
+                defaultValue={value}
                 onChange={e => handleChange(name, e)}
             />
         </div>

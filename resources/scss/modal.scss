@@ -1,23 +1,12 @@
 .overlay {
   display: flex;
   position: fixed;
-  top: $header-height;
+  top: 0;
   right: 0;
   bottom: 0;
   z-index: 30;
-  background-color: rgba(0,0,0,0.1);
-
-  @media (min-width: 1025px) {
-    width : calc(100% - 250px);
-  }
-
-  @media (max-width: 1024px) {
-    width : calc(100% - 50px);
-  }
-
-  @media (max-width: 768px) {
-    width:100%;
-  }
+  background-color: rgba(0,0,0,0.5);
+  width:100%;
 
   .modal {
     position: static;
@@ -30,14 +19,14 @@
       .card {
         padding:2rem;
         min-height: 200px;
-        width: 400px;
+        min-width: 450px;
         border-radius: 0.4rem;
         border: $grey-border;
         display: flex;
         flex-direction: column;
         justify-content: center;
         box-shadow: 5px 4px 6px -1px rgba(0,0,0,0.2);
-        background-color: #e7e7e7;
+        background-color: #fbfbfb;
 
         .card-content {
           display: flex;
@@ -49,7 +38,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: $grey-background;
+            background-color: $white;
             border: $grey-border;
             border-radius: 5px;
             padding:.8rem 0;
@@ -82,7 +71,7 @@
               justify-content: center;
               align-items: center;
               margin: 0 .8rem;
-              background-color: $grey-background;
+              background-color: $white;
               border-radius: 5px;
               border: $grey-border;
 

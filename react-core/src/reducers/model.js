@@ -23,11 +23,11 @@ export const createModelReducer = (initialState = {}, {
     case REFRESH.SUCCESS: return functions.refreshSuccess(state, action.payload, 'index', action);
     case REFRESH.FAILURE: return functions.refreshFailure(state, action.payload, 'index', action);
     // MORE
-    case MORE.REQUEST: return functions.moreRequest(state, 'index');
+    case MORE.REQUEST: return functions.moreRequest(state, 'index', action);
     case MORE.SUCCESS: return functions.moreSuccess(state, action.payload, 'index', action);
     case MORE.FAILURE: return functions.moreFailure(state, action.payload, 'index', action);
     // MORE
-    case PAGINATE.REQUEST: return functions.paginateRequest(state, 'index');
+    case PAGINATE.REQUEST: return functions.paginateRequest(state, 'index', action);
     case PAGINATE.SUCCESS: return functions.paginateSuccess(state, action.payload, 'index', action);
     case PAGINATE.FAILURE: return functions.paginateFailure(state, action.payload, 'index', action);
     // CREATE

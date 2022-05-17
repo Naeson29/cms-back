@@ -1,5 +1,5 @@
 import {
-    takeEvery, put, call,
+    takeEvery, put, call, select,
 } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
@@ -9,8 +9,10 @@ import {
 } from '../actions';
 
 import toasts from './toast';
+import { getScreenSelector } from '../selectors';
 
 const { defaultErrors, defaultSuccess, success } = toasts;
+const getState = state => state;
 
 const theme = 'colored';
 const paramToast = { theme };
@@ -36,9 +38,13 @@ function* onDelete() {
     yield put(modalActions().creators.close.do());
 }
 
-function* destroySuccess(action, name, creators) {    
+function* destroySuccess(name, creators) {
+    const state = yield select(getState);
+    const { ParamsList } = getScreenSelector(name);
+    const params = ParamsList(state);
+
     yield call(() => toast.success(success[name] ? success[name].delete : defaultSuccess.delete, paramToast));
-    yield put(creators.refresh.request(action.meta));
+    yield put(creators.refresh.request({ params }));
 }
 
 function* destroyFailure() {
@@ -50,7 +56,7 @@ function* defaultRoot(name, route, types, creators, defaultSagas) {
     yield takeEvery(types.DESTROY.REQUEST, onDelete);
     yield takeEvery(types.CREATE.SUCCESS, () => createSuccess(name, route));
     yield takeEvery(types.UPDATE.SUCCESS, () => updateSuccess(name));
-    yield takeEvery(types.DESTROY.SUCCESS, (action) => destroySuccess(action, name, creators));
+    yield takeEvery(types.DESTROY.SUCCESS, () => destroySuccess(name, creators));
     yield takeEvery(types.CREATE.FAILURE, createFailure);
     yield takeEvery(types.UPDATE.FAILURE, updateFailure);
     yield takeEvery(types.DESTROY.FAILURE, destroyFailure);

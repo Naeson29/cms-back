@@ -1,1 +1,3 @@
-export { default, auth } from './routes';
+export {
+    default, auth,
+} from './routes';

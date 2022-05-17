@@ -162,7 +162,7 @@ const setScreenFunctions = (dispatch, { creators }, params) => (!creators ? {} :
         dispatch(creators.update.request(id, data));
     },
     destroy: (id) => {
-        dispatch(creators.destroy.request(id, params));
+        dispatch(creators.destroy.request(id));
     },
 });
 
