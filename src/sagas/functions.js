@@ -44,7 +44,7 @@ function* destroySuccess(name, creators) {
     const params = ParamsList(state);
 
     yield call(() => toast.success(success[name] ? success[name].delete : defaultSuccess.delete, paramToast));
-    yield put(creators.refresh.request({ params }));
+    yield put(creators.search.request({ params }));
 }
 
 function* destroyFailure() {
