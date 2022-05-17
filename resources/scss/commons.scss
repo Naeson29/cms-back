@@ -140,7 +140,7 @@ body {
           }
 
           .loading {
-            position: absolute;
+            position: fixed;
             top:0;
             left:0;
             bottom:0;
@@ -150,6 +150,17 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-top: $header-height;
+            
+            @media (min-width: 1024px) {
+              padding-left : $sidebar-big;
+            }
+            @media (max-width: 1024px) {
+              padding-left : $sidebar-small;
+            }
+            @media (max-width: 768px) {
+              padding-left:0;
+            }
           }
 
           .loading-fragment {
