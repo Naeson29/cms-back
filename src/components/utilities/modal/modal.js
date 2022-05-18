@@ -1,27 +1,25 @@
-const createModal = ({ params = {}, content = null, context = '' } = {}) => ({
+const createModal = ({ params = {}, title = '', content = null, context = '' } = {}) => ({
     open: true,
-    content,
-    params,
     [context]: true,
+    params,
+    title,
+    content,  
 });
 
-const actions = {
-    destroy: (key, content) => createModal({
-        params: {
-            id: key.id,
-        },
-        content: content(key),
-        context: 'destroy',
-    }),
+export default {
+    destroy: (key, modal) => {
+        const destroy = modal(key);
+        return createModal({
+            params: {
+                id: key.id,
+            },
+            context: 'destroy',
+            title: destroy.title,
+            content: destroy.content,            
+        });
+    },
     error: content => createModal({
         content,
         context: 'error',
     }),
-};
-
-const isOpen = modal => (modal.open);
-
-export default {
-    actions,
-    isOpen,
 };

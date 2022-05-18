@@ -21,9 +21,6 @@ const {
     getPermissionModel,
 } = permissionUtility;
 
-const { actions } = modalUtility;
-
-
 /**
  *
  * @param props
@@ -56,7 +53,7 @@ const List = (props) => {
      * @param userMe
      */
     const remove = (key) => {
-        openModal(actions.destroy(key, modals.destroy));
+        openModal(modalUtility.destroy(key, modals.destroy));
     };
 
     /**

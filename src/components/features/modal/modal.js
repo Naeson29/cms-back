@@ -8,11 +8,6 @@ import {
 // Feature
 import Button from '../button';
 
-// Utilities
-import { modalUtility } from '../../utilities';
-
-const { isOpen } = modalUtility;
-
 /**
  *
  * @param props
@@ -22,7 +17,7 @@ const { isOpen } = modalUtility;
 const Modals = (props) => {
     const { state, destroy, closeModal } = props;
     const { modal = {} } = state;
-    const { open, params, content } = modal;
+    const { open, params, title, content } = modal;
 
     return (
         <ReactModal
@@ -32,28 +27,31 @@ const Modals = (props) => {
             overlayClassName="overlay"
         >
             {
-                isOpen(modal)
+                modal.open
                 && (
                     <div className="content-modal">
                         <div className="card">
+                            <div class="card-title">
+                                <p>{title}</p>
+                            </div>
                             <div className="card-content">
                                 {content}
-                                <div className="action">
-                                    {
-                                        modal.destroy && (
-                                            <Button
-                                                action={() => destroy(params.id)}
-                                                icon={HiCheck}
-                                                className="button yes"
-                                            />
-                                        )
-                                    }
-                                    <Button
-                                        action={() => closeModal()}
-                                        icon={HiX}
-                                        className="button no"
-                                    />
-                                </div>
+                            </div>                            
+                            <div className="action">
+                                {
+                                    modal.destroy && (
+                                        <Button
+                                            action={() => destroy(params.id)}
+                                            icon={HiCheck}
+                                            className="button yes"
+                                        />
+                                    )
+                                }
+                                <Button
+                                    action={() => closeModal()}
+                                    icon={HiX}
+                                    className="button no"
+                                />
                             </div>
                         </div>
                     </div>
