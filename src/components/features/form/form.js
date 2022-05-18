@@ -71,14 +71,14 @@ const Form = (props) => {
             </div>
             <div className="action">
                 <Button
-                    action={() => history.goBack()}
-                    className="button cancel"
-                    text="Annuler"
-                />
-                <Button
                     action={handleSubmit}
                     className="button submit"
                     text={isUpdate ? 'Modifier' : 'Ajouter'}
+                />
+                <Button
+                    action={() => history.goBack()}
+                    className="button cancel"
+                    text="Annuler"
                 />
             </div>
         </form>

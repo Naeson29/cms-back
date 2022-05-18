@@ -2,7 +2,7 @@
   position : fixed;
   z-index : 15;
   display : flex;
-  top: 100px;
+  top: $header-height * 2;
   bottom : 0;
 
   @media (min-width: 1025px) {

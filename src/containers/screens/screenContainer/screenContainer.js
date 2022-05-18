@@ -6,14 +6,12 @@ import {
     getScreenSelector,
     getModalSelector,
     getPanelSelector,
-    getFilterSelector,
 } from '../../../selectors';
 
 // creators
 import {
     modalActions,
     panelActions,
-    filterActions,
 } from '../../../actions';
 
 // Screen
@@ -29,19 +27,6 @@ const setModalState = (state, selector) => {
     const { GetModal } = selector;
     return {
         modal: GetModal(state),
-    };
-};
-
-/**
- *
- * @param state
- * @param selector
- * @returns {{filter}}
- */
-const setFilterState = (state, selector) => {
-    const { GetFilter } = selector;
-    return {
-        filter: GetFilter(state),
     };
 };
 
@@ -79,19 +64,6 @@ const setScreenState = (state, selectors) => {
         },
     };
 };
-
-/**
- *
- * @param dispatch
- */
-const setFilterFunctions = dispatch => ({
-    openFilter: () => {
-        dispatch(filterActions().creators.open.do({ open: true }));
-    },
-    closeFilter: () => {
-        dispatch(filterActions().creators.close.do());
-    },
-});
 
 /**
  *
@@ -193,7 +165,6 @@ export default ({
             ...model && setScreenState(state, getScreenSelector(model.name)),
             ...setModalState(state, getModalSelector),
             ...setPanelState(state, getPanelSelector),
-            ...setFilterState(state, getFilterSelector),
             screenList: list,
         },
 
@@ -204,7 +175,6 @@ export default ({
 
         ...setModalFunctions(dispatch),
         ...setPanelFunctions(dispatch),
-        ...setFilterFunctions(dispatch),
         ...setScreenFunctions(dispatch, creators, list.parameters),
 
         ...renders && {

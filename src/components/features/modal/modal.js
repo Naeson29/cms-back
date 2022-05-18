@@ -2,7 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
 import {
-    HiCheck, HiX,
+    HiTrash, HiX,
 } from 'react-icons/hi';
 
 // Feature
@@ -17,7 +17,7 @@ import Button from '../button';
 const Modals = (props) => {
     const { state, destroy, closeModal } = props;
     const { modal = {} } = state;
-    const { open, params, title, content } = modal;
+    const { open, params, title = '', content } = modal;
 
     return (
         <ReactModal
@@ -31,7 +31,7 @@ const Modals = (props) => {
                 && (
                     <div className="content-modal">
                         <div className="card">
-                            <div class="card-title">
+                            <div className="card-title">
                                 <p>{title}</p>
                                 <Button
                                     action={() => closeModal()}
@@ -41,15 +41,15 @@ const Modals = (props) => {
                             </div>
                             <div className="card-content">
                                 {content}
-                            </div>                            
+                            </div>
                             <div className="action">
                                 {
                                     modal.destroy && (
                                         <Button
                                             action={() => destroy(params.id)}
-                                            icon={HiCheck}
+                                            icon={HiTrash}
                                             className="button trash"
-                                            text={'Supprimer'}
+                                            text="Supprimer"
                                         />
                                     )
                                 }
@@ -57,7 +57,7 @@ const Modals = (props) => {
                                     action={() => closeModal()}
                                     icon={HiX}
                                     className="button cancel"
-                                    text={'Annuler'}
+                                    text="Annuler"
                                 />
                             </div>
                         </div>

@@ -54,7 +54,7 @@ export default action => ({
             name: 'imagesUpload',
             multiple: false,
             maxNumber: 1,
-            label: 'Image utilisateur',
+            label: 'Photo',
             column: 2,
         },
     ],

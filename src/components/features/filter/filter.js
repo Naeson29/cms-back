@@ -29,8 +29,8 @@ const {
  * @constructor
  */
 const Filter = (props) => {
-    const { state, refresh, openFilter, closeFilter } = props;
-    const { params = {}, screenList, filter, loadings = {} } = state;
+    const { state, refresh, closePanel, openPanel } = props;
+    const { params = {}, screenList, loadings = {}, panel = {} } = state;
     const { orders = [], filters = [], searches = {} } = screenList;
     const { columns = [], placeholder = '' } = searches;
     const { order = {} } = params;
@@ -40,8 +40,7 @@ const Filter = (props) => {
     const [searching, setSearching] = useState(false);
     const [selectedMultiple, setSelectedMultiple] = useState([]);
     const [change, setChange] = useState(false);
-
-    const toogleFilter = () => (filter.open ? closeFilter() : openFilter());
+    const isOpen = panel.open && panel.filter;
 
     const launchList = () => {
         if (!loadings.list) {
@@ -111,6 +110,78 @@ const Filter = (props) => {
         });
     };
 
+    const render = () => (
+        <div className="filter-box">
+            <div className="filter-content border">
+                <p className="title">Rechercher</p>
+                <div className="content-search">
+                    <Input
+                        attributes={{
+                            className: 'search',
+                            name: 'search',
+                            placeholder,
+                        }}
+                        value={searchString}
+                        handleChange={handleChangeSearch}
+                        handleKeypress={applySearch}
+                    />
+                    <Button
+                        action={applySearch}
+                        className="button button-search"
+                        icon={BiSearchAlt2}
+                    />
+                    {
+                        searching && (
+                            <Button
+                                action={cleanSearch}
+                                className="button button-clean"
+                                icon={HiX}
+                            />
+                        )
+                    }
+                </div>
+            </div>
+            <div className="filter-content border">
+                <p className="title">Classer par</p>
+                <div className="content-order">
+                    <Select
+                        attributes={{
+                            ...columnSelect,
+                            options: orders,
+                        }}
+                        value={order.column}
+                        handleChange={handleChangeColumn}
+                    />
+                    <Select
+                        attributes={orderSelect}
+                        value={order.desc ? 'desc' : 'asc'}
+                        handleChange={handleChangeOrder}
+                    />
+                </div>
+            </div>
+            <div className="filter-content">
+                <p className="title">Filtrer</p>
+                <div className="content-order">
+                    <SelectMultiple
+                        attributes={{
+                            options: filters,
+                            name: 'published',
+                            hasSelectAll: false,
+                        }}
+                        value={selectedMultiple}
+                        handleChange={handleChangeFilter}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+
+    const toogleFilter = () => (isOpen ? closePanel() : openPanel({
+        open: true,
+        content: render(),
+        filter: true,
+    }));
+
     useEffect(() => {
         if (Object.keys(params).length > 0) {
             setParams(params);
@@ -130,72 +201,6 @@ const Filter = (props) => {
                 className="button button-filter"
                 icon={BsFilterSquareFill}
             />
-            {
-                filter.open && (
-                    <div className="filter-box">
-                        <div className="filter-content border">
-                            <p className="title">Rechercher</p>
-                            <div className="content-search">
-                                <Input
-                                    attributes={{
-                                        className: 'search',
-                                        name: 'search',
-                                        placeholder,
-                                    }}
-                                    value={searchString}
-                                    handleChange={handleChangeSearch}
-                                    handleKeypress={applySearch}
-                                />
-                                <Button
-                                    action={applySearch}
-                                    className="button button-search"
-                                    icon={BiSearchAlt2}
-                                />
-                                {
-                                    searching && (
-                                        <Button
-                                            action={cleanSearch}
-                                            className="button button-clean"
-                                            icon={HiX}
-                                        />
-                                    )
-                                }
-                            </div>
-                        </div>
-                        <div className="filter-content border">
-                            <p className="title">Classer par</p>
-                            <div className="content-order">
-                                <Select
-                                    attributes={{
-                                        ...columnSelect,
-                                        options: orders,
-                                    }}
-                                    value={order.column}
-                                    handleChange={handleChangeColumn}
-                                />
-                                <Select
-                                    attributes={orderSelect}
-                                    value={order.desc ? 'desc' : 'asc'}
-                                    handleChange={handleChangeOrder}
-                                />
-                            </div>
-                        </div>
-                        <div className="filter-content">
-                            <p className="title">Filtrer</p>
-                            <div className="content-order">
-                                <SelectMultiple
-                                    attributes={{
-                                        options: filters,
-                                        name: 'published',
-                                    }}
-                                    value={selectedMultiple}
-                                    handleChange={handleChangeFilter}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
         </div>
     );
 };
@@ -203,15 +208,15 @@ const Filter = (props) => {
 Filter.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     refresh: PropTypes.func,
-    openFilter: PropTypes.func,
-    closeFilter: PropTypes.func,
+    openPanel: PropTypes.func,
+    closePanel: PropTypes.func,
 };
 
 Filter.defaultProps = {
     state: {},
     refresh: () => {},
-    openFilter: () => {},
-    closeFilter: () => {},
+    openPanel: () => {},
+    closePanel: () => {},
 };
 
 export default Filter;

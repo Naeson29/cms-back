@@ -18,7 +18,7 @@ export default {
     publication: {
         title: {
             index: 'Publications',
-            create: 'Ajouter une nouvelle publication',
+            create: 'Ajouter une publication',
             update: 'Modifier la publication',
             show: 'Détail de la publication',
         },

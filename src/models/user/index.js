@@ -47,7 +47,7 @@ export default {
 
     renders: {
         card: {
-            type: 'small',
+            type: 'medium',
             render: card,
         },
         detail: {

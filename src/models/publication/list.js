@@ -14,7 +14,7 @@ export default {
     },
     orders: [
         {
-            label: 'Titre de publication',
+            label: 'Titre',
             value: 'title',
         },
         {

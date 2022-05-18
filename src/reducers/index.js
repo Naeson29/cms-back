@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 import appReducer from './app';
-import filterReducer from './filter';
 import panelReducer from './panel';
 import modalReducer from './modal';
 import authenticationReducer from './authentication';
@@ -18,7 +17,6 @@ export default combineReducers({
     }), {}),
     routing: routerReducer,
     app: appReducer,
-    filter: filterReducer,
     panel: panelReducer,
     modal: modalReducer,
     authentication: authenticationReducer,

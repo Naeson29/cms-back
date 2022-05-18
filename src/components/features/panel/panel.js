@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  * @constructor
  */
 const Panel = (props) => {
-    const { state, content } = props;
+    const { state } = props;
     const { panel = {} } = state;
 
     return (
@@ -19,7 +19,7 @@ const Panel = (props) => {
                     <div className="panel-container right">
                         <div className="panel">
                             <div className="content-panel">
-                                { content }
+                                { panel.content }
                             </div>
                         </div>
                     </div>
@@ -31,12 +31,10 @@ const Panel = (props) => {
 
 Panel.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
-    content: PropTypes.element,
 };
 
 Panel.defaultProps = {
     state: {},
-    content: (<div />),
 };
 
 export default Panel;

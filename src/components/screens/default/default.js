@@ -82,7 +82,7 @@ class Default extends Component {
         const { model = 'default' } = state;
 
         return (
-            <div className={`fragment ${model} ${screen}`}>
+            <div className={`fragment ${model}`}>
                 <HeaderScreen
                     {...props}
                     title={t(`${model}:title:${screen}`)}
@@ -92,7 +92,6 @@ class Default extends Component {
                 }
                 <Panel
                     state={state}
-                    content={<div />}
                 />
                 {
                     modals && (
