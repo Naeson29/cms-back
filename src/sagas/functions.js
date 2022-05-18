@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import {
     modalActions,
     navigationActions,
+    panelActions,
 } from '../actions';
 
 import toasts from './toast';
@@ -51,6 +52,10 @@ function* destroyFailure() {
     yield call(() => toast.error(defaultErrors.delete, paramToast));
 }
 
+function* onRefresh() {
+    yield put(panelActions().creators.close.do());
+}
+
 function* defaultRoot(name, route, types, creators, defaultSagas) {
     yield* defaultSagas.root();
     yield takeEvery(types.DESTROY.REQUEST, onDelete);
@@ -60,6 +65,8 @@ function* defaultRoot(name, route, types, creators, defaultSagas) {
     yield takeEvery(types.CREATE.FAILURE, createFailure);
     yield takeEvery(types.UPDATE.FAILURE, updateFailure);
     yield takeEvery(types.DESTROY.FAILURE, destroyFailure);
+    yield takeEvery(types.REFRESH.REQUEST, onRefresh);
+    yield takeEvery(types.PAGINATE.REQUEST, onRefresh);
 }
 
 export default defaultRoot;

@@ -1,7 +1,5 @@
 import React from 'react';
-import { HiX } from 'react-icons/hi';
 import PropTypes from 'prop-types';
-import { Button } from '..';
 
 /**
  *
@@ -10,26 +8,17 @@ import { Button } from '..';
  * @constructor
  */
 const Panel = (props) => {
-    const { state, closePanel } = props;
+    const { state } = props;
     const { panel = {} } = state;
 
     return (
-        <div>
+        <div className={`panel-container right ${panel.open ? 'open' : ''}`}>
             {
                 panel.open
                 && (
-                    <div className="panel-container right">
-                        <div className="panel">
-                            <div className="content-panel">
-                                <div className="close">
-                                    <Button
-                                        action={() => closePanel()}
-                                        icon={HiX}
-                                        className="button"
-                                    />
-                                </div>
-                                { panel.content }
-                            </div>
+                    <div className="panel">
+                        <div className="content-panel">
+                            { panel.content }
                         </div>
                     </div>
                 )
@@ -40,12 +29,10 @@ const Panel = (props) => {
 
 Panel.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
-    closePanel: PropTypes.func,
 };
 
 Panel.defaultProps = {
     state: {},
-    closePanel: () => {},
 };
 
 export default Panel;

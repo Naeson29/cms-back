@@ -312,11 +312,7 @@ body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: .4rem .8rem;
-
-            box-shadow: 0 3px 3px -1px rgba(0,0,0,0.2);
-            -webkit-box-shadow: 0 3px 3px -1px rgba(0,0,0,0.2);
-            -moz-box-shadow: 0 3px 3px -1px rgba(0,0,0,0.2);
+            padding: 2rem 1.2rem;
 
             .filter-content {
               display: flex;
@@ -395,13 +391,24 @@ body {
                 }
               }
             }
-            .button-apply {
-              background-color: $primary-color;
-              color: $white;
-              padding: .6rem .9rem;
-              cursor: pointer;
-              border-radius: 5px;
+            .buttons {
+              display: flex;
+              .button {
+                padding: .6rem .9rem;
+                cursor: pointer;
+                border-radius: 5px;
+                margin:.3rem .5rem;
+              }
+              .button-apply {
+                background-color: $primary-color;
+                color: $white;                
+              }
+              .button-close {
+                background-color: $cancel-bg;
+                color: $cancel-icon;
+              }
             }
+            
           }
         }
 

@@ -28,23 +28,27 @@ const {
  * @constructor
  */
 const Filter = (props) => {
-    const { state, refresh } = props;
+    const { state, refresh, closePanel } = props;
     const { params = {}, screenList, loadings = {} } = state;
     const { orders = [], filters = [], searches = {} } = screenList;
     const { columns = [], placeholder = '' } = searches;
-    const { order = {} } = params;
+    const { order = {}, search = [] } = params;
 
     const [filterParams, setParams] = useState({});
     const [searchString, setSearchString] = useState('');
     const [searching, setSearching] = useState(false);
     const [selectedMultiple, setSelectedMultiple] = useState([]);
 
-    const launchList = () => {
+    const applyFilter = () => {
         if (!loadings.list) {
-            if (searchString) {
-                setSearching(true);
-            }
             refresh({ params: filterParams });
+        }
+    };
+
+    const applySearch = () => {
+        if (searchString) {
+            setSearching(true);
+            applyFilter();
         }
     };
 
@@ -101,6 +105,10 @@ const Filter = (props) => {
     useEffect(() => {
         if (Object.keys(params).length > 0) {
             setParams(params);
+            if (params.search && search.length > 0) {
+                setSearchString(params.search[0].value);
+                setSearching(true);
+            }
         }
     }, [params]);
 
@@ -117,10 +125,10 @@ const Filter = (props) => {
                         }}
                         value={searchString}
                         handleChange={handleChangeSearch}
-                        handleKeypress={launchList}
+                        handleKeypress={applySearch}
                     />
                     <Button
-                        action={launchList}
+                        action={applySearch}
                         className="button button-search"
                         icon={BiSearchAlt2}
                     />
@@ -167,22 +175,31 @@ const Filter = (props) => {
                     />
                 </div>
             </div>
-            <Button
-                text="Appliquer"
-                action={launchList}
-                className="button-apply"
-            />
+            <div className="buttons">
+                <Button
+                    text="Appliquer"
+                    action={applyFilter}
+                    className="button button-apply"
+                />
+                <Button
+                    text="Fermer"
+                    action={() => closePanel()}
+                    className="button button-close"
+                />
+            </div>
         </div>
     );
 };
 
 Filter.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
+    closePanel: PropTypes.func,
     refresh: PropTypes.func,
 };
 
 Filter.defaultProps = {
     state: {},
+    closePanel: () => {},
     refresh: () => {},
 };
 
