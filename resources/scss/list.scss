@@ -112,34 +112,33 @@
           }
 
           .button {
-            padding: .3rem;
-            border-radius: 5px;
             cursor: pointer;
+            padding: .3rem;
+            border-radius: 5px;            
             display: flex;
             justify-content: center;
-            align-items: center;
-            background-color: $white;
+            align-items: center;            
             border: $grey-border;
 
             &.edit, &.show {
+              background-color: $primary-color;
               .icon {
-                color: $primary-color;
+                color: $white;
               }
             }
 
             &.trash {
+              background-color: $error-trash;
               .icon {
-                color: $error-trash;
+                color: $white;
               }
             }
 
             &.disabled {
               cursor: default;
-
               .icon {
                 opacity: .2;
               }
-
             }
 
             .icon {

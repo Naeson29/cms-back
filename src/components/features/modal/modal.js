@@ -33,6 +33,11 @@ const Modals = (props) => {
                         <div className="card">
                             <div class="card-title">
                                 <p>{title}</p>
+                                <Button
+                                    action={() => closeModal()}
+                                    icon={HiX}
+                                    className="close"
+                                />
                             </div>
                             <div className="card-content">
                                 {content}
@@ -43,14 +48,16 @@ const Modals = (props) => {
                                         <Button
                                             action={() => destroy(params.id)}
                                             icon={HiCheck}
-                                            className="button yes"
+                                            className="button trash"
+                                            text={'Supprimer'}
                                         />
                                     )
                                 }
                                 <Button
                                     action={() => closeModal()}
                                     icon={HiX}
-                                    className="button no"
+                                    className="button cancel"
+                                    text={'Annuler'}
                                 />
                             </div>
                         </div>

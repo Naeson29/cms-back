@@ -33,11 +33,25 @@
         justify-content: space-between;
 
         .card-title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           background-color: $primary-color;
           color:$white;
           padding:.5rem .6rem;
           border-radius: 0.4rem 0.4rem 0 0;
           font-size: 14px;
+
+          .close {
+            cursor: pointer;
+            margin:0 .4rem;
+
+            .icon {
+              width: 1.5rem;
+              height: 1.5rem;
+              background-color: $white;
+            }
+          }
         }
 
         .card-content {
@@ -75,8 +89,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 .8rem;
-            background-color: $white;
+            margin: 0 .8rem;            
             border-radius: 5px;
             border: $grey-border;
 
@@ -85,15 +98,17 @@
               height: 1.5rem;
             }
 
-            &.yes {
+            &.trash {
+              background-color: $error-trash;
               .icon {
-                color: $primary-color;
+                color: $white;
               }
             }
 
-            &.no {
+            &.cancel {
+              background-color: $cancel-bg;
               .icon {
-                color: $error-trash;
+                color: $black_text;
               }
             }
           }
