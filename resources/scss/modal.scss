@@ -35,10 +35,11 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background-color: $primary-color;
+          background-color: $grey-background;
           color:$white;
           padding:.5rem .6rem;
           border-radius: 0.4rem 0.4rem 0 0;
+          border-bottom: 1px solid rgba(0,0,0,0.1);
           font-size: 14px;
 
           .close {
@@ -49,7 +50,7 @@
             .icon {
               width: 1.5rem;
               height: 1.5rem;
-              color: $white;
+              color: $cancel-icon;
             }
           }
         }
@@ -84,14 +85,15 @@
           margin: 1rem 0;
 
           .button {
-            padding: .5rem .7rem;
+            padding: 0 1rem;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 .8rem;            
-            border-radius: 5px;
+            border-radius: 3px;
             font-size: 14px;
+            height:36px;
 
             .icon {
               width: 1.2rem;
