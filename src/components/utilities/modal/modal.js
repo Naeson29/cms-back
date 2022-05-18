@@ -9,13 +9,14 @@ const createModal = ({ params = {}, title = '', content = null, context = '' } =
 export default {
     destroy: (key, modal) => {
         const destroy = modal(key);
+        const { title, content } = destroy;
         return createModal({
             params: {
                 id: key.id,
             },
             context: 'destroy',
-            title: destroy.title,
-            content: destroy.content,            
+            title,
+            content,            
         });
     },
     error: content => createModal({
