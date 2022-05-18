@@ -22,6 +22,10 @@ import {
 const Edit = (props) => {
     const { form, state, action, create, update } = props;
 
+    if (!form) {
+        return null;
+    }
+
     const { detail } = state;
     const isUpdate = action === 'update';
     const { elements = [], validation = false, columns = 1 } = form(action);
@@ -92,7 +96,7 @@ const Edit = (props) => {
 };
 
 Edit.propTypes = {
-    form: PropTypes.func,
+    form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     state: PropTypes.oneOfType([PropTypes.object]),
     action: PropTypes.string,
     create: PropTypes.func,
