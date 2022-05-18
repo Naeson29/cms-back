@@ -2,16 +2,14 @@ import React from 'react';
 
 export default {
     destroy: (key) => {
-        const { title } = key;
+        const title = key.title.length > 30 ? `"${key.title.substring(0, 30)}..."` : `"${key.title}"`;
         return {
-            title: 'Supprimer la publication',
+            title: 'Confirmation',
             content: (
                 <div>
-                    <p className="message">Confirmer la suppression de la publication</p>
+                    <p className="message">Voulez-vous vraiment supprimer cette publication ?</p>
                     <p className="complement">
-                        {
-                            title.length > 30 ? `${title.substring(0, 30)}...` : title
-                        }
+                        { title }
                     </p>
                 </div>    
             )
