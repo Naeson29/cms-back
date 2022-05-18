@@ -235,6 +235,7 @@
       border-radius: 3px;
       margin: 0 1.5rem;
       font-size: 14px;
+      height: 35px;
 
       &.submit { 
         background-color: $primary-color;
@@ -243,14 +244,6 @@
       &.cancel { 
         color: $cancel-icon;
         background-color: $cancel-bg;
-      }
-
-      @media (min-width: 1025px) {
-        height: 38px;
-      }
-
-      @media (max-width: 1024px) {
-        height: 35px;
       }
 
       @media (max-width: 768px) {
