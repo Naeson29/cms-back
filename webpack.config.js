@@ -138,6 +138,10 @@ module.exports = () => {
                         from: './resources/svg',
                         to: './svg',
                     },
+                    {
+                        from: './resources/fonts',
+                        to: './fonts',
+                    },
                 ],
             ),
             new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
