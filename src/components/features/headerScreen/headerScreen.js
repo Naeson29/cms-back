@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
     HiPlusCircle, HiPencil, HiArrowCircleLeft,
 } from 'react-icons/hi';
+import { BsFilterSquareFill } from 'react-icons/bs';
 
 // Feature
 import {
@@ -28,8 +29,8 @@ const {
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { state, title, current, screen, route } = props;
-    const { model, detail, list = [], screenList } = state;
+    const { state, title, current, screen, route, closePanel, openPanel } = props;
+    const { model, detail, list = [], screenList, panel = {} } = state;
     const { filter, pagination } = screenList;
     const { permissions } = current;
     const history = useHistory();
@@ -45,9 +46,15 @@ const HeaderScreen = (props) => {
 
     const index = screen === 'index';
     const show = screen === 'show';
-
     const paginationButton = (index && list.length > 0 && pagination === 'button');
     const buttonEdit = show && permission.update;
+    const filterOpen = panel.open && panel.filter;
+
+    const toogleFilter = () => (filterOpen ? closePanel() : openPanel({
+        open: true,
+        content: <Filter {...props} />,
+        filter: true,
+    }));
 
     return (
         <div className="header-screen">
@@ -64,7 +71,13 @@ const HeaderScreen = (props) => {
             </div>
             <div className="content right">
                 {
-                    (index && filter) && <Filter {...props} />
+                    (index && filter) && (
+                        <Button
+                            action={toogleFilter}
+                            className="button button-filter"
+                            icon={BsFilterSquareFill}
+                        />
+                    )
                 }
                 {
                     buttonEdit && (
@@ -86,6 +99,8 @@ HeaderScreen.propTypes = {
     route: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
     current: PropTypes.oneOfType([PropTypes.object]),
+    openPanel: PropTypes.func,
+    closePanel: PropTypes.func,
 };
 
 HeaderScreen.defaultProps = {
@@ -94,6 +109,8 @@ HeaderScreen.defaultProps = {
     route: '',
     state: {},
     current: {},
+    openPanel: () => {},
+    closePanel: () => {},
 };
 
 export default HeaderScreen;

@@ -2,7 +2,6 @@ import React, {
     useState,
     useEffect,
 } from 'react';
-import { BsFilterSquareFill } from 'react-icons/bs';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import {
     HiX,
@@ -29,8 +28,8 @@ const {
  * @constructor
  */
 const Filter = (props) => {
-    const { state, refresh, closePanel, openPanel } = props;
-    const { params = {}, screenList, loadings = {}, panel = {} } = state;
+    const { state, refresh } = props;
+    const { params = {}, screenList, loadings = {} } = state;
     const { orders = [], filters = [], searches = {} } = screenList;
     const { columns = [], placeholder = '' } = searches;
     const { order = {} } = params;
@@ -39,20 +38,13 @@ const Filter = (props) => {
     const [searchString, setSearchString] = useState('');
     const [searching, setSearching] = useState(false);
     const [selectedMultiple, setSelectedMultiple] = useState([]);
-    const [change, setChange] = useState(false);
-    const isOpen = panel.open && panel.filter;
 
     const launchList = () => {
         if (!loadings.list) {
+            if (searchString) {
+                setSearching(true);
+            }
             refresh({ params: filterParams });
-            setChange(false);
-        }
-    };
-
-    const applySearch = () => {
-        if (searchString) {
-            setSearching(true);
-            launchList();
         }
     };
 
@@ -61,7 +53,6 @@ const Filter = (props) => {
         setSearchString('');
         delete filterParams.search;
         setParams(filterParams);
-        setChange(true);
     };
 
     const handleChangeColumn = (key, value) => {
@@ -72,7 +63,6 @@ const Filter = (props) => {
                 column: value,
             },
         });
-        setChange(true);
     };
 
     const handleChangeOrder = (key, value) => {
@@ -83,7 +73,6 @@ const Filter = (props) => {
                 [value]: true,
             },
         });
-        setChange(true);
     };
 
     const handleChangeFilter = (value) => {
@@ -93,7 +82,6 @@ const Filter = (props) => {
             ...filterParams,
             filter: filters.length !== filterValue.length ? filterValue : [],
         });
-        setChange(true);
     };
 
     const handleChangeSearch = (key, value) => {
@@ -110,7 +98,13 @@ const Filter = (props) => {
         });
     };
 
-    const render = () => (
+    useEffect(() => {
+        if (Object.keys(params).length > 0) {
+            setParams(params);
+        }
+    }, [params]);
+
+    return (
         <div className="filter-box">
             <div className="filter-content border">
                 <p className="title">Rechercher</p>
@@ -123,10 +117,10 @@ const Filter = (props) => {
                         }}
                         value={searchString}
                         handleChange={handleChangeSearch}
-                        handleKeypress={applySearch}
+                        handleKeypress={launchList}
                     />
                     <Button
-                        action={applySearch}
+                        action={launchList}
                         className="button button-search"
                         icon={BiSearchAlt2}
                     />
@@ -142,7 +136,7 @@ const Filter = (props) => {
                 </div>
             </div>
             <div className="filter-content border">
-                <p className="title">Classer par</p>
+                <p className="title">Classer</p>
                 <div className="content-order">
                     <Select
                         attributes={{
@@ -173,33 +167,10 @@ const Filter = (props) => {
                     />
                 </div>
             </div>
-        </div>
-    );
-
-    const toogleFilter = () => (isOpen ? closePanel() : openPanel({
-        open: true,
-        content: render(),
-        filter: true,
-    }));
-
-    useEffect(() => {
-        if (Object.keys(params).length > 0) {
-            setParams(params);
-        }
-    }, [params]);
-
-    useEffect(() => {
-        if (change) {
-            launchList();
-        }
-    }, [change]);
-
-    return (
-        <div className="filter">
             <Button
-                action={toogleFilter}
-                className="button button-filter"
-                icon={BsFilterSquareFill}
+                text="Appliquer"
+                action={launchList}
+                className="button-apply"
             />
         </div>
     );
@@ -208,15 +179,11 @@ const Filter = (props) => {
 Filter.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     refresh: PropTypes.func,
-    openPanel: PropTypes.func,
-    closePanel: PropTypes.func,
 };
 
 Filter.defaultProps = {
     state: {},
     refresh: () => {},
-    openPanel: () => {},
-    closePanel: () => {},
 };
 
 export default Filter;

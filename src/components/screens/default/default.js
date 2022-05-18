@@ -90,9 +90,7 @@ class Default extends Component {
                 {
                     this.screen(props)
                 }
-                <Panel
-                    state={state}
-                />
+                <Panel {...props} />
                 {
                     modals && (
                         <Modal {...props} />
