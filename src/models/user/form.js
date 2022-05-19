@@ -85,7 +85,7 @@ export default action => ({
         },
         imagesUpload: {
             rule: 'sizeImage',
-            maxSize: 2000000,
+            maxSize: 600000,
         },
     },
 });

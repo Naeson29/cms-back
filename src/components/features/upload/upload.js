@@ -9,7 +9,7 @@ import { Button } from '..';
 
 const Upload = (props) => {
     const { attributes, handleUpload } = props;
-    const { multiple = false, maxNumber = 10, label = 'Images', name = 'image', removeAll = false } = attributes;
+    const { multiple = false, maxNumber = 10, maxFileSize = 600000, label = 'Images', name = 'image', removeAll = false } = attributes;
     const [images, setImages] = useState([]);
 
     const onChange = (imageList) => {
@@ -24,6 +24,7 @@ const Upload = (props) => {
             onChange={onChange}
             maxNumber={maxNumber}
             dataURLKey="data_url"
+            maxFileSize={maxFileSize}
         >
             {({
                 imageList,
@@ -76,6 +77,7 @@ const Upload = (props) => {
                         errors && (
                             <p className="error-text">
                                 {errors.maxNumber && 'Le nombre de photos dépasse celui autorisé'}
+                                {errors.maxFileSize && 'La photo est trop volumineuse'}
                             </p>
                         )
                     }
