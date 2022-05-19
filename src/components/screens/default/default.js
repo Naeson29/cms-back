@@ -52,22 +52,32 @@ class Default extends Component {
         }
         case 'create': {
             return (
-                <Edit
-                    action={screen}
-                    state={state}
-                    form={form}
-                    create={create}
-                />
+                <div className="screen-content">
+                    <Edit
+                        action={screen}
+                        state={state}
+                        form={form}
+                        create={create}
+                    />
+                    {
+                        loadings.edit && <Loading className="edit" />
+                    }
+                </div>
             );
         }
         case 'update': {
             return loadings.detail ? <Loading /> : (
-                <Edit
-                    action={screen}
-                    state={state}
-                    form={form}
-                    update={update}
-                />
+                <div className="screen-content">
+                    <Edit
+                        action={screen}
+                        state={state}
+                        form={form}
+                        update={update}
+                    />
+                    {
+                        loadings.edit && <Loading className="edit" />
+                    }
+                </div>
             );
         }
 

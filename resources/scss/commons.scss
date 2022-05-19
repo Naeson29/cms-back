@@ -129,6 +129,11 @@ body {
           flex-direction: column;
           padding-top: $header-height;
 
+          .screen-content {
+            display: flex;
+            flex: 1;
+          }
+
           h2 {
             margin    : 0.9rem 0.9rem 0 0.9rem;
             color     : $primary-color;
@@ -147,6 +152,10 @@ body {
             justify-content: center;
             align-items: center;
             padding-top: $header-height;
+
+            &.edit {
+              background-color: rgba(255,255,255,.5);
+            }
             
             @media (min-width: 1024px) {
               padding-left : $sidebar-big;

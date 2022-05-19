@@ -35,7 +35,7 @@ const List = (props) => {
     } = props;
 
     const {
-        model, list, pagination, screenList,
+        model, list, pagination, screenList, loadings,
     } = state;
 
     const { total } = pagination;
@@ -80,12 +80,16 @@ const List = (props) => {
             pullDownToRefreshThreshold={50}
             className="list-card"
         >
-            <div className="list-result">
-                <p>
-                    <span>{`${total} `}</span>
-                    {plurial(total, 'résultat')}
-                </p>
-            </div>
+            {
+                !loadings.list && (
+                    <div className="list-result">
+                        <p>
+                            <span>{`${total} `}</span>
+                            {plurial(total, 'résultat')}
+                        </p>
+                    </div>
+                )
+            }
             {
                 list.map((key, index) => {
                     const userModel = (model === 'user');

@@ -21,6 +21,7 @@ import {
  */
 const Edit = (props) => {
     const { form, state, action, create, update } = props;
+    const { loadings = {} } = state;
 
     if (!form) {
         return null;
@@ -49,6 +50,10 @@ const Edit = (props) => {
     const [errors, setErrors] = useState(false);
 
     const handleSubmit = () => {
+        if (loadings.edit) {
+            return;
+        }
+
         let validator = { success: true };
 
         if (validation) {
