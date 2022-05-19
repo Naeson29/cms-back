@@ -50,9 +50,10 @@ const setPanelState = (state, selector) => {
  * @returns {{current, pagination, detail, list, loadings: {edit, destroy, detail, list}}}
  */
 const setScreenState = (state, selectors) => {
-    const { List, Detail, Pagination, LoadingDestroy, LoadingDetail, LoadingList, LoadingEdit, ParamsList } = selectors;
+    const { List, Detail, Pagination, LoadingDestroy, LoadingDetail, LoadingList, LoadingEdit, ParamsList, FilterList } = selectors;
     return {
         params: ParamsList(state),
+        filters: FilterList(state),
         list: List(state),
         detail: Detail(state),
         pagination: Pagination(state),
@@ -114,10 +115,11 @@ const setScreenFunctions = (dispatch, { creators }, params) => (!creators ? {} :
             },
         }));
     },
-    paginate: (page) => {
+    paginate: (page, parameters = {}) => {
         dispatch(creators.paginate.request({
             params: {
                 ...params.params,
+                ...parameters,
                 page,
             },
         }));

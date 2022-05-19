@@ -29,9 +29,9 @@ const {
  */
 const Filter = (props) => {
     const { state, refresh, closePanel } = props;
-    const { params = {}, screenList, loadings = {} } = state;
-    const { orders = [], filters = [], searches = {} } = screenList;
-    const { columns = [], placeholder = '' } = searches;
+    const { params = {}, filters = [], screenList, loadings = {} } = state;
+    const { selectOrder = [], selectFilter = [], inputSearch = {} } = screenList;
+    const { columns = [], placeholder = '' } = inputSearch;
     const { order = {}, search = [] } = params;
 
     const [filterParams, setParams] = useState({});
@@ -41,7 +41,13 @@ const Filter = (props) => {
 
     const applyFilter = () => {
         if (!loadings.list) {
-            refresh({ params: filterParams });
+            refresh({
+                params: {
+                    ...filterParams,
+                    page: 1,
+                },
+                filters: selectedMultiple,
+            });
         }
     };
 
@@ -81,10 +87,10 @@ const Filter = (props) => {
 
     const handleChangeFilter = (value) => {
         setSelectedMultiple(value);
-        const filterValue = value.map(key => key.value);
+        const filterValue = value.map(key => key.filter);
         setParams({
             ...filterParams,
-            filter: filters.length !== filterValue.length ? filterValue : [],
+            filter: selectFilter.length !== filterValue.length ? filterValue : [],
         });
     };
 
@@ -105,6 +111,7 @@ const Filter = (props) => {
     useEffect(() => {
         if (Object.keys(params).length > 0) {
             setParams(params);
+            setSelectedMultiple(filters);
             if (params.search && search.length > 0) {
                 setSearchString(params.search[0].value);
                 setSearching(true);
@@ -149,7 +156,7 @@ const Filter = (props) => {
                     <Select
                         attributes={{
                             ...columnSelect,
-                            options: orders,
+                            options: selectOrder,
                         }}
                         value={order.column}
                         handleChange={handleChangeColumn}
@@ -166,7 +173,7 @@ const Filter = (props) => {
                 <div className="content-order">
                     <SelectMultiple
                         attributes={{
-                            options: filters,
+                            options: selectFilter,
                             name: 'published',
                             hasSelectAll: false,
                         }}

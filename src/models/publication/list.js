@@ -6,13 +6,29 @@ export default {
                 column: 'created_at',
                 desc: true,
             },
+            filter: [{
+                column: 'published',
+                operator: '=',
+                value: 1,
+            }],
         },
+        filters: [
+            {
+                label: 'Publiée',
+                value: 1,
+                filter: {
+                    column: 'published',
+                    operator: '=',
+                    value: 1,
+                },
+            },
+        ],
     },
-    searches: {
+    inputSearch: {
         columns: ['title', 'content'],
         placeholder: 'Titre, contenu...',
     },
-    orders: [
+    selectOrder: [
         {
             label: 'Titre',
             value: 'title',
@@ -22,10 +38,11 @@ export default {
             value: 'created_at',
         },
     ],
-    filters: [
+    selectFilter: [
         {
             label: 'Publiée',
-            value: {
+            value: 1,
+            filter: {
                 column: 'published',
                 operator: '=',
                 value: 1,
@@ -33,7 +50,8 @@ export default {
         },
         {
             label: 'Non publiée',
-            value: {
+            value: 2,
+            filter: {
                 column: 'published',
                 operator: '=',
                 value: 0,

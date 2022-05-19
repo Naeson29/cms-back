@@ -17,6 +17,9 @@ export const defaultRequest = (state, section, action = {}) => {
                 ...payload.params && {
                     params: payload.params,
                 },
+                ...payload.filters && {
+                    filters: payload.filters,
+                },
             },
         },
     };
@@ -51,6 +54,9 @@ export const searchRequest = (state, section, action = {}) => {
                 pagination: {},
                 ...payload.params && {
                     params: payload.params,
+                },
+                ...payload.filters && {
+                    filters: payload.filters,
                 },
             },
         },

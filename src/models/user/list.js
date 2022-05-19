@@ -7,13 +7,13 @@ export default {
             },
         },
     },
-    searches: {
+    inputSearch: {
         columns: [
             "concat(first_name, ' ', last_name)",
         ],
         placeholder: 'Prénom et/ou nom...',
     },
-    orders: [
+    selectOrder: [
         {
             label: 'Prénom',
             value: 'first_name',

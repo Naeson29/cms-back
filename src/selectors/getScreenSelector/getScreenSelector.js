@@ -39,6 +39,11 @@ export default (model) => {
         ({ params = {} }) => params,
     );
 
+    const FilterList = createSelector(
+        createModelIndexViewSelector(model),
+        ({ filters = {} }) => filters,
+    );
+
     const LoadingDetail = createSelector(
         createModelShowViewSelector(model),
         ({ loading }) => loading,
@@ -60,6 +65,7 @@ export default (model) => {
         Detail,
         Pagination,
         ParamsList,
+        FilterList,
         LoadingList,
         LoadingDetail,
         LoadingDestroy,

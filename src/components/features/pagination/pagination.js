@@ -14,6 +14,7 @@ import { Button } from '..';
  */
 const Pagination = (props) => {
     const { state, paginate } = props;
+    const { params = {} } = state;
     const { pagination, loadings } = state;
     const { current_page, last_page } = pagination;
 
@@ -32,7 +33,7 @@ const Pagination = (props) => {
             }
         }
 
-        if (page && !loadings.list) paginate(page);
+        if (page && !loadings.list) paginate(page, params);
     };
 
     return (
