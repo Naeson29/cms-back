@@ -119,81 +119,102 @@ const Filter = (props) => {
         }
     }, [params]);
 
+    const hasSearch = columns.length > 0;
+    const hasOrder = selectOrder.length > 0;
+    const hasFilter = selectFilter.length > 0;
+    const hasButton = hasSearch || hasOrder || hasFilter;
+
     return (
         <div className="filter-box">
-            <div className="filter-content border">
-                <p className="title">Rechercher</p>
-                <div className="content-search">
-                    <Input
-                        attributes={{
-                            className: 'search',
-                            name: 'search',
-                            placeholder,
-                        }}
-                        value={searchString}
-                        handleChange={handleChangeSearch}
-                        handleKeypress={applySearch}
-                    />
-                    <Button
-                        action={applySearch}
-                        className="button button-search"
-                        icon={BiSearchAlt2}
-                    />
-                    {
-                        searching && (
-                            <Button
-                                action={cleanSearch}
-                                className="button button-clean"
-                                icon={HiX}
+            {
+                hasSearch && (
+                    <div className="filter-content border">
+                        <p className="title">Rechercher</p>
+                        <div className="content-search">
+                            <Input
+                                attributes={{
+                                    className: 'search',
+                                    name: 'search',
+                                    placeholder,
+                                }}
+                                value={searchString}
+                                handleChange={handleChangeSearch}
+                                handleKeypress={applySearch}
                             />
-                        )
-                    }
-                </div>
-            </div>
-            <div className="filter-content border">
-                <p className="title">Classer</p>
-                <div className="content-order">
-                    <Select
-                        attributes={{
-                            ...columnSelect,
-                            options: selectOrder,
-                        }}
-                        value={order.column}
-                        handleChange={handleChangeColumn}
-                    />
-                    <Select
-                        attributes={orderSelect}
-                        value={order.desc ? 'desc' : 'asc'}
-                        handleChange={handleChangeOrder}
-                    />
-                </div>
-            </div>
-            <div className="filter-content">
-                <p className="title">Filtrer</p>
-                <div className="content-order">
-                    <SelectMultiple
-                        attributes={{
-                            options: selectFilter,
-                            name: 'published',
-                            hasSelectAll: false,
-                        }}
-                        value={selectedMultiple}
-                        handleChange={handleChangeFilter}
-                    />
-                </div>
-            </div>
-            <div className="buttons">
-                <Button
-                    text="Appliquer"
-                    action={applyFilter}
-                    className="button button-apply"
-                />
-                <Button
-                    text="Fermer"
-                    action={() => closePanel()}
-                    className="button button-close"
-                />
-            </div>
+                            <Button
+                                action={applySearch}
+                                className="button button-search"
+                                icon={BiSearchAlt2}
+                            />
+                            {
+                                searching && (
+                                    <Button
+                                        action={cleanSearch}
+                                        className="button button-clean"
+                                        icon={HiX}
+                                    />
+                                )
+                            }
+                        </div>
+                    </div>
+                )
+            }
+            {
+                hasOrder && (
+                    <div className="filter-content border">
+                        <p className="title">Classer</p>
+                        <div className="content-order">
+                            <Select
+                                attributes={{
+                                    ...columnSelect,
+                                    options: selectOrder,
+                                }}
+                                value={order.column}
+                                handleChange={handleChangeColumn}
+                            />
+                            <Select
+                                attributes={orderSelect}
+                                value={order.desc ? 'desc' : 'asc'}
+                                handleChange={handleChangeOrder}
+                            />
+                        </div>
+                    </div>
+                )
+            }
+            {
+                hasFilter && (
+                    <div className="filter-content">
+                        <p className="title">Filtrer</p>
+                        <div className="content-order">
+                            <SelectMultiple
+                                attributes={{
+                                    options: selectFilter,
+                                    name: 'published',
+                                    hasSelectAll: false,
+                                }}
+                                value={selectedMultiple}
+                                handleChange={handleChangeFilter}
+                            />
+                        </div>
+                    </div>
+                )
+            }
+            {
+                hasButton && (
+                    <div className="buttons">
+                        <Button
+                            text="Appliquer"
+                            action={applyFilter}
+                            className="button button-apply"
+                        />
+                        <Button
+                            text="Fermer"
+                            action={() => closePanel()}
+                            className="button button-close"
+                        />
+                    </div>
+                )
+            }
         </div>
     );
 };

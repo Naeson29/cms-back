@@ -38,6 +38,8 @@ const List = (props) => {
         model, list, pagination, screenList,
     } = state;
 
+    const { total } = pagination;
+
     const permission = getPermissionModel(current.permissions, model);
     const history = useHistory();
 
@@ -80,8 +82,8 @@ const List = (props) => {
         >
             <div className="list-result">
                 <p>
-                    <span>{`${list.length} `}</span>
-                    {plurial(list.length, 'résultat')}
+                    <span>{`${total} `}</span>
+                    {plurial(total, 'résultat')}
                 </p>
             </div>
             {
