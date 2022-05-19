@@ -17,6 +17,13 @@ export default () => ({
             column: 1,
         },
         {
+            element: 'switch',
+            label: 'Publiée',
+            name: 'published',
+            column: 1,
+            value: false,
+        },
+        {
             element: 'input',
             name: 'type',
             type: 'hidden',

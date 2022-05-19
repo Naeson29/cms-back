@@ -36,7 +36,7 @@ const Edit = (props) => {
         if (isUpdate) {
             valueElement = detail[item.name];
         }
-        if (item.value) {
+        if (item.value || item.value === false) {
             valueElement = item.value;
         }
         return valueElement;

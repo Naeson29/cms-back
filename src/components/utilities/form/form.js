@@ -1,5 +1,5 @@
 import {
-    Input, Upload, Textarea,
+    Input, Upload, Textarea, Switch,
 } from '../../features';
 
 export default (element) => {
@@ -7,6 +7,7 @@ export default (element) => {
         input: Input,
         textarea: Textarea,
         upload: Upload,
+        switch: Switch,
     };
     return elements[element];
 };
