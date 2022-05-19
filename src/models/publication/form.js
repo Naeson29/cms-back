@@ -34,7 +34,7 @@ export default () => ({
             element: 'upload',
             name: 'imagesUpload',
             multiple: true,
-            maxNumber: 5,
+            maxNumber: 4,
             label: 'Images',
             column: 2,
         },
