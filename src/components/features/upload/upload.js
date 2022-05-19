@@ -9,7 +9,7 @@ import { Button } from '..';
 
 const Upload = (props) => {
     const { attributes, handleUpload } = props;
-    const { multiple = false, maxNumber = 10, label = 'Images', name = 'image' } = attributes;
+    const { multiple = false, maxNumber = 10, label = 'Images', name = 'image', removeAll = false } = attributes;
     const [images, setImages] = useState([]);
 
     const onChange = (imageList) => {
@@ -57,8 +57,8 @@ const Upload = (props) => {
                                         ))
                                     }
                                 </div>
-                                {/* {
-                                    imageList.length > 1 && (
+                                {
+                                    (imageList.length > 1 && removeAll) && (
                                         <div className="remove-all">
                                             <Button
                                                 action={onImageRemoveAll}
@@ -68,7 +68,7 @@ const Upload = (props) => {
                                             />
                                         </div>
                                     )
-                                } */}
+                                }
                             </div>
                         )
                     }
