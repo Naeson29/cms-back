@@ -12,7 +12,9 @@ import {
     permissionUtility,
 } from '../../utilities';
 
-import { hasMorePage } from '../../../utilities/functions';
+import {
+    hasMorePage, plurial,
+} from '../../../utilities/functions';
 
 // features
 import { Button } from '..';
@@ -76,6 +78,12 @@ const List = (props) => {
             pullDownToRefreshThreshold={50}
             className="list-card"
         >
+            <div className="list-result">
+                <p>
+                    <span>{`${list.length} `}</span>
+                    {plurial(list.length, 'résultat')}
+                </p>
+            </div>
             {
                 list.map((key, index) => {
                     const userModel = (model === 'user');

@@ -31,6 +31,15 @@ const getImage = (obj, conversion) => {
 
 /**
  *
+ * @param count
+ * @param string
+ * @returns {string}
+ */
+const plurial = (count, string) => (string + (count > 1 ? 's' : ''));
+
+
+/**
+ *
  * @param images
  * @returns {[]}
  */
@@ -51,4 +60,5 @@ export {
     getSlideImages,
     truncate,
     initials,
+    plurial,
 };
