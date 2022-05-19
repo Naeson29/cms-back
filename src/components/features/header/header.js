@@ -30,10 +30,6 @@ const Header = (props) => {
                     >
                         <NavLink to="/" className="navbar-brand" replace>
                             <img src="./img/logo.png" alt="Logo" />
-                            <div>
-                                <span>B.O</span>
-                                <span>v1</span>
-                            </div>
                         </NavLink>
                     </div>
                     <Button
