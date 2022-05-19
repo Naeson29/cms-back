@@ -6,21 +6,15 @@ export default {
                 column: 'created_at',
                 desc: true,
             },
-            filter: [{
-                column: 'published',
-                operator: '=',
-                value: 1,
-            }],
         },
         filters: [
             {
                 label: 'Publiée',
                 value: 1,
-                filter: {
-                    column: 'published',
-                    operator: '=',
-                    value: 1,
-                },
+            },
+            {
+                label: 'Non publiée',
+                value: 2,
             },
         ],
     },

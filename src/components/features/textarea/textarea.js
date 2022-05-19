@@ -21,6 +21,13 @@ const Textarea = (props) => {
                 defaultValue={value}
                 onChange={e => handleChange(name, e.target.value)}
             />
+            {
+                error && (
+                    <p className="error-text">
+                        {error}
+                    </p>
+                )
+            }
         </div>
     );
 };

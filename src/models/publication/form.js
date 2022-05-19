@@ -37,5 +37,9 @@ export default () => ({
             name: 'Titre',
             required: true,
         },
+        content: {
+            name: 'Contenu',
+            required: true,
+        },
     },
 });

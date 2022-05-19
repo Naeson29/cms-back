@@ -24,10 +24,7 @@ const parseJson = json => (JSON.parse(json));
  * @param conversion
  * @returns {string}
  */
-const getImage = (obj, conversion) => {
-    const { disk, id, fileName } = obj;
-    return `${process.env.API_URL}/storage/images/${disk}/${id}/conversions/${conversion}/${fileName}`;
-};
+const getImage = (obj, conversion) => (!obj ? '' : `${process.env.API_URL}/storage/images/${obj.disk}/${obj.id}/conversions/${conversion}/${obj.fileName}`);
 
 /**
  *
