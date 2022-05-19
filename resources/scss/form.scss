@@ -117,7 +117,7 @@
           width:100%;
           height:130px;
           border-radius: 5px;
-          margin-bottom: 1rem;
+          margin-bottom: .4rem;
           background-color: #f9f9f9;
           background-size: 10px 10px;
           border: 1px solid rgba(0, 0, 0, 0.2);
@@ -148,13 +148,17 @@
             align-items: center;
             padding: 0.3rem;
             margin: .3rem;   
-            background: $grey-background;
+            
   
             .button {
               display: flex;
               justify-content: center;
               align-items: center;
               background: none;
+              background: $error-trash;
+              border-radius: 3px;
+              padding:0 .8rem;
+              height: 35px;             
   
               .icon {
                 margin-right: .5rem;
@@ -173,7 +177,11 @@
           }
   
           .button {
+            cursor: pointer;
             &.trash {
+              color: $white;
+            }
+            &.trash-one {
               color: $error-trash;
             }
           }
@@ -198,7 +206,7 @@
                 justify-content: flex-end;
   
                 .button {
-                  background: rgba(255,255,255,.8);
+                  background: rgba(255,255,255,.5);
     
                   .icon {  
                     @media (min-width: 1025px) {
@@ -215,6 +223,12 @@
               }
             }
           }
+        }
+        .error-text {
+          color: $error-text;
+          font-size: 14px;
+          margin-top: .6rem;
+          padding-left: .2rem;
         }
       }
     }  

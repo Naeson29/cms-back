@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ImageUploading from 'react-images-uploading';
-import { HiTrash } from 'react-icons/hi';
-import { TiDelete } from 'react-icons/ti';
+import {
+    HiTrash, HiX,
+} from 'react-icons/hi';
 import { Button } from '..';
 
 
@@ -31,6 +32,7 @@ const Upload = (props) => {
                 onImageRemove,
                 isDragging,
                 dragProps,
+                errors,
             }) => (
                 <div className="upload-image">
                     <p className="label">{label}</p>
@@ -47,15 +49,15 @@ const Upload = (props) => {
                                                 <div className="image-bg" style={{ backgroundImage: `url('${image.data_url}')` }}>
                                                     <Button
                                                         action={() => onImageRemove(index)}
-                                                        className="button trash"
-                                                        icon={TiDelete}
+                                                        className="button trash-one"
+                                                        icon={HiX}
                                                     />
                                                 </div>
                                             </div>
                                         ))
                                     }
                                 </div>
-                                {
+                                {/* {
                                     imageList.length > 1 && (
                                         <div className="remove-all">
                                             <Button
@@ -66,8 +68,15 @@ const Upload = (props) => {
                                             />
                                         </div>
                                     )
-                                }
+                                } */}
                             </div>
+                        )
+                    }
+                    {
+                        errors && (
+                            <p className="error-text">
+                                {errors.maxNumber && 'Le nombre de photos dépasse celui autorisé'}
+                            </p>
                         )
                     }
                 </div>
