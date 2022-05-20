@@ -1,13 +1,16 @@
 const paginations = ['button', 'scroll'];
 
 export default {
-    name: '',
+    name: 'default',
 
-    route: '',
+    route: 'default',
 
     creators: false,
 
-    menu: {},
+    menu: {
+        label: 'default',
+        icon: null,
+    },
 
     list: {
         parameters: {},

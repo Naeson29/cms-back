@@ -1,7 +1,7 @@
 import { screenContainer } from '../containers';
 
 const routes = (models) => {
-    const modelRoutes = Object.keys(models).filter(key => !!models[key].name && !!models[key].route).map(model => models[model]);
+    const modelRoutes = Object.keys(models).map(model => models[model]);
 
     let id = 1;
 
@@ -51,6 +51,8 @@ const routes = (models) => {
             });
         });
     });
+
+    // TODO other routes
 
     return routeList;
 };

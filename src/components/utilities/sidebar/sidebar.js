@@ -15,8 +15,8 @@ const Navs = (models) => {
             icon: ImHome,
         },
         ...items.map((item) => {
-            const { route = '', menu = {} } = item;
-            const { label = '', icon = null } = menu;
+            const { route, menu } = item;
+            const { label, icon } = menu;
             id += 1;
             return {
                 id,
