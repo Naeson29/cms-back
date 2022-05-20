@@ -135,3 +135,36 @@ export const modal = () => {
         creators,
     };
 };
+
+export const parameter = () => {
+    const types = {
+        UPDATE: createDefaultHttpActionTypes('parameter', 'UPDATE'),
+    };
+    const creators = createDefaultHttpCreators(types);
+    return {
+        types,
+        creators,
+    };
+};
+
+export const seo = () => {
+    const types = {
+        UPDATE: createDefaultHttpActionTypes('seo', 'UPDATE'),
+    };
+    const creators = createDefaultHttpCreators(types);
+    return {
+        types,
+        creators,
+    };
+};
+
+export const site = () => {
+    const types = {
+        UPDATE: createDefaultHttpActionTypes('site', 'UPDATE'),
+    };
+    const creators = createDefaultHttpCreators(types);
+    return {
+        types,
+        creators,
+    };
+};

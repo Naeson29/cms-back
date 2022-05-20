@@ -44,3 +44,21 @@ export class UserApi extends defaultApi('user') {
 
     revoke = () => this.post({ url: '/revoke' });
 }
+
+export class ParameterApi extends defaultApi('parameter') {
+    update = ({
+        data,
+    }) => this.put({ url: this.path }, data);
+}
+
+export class SeoApi extends defaultApi('seo') {
+    update = ({
+        data,
+    }) => this.put({ url: this.path }, data);
+}
+
+export class SiteApi extends defaultApi('site') {
+    update = ({
+        data,
+    }) => this.put({ url: this.path }, data);
+}
