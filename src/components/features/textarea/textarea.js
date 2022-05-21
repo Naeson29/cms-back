@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 const Textarea = (props) => {
     const { attributes, value, error, handleChange } = props;
     const {
-        label = '', name = 'textarea', className = 'textarea', placeholder = '',
+        label = '', name = 'textarea', className = 'textarea', placeholder = '', required = false,
     } = attributes;
 
     return (
         <div className="container-field">
             {
                 label && (
-                    <p className="label">{label}</p>
+                    <p className="label">
+                        {label}
+                        {required ? ' *' : ''}
+                    </p>
                 )
             }
             <textarea

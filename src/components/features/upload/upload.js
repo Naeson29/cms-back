@@ -11,30 +11,65 @@ import { getImage } from '../../../utilities/functions';
 
 
 const Upload = (props) => {
-    const { attributes, handleUpload, handleChange, value = [] } = props;
-    const { multiple = false, maxNumber = 10, maxFileSize = 600000, label = 'Images', upload = 'uploads', removeAll = false } = attributes;
+    const { attributes, handleUpload, handleChange, value } = props;
+    const { multiple = false, maxNumber = 5, maxFileSize = 600000, label = 'Images', complement = [], name = 'image', removeAll = false } = attributes;
     const [images, setImages] = useState([]);
-    const [saveList, setSaveList] = useState([]);
+    const [dataList, setDataList] = useState([]);
     const [deleteList, setDeleteList] = useState([]);
+    const [max, setMax] = useState(maxNumber);
 
     const onChange = (imageList) => {
-        handleUpload(upload, imageList);
+        handleUpload(name, imageList);
         setImages(imageList);
     };
 
-    const toDelete = (id) => {
+    const deleteOne = (id) => {
         const exist = deleteList.includes(id);
+        const newDataList = dataList.filter(key => key.id !== id);
 
         if (!exist) {
             deleteList.push(id);
-            handleChange('medias', deleteList);
+            handleChange('unlinks', deleteList);
             setDeleteList(deleteList);
+            setDataList(newDataList);
+            setMax(max + 1);
         }
     };
 
+    const removeImages = (imageList, remove) => {
+        if (imageList.length > 0) {
+            remove();
+        }
+        if (dataList.length > 0) {
+            const newDeleteList = dataList.map(key => key.id);
+            handleChange('unlinks', newDeleteList);
+            setDeleteList(newDeleteList);
+            setDataList([]);
+            setMax(max + dataList.length);
+        }
+    };
+
+    const render = (image, index, remove) => (
+        <div key={`data-${index.toString()}`} className="image-item">
+            <div
+                className="image-bg"
+                style={{ backgroundImage: `url('${image.data_url ? image.data_url : getImage(image, 'medium')}')` }}
+            >
+                <Button
+                    action={() => (image.data_url ? remove(index) : deleteOne(image.id))}
+                    className="button trash-one"
+                    icon={HiX}
+                />
+            </div>
+        </div>
+    );
+
     useEffect(() => {
-        if (!Array.isArray(value) && Object.keys(value).length > 0) {
-            setSaveList(value.data);
+        if (!Array.isArray(value)) {
+            const { data = [] } = value;
+            handleChange(name, []);
+            setDataList(data);
+            setMax(max - data.length);
         }
     }, [value]);
 
@@ -43,7 +78,7 @@ const Upload = (props) => {
             multiple={multiple}
             value={images}
             onChange={onChange}
-            maxNumber={maxNumber}
+            maxNumber={max}
             dataURLKey="data_url"
             maxFileSize={maxFileSize}
         >
@@ -60,55 +95,42 @@ const Upload = (props) => {
                     <p className="label">{label}</p>
                     <button type="button" className={`button-upload ${isDragging ? 'isDragging' : ''}`} onClick={onImageUpload} {...dragProps}>
                         <div className="icon" />
-                    </button>
-                    <div className="content-upload">
-                        <div className="images-list">
+                        <div className="info">
                             {
-                                saveList.map((image, index) => (
-                                    <div key={`data-${index.toString()}`} className="image-item">
-                                        <div className="image-bg" style={{ backgroundImage: `url('${getImage(image, 'medium')}')` }}>
-                                            <Button
-                                                action={() => toDelete(image.id)}
-                                                className="button trash-one"
-                                                icon={HiX}
-                                            />
-                                        </div>
-                                    </div>
-                                ))
-                            }
-                            {
-                                imageList.map((image, index) => (
-                                    <div key={`value-${index.toString()}`} className="image-item">
-                                        <div className="image-bg" style={{ backgroundImage: `url('${image.data_url}')` }}>
-                                            <Button
-                                                action={() => onImageRemove(index)}
-                                                className="button trash-one"
-                                                icon={HiX}
-                                            />
-                                        </div>
-                                    </div>
+                                complement.map(text => (
+                                    <p>{text}</p>
                                 ))
                             }
                         </div>
-                        {
-                            (imageList.length > 1 && removeAll) && (
-                                <div className="remove-all">
-                                    <Button
-                                        action={onImageRemoveAll}
-                                        className="button trash"
-                                        icon={HiTrash}
-                                        text="Tout supprimer"
-                                    />
-                                </div>
-                            )
-                        }
-                    </div>
+                    </button>
                     {
                         errors && (
                             <p className="error-text">
                                 {errors.maxNumber && 'Le nombre de photos dépasse celui autorisé'}
                                 {errors.maxFileSize && 'La photo est trop volumineuse'}
                             </p>
+                        )
+                    }
+                    {
+                        (dataList.length > 0 || imageList.length > 0) && (
+                            <div className="content-upload">
+                                <div className="images-list">
+                                    { dataList.map((image, index) => render(image, index, onImageRemove)) }
+                                    { imageList.map((image, index) => render(image, index, onImageRemove))}
+                                </div>
+                                {
+                                    ((imageList.length + dataList.length) > 1 && removeAll) && (
+                                        <div className="remove-all">
+                                            <Button
+                                                action={() => removeImages(imageList, onImageRemoveAll)}
+                                                className="button trash"
+                                                icon={HiTrash}
+                                                text="Tout supprimer"
+                                            />
+                                        </div>
+                                    )
+                                }
+                            </div>
                         )
                     }
                 </div>

@@ -37,28 +37,32 @@ const Form = (props) => {
     const column1 = elements.filter(el => el.column === 1);
     const column2 = elements.filter(el => el.column === 2);
 
-    const columnsObject = {
-        1: column1,
-        ...column2.length > 0 && { 2: column2 },
-    };
+    const columnArray = [column1];
+
+    if (column2.length > 0) {
+        columnArray.push(column2);
+    }
 
     return (
         <form className="form" onSubmit={handleSubmit}>
             <div className="form-content">
                 <div className="columns">
                     {
-                        Object.keys(columnsObject).map((col, index) => (
+                        columnArray.map((col, index) => (
                             <div className={classNames[columns]} key={`column_${index.toString()}`}>
                                 {
-                                    columnsObject[col].map((key) => {
-                                        const Component = formUtility(key.element);
+                                    col.map((key) => {
+                                        const { element } = key;
+                                        const Component = formUtility(element);
+                                        const value = data[key.name];
+
                                         return (
                                             <Component
                                                 key={`field_${key.name}`}
                                                 attributes={key}
                                                 handleChange={handleChange}
                                                 handleUpload={handleUpload}
-                                                value={data[key.name]}
+                                                value={value}
                                                 error={(errors && !!errors[key.name]) && errors[key.name]}
                                             />
                                         );

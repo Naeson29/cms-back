@@ -5,7 +5,17 @@ import PropTypes from 'prop-types';
 const SwitchComponent = (props) => {
     const { attributes, value, handleChange } = props;
     const {
-        label = '', name = 'switch', onColor = '#28bb2f', offColor = '#c3c3c3', uncheckedIcon = false, checkedIcon = false, height = 25, width = 50,
+        label = 'label',
+        labelOn = 'Oui',
+        labelOff = 'Non',
+        name = 'switch',
+        onColor = '#28bb2f',
+        offColor = '#c3c3c3',
+        uncheckedIcon = false,
+        checkedIcon = false,
+        height = 22,
+        width = 50,
+        className = 'switch',
     } = attributes;
 
     return (
@@ -15,16 +25,19 @@ const SwitchComponent = (props) => {
                     <p className="label">{label}</p>
                 )
             }
-            <Switch
-                onChange={checked => handleChange(name, checked)}
-                checked={value}
-                onColor={onColor}
-                offColor={offColor}
-                uncheckedIcon={uncheckedIcon}
-                checkedIcon={checkedIcon}
-                height={height}
-                width={width}
-            />
+            <div className={className}>
+                <Switch
+                    onChange={checked => handleChange(name, checked)}
+                    checked={value}
+                    onColor={onColor}
+                    offColor={offColor}
+                    uncheckedIcon={uncheckedIcon}
+                    checkedIcon={checkedIcon}
+                    height={height}
+                    width={width}
+                />
+                <p className="label-value">{!value ? labelOff : labelOn}</p>
+            </div>
         </div>
     );
 };

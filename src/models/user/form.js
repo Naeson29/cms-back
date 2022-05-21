@@ -51,7 +51,7 @@ export default action => ({
         },
         {
             element: 'upload',
-            name: 'imagesUpload',
+            name: 'image',
             multiple: false,
             maxNumber: 1,
             label: 'Photo',
@@ -83,7 +83,7 @@ export default action => ({
                 required: true,
             },
         },
-        imagesUpload: {
+        image: {
             rule: 'sizeImage',
             maxSize: 600000,
         },
