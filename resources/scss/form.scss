@@ -201,11 +201,15 @@
                 background-repeat: no-repeat;
                 background-position: center;
                 width:100%;
-                padding-bottom: 45%;
-                display: flex;
-                justify-content: flex-end;
+                padding-bottom: 50%;
+                background-color: $cancel-bg;
+                position: relative;
   
                 .button {
+                  position: absolute;
+                  top:0;
+                  right: 0;
+                  z-index: 1;
                   background: rgba(255,255,255,.5);
     
                   .icon {  

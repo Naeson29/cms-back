@@ -32,7 +32,8 @@ export default () => ({
         },
         {
             element: 'upload',
-            name: 'imagesUpload',
+            name: 'images',
+            upload: 'uploads',
             multiple: true,
             maxNumber: 4,
             label: 'Images',
