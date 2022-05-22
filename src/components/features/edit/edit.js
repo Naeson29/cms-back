@@ -100,6 +100,7 @@ const Edit = (props) => {
             handleUpload={handleUpload}
             errors={errors}
             columns={columns}
+            isUpdate={isUpdate}
             disabled={isUpdate && !modified}
         />
     );

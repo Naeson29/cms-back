@@ -7,11 +7,13 @@ import {
     HiTrash, HiX,
 } from 'react-icons/hi';
 import { Button } from '..';
-import { getImage } from '../../../utilities/functions';
+import {
+    getImage, isArray,
+} from '../../../utilities/functions';
 
 
 const Upload = (props) => {
-    const { attributes, handleUpload, handleChange, value } = props;
+    const { attributes, handleUpload, handleChange, isUpdate, value } = props;
     const { multiple = false, maxNumber = 5, maxFileSize = 600000, label = 'Images', complement = [], name = 'image', removeAll = false } = attributes;
     const [images, setImages] = useState([]);
     const [dataList, setDataList] = useState([]);
@@ -64,12 +66,18 @@ const Upload = (props) => {
         </div>
     );
 
-    useEffect(() => {
-        if (!!value && !Array.isArray(value)) {
-            const data = Array.isArray(value.data) ? value.data : [value.data];
+    const loadData = () => {
+        if (value && !isArray(value)) {
+            const data = isArray(value.data) ? value.data : [value.data];
             handleUpload(name, []);
             setDataList(data);
             setMax(max - data.length);
+        }
+    };
+
+    useEffect(() => {
+        if (isUpdate) {
+            loadData();
         }
     }, [value]);
 
@@ -144,6 +152,7 @@ Upload.propTypes = {
     handleUpload: PropTypes.func,
     handleChange: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.node]),
+    isUpdate: PropTypes.bool,
 };
 
 Upload.defaultProps = {
@@ -151,6 +160,7 @@ Upload.defaultProps = {
     handleUpload: () => {},
     handleChange: () => {},
     value: [],
+    isUpdate: false,
 };
 
 export default Upload;

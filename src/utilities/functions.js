@@ -34,6 +34,7 @@ const getImage = (obj, conversion) => (!obj ? '' : `${process.env.API_URL}/stora
  */
 const plurial = (count, string) => (string + (count > 1 ? 's' : ''));
 
+const isArray = variable => Array.isArray(variable);
 
 /**
  *
@@ -58,4 +59,5 @@ export {
     truncate,
     initials,
     plurial,
+    isArray,
 };

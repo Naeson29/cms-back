@@ -23,12 +23,11 @@ const Form = (props) => {
         errors,
         data,
         columns,
-        action,
+        isUpdate,
         disabled,
     } = props;
 
     const history = useHistory();
-    const isUpdate = action === 'update';
 
     const classNames = {
         1: 'full',
@@ -65,6 +64,7 @@ const Form = (props) => {
                                                 handleUpload={handleUpload}
                                                 value={value}
                                                 error={(errors && !!errors[key.name]) && errors[key.name]}
+                                                isUpdate={isUpdate}
                                             />
                                         );
                                     })
@@ -99,7 +99,7 @@ Form.propTypes = {
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     data: PropTypes.oneOfType([PropTypes.object]),
     columns: PropTypes.number,
-    action: PropTypes.string,
+    isUpdate: PropTypes.bool,
     disabled: PropTypes.bool,
 };
 
@@ -111,7 +111,7 @@ Form.defaultProps = {
     errors: false,
     data: {},
     columns: 1,
-    action: 'create',
+    isUpdate: false,
     disabled: false,
 };
 
