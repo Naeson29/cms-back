@@ -50,7 +50,7 @@ const Upload = (props) => {
     };
 
     const render = (image, index, remove) => (
-        <div key={`data-${index.toString()}`} className="image-item">
+        <div key={`${index.toString()}`} className="image-item">
             <div
                 className="image-bg"
                 style={{ backgroundImage: `url('${image.data_url ? image.data_url : getImage(image, 'medium')}')` }}
@@ -67,7 +67,7 @@ const Upload = (props) => {
     useEffect(() => {
         if (!Array.isArray(value)) {
             const { data = [] } = value;
-            handleChange(name, []);
+            handleUpload(name, []);
             setDataList(data);
             setMax(max - data.length);
         }
@@ -97,8 +97,8 @@ const Upload = (props) => {
                         <div className="icon" />
                         <div className="info">
                             {
-                                complement.map(text => (
-                                    <p>{text}</p>
+                                complement.map((text, index) => (
+                                    <p key={`${index.toString()}`}>{text}</p>
                                 ))
                             }
                         </div>

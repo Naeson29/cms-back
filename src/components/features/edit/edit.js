@@ -46,6 +46,7 @@ const Edit = (props) => {
         [item.name]: getValue(item),
     }), {}));
 
+    const [modified, setModified] = useState(false);
     const [errors, setErrors] = useState(false);
 
     const handleSubmit = () => {
@@ -72,6 +73,7 @@ const Edit = (props) => {
             delete errors[key];
             setErrors(errors);
         }
+        setModified(true);
         setData({
             ...data,
             [key]: value,
@@ -79,10 +81,13 @@ const Edit = (props) => {
     };
 
     const handleUpload = (key, imageList) => {
-        setData({
-            ...data,
-            [key]: imageList,
-        });
+        if (imageList.length > 0) {
+            setModified(true);
+            setData({
+                ...data,
+                [key]: imageList,
+            });
+        }
     };
 
     return (
@@ -95,6 +100,7 @@ const Edit = (props) => {
             handleUpload={handleUpload}
             errors={errors}
             columns={columns}
+            disabled={isUpdate && !modified}
         />
     );
 };

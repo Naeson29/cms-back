@@ -9,7 +9,7 @@ const Button = (props) => {
 
     return (
         <button
-            onClick={action}
+            onClick={!disabled ? action : () => {}}
             className={`${className} ${disabled ? 'disabled' : ''}`}
             type="button"
         >

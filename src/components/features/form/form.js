@@ -24,6 +24,7 @@ const Form = (props) => {
         data,
         columns,
         action,
+        disabled,
     } = props;
 
     const history = useHistory();
@@ -78,6 +79,7 @@ const Form = (props) => {
                     action={handleSubmit}
                     className="button submit"
                     text={isUpdate ? 'Modifier' : 'Ajouter'}
+                    disabled={disabled}
                 />
                 <Button
                     action={() => history.goBack()}
@@ -98,6 +100,7 @@ Form.propTypes = {
     data: PropTypes.oneOfType([PropTypes.object]),
     columns: PropTypes.number,
     action: PropTypes.string,
+    disabled: PropTypes.bool,
 };
 
 Form.defaultProps = {
@@ -109,6 +112,7 @@ Form.defaultProps = {
     data: {},
     columns: 1,
     action: 'create',
+    disabled: false,
 };
 
 export default Form;

@@ -280,6 +280,10 @@
         background-color: $primary-color;
       }
 
+      &.disabled {
+        opacity: .6;
+      }
+
       &.cancel { 
         color: $cancel-icon;
         background-color: $cancel-bg;
