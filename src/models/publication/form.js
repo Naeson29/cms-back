@@ -55,7 +55,7 @@ export default () => ({
         },
         images: {
             rule: 'sizeImage',
-            maxSize: 600000,
+            maxSize: 2000000,
         },
     },
 });

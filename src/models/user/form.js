@@ -86,7 +86,7 @@ export default action => ({
         },
         image: {
             rule: 'sizeImage',
-            maxSize: 600000,
+            maxSize: 2000000,
         },
     },
 });

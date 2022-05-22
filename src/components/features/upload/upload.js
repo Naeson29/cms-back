@@ -14,7 +14,7 @@ import {
 
 const Upload = (props) => {
     const { attributes, handleUpload, handleChange, isUpdate, value } = props;
-    const { multiple = false, maxNumber = 5, maxFileSize = 600000, label = 'Images', complement = [], name = 'image', removeAll = false } = attributes;
+    const { multiple = false, maxNumber = 5, maxFileSize = 2000000, label = 'Images', complement = [], name = 'image', removeAll = false } = attributes;
     const [images, setImages] = useState([]);
     const [dataList, setDataList] = useState([]);
     const [deleteList, setDeleteList] = useState([]);
