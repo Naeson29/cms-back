@@ -65,7 +65,7 @@ const Upload = (props) => {
     );
 
     useEffect(() => {
-        if (!Array.isArray(value)) {
+        if (!!value && !Array.isArray(value)) {
             const { data = [] } = value;
             handleUpload(name, []);
             setDataList(Array.isArray(data) ? data : [data]);
