@@ -67,7 +67,7 @@ const Upload = (props) => {
     );
 
     const loadData = () => {
-        if (value && !isArray(value)) {
+        if (value && value.data) {
             const data = isArray(value.data) ? value.data : [value.data];
             handleUpload(name, []);
             setDataList(data);

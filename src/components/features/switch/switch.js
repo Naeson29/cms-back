@@ -1,16 +1,18 @@
 import React from 'react';
 import Switch from 'react-switch';
 import PropTypes from 'prop-types';
+import { colorUtility } from '../../utilities';
 
 const SwitchComponent = (props) => {
     const { attributes, value, handleChange } = props;
+    const { primaryColor, gray } = colorUtility;
     const {
         label = 'label',
         labelOn = 'Oui',
         labelOff = 'Non',
         name = 'switch',
-        onColor = '#28bb2f',
-        offColor = '#c3c3c3',
+        onColor = primaryColor,
+        offColor = gray,
         uncheckedIcon = false,
         checkedIcon = false,
         height = 22,

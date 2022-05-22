@@ -212,7 +212,7 @@
               color: $white;
             }
             &.trash-one {
-              color: $error-trash;
+              color: $white;
             }
           }
   
@@ -237,14 +237,21 @@
   
                 .button {
                   position: absolute;
-                  top:0;
-                  right: 0;
+                  top:-5px;
+                  right: -5px;
                   z-index: 1;
-                  background: $white;
+                  background: $error-trash;
+                  border-radius: 100%;
+                  width: 2rem;
+                  height: 2rem;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  border: 2px solid $white;
     
                   .icon {  
-                    width: 1.6rem;
-                    height: 1.6rem;
+                    width:70%;
+                    height: 70%;
                   }
                 }
               }
