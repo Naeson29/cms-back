@@ -41,6 +41,7 @@ export default () => ({
             maxNumber: 4,
             label: 'Photos',
             complement: ['Ajouter une ou plusieurs photos'],
+            maxNumberError: 'Vous pouvez ajouter 4 photos maximum',
             column: 2,
         },
     ],

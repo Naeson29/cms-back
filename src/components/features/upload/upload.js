@@ -14,7 +14,16 @@ import {
 
 const Upload = (props) => {
     const { attributes, handleUpload, handleChange, isUpdate, value } = props;
-    const { multiple = false, maxNumber = 5, maxFileSize = 2000000, label = 'Images', complement = [], name = 'image', removeAll = false } = attributes;
+    const {
+        multiple = false,
+        maxNumber = 5,
+        maxNumberError = '',
+        maxFileSize = 2000000,
+        label = 'Images',
+        complement = [],
+        name = 'image',
+        removeAll = false,
+    } = attributes;
     const [images, setImages] = useState([]);
     const [dataList, setDataList] = useState([]);
     const [deleteList, setDeleteList] = useState([]);
@@ -114,8 +123,8 @@ const Upload = (props) => {
                     {
                         errors && (
                             <p className="error-text">
-                                {errors.maxNumber && 'Le nombre de photos dépasse celui autorisé'}
-                                {errors.maxFileSize && 'La photo est trop volumineuse'}
+                                {errors.maxNumber && maxNumberError}
+                                {errors.maxFileSize && 'La photo est trop volumineuse (Maximum 2Mo)'}
                             </p>
                         )
                     }

@@ -56,6 +56,7 @@ export default action => ({
             maxNumber: 1,
             label: 'Photo',
             complement: ['Ajouter une photo'],
+            maxNumberError: 'Vous ne pouvez ajouter qu\'une seule photo',
             column: 2,
         },
     ],
