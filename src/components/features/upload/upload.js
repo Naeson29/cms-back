@@ -66,9 +66,9 @@ const Upload = (props) => {
 
     useEffect(() => {
         if (!!value && !Array.isArray(value)) {
-            const { data = [] } = value;
+            const data = Array.isArray(value.data) ? value.data : [value.data];
             handleUpload(name, []);
-            setDataList(Array.isArray(data) ? data : [data]);
+            setDataList(data);
             setMax(max - data.length);
         }
     }, [value]);
@@ -143,7 +143,7 @@ Upload.propTypes = {
     attributes: PropTypes.oneOfType([PropTypes.object]),
     handleUpload: PropTypes.func,
     handleChange: PropTypes.func,
-    value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    value: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.node]),
 };
 
 Upload.defaultProps = {
