@@ -55,6 +55,7 @@ export default action => ({
             multiple: false,
             maxNumber: 1,
             label: 'Photo',
+            complement: ['Ajouter une photo'],
             column: 2,
         },
     ],

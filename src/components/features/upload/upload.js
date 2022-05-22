@@ -68,7 +68,7 @@ const Upload = (props) => {
         if (!Array.isArray(value)) {
             const { data = [] } = value;
             handleUpload(name, []);
-            setDataList(data);
+            setDataList(Array.isArray(data) ? data : [data]);
             setMax(max - data.length);
         }
     }, [value]);

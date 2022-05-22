@@ -83,11 +83,11 @@ const Edit = (props) => {
     const handleUpload = (key, imageList) => {
         if (imageList.length > 0) {
             setModified(true);
-            setData({
-                ...data,
-                [key]: imageList,
-            });
         }
+        setData({
+            ...data,
+            [key]: imageList,
+        });
     };
 
     return (
