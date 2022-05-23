@@ -167,7 +167,7 @@ const Filter = (props) => {
                             <Select
                                 attributes={{
                                     ...columnSelect,
-                                    options: selectOrder,
+                                    data: selectOrder,
                                 }}
                                 value={order.column}
                                 handleChange={handleChangeColumn}
@@ -188,7 +188,7 @@ const Filter = (props) => {
                         <div className="content-order">
                             <SelectMultiple
                                 attributes={{
-                                    options: selectFilter,
+                                    data: selectFilter,
                                     name: 'published',
                                     hasSelectAll: false,
                                 }}

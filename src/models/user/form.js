@@ -8,6 +8,9 @@ export default action => ({
             label: 'Prénom',
             placeholder: 'Pierre...',            
             column: 1,
+            options: {
+                required: true,
+            },
         },
         {
             name: 'last_name',
@@ -16,6 +19,9 @@ export default action => ({
             label: 'Nom',
             placeholder: 'Richard...',            
             column: 1,
+            options: {
+                required: true,
+            },
         },
         {
             name: 'email',
@@ -24,6 +30,9 @@ export default action => ({
             label: 'Adresse email',
             placeholder: 'exemple@mail.fr...',            
             column: 1,
+            options: {
+                required: true,
+            },
         },
         {
             name: 'password',
@@ -32,6 +41,9 @@ export default action => ({
             label: 'Mot de passe',
             placeholder: '*************',              
             column: 1,
+            options: {
+                required: true,
+            },
         },
         {
             name: 'confirmation',
@@ -40,6 +52,9 @@ export default action => ({
             label: 'Confirmation',
             placeholder: 'Confirmation du mot de passe',                     
             column: 1,
+            options: {
+                required: true,
+            },
         },
         {
             name: 'role',

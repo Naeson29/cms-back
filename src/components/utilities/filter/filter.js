@@ -1,7 +1,7 @@
 const orderSelect = {
     name: 'order',
     className: 'select-order',
-    options: [
+    data: [
         {
             label: 'Ordre croissant',
             value: 'asc',
@@ -16,7 +16,7 @@ const orderSelect = {
 const columnSelect = {
     name: 'column',
     className: 'select-column',
-    options: [],
+    data: [],
 };
 
 export default {

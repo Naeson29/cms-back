@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 const Input = (props) => {
     const { attributes, value, error, handleChange, handleKeypress } = props;
     const {
-        label = '', type = 'text', name = 'input', className = 'input', placeholder = '', required = false,
+        label = '', type = 'text', name = 'input', className = 'input', placeholder = '', options = {},
     } = attributes;
+    const { required = false } = options;
 
     const onKeyPress = (e) => {
         if (e.key === 'Enter') {

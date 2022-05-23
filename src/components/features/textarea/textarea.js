@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 const Textarea = (props) => {
     const { attributes, value, error, handleChange } = props;
     const {
-        label = '', name = 'textarea', className = 'textarea', placeholder = '', required = false,
+        label = '', name = 'textarea', className = 'textarea', placeholder = '', options = {},
     } = attributes;
+    const { required = false } = options;
 
     return (
         <div className="container-field">

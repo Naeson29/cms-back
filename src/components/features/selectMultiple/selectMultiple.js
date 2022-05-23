@@ -9,7 +9,7 @@ const SelectMultiple = (props) => {
         label = '',
         name = 'multi-select',
         className = 'multi-select',
-        options = [],
+        data = [],
         hasSelectAll = true,
         disableSearch = true,
     } = attributes;
@@ -35,7 +35,7 @@ const SelectMultiple = (props) => {
             }
             <MultiSelect
                 className={className}
-                options={options}
+                options={data}
                 value={value}
                 onChange={handleChange}
                 labelledBy="Select"

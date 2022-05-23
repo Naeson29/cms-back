@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Select = (props) => {
     const { attributes, value, error, handleChange } = props;
     const {
-        label = '', name = 'select', className = '', options = [],
+        label = '', name = 'select', className = '', data = [],
     } = attributes;
 
     return (
@@ -21,7 +21,7 @@ const Select = (props) => {
                 onChange={e => handleChange(name, e.target.value)}
             >
                 {
-                    options.map((option, index) => (
+                    data.map((option, index) => (
                         <option key={index.toString()} value={option.value}>{option.label}</option>
                     ))
                 }
