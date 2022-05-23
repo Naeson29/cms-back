@@ -1,13 +1,13 @@
 
 export default (data, validation) => {
-    const errors = {};
+    let errors = {};
 
     const regex = {
         email: ({ value }) => {
             const email = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value);
             return email ? { success: true } : { error: 'L\'adresse email invalide' };
         },
-        password: ({ value, data, confirmation }) => {
+        password: ({ value, confirmation }) => {
             const length = value.length >= 8;
             const same = value === data[confirmation];
 
@@ -19,37 +19,41 @@ export default (data, validation) => {
         },
         sizeImage: ({ value, maxSize }) => {
             const toBig = value.filter(image => image.file.size > maxSize);
-            const length = toBig.length;
-
-            return length === 0 ? { success: true } : { error: length > 1 ? 'Une ou plusieurs images sont trop volumineuses' : 'L\'image est trop volumineuse' };
+            return toBig.length === 0
+                ? { success: true } : { error: toBig.length > 1 ? 'Une ou plusieurs images sont trop volumineuses' : 'L\'image est trop volumineuse' };
         },
     };
 
     const validationData = Object.keys(data).filter(key => !!validation[key]).map(key => ({
+        name: key,
         value: data[key],
-        validation: validation[key]
+        validator: validation[key],
     }));
 
     validationData.map((key) => {
-        const { value, validation } = key;
-        const { name, required = false, rule = false, params = {} } = validation;
-               
+        const { name, value, validator } = key;
+        const { label, required = false, rule = false, params = {} } = validator;
+
         if (!value && required) {
-            return { ...errors, [key]: `Le champ "${name}" est obligatoire` };
+            errors = {
+                ...errors,
+                [name]: `Le champ "${label}" est obligatoire`,
+            };
+            return errors;
         }
 
-        if (rule) {
+        if (!!value && rule) {
             const regexFunction = regex[rule];
             const validate = regexFunction({
                 value,
-                data,
-                ...params
+                ...params,
             });
             if (validate.error) {
-                return { ...errors, [key]: validate.error };
+                errors = {
+                    ...errors, [name]: validate.error,
+                };
             }
         }
-
         return errors;
     });
 

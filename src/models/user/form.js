@@ -6,7 +6,7 @@ export default () => ({
             element: 'input',
             type: 'text',
             label: 'Prénom',
-            placeholder: 'Pierre...',            
+            placeholder: 'Pierre...',
             column: 1,
             options: {
                 required: true,
@@ -17,7 +17,7 @@ export default () => ({
             element: 'input',
             type: 'text',
             label: 'Nom',
-            placeholder: 'Richard...',            
+            placeholder: 'Richard...',
             column: 1,
             options: {
                 required: true,
@@ -28,7 +28,7 @@ export default () => ({
             element: 'input',
             type: 'text',
             label: 'Adresse email',
-            placeholder: 'exemple@mail.fr...',            
+            placeholder: 'exemple@mail.fr...',
             column: 1,
             options: {
                 required: true,
@@ -39,7 +39,7 @@ export default () => ({
             element: 'input',
             type: 'password',
             label: 'Mot de passe',
-            placeholder: '*************',              
+            placeholder: '*************',
             column: 1,
             options: {
                 required: true,
@@ -50,7 +50,7 @@ export default () => ({
             element: 'input',
             type: 'password',
             label: 'Confirmation',
-            placeholder: 'Confirmation du mot de passe',                     
+            placeholder: 'Confirmation du mot de passe',
             column: 1,
             options: {
                 required: true,
@@ -70,43 +70,43 @@ export default () => ({
             column: 2,
             options: {
                 multiple: false,
-                maxNumber: 1,            
+                maxNumber: 1,
                 complement: ['Ajouter une photo'],
                 maxNumberError: 'Vous ne pouvez ajouter qu\'une seule photo',
-            },           
+            },
         },
     ],
     validation: {
         email: {
-            name: 'Adresse email',
+            label: 'Adresse email',
             required: true,
             rule: 'email',
         },
         first_name: {
-            name: 'Prénom',
+            label: 'Prénom',
             required: true,
         },
         last_name: {
-            name: 'Nom',
+            label: 'Nom',
             required: true,
         },
         password: {
-            name: 'Mot de passe',
+            label: 'Mot de passe',
             required: true,
             rule: 'password',
             params: {
                 confirmation: 'confirmation',
-            }
+            },
         },
         confirmation: {
-            name: 'Confirmation',
+            label: 'Confirmation',
             required: true,
         },
         image: {
             rule: 'sizeImage',
             params: {
                 maxSize: 2000000,
-            },            
+            },
         },
     },
 });

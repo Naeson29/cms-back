@@ -5,17 +5,17 @@ export default () => ({
             name: 'title',
             element: 'input',
             label: 'Titre',
-            placeholder: 'Titre de la publication...',            
+            placeholder: 'Titre de la publication...',
             column: 1,
             options: {
                 required: true,
-            }
+            },
         },
         {
             name: 'content',
             element: 'textarea',
             label: 'Contenu',
-            placeholder: 'Contenu de la publication...',            
+            placeholder: 'Contenu de la publication...',
             column: 1,
             options: {
                 required: true,
@@ -29,12 +29,12 @@ export default () => ({
             column: 1,
             options: {
                 textOn: 'Publiée',
-                textOff: 'Non publiée',  
-            },                   
+                textOff: 'Non publiée',
+            },
         },
         {
             name: 'type',
-            element: 'input',            
+            element: 'input',
             type: 'hidden',
             value: 1,
             column: 1,
@@ -47,26 +47,26 @@ export default () => ({
             options: {
                 removeAll: true,
                 multiple: true,
-                maxNumber: 4,            
+                maxNumber: 4,
                 complement: ['Ajouter une ou plusieurs photos'],
                 maxNumberError: 'Vous pouvez ajouter 4 photos maximum',
-            },           
+            },
         },
     ],
     validation: {
         title: {
-            name: 'Titre',
+            label: 'Titre',
             required: true,
         },
         content: {
-            name: 'Contenu',
+            label: 'Contenu',
             required: true,
         },
         images: {
             rule: 'sizeImage',
             params: {
                 maxSize: 2000000,
-            },            
+            },
         },
     },
 });

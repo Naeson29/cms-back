@@ -50,7 +50,7 @@ Input.propTypes = {
     handleChange: PropTypes.func,
     handleKeypress: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    error: PropTypes.bool,
+    error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 Input.defaultProps = {

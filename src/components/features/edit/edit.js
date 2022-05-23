@@ -32,13 +32,13 @@ const Edit = (props) => {
     const { elements = [], validation = false, columns = 1 } = form();
 
     const getValue = (item) => {
-        let value = '';
+        let val = '';
         if (formUpdate) {
-            value = !detail[item.name] ? value : detail[item.name];
+            val = !detail[item.name] ? val : detail[item.name];
         } else if ('value' in item) {
-            value = item.value;
+            val = item.value;
         }
-        return value;
+        return val;
     };
 
     const [data, setData] = useState(elements.reduce((obj, item) => ({
@@ -62,7 +62,7 @@ const Edit = (props) => {
         if (validator.success) {
             if (formUpdate) update(detail.id, data);
             else create(data);
-        }        
+        }
     };
 
     const handleChange = (key, value) => {
@@ -76,7 +76,7 @@ const Edit = (props) => {
         });
         if (formUpdate) {
             setModified(true);
-        }        
+        }
     };
 
     const handleUpload = (key, imageList) => {
@@ -95,7 +95,7 @@ const Edit = (props) => {
         <Form
             {...props}
             data={data}
-            elements={elements}            
+            elements={elements}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             handleUpload={handleUpload}
