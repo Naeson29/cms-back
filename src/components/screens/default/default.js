@@ -2,28 +2,35 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
+import { permissionUtility } from '../../utilities';
+
 // features
 import {
     HeaderScreen, List, Panel, Modal, Loading, Show, Edit,
 } from '../../features';
 
+const { getPermissionModel } = permissionUtility;
+
 class Default extends Component {
     constructor(props) {
         super(props);
+        const { match, screen, current, state } = props;
+        const { model } = state;
+        this.permission = getPermissionModel(current.permissions, model);
 
-        const { match, screen } = props;
-
-        switch (screen) {
-        case 'index': {
-            props.getList();
-            break;
-        }
-        case 'show':
-        case 'update': {
-            props.getDetail(match.params.id);
-            break;
-        }
-        default:
+        if (this.permission[screen]) {
+            switch (screen) {
+            case 'index': {
+                props.getList();
+                break;
+            }
+            case 'show':
+            case 'update': {
+                props.getDetail(match.params.id);
+                break;
+            }
+            default:
+            }
         }
     }
 
@@ -85,14 +92,18 @@ class Default extends Component {
         }
 
         default:
-            return null;
+            return <div />;
         }
     }
 
     render() {
         const { props } = this;
         const { t, state, modals, screen } = props;
-        const { model = 'default' } = state;
+        const { model } = state;
+
+        if (!this.permission[screen]) {
+            return <div />;
+        }
 
         return (
             <div className={`fragment ${model}`}>
@@ -118,6 +129,7 @@ Default.propTypes = {
     t: PropTypes.func,
     getList: PropTypes.func,
     getDetail: PropTypes.func,
+    current: PropTypes.oneOfType([PropTypes.object]),
     match: PropTypes.oneOfType([PropTypes.object]),
     state: PropTypes.oneOfType([PropTypes.object]),
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
@@ -131,6 +143,7 @@ Default.defaultProps = {
     t: () => {},
     getList: () => {},
     getDetail: () => {},
+    current: {},
     match: {},
     state: {},
     panels: false,
