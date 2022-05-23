@@ -1,15 +1,15 @@
 
 export default (data, validation) => {
-    const error = {};
+    const errors = {};
 
     const regex = {
         email: ({ value }) => {
             const email = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value);
             return email ? { success: true } : { error: 'L\'adresse email invalide' };
         },
-        password: ({ value, confirmation }) => {
+        password: ({ value, data, confirmation }) => {
             const length = value.length >= 8;
-            const same = value === confirmation;
+            const same = value === data[confirmation];
 
             if (!length) {
                 return { error: 'Minimum 8 caractères pour le mot de passe' };
@@ -18,62 +18,41 @@ export default (data, validation) => {
             return same ? { success: true } : { error: 'Les mots de passe ne sont pas identiques' };
         },
         sizeImage: ({ value, maxSize }) => {
-            let invalid;
+            const toBig = value.filter(image => image.file.size > maxSize);
+            const length = toBig.length;
+            const message = length === 0 ? '' : (length > 1 ? 'Une ou plusieurs images sont trop volumineuses' : 'L\'image est trop volumineuse');
 
-            for (let i = 0; i < value.length; i += 1) {
-                if (value[i].file.size > maxSize) {
-                    invalid = true;
-                    break;
-                }
-            }
-
-            let message = '';
-            if (value.length === 1) {
-                message = 'L\'image est trop volumineuse';
-            } else {
-                message = 'Une ou plusieurs images sont trop volumineuses';
-            }
-
-            return !invalid ? { success: true } : { error: message };
+            return length === 0 ? { success: true } : { error: message };
         },
     };
 
+    const validationData = Object.keys(data).filter(key => !!validation[key]).map(key => ({
+        value: data[key],
+        validation: validation[key]
+    }));
 
-    Object.keys(data).map((key) => {
-        if (validation[key]) {
-            const rules = validation[key];
-            const { required = false, rule = false, maxSize = 2000000 } = rules;
-            const value = data[key];
+    validationData.map((key) => {
+        const { value, validation } = key;
+        const { name, required = false, rule = false, params = {} } = validation;
+               
+        if (!value && required) {
+            return { ...errors, [key]: `Le champ "${name}" est obligatoire` };
+        }
 
-            if (required && !value) {
-                error[key] = `Le champ "${rules.name}" est obligatoire`;
-                return error;
-            }
-
-            if (rule && !!value) {
-                const regexFunction = regex[rule];
-                let params = { value };
-                if (rule === 'password') {
-                    params = {
-                        ...params,
-                        confirmation: data.confirmation,
-                    };
-                }
-                if (rule === 'sizeImage') {
-                    params = {
-                        ...params,
-                        maxSize,
-                    };
-                }
-                const validate = regexFunction(params);
-                if (validate.error) {
-                    error[key] = validate.error;
-                }
-                return error;
+        if (rule) {
+            const regexFunction = regex[rule];
+            const validate = regexFunction({
+                value,
+                data,
+                ...params
+            });
+            if (validate.error) {
+                return { ...errors, [key]: validate.error };
             }
         }
-        return error;
+
+        return errors;
     });
 
-    return Object.keys(error).length > 0 ? { error } : { success: true };
+    return Object.keys(errors).length > 0 ? { errors } : { success: true };
 };

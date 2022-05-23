@@ -7,18 +7,22 @@ const SwitchComponent = (props) => {
     const { attributes, value, handleChange } = props;
     const { primaryColor, gray } = colorUtility;
     const {
-        label = 'label',
-        labelOn = 'Oui',
-        labelOff = 'Non',
         name = 'switch',
+        label = 'label',
+        options = {},        
+        className = 'switch',
+    } = attributes;
+
+    const {
+        textOn = 'oui',
+        textOff = 'non',
         onColor = primaryColor,
         offColor = gray,
         uncheckedIcon = false,
         checkedIcon = false,
         height = 22,
         width = 50,
-        className = 'switch',
-    } = attributes;
+    } = options;
 
     return (
         <div className={`container-field container-${name}`}>
@@ -38,7 +42,7 @@ const SwitchComponent = (props) => {
                     height={height}
                     width={width}
                 />
-                <p className="label-value">{!value ? labelOff : labelOn}</p>
+                <p className="label-value">{!value ? textOff : textOn}</p>
             </div>
         </div>
     );

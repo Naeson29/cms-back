@@ -2,47 +2,55 @@ export default () => ({
     columns: 2,
     elements: [
         {
+            name: 'title',
             element: 'input',
             label: 'Titre',
-            placeholder: 'Titre de la publication...',
-            name: 'title',
-            required: true,
+            placeholder: 'Titre de la publication...',            
             column: 1,
+            options: {
+                required: true,
+            }
         },
         {
+            name: 'content',
             element: 'textarea',
             label: 'Contenu',
-            placeholder: 'Contenu de la publication...',
-            name: 'content',
-            required: true,
+            placeholder: 'Contenu de la publication...',            
             column: 1,
+            options: {
+                required: true,
+            },
         },
         {
+            name: 'published',
             element: 'switch',
             label: 'Visibilité',
-            labelOn: 'Publiée',
-            labelOff: 'Non publiée',
-            name: 'published',
-            column: 1,
             value: false,
+            column: 1,
+            options: {
+                textOn: 'Publiée',
+                textOff: 'Non publiée',  
+            },                   
         },
         {
-            element: 'input',
             name: 'type',
+            element: 'input',            
             type: 'hidden',
             value: 1,
             column: 1,
         },
         {
-            element: 'upload',
             name: 'images',
-            removeAll: true,
-            multiple: true,
-            maxNumber: 4,
+            element: 'upload',
             label: 'Photos',
-            complement: ['Ajouter une ou plusieurs photos'],
-            maxNumberError: 'Vous pouvez ajouter 4 photos maximum',
             column: 2,
+            options: {
+                removeAll: true,
+                multiple: true,
+                maxNumber: 4,            
+                complement: ['Ajouter une ou plusieurs photos'],
+                maxNumberError: 'Vous pouvez ajouter 4 photos maximum',
+            },           
         },
     ],
     validation: {
@@ -56,7 +64,9 @@ export default () => ({
         },
         images: {
             rule: 'sizeImage',
-            maxSize: 2000000,
+            params: {
+                maxSize: 2000000,
+            },            
         },
     },
 });

@@ -15,15 +15,20 @@ import {
 const Upload = (props) => {
     const { attributes, handleUpload, handleChange, isUpdate, value } = props;
     const {
+        name = 'image',
+        label = 'Images',
+        options = {},
+    } = attributes;
+
+    const {
         multiple = false,
         maxNumber = 5,
         maxNumberError = '',
         maxFileSize = 2000000,
-        label = 'Images',
         complement = [],
-        name = 'image',
         removeAll = false,
-    } = attributes;
+    } = options;
+
     const [images, setImages] = useState([]);
     const [dataList, setDataList] = useState([]);
     const [deleteList, setDeleteList] = useState([]);
