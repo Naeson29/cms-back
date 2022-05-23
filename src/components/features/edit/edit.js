@@ -20,9 +20,8 @@ import {
  * @constructor
  */
 const Edit = (props) => {
-    const { form, state, action, create, update } = props;
+    const { form, state, create, update } = props;
     const { loadings = {} } = state;
-    const formUpdate = (action === 'update');
 
     if (!form) {
         return null;
@@ -33,7 +32,7 @@ const Edit = (props) => {
 
     const getValue = (item) => {
         let val = '';
-        if (formUpdate) {
+        if (update) {
             val = !detail[item.name] ? val : detail[item.name];
         } else if ('value' in item) {
             val = item.value;
@@ -60,8 +59,11 @@ const Edit = (props) => {
             setErrors(validator.errors);
         }
         if (validator.success) {
-            if (formUpdate) update(detail.id, data);
+            if (update) update(detail.id, data);
             else create(data);
+        }
+        if (update) {
+            setModified(false);
         }
     };
 
@@ -74,7 +76,7 @@ const Edit = (props) => {
             ...data,
             [key]: value,
         });
-        if (formUpdate) {
+        if (update) {
             setModified(true);
         }
     };
@@ -84,12 +86,12 @@ const Edit = (props) => {
             ...data,
             [key]: imageList,
         });
-        if (formUpdate && imageList.length > 0) {
+        if (update && imageList.length > 0) {
             setModified(true);
         }
     };
 
-    const disabled = (formUpdate && !modified);
+    const disabled = (update && !modified);
 
     return (
         <Form
@@ -101,7 +103,7 @@ const Edit = (props) => {
             handleUpload={handleUpload}
             errors={errors}
             columns={columns}
-            formUpdate={formUpdate}
+            update={!!update}
             disabled={disabled}
         />
     );
@@ -110,17 +112,15 @@ const Edit = (props) => {
 Edit.propTypes = {
     form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     state: PropTypes.oneOfType([PropTypes.object]),
-    action: PropTypes.string,
-    create: PropTypes.func,
-    update: PropTypes.func,
+    create: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    update: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 };
 
 Edit.defaultProps = {
     form: () => ({}),
     state: {},
-    action: 'create',
-    create: () => {},
-    update: () => {},
+    create: false,
+    update: false,
 };
 
 export default Edit;

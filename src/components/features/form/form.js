@@ -23,7 +23,7 @@ const Form = (props) => {
         errors,
         data,
         columns,
-        formUpdate,
+        update,
         disabled,
     } = props;
 
@@ -64,7 +64,7 @@ const Form = (props) => {
                                                 handleUpload={handleUpload}
                                                 value={value}
                                                 error={(errors && !!errors[key.name]) && errors[key.name]}
-                                                formUpdate={formUpdate}
+                                                update={update}
                                             />
                                         );
                                     })
@@ -78,7 +78,7 @@ const Form = (props) => {
                 <Button
                     action={handleSubmit}
                     className="button submit"
-                    text={formUpdate ? 'Modifier' : 'Ajouter'}
+                    text={update ? 'Modifier' : 'Ajouter'}
                     disabled={disabled}
                 />
                 <Button
@@ -99,7 +99,7 @@ Form.propTypes = {
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     data: PropTypes.oneOfType([PropTypes.object]),
     columns: PropTypes.number,
-    formUpdate: PropTypes.bool,
+    update: PropTypes.bool,
     disabled: PropTypes.bool,
 };
 
@@ -111,7 +111,7 @@ Form.defaultProps = {
     errors: false,
     data: {},
     columns: 1,
-    formUpdate: false,
+    update: false,
     disabled: false,
 };
 

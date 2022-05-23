@@ -40,7 +40,7 @@ Textarea.propTypes = {
     attributes: PropTypes.oneOfType([PropTypes.object]),
     handleChange: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    error: PropTypes.bool,
+    error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 Textarea.defaultProps = {

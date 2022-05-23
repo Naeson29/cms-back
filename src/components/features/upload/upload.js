@@ -13,7 +13,7 @@ import {
 
 
 const Upload = (props) => {
-    const { attributes, handleUpload, handleChange, value, formUpdate } = props;
+    const { attributes, handleUpload, handleChange, value, update } = props;
     const {
         name = 'image',
         label = 'Images',
@@ -90,7 +90,7 @@ const Upload = (props) => {
     };
 
     useEffect(() => {
-        if (formUpdate) {
+        if (update) {
             loadData();
         }
     }, [value]);
@@ -166,7 +166,7 @@ Upload.propTypes = {
     handleUpload: PropTypes.func,
     handleChange: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.node]),
-    formUpdate: PropTypes.bool,
+    update: PropTypes.bool,
 };
 
 Upload.defaultProps = {
@@ -174,7 +174,7 @@ Upload.defaultProps = {
     handleUpload: () => {},
     handleChange: () => {},
     value: [],
-    formUpdate: false,
+    update: false,
 };
 
 export default Upload;

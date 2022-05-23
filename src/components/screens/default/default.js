@@ -13,12 +13,17 @@ class Default extends Component {
 
         const { match, screen } = props;
 
-        if (screen === 'index') {
+        switch (screen) {
+        case 'index': {
             props.getList();
+            break;
         }
-
-        if (screen === 'show' || screen === 'update') {
+        case 'show':
+        case 'update': {
             props.getDetail(match.params.id);
+            break;
+        }
+        default:
         }
     }
 
@@ -54,7 +59,6 @@ class Default extends Component {
             return (
                 <div className="screen-content">
                     <Edit
-                        action={screen}
                         state={state}
                         form={form}
                         create={create}
@@ -69,7 +73,6 @@ class Default extends Component {
             return loadings.detail ? <Loading /> : (
                 <div className="screen-content">
                     <Edit
-                        action={screen}
                         state={state}
                         form={form}
                         update={update}
