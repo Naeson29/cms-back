@@ -20,9 +20,8 @@ export default (data, validation) => {
         sizeImage: ({ value, maxSize }) => {
             const toBig = value.filter(image => image.file.size > maxSize);
             const length = toBig.length;
-            const message = length === 0 ? '' : (length > 1 ? 'Une ou plusieurs images sont trop volumineuses' : 'L\'image est trop volumineuse');
 
-            return length === 0 ? { success: true } : { error: message };
+            return length === 0 ? { success: true } : { error: length > 1 ? 'Une ou plusieurs images sont trop volumineuses' : 'L\'image est trop volumineuse' };
         },
     };
 
