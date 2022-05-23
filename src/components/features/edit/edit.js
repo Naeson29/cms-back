@@ -22,23 +22,23 @@ import {
 const Edit = (props) => {
     const { form, state, action, create, update } = props;
     const { loadings = {} } = state;
+    const formUpdate = (action === 'update');
 
     if (!form) {
         return null;
     }
 
     const { detail } = state;
-    const isUpdate = action === 'update';
-    const { elements = [], validation = false, columns = 1 } = form(action);
+    const { elements = [], validation = false, columns = 1 } = form();
 
     const getValue = (item) => {
-        let valueElement = '';
-        if (isUpdate) {
-            valueElement = detail[item.name];
-        } else if (item.value || item.value === false) {
-            valueElement = item.value;
+        let value = '';
+        if (formUpdate) {
+            value = !detail[item.name] ? value : detail[item.name];
+        } else if ('value' in item) {
+            value = item.value;
         }
-        return valueElement;
+        return value;
     };
 
     const [data, setData] = useState(elements.reduce((obj, item) => ({
@@ -54,18 +54,15 @@ const Edit = (props) => {
             return;
         }
 
-        let validator = { success: true };
+        const validator = validation ? validatorUtility(data, validation) : { success: true };
 
-        if (validation) {
-            validator = validatorUtility(data, validation);
+        if (validator.errors) {
+            setErrors(validator.errors);
         }
         if (validator.success) {
-            if (isUpdate) update(detail.id, data);
+            if (formUpdate) update(detail.id, data);
             else create(data);
-        }
-        if (validator.error) {
-            setErrors(validator.error);
-        }
+        }        
     };
 
     const handleChange = (key, value) => {
@@ -73,35 +70,39 @@ const Edit = (props) => {
             delete errors[key];
             setErrors(errors);
         }
-        setModified(true);
         setData({
             ...data,
             [key]: value,
         });
+        if (formUpdate) {
+            setModified(true);
+        }        
     };
 
     const handleUpload = (key, imageList) => {
-        if (imageList.length > 0) {
-            setModified(true);
-        }
         setData({
             ...data,
             [key]: imageList,
         });
+        if (formUpdate && imageList.length > 0) {
+            setModified(true);
+        }
     };
+
+    const disabled = (formUpdate && !modified);
 
     return (
         <Form
             {...props}
-            elements={elements}
             data={data}
+            elements={elements}            
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             handleUpload={handleUpload}
             errors={errors}
             columns={columns}
-            isUpdate={isUpdate}
-            disabled={isUpdate && !modified}
+            formUpdate={formUpdate}
+            disabled={disabled}
         />
     );
 };

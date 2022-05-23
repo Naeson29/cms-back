@@ -1,4 +1,4 @@
-export default action => ({
+export default () => ({
     columns: 2,
     elements: [
         {
