@@ -50,7 +50,7 @@ const Modals = (props) => {
                                             action={() => destroy(params.id)}
                                             icon={HiTrash}
                                             className="button trash"
-                                            text={t('buttons:delete')}
+                                            text={t('buttons.delete')}
                                         />
                                     )
                                 }
@@ -58,7 +58,7 @@ const Modals = (props) => {
                                     action={() => closeModal()}
                                     icon={HiX}
                                     className="button cancel"
-                                    text={t('buttons:cancel')}
+                                    text={t('buttons.cancel')}
                                 />
                             </div>
                         </div>

@@ -81,13 +81,13 @@ const Form = (props) => {
                 <Button
                     action={handleSubmit}
                     className="button submit"
-                    text={update ? t('buttons:update') : t('buttons:add')}
+                    text={update ? t('buttons.update') : t('buttons.add')}
                     disabled={disabled}
                 />
                 <Button
                     action={() => history.goBack()}
                     className="button cancel"
-                    text={t('buttons:cancel')}
+                    text={t('buttons.cancel')}
                 />
             </div>
         </form>
@@ -104,10 +104,10 @@ Form.propTypes = {
     disabled: PropTypes.bool,
     elements: PropTypes.oneOfType([PropTypes.array]),
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    data: PropTypes.oneOfType([PropTypes.object]),    
+    data: PropTypes.oneOfType([PropTypes.object]),
 };
 
-Form.defaultProps = {    
+Form.defaultProps = {
     t: () => {},
     handleSubmit: () => {},
     handleChange: () => {},

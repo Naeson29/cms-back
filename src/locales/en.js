@@ -62,7 +62,7 @@ export default {
     upload: {
         volume: 'The photo is too large (Maximum 2MB)',
         buttons: {
-            delete: 'Delete all'
+            delete: 'Delete all',
         },
     },
     validator: {
@@ -70,11 +70,11 @@ export default {
         email: 'Invalid email address',
         password: {
             length: 'Minimum 8 characters for the password',
-            same: 'Passwords are not the same'
+            same: 'Passwords are not the same',
         },
         image: {
             volumeOne: 'The photo is too large',
-            volumeMany: 'One or more images are too large'
+            volumeMany: 'One or more images are too large',
         },
-    }
+    },
 };

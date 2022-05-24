@@ -101,7 +101,7 @@ class Default extends Component {
             <div className={`fragment ${model}`}>
                 <HeaderScreen
                     {...props}
-                    title={t(`${model}:title:${screen}`)}
+                    title={t(`${model}:title.${screen}`)}
                 />
                 {
                     this.screen(props)
@@ -113,7 +113,7 @@ class Default extends Component {
                     )
                 }
             </div>
-        );  
+        );
     }
 
     render() {

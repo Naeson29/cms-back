@@ -1,7 +1,7 @@
 
 import { withTranslation } from 'react-i18next';
 
-const validator = ({t, data, validation}) => {
+const validator = ({ t, data, validation }) => {
     let errors = {};
 
     const regex = {
@@ -14,32 +14,32 @@ const validator = ({t, data, validation}) => {
             const same = value === data[confirmation];
 
             if (!length) {
-                return { error: t('password:length') };
+                return { error: t('password.length') };
             }
 
-            return same ? { success: true } : { error: t('password:same') };
+            return same ? { success: true } : { error: t('password.same') };
         },
         sizeImage: ({ value, maxSize }) => {
             const toBig = value.filter(image => image.file.size > maxSize);
             return toBig.length === 0
-                ? { success: true } : { error: toBig.length > 1 ? t('image:volumeMany') : t('image:volumeOne') };
+                ? { success: true } : { error: toBig.length > 1 ? t('image.volumeMany') : t('image.volumeOne') };
         },
     };
 
     const validationData = Object.keys(data).filter(key => !!validation[key]).map(key => ({
         name: key,
         value: data[key],
-        validator: validation[key],
+        rules: validation[key],
     }));
 
     validationData.map((key) => {
-        const { name, value, validator } = key;
-        const { label, required = false, rule = false, params = {} } = validator;
+        const { name, value, rules } = key;
+        const { label, required = false, rule = false, params = {} } = rules;
 
         if (!value && required) {
             errors = {
                 ...errors,
-                [name]: t('required', {label}),
+                [name]: t('required', { label }),
             };
             return errors;
         }

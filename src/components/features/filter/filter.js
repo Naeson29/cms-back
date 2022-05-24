@@ -2,6 +2,7 @@ import React, {
     useState,
     useEffect,
 } from 'react';
+import { withTranslation } from 'react-i18next';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import {
     HiX,
@@ -130,7 +131,7 @@ const Filter = (props) => {
                 hasSearch && (
                     <div className="filter-content border">
                         <p className="title">
-                            {t('titles:search')}
+                            {t('titles.search')}
                         </p>
                         <div className="content-search">
                             <Input
@@ -165,7 +166,7 @@ const Filter = (props) => {
                 hasOrder && (
                     <div className="filter-content border">
                         <p className="title">
-                            {t('titles:order')}
+                            {t('titles.order')}
                         </p>
                         <div className="content-order">
                             <Select
@@ -189,7 +190,7 @@ const Filter = (props) => {
                 hasFilter && (
                     <div className="filter-content">
                         <p className="title">
-                            {t('titles:filter')}
+                            {t('titles.filter')}
                         </p>
                         <div className="content-order">
                             <SelectMultiple
@@ -209,12 +210,12 @@ const Filter = (props) => {
                 hasButton && (
                     <div className="buttons">
                         <Button
-                            text={t('buttons:apply')}
+                            text={t('buttons.apply')}
                             action={applyFilter}
                             className="button button-apply"
                         />
                         <Button
-                            text={t('buttons:close')}
+                            text={t('buttons.close')}
                             action={() => closePanel()}
                             className="button button-close"
                         />

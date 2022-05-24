@@ -14,7 +14,7 @@ import {
 } from '../../utilities';
 
 import {
-    hasMorePage, plurial,
+    hasMorePage,
 } from '../../../utilities/functions';
 
 // features
@@ -161,7 +161,7 @@ List.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     current: PropTypes.oneOfType([PropTypes.object]),
     modals: PropTypes.oneOfType([PropTypes.object]),
-    loading: PropTypes.element,    
+    loading: PropTypes.element,
 };
 
 List.defaultProps = {
