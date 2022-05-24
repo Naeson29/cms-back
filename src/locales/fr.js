@@ -66,7 +66,7 @@ export default {
         },
     },
     validator: {
-        required: 'Le champ {label} est obligatoire',
+        required: 'Le champ "{{label}}" est obligatoire',
         email: 'L\'adresse email invalide',
         password: {
             length: 'Minimum 8 caractères pour le mot de passe',

@@ -95,7 +95,7 @@ class Default extends Component {
 
     renderScreen(props) {
         const { t, state, modals, screen } = props;
-        const { model } = state;
+        const { model = 'default' } = state;
 
         return (
             <div className={`fragment ${model}`}>
@@ -149,4 +149,4 @@ Default.defaultProps = {
     screen: '',
 };
 
-export default withTranslation('default')(Default);
+export default withTranslation()(Default);

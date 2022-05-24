@@ -1,6 +1,7 @@
 import React, {
     useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 // Utils
@@ -22,6 +23,7 @@ import {
 const Edit = (props) => {
     const { form, state, create, update } = props;
     const { loadings = {} } = state;
+    const { t } = useTranslation('validator');
 
     if (!form) {
         return null;
@@ -33,7 +35,7 @@ const Edit = (props) => {
     const getValue = (item) => {
         let val = '';
         if (update) {
-            val = !detail[item.name] ? val : detail[item.name];
+            val = detail[item.name] === undefined ? val : detail[item.name];
         } else if ('value' in item) {
             val = item.value;
         }
@@ -53,7 +55,11 @@ const Edit = (props) => {
             return;
         }
 
-        const validator = validation ? validatorUtility({data, validation}) : { success: true };
+        const validator = validation ? validatorUtility({
+            t,
+            data,
+            validation,
+        }) : { success: true };
 
         if (validator.errors) {
             setErrors(validator.errors);

@@ -148,7 +148,6 @@ export default ({
     mapState,
 } = {}) => {
     const {
-        name = 'default',
         route = '',
         creators = false,
         list = {},
@@ -164,7 +163,7 @@ export default ({
         route,
 
         state: {
-            ...model && { model: name },
+            ...model && { model: model.name },
             ...model && setScreenState(state, getScreenSelector(model.name)),
             ...setModalState(state, getModalSelector),
             ...setPanelState(state, getPanelSelector),

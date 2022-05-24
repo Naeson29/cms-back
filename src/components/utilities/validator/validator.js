@@ -1,7 +1,5 @@
 
-import { withTranslation } from 'react-i18next';
-
-const validator = ({ t, data, validation }) => {
+export default ({ t, data, validation }) => {
     let errors = {};
 
     const regex = {
@@ -29,12 +27,12 @@ const validator = ({ t, data, validation }) => {
     const validationData = Object.keys(data).filter(key => !!validation[key]).map(key => ({
         name: key,
         value: data[key],
-        rules: validation[key],
+        validator: validation[key],
     }));
 
     validationData.map((key) => {
-        const { name, value, rules } = key;
-        const { label, required = false, rule = false, params = {} } = rules;
+        const { name, value, validator } = key;
+        const { label, required = false, rule = false, params = {} } = validator;
 
         if (!value && required) {
             errors = {
@@ -61,5 +59,3 @@ const validator = ({ t, data, validation }) => {
 
     return Object.keys(errors).length > 0 ? { errors } : { success: true };
 };
-
-export default withTranslation('validator')(validator);
