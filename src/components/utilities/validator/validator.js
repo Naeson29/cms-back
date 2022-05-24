@@ -1,26 +1,28 @@
 
-export default (data, validation) => {
+import { withTranslation } from 'react-i18next';
+
+const validator = (t, data, validation) => {
     let errors = {};
 
     const regex = {
         email: ({ value }) => {
             const email = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value);
-            return email ? { success: true } : { error: 'L\'adresse email invalide' };
+            return email ? { success: true } : { error: t('email') };
         },
         password: ({ value, confirmation }) => {
             const length = value.length >= 8;
             const same = value === data[confirmation];
 
             if (!length) {
-                return { error: 'Minimum 8 caractères pour le mot de passe' };
+                return { error: t('password:length') };
             }
 
-            return same ? { success: true } : { error: 'Les mots de passe ne sont pas identiques' };
+            return same ? { success: true } : { error: t('password:same') };
         },
         sizeImage: ({ value, maxSize }) => {
             const toBig = value.filter(image => image.file.size > maxSize);
             return toBig.length === 0
-                ? { success: true } : { error: toBig.length > 1 ? 'Une ou plusieurs images sont trop volumineuses' : 'L\'image est trop volumineuse' };
+                ? { success: true } : { error: toBig.length > 1 ? t('image:volumeMany') : t('image:volumeOne') };
         },
     };
 
@@ -37,7 +39,7 @@ export default (data, validation) => {
         if (!value && required) {
             errors = {
                 ...errors,
-                [name]: `Le champ "${label}" est obligatoire`,
+                [name]: t('required', {label}),
             };
             return errors;
         }
@@ -59,3 +61,5 @@ export default (data, validation) => {
 
     return Object.keys(errors).length > 0 ? { errors } : { success: true };
 };
+
+export default withTranslation('validator')(validator);

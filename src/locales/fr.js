@@ -51,18 +51,30 @@ export default {
         buttons: {
             apply: 'Appliquer',
             close: closeText,
-        }
+        },
     },
     modal: {
         buttons: {
             delete: deleteText,
             cancel: cancelText,
-        }
+        },
     },
     upload: {
         volume: 'La photo est trop volumineuse (Maximum 2Mo)',
         buttons: {
             delete: 'Tout supprimer'
-        }
+        },
+    },
+    validator: {
+        required: 'Le champ {label} est obligatoire',
+        email: 'L\'adresse email invalide',
+        password: {
+            length: 'Minimum 8 caractères pour le mot de passe',
+            same: 'Les mots de passe ne sont pas identiques'
+        },
+        image: {
+            volumeOne: 'L\'image est trop volumineuse',
+            volumeMany: 'Une ou plusieurs images sont trop volumineuses'
+        },
     }
 };
