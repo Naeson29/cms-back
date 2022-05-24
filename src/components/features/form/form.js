@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -16,6 +17,7 @@ import {
  */
 const Form = (props) => {
     const {
+        t,
         elements,
         handleSubmit,
         handleChange,
@@ -78,13 +80,13 @@ const Form = (props) => {
                 <Button
                     action={handleSubmit}
                     className="button submit"
-                    text={update ? 'Modifier' : 'Ajouter'}
+                    text={update ? t('buttons:update') : t('buttons:add')}
                     disabled={disabled}
                 />
                 <Button
                     action={() => history.goBack()}
                     className="button cancel"
-                    text="Annuler"
+                    text={t('buttons:cancel')}
                 />
             </div>
         </form>
@@ -92,22 +94,25 @@ const Form = (props) => {
 };
 
 Form.propTypes = {
-    elements: PropTypes.oneOfType([PropTypes.array]),
+    t: PropTypes.func,
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
     handleUpload: PropTypes.func,
-    errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    data: PropTypes.oneOfType([PropTypes.object]),
     columns: PropTypes.number,
     update: PropTypes.bool,
     disabled: PropTypes.bool,
+    elements: PropTypes.oneOfType([PropTypes.array]),
+    errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+    data: PropTypes.oneOfType([PropTypes.object]),
+    
 };
 
-Form.defaultProps = {
-    elements: [],
+Form.defaultProps = {    
+    t: () => {},
     handleSubmit: () => {},
     handleChange: () => {},
     handleUpload: () => {},
+    elements: [],
     errors: false,
     data: {},
     columns: 1,
@@ -115,4 +120,4 @@ Form.defaultProps = {
     disabled: false,
 };
 
-export default Form;
+export default withTranslation('form')(Form);

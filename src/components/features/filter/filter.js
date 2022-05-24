@@ -28,7 +28,7 @@ const {
  * @constructor
  */
 const Filter = (props) => {
-    const { state, refresh, closePanel } = props;
+    const { t, state, refresh, closePanel } = props;
     const { params = {}, filters = [], screenList, loadings = {} } = state;
     const { selectOrder = [], selectFilter = [], inputSearch = {} } = screenList;
     const { columns = [], placeholder = '' } = inputSearch;
@@ -129,7 +129,9 @@ const Filter = (props) => {
             {
                 hasSearch && (
                     <div className="filter-content border">
-                        <p className="title">Rechercher</p>
+                        <p className="title">
+                            {t('titles:search')}
+                        </p>
                         <div className="content-search">
                             <Input
                                 attributes={{
@@ -162,7 +164,9 @@ const Filter = (props) => {
             {
                 hasOrder && (
                     <div className="filter-content border">
-                        <p className="title">Classer</p>
+                        <p className="title">
+                            {t('titles:order')}
+                        </p>
                         <div className="content-order">
                             <Select
                                 attributes={{
@@ -184,7 +188,9 @@ const Filter = (props) => {
             {
                 hasFilter && (
                     <div className="filter-content">
-                        <p className="title">Filtrer</p>
+                        <p className="title">
+                            {t('titles:filter')}
+                        </p>
                         <div className="content-order">
                             <SelectMultiple
                                 attributes={{
@@ -203,12 +209,12 @@ const Filter = (props) => {
                 hasButton && (
                     <div className="buttons">
                         <Button
-                            text="Appliquer"
+                            text={t('buttons:apply')}
                             action={applyFilter}
                             className="button button-apply"
                         />
                         <Button
-                            text="Fermer"
+                            text={t('buttons:close')}
                             action={() => closePanel()}
                             className="button button-close"
                         />
@@ -220,15 +226,17 @@ const Filter = (props) => {
 };
 
 Filter.propTypes = {
-    state: PropTypes.oneOfType([PropTypes.object]),
+    t: PropTypes.func,
     closePanel: PropTypes.func,
     refresh: PropTypes.func,
+    state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Filter.defaultProps = {
-    state: {},
+    t: () => {},
     closePanel: () => {},
     refresh: () => {},
+    state: {},
 };
 
-export default Filter;
+export default withTranslation('filter')(Filter);

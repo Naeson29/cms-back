@@ -23,4 +23,25 @@ export default {
             show: 'Détail de la publication',
         },
     },
+    unauthorized: {
+        title: 'Page non autorisée',
+    },
+    form: {
+        buttons: {
+            add: 'Ajouter',
+            update: 'Modifier',
+            cancel: 'Annuler',
+        },
+    },
+    filter: {
+        titles: {
+            search: 'Rechercher',
+            order: 'Classer',
+            filter: 'Filtrer',
+        },
+        buttons: {
+            apply: 'Appliquer',
+            close: 'Fermer',
+        }
+    }
 };

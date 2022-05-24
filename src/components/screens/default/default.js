@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
-
 import { permissionUtility } from '../../utilities';
-
-// features
 import {
-    HeaderScreen, List, Panel, Modal, Loading, Show, Edit,
+    HeaderScreen, List, Panel, Modal, Loading, Show, Edit, Unauthorized,
 } from '../../features';
 
 const { getPermissionModel } = permissionUtility;
@@ -16,9 +13,9 @@ class Default extends Component {
         super(props);
         const { match, screen, current, state } = props;
         const { model } = state;
-        this.permission = getPermissionModel(current.permissions, model) || {};
+        this.permission = getPermissionModel(current.permissions, model, screen);
 
-        if (this.permission[screen]) {
+        if (this.permission) {
             switch (screen) {
             case 'index': {
                 props.getList();
@@ -96,14 +93,9 @@ class Default extends Component {
         }
     }
 
-    render() {
-        const { props } = this;
+    renderScreen(props) {
         const { t, state, modals, screen } = props;
         const { model } = state;
-
-        if (!this.permission[screen]) {
-            return <div />;
-        }
 
         return (
             <div className={`fragment ${model}`}>
@@ -121,7 +113,11 @@ class Default extends Component {
                     )
                 }
             </div>
-        );
+        );  
+    }
+
+    render() {
+        return !this.permission ? <Unauthorized /> : this.renderScreen(this.props);
     }
 }
 
