@@ -22,14 +22,13 @@ import {
  */
 const Edit = (props) => {
     const { form, state, create, update } = props;
-    const { loadings = {} } = state;
+    const { loadings = {}, detail } = state;
     const { t } = useTranslation('validator');
 
     if (!form) {
         return null;
     }
 
-    const { detail } = state;
     const { elements = [], validation = false, columns = 1 } = form();
 
     const getValue = (item) => {

@@ -11,7 +11,7 @@ export default (model) => {
 
     const GetCurrent = createSelector(
         getSubState,
-        ({ current }) => current,
+        ({ current = {} }) => current,
     );
 
     const List = createSelector(
@@ -46,17 +46,17 @@ export default (model) => {
 
     const LoadingDetail = createSelector(
         createModelShowViewSelector(model),
-        ({ loading }) => loading,
+        ({ loading = true }) => loading,
     );
 
     const LoadingDestroy = createSelector(
         createModelDestroyViewSelector(model),
-        ({ loading }) => loading,
+        ({ loading = false }) => loading,
     );
 
     const LoadingEdit = createSelector(
         createModelEditViewSelector(model),
-        ({ loading }) => loading,
+        ({ loading = false }) => loading,
     );
 
     return {
