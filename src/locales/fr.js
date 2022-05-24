@@ -1,3 +1,9 @@
+const addText = 'Ajouter';
+const updateText = 'Modifier';
+const cancelText = 'Annuler';
+const closeText = 'Fermer';
+const deleteText = 'Supprimer';
+
 export default {
     authentication: {
 
@@ -26,11 +32,14 @@ export default {
     unauthorized: {
         title: 'Page non autorisée',
     },
+    list: {
+        results: 'résultat(s)',
+    },
     form: {
         buttons: {
-            add: 'Ajouter',
-            update: 'Modifier',
-            cancel: 'Annuler',
+            add: addText,
+            update: updateText,
+            cancel: cancelText,
         },
     },
     filter: {
@@ -41,7 +50,16 @@ export default {
         },
         buttons: {
             apply: 'Appliquer',
-            close: 'Fermer',
+            close: closeText,
         }
+    },
+    modal: {
+        buttons: {
+            delete: deleteText,
+            cancel: cancelText,
+        }
+    },
+    upload: {
+        volume: 'La photo est trop volumineuse (Maximum 2Mo)'
     }
 };

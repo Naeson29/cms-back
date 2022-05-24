@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     HiTrash, HiX,
@@ -15,7 +16,7 @@ import Button from '../button';
  * @constructor
  */
 const Modals = (props) => {
-    const { state, destroy, closeModal } = props;
+    const { t, state, destroy, closeModal } = props;
     const { modal = {} } = state;
     const { open, params, title = '', content } = modal;
 
@@ -49,7 +50,7 @@ const Modals = (props) => {
                                             action={() => destroy(params.id)}
                                             icon={HiTrash}
                                             className="button trash"
-                                            text="Supprimer"
+                                            text={t('buttons:delete')}
                                         />
                                     )
                                 }
@@ -57,7 +58,7 @@ const Modals = (props) => {
                                     action={() => closeModal()}
                                     icon={HiX}
                                     className="button cancel"
-                                    text="Annuler"
+                                    text={t('buttons:cancel')}
                                 />
                             </div>
                         </div>
@@ -69,15 +70,17 @@ const Modals = (props) => {
 };
 
 Modals.propTypes = {
-    state: PropTypes.oneOfType([PropTypes.object]),
+    t: PropTypes.func,
     closeModal: PropTypes.func,
     destroy: PropTypes.func,
+    state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Modals.defaultProps = {
-    state: {},
+    t: () => {},
     closeModal: () => {},
     destroy: () => {},
+    state: {},
 };
 
-export default Modals;
+export default withTranslation('modal')(Modals);

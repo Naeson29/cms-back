@@ -1,6 +1,7 @@
 import React, {
     useState, useEffect,
 } from 'react';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import ImageUploading from 'react-images-uploading';
 import {
@@ -13,7 +14,7 @@ import {
 
 
 const Upload = (props) => {
-    const { attributes, handleUpload, handleChange, value, update } = props;
+    const { t, attributes, handleUpload, handleChange, value, update } = props;
     const {
         name = 'image',
         label = 'Images',
@@ -129,7 +130,7 @@ const Upload = (props) => {
                         errors && (
                             <p className="error-text">
                                 {errors.maxNumber && maxNumberError}
-                                {errors.maxFileSize && 'La photo est trop volumineuse (Maximum 2Mo)'}
+                                {errors.maxFileSize && t('volume')}
                             </p>
                         )
                     }
@@ -162,19 +163,21 @@ const Upload = (props) => {
 };
 
 Upload.propTypes = {
-    attributes: PropTypes.oneOfType([PropTypes.object]),
+    t: PropTypes.func,
     handleUpload: PropTypes.func,
     handleChange: PropTypes.func,
+    attributes: PropTypes.oneOfType([PropTypes.object]),
     value: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.node]),
     update: PropTypes.bool,
 };
 
 Upload.defaultProps = {
-    attributes: {},
+    t: () => {},
     handleUpload: () => {},
     handleChange: () => {},
+    attributes: {},
     value: [],
     update: false,
 };
 
-export default Upload;
+export default withTranslation('upload')(Upload);

@@ -60,6 +60,7 @@ const Form = (props) => {
 
                                         return (
                                             <Component
+                                                t={t}
                                                 key={`field_${key.name}`}
                                                 attributes={key}
                                                 handleChange={handleChange}
@@ -103,8 +104,7 @@ Form.propTypes = {
     disabled: PropTypes.bool,
     elements: PropTypes.oneOfType([PropTypes.array]),
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    data: PropTypes.oneOfType([PropTypes.object]),
-    
+    data: PropTypes.oneOfType([PropTypes.object]),    
 };
 
 Form.defaultProps = {    

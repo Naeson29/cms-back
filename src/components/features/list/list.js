@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PropTypes from 'prop-types';
@@ -31,7 +32,7 @@ const {
  */
 const List = (props) => {
     const {
-        type, state, route, current, getMore, openModal, content, loading, modals,
+        t, type, state, route, current, getMore, openModal, content, loading, modals,
     } = props;
 
     const {
@@ -85,7 +86,7 @@ const List = (props) => {
                     <div className="list-result">
                         <p>
                             <span>{`${total} `}</span>
-                            {plurial(total, 'résultat')}
+                            {t('results')}
                         </p>
                     </div>
                 )
@@ -151,27 +152,29 @@ const List = (props) => {
 };
 
 List.propTypes = {
+    t: PropTypes.func,
+    getMore: PropTypes.func,
+    openModal: PropTypes.func,
+    content: PropTypes.func,
     type: PropTypes.string,
     route: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
     current: PropTypes.oneOfType([PropTypes.object]),
     modals: PropTypes.oneOfType([PropTypes.object]),
-    loading: PropTypes.element,
-    getMore: PropTypes.func,
-    openModal: PropTypes.func,
-    content: PropTypes.func,
+    loading: PropTypes.element,    
 };
 
 List.defaultProps = {
+    t: () => {},
+    getMore: () => {},
+    openModal: () => {},
+    content: () => {},
     type: 'small',
     route: '',
     state: {},
     current: {},
     modals: {},
     loading: (<div />),
-    getMore: () => {},
-    openModal: () => {},
-    content: () => {},
 };
 
-export default List;
+export default withTranslation('list')(List);
