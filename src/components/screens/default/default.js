@@ -16,7 +16,7 @@ class Default extends Component {
         super(props);
         const { match, screen, current, state } = props;
         const { model } = state;
-        this.permission = getPermissionModel(current.permissions, model);
+        this.permission = getPermissionModel(current.permissions, model) || {};
 
         if (this.permission[screen]) {
             switch (screen) {
