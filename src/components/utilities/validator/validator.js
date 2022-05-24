@@ -1,7 +1,7 @@
 
 import { withTranslation } from 'react-i18next';
 
-const validator = (t, data, validation) => {
+const validator = ({t, data, validation}) => {
     let errors = {};
 
     const regex = {

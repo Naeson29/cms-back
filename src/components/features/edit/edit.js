@@ -53,7 +53,7 @@ const Edit = (props) => {
             return;
         }
 
-        const validator = validation ? validatorUtility(data, validation) : { success: true };
+        const validator = validation ? validatorUtility({data, validation}) : { success: true };
 
         if (validator.errors) {
             setErrors(validator.errors);
