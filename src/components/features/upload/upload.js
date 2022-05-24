@@ -148,7 +148,7 @@ const Upload = (props) => {
                                                 action={() => removeImages(imageList, onImageRemoveAll)}
                                                 className="button trash"
                                                 icon={HiTrash}
-                                                text="Tout supprimer"
+                                                text={t('buttons:delete')}
                                             />
                                         </div>
                                     )

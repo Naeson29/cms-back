@@ -60,6 +60,9 @@ export default {
         }
     },
     upload: {
-        volume: 'La photo est trop volumineuse (Maximum 2Mo)'
+        volume: 'La photo est trop volumineuse (Maximum 2Mo)',
+        buttons: {
+            delete: 'Tout supprimer'
+        }
     }
 };
