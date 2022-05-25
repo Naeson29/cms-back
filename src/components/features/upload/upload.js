@@ -1,7 +1,7 @@
 import React, {
     useState, useEffect,
 } from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import ImageUploading from 'react-images-uploading';
 import {
@@ -14,12 +14,13 @@ import {
 
 
 const Upload = (props) => {
-    const { t, attributes, handleUpload, handleChange, value, update } = props;
+    const { attributes, handleUpload, handleChange, value, update } = props;
     const {
         name = 'image',
         label = 'Images',
         options = {},
     } = attributes;
+    const { t } = useTranslation('upload');
 
     const {
         multiple = false,
@@ -163,7 +164,6 @@ const Upload = (props) => {
 };
 
 Upload.propTypes = {
-    t: PropTypes.func,
     handleUpload: PropTypes.func,
     handleChange: PropTypes.func,
     attributes: PropTypes.oneOfType([PropTypes.object]),
@@ -172,7 +172,6 @@ Upload.propTypes = {
 };
 
 Upload.defaultProps = {
-    t: () => {},
     handleUpload: () => {},
     handleChange: () => {},
     attributes: {},
@@ -180,4 +179,4 @@ Upload.defaultProps = {
     update: false,
 };
 
-export default withTranslation('upload')(Upload);
+export default Upload;

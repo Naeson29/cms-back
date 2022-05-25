@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
 import { permissionUtility } from '../../utilities';
 import {
     HeaderScreen, List, Panel, Modal, Loading, Show, Edit, Unauthorized,
@@ -94,15 +93,12 @@ class Default extends Component {
     }
 
     renderScreen(props) {
-        const { t, state, modals, screen } = props;
+        const { state, modals } = props;
         const { model = 'default' } = state;
 
         return (
             <div className={`fragment ${model}`}>
-                <HeaderScreen
-                    {...props}
-                    title={t(`${model}:title.${screen}`)}
-                />
+                <HeaderScreen {...props} />
                 {
                     this.screen(props)
                 }
@@ -149,4 +145,4 @@ Default.defaultProps = {
     screen: '',
 };
 
-export default withTranslation()(Default);
+export default Default;

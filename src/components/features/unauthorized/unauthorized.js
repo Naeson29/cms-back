@@ -1,10 +1,10 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { Button } from '..';
 import { HiArrowCircleLeft } from 'react-icons/hi';
+import { Button } from '..';
 
 /**
  *
@@ -13,8 +13,8 @@ import { HiArrowCircleLeft } from 'react-icons/hi';
  * @constructor
  */
 const Unauthorized = (props) => {
-    const { t } = props;
     const history = useHistory();
+    const { t } = useTranslation('unauthorized');
 
     return (
         <div className="fragment">
@@ -33,12 +33,9 @@ const Unauthorized = (props) => {
 };
 
 Unauthorized.propTypes = {
-    t: PropTypes.func,
 };
 
 Unauthorized.defaultProps = {
-    t: () => {},
 };
 
-export default withTranslation('unauthorized')(Unauthorized);
-
+export default Unauthorized;

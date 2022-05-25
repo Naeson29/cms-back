@@ -2,7 +2,7 @@ import React, {
     useState,
     useEffect,
 } from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import {
     HiX,
@@ -29,11 +29,12 @@ const {
  * @constructor
  */
 const Filter = (props) => {
-    const { t, state, refresh, closePanel } = props;
+    const { state, refresh, closePanel } = props;
     const { params = {}, filters = [], screenList, loadings = {} } = state;
     const { selectOrder = [], selectFilter = [], inputSearch = {} } = screenList;
     const { columns = [], placeholder = '' } = inputSearch;
     const { order = {}, search = [] } = params;
+    const { t } = useTranslation('filter');
 
     const [filterParams, setParams] = useState({});
     const [searchString, setSearchString] = useState('');
@@ -227,17 +228,15 @@ const Filter = (props) => {
 };
 
 Filter.propTypes = {
-    t: PropTypes.func,
     closePanel: PropTypes.func,
     refresh: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Filter.defaultProps = {
-    t: () => {},
     closePanel: () => {},
     refresh: () => {},
     state: {},
 };
 
-export default withTranslation('filter')(Filter);
+export default Filter;

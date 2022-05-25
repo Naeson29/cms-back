@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
-
-// functions
-import { withTranslation } from 'react-i18next';
-
-// components
 
 class Authentication extends Component {
     constructor(props) {
@@ -42,6 +38,7 @@ class Authentication extends Component {
     render() {
         const { parameters } = this.state;
         const { username, password } = parameters;
+        const { t } = useTranslation('authentication');
 
         return (
             <div className="container-app-login">
@@ -90,4 +87,4 @@ Authentication.defaultProps = {
     actionForm: () => {},
 };
 
-export default withTranslation('authentication')(Authentication);
+export default Authentication;

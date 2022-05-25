@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     HiPlusCircle, HiPencil, HiArrowCircleLeft,
@@ -29,12 +30,13 @@ const {
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { state, title, current, screen, route, closePanel, openPanel } = props;
-    const { model, detail, list = [], screenList, panel = {} } = state;
+    const { state, current, screen, route, closePanel, openPanel } = props;
+    const { model = 'default', detail, list = [], screenList, panel = {} } = state;
     const { filter, pagination } = screenList;
     const { permissions } = current;
     const history = useHistory();
     const permission = getPermissionModel(permissions, model);
+    const { t } = useTranslation(model);
 
     const update = () => {
         history.push(`/${route}/edit/${detail.id}`);
@@ -64,7 +66,7 @@ const HeaderScreen = (props) => {
                     icon={index ? HiPlusCircle : HiArrowCircleLeft}
                     className="button add"
                 />
-                <span>{title}</span>
+                <span>{t(`title.${screen}`)}</span>
                 {
                     paginationButton && <Pagination {...props} />
                 }
@@ -94,7 +96,6 @@ const HeaderScreen = (props) => {
 };
 
 HeaderScreen.propTypes = {
-    title: PropTypes.string,
     screen: PropTypes.string,
     route: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
@@ -104,7 +105,6 @@ HeaderScreen.propTypes = {
 };
 
 HeaderScreen.defaultProps = {
-    title: '',
     screen: '',
     route: '',
     state: {},

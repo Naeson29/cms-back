@@ -3,7 +3,7 @@ const createModal = ({ params = {}, title = '', content = null, context = '' } =
     [context]: true,
     params,
     title,
-    content,  
+    content,
 });
 
 export default {
@@ -16,7 +16,7 @@ export default {
             },
             context: 'destroy',
             title,
-            content,            
+            content,
         });
     },
     error: content => createModal({

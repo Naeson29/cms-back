@@ -28,6 +28,7 @@ export default {
             update: 'Modifier la publication',
             show: 'Détail de la publication',
         },
+        destroy: 'Voulez-vous vraiment supprimer cette publication ?',
     },
     unauthorized: {
         title: 'Page non autorisée',

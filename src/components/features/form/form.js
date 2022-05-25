@@ -1,5 +1,5 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -17,7 +17,6 @@ import {
  */
 const Form = (props) => {
     const {
-        t,
         elements,
         handleSubmit,
         handleChange,
@@ -30,6 +29,7 @@ const Form = (props) => {
     } = props;
 
     const history = useHistory();
+    const { t } = useTranslation('form');
 
     const classNames = {
         1: 'full',
@@ -95,7 +95,6 @@ const Form = (props) => {
 };
 
 Form.propTypes = {
-    t: PropTypes.func,
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
     handleUpload: PropTypes.func,
@@ -108,7 +107,6 @@ Form.propTypes = {
 };
 
 Form.defaultProps = {
-    t: () => {},
     handleSubmit: () => {},
     handleChange: () => {},
     handleUpload: () => {},
@@ -120,4 +118,4 @@ Form.defaultProps = {
     disabled: false,
 };
 
-export default withTranslation('form')(Form);
+export default Form;

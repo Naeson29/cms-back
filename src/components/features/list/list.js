@@ -1,5 +1,5 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PropTypes from 'prop-types';
@@ -32,8 +32,10 @@ const {
  */
 const List = (props) => {
     const {
-        t, type, state, route, current, getMore, openModal, content, loading, modals,
+        type, state, route, current, getMore, openModal, content, loading, modals,
     } = props;
+
+    const { t } = useTranslation('list');
 
     const {
         model, list, pagination, screenList, loadings,
@@ -152,7 +154,6 @@ const List = (props) => {
 };
 
 List.propTypes = {
-    t: PropTypes.func,
     getMore: PropTypes.func,
     openModal: PropTypes.func,
     content: PropTypes.func,
@@ -165,7 +166,6 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-    t: () => {},
     getMore: () => {},
     openModal: () => {},
     content: () => {},
@@ -177,4 +177,4 @@ List.defaultProps = {
     loading: (<div />),
 };
 
-export default withTranslation('list')(List);
+export default List;

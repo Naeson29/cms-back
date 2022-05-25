@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     HiTrash, HiX,
@@ -16,9 +16,10 @@ import Button from '../button';
  * @constructor
  */
 const Modals = (props) => {
-    const { t, state, destroy, closeModal } = props;
+    const { state, destroy, closeModal } = props;
     const { modal = {} } = state;
     const { open, params, title = '', content } = modal;
+    const { t } = useTranslation('modal');
 
     return (
         <ReactModal
@@ -70,17 +71,15 @@ const Modals = (props) => {
 };
 
 Modals.propTypes = {
-    t: PropTypes.func,
     closeModal: PropTypes.func,
     destroy: PropTypes.func,
     state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Modals.defaultProps = {
-    t: () => {},
     closeModal: () => {},
     destroy: () => {},
     state: {},
 };
 
-export default withTranslation('modal')(Modals);
+export default Modals;
