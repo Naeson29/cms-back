@@ -101,6 +101,10 @@ export default {
                 date: 'Date de création',
             },
         },
+        card: {
+            createdBy: 'Crée par',
+            on: 'le',
+        },
     },
     unauthorized: {
         title: 'Page non autorisée',

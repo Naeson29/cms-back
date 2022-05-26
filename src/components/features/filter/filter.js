@@ -30,7 +30,7 @@ const {
  */
 const Filter = (props) => {
     const { state, refresh, closePanel } = props;
-    const { params = {}, filters = [], screenList, loadings = {} } = state;
+    const { params = {}, filters = [], screenList = () => ({}), loadings = {} } = state;
     const { t } = useTranslation('filter');
     const { selectOrder = [], selectFilter = [], inputSearch = {} } = screenList(t);
     const { columns = [], placeholder = '' } = inputSearch;

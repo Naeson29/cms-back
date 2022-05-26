@@ -66,7 +66,7 @@ export default t => ({
         {
             name: 'image',
             element: 'upload',
-            label: t('publication:form.image.label'),
+            label: t('user:form.image.label'),
             column: 2,
             options: {
                 multiple: false,

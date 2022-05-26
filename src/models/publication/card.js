@@ -44,9 +44,9 @@ export default (key, t) => {
             }
             <div className="info-section">
                 <p className="created-at">
-                    {'Crée par '}
+                    {`${t('publication:card.createdBy')} `}
                     <span>{`${userdata.first_name} ${userdata.last_name}`}</span>
-                    {' le '}
+                    {` ${t('publication:card.on')} `}
                     {date}
                 </p>
             </div>
