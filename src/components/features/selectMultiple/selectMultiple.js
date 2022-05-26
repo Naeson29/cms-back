@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { MultiSelect } from 'react-multi-select-component';
 
 const SelectMultiple = (props) => {
     const { attributes, value, handleChange } = props;
+    const { t } = useTranslation('selectMultiple');
 
     const {
         label = '',
@@ -15,15 +17,15 @@ const SelectMultiple = (props) => {
     } = attributes;
 
     const strings = {
-        allItemsAreSelected: 'Tout est sélectionné',
-        clearSearch: 'Effacer la recherche',
-        clearSelected: 'Effacer la sélection',
-        noOptions: 'Aucune option',
-        search: 'Recherche',
-        selectAll: 'Tout sélectionner',
-        selectAllFiltered: 'Tout sélectionner (Filtrés)',
-        selectSomeItems: 'Sélectionner...',
-        create: 'Créer',
+        allItemsAreSelected: t('allItemsAreSelected'),
+        clearSearch: t('clearSearch'),
+        clearSelected: t('clearSelected'),
+        noOptions: t('noOptions'),
+        search: t('search'),
+        selectAll: t('selectAll'),
+        selectAllFiltered: t('selectAllFiltered'),
+        selectSomeItems: t('selectSomeItems'),
+        create: t('create'),
     };
 
     return (

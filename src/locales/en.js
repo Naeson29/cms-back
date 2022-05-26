@@ -145,4 +145,15 @@ export default {
             volumeMany: 'One or more images are too large',
         },
     },
+    selectMultiple: {
+        allItemsAreSelected: 'Everything is selected',
+        clearSearch: 'Clear search',
+        clearSelected: 'Clear selection',
+        noOptions: 'No options',
+        search: 'Search',
+        selectAll: 'Select all',
+        selectAllFiltered: 'Select All (Filtered)',
+        selectSomeItems: 'To select...',
+        create: 'Create',
+    },
 };
