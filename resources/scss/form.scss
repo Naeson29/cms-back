@@ -71,6 +71,20 @@
           font-weight: 600;
         }
       }
+
+      .container-buuton {
+        align-items: center;
+        margin-top: 3rem;
+        .button {
+          cursor: pointer;
+          color: $white;
+          padding: 0 1.2rem;
+          border-radius: 3px;
+          font-size: 14px;
+          height: 35px;
+          background-color: $primary-color;
+        }
+      }
   
       .container-field {  
         .input, .textarea {

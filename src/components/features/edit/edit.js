@@ -21,7 +21,7 @@ import {
  * @constructor
  */
 const Edit = (props) => {
-    const { form, state, create, update } = props;
+    const { form, state, create, update, screen } = props;
     const { loadings = {}, detail } = state;
     const { t } = useTranslation('validator');
 
@@ -29,7 +29,7 @@ const Edit = (props) => {
         return null;
     }
 
-    const { elements = [], validation = false, columns = 1 } = form(t);
+    const { elements = [], validation = false, columns = 1 } = form(t, screen);
 
     const getValue = (item) => {
         let val = '';
@@ -119,6 +119,7 @@ Edit.propTypes = {
     state: PropTypes.oneOfType([PropTypes.object]),
     create: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     update: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    screen: PropTypes.string,
 };
 
 Edit.defaultProps = {
@@ -126,6 +127,7 @@ Edit.defaultProps = {
     state: {},
     create: false,
     update: false,
+    screen: '',
 };
 
 export default Edit;

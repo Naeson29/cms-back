@@ -1,4 +1,6 @@
-export default t => ({
+import custom from './custom';
+
+export default (t, action) => ({
     columns: 2,
     elements: [
         {
@@ -34,28 +36,36 @@ export default t => ({
                 required: true,
             },
         },
-        {
-            name: 'password',
-            element: 'input',
-            type: 'password',
-            label: t('user:form.password.label'),
-            placeholder: t('user:form.password.placeholder'),
-            column: 1,
-            options: {
-                required: true,
+        ...action === 'create' ? [
+            {
+                name: 'password',
+                element: 'input',
+                type: 'password',
+                label: t('user:form.password.label'),
+                placeholder: t('user:form.password.placeholder'),
+                column: 1,
+                options: {
+                    required: true,
+                },
             },
-        },
-        {
-            name: 'confirmation',
-            element: 'input',
-            type: 'password',
-            label: t('user:form.confirmation.label'),
-            placeholder: t('user:form.confirmation.placeholder'),
-            column: 1,
-            options: {
-                required: true,
+            {
+                name: 'confirmation',
+                element: 'input',
+                type: 'password',
+                label: t('user:form.confirmation.label'),
+                placeholder: t('user:form.confirmation.placeholder'),
+                column: 1,
+                options: {
+                    required: true,
+                },
             },
-        },
+        ] : [
+            {
+                element: 'custom',
+                render: custom.passwordButton,
+                column: 1,
+            },
+        ],
         {
             name: 'role',
             element: 'input',
@@ -90,17 +100,19 @@ export default t => ({
             label: t('user:form.last_name.label'),
             required: true,
         },
-        password: {
-            label: t('user:form.password.label'),
-            required: true,
-            rule: 'password',
-            params: {
-                confirmation: 'confirmation',
+        ...action === 'create' && {
+            password: {
+                label: t('user:form.password.label'),
+                required: true,
+                rule: 'password',
+                params: {
+                    confirmation: 'confirmation',
+                },
             },
-        },
-        confirmation: {
-            label: t('user:form.confirmation.label'),
-            required: true,
+            confirmation: {
+                label: t('user:form.confirmation.label'),
+                required: true,
+            },
         },
         image: {
             rule: 'sizeImage',

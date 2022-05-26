@@ -9,7 +9,7 @@ const SwitchComponent = (props) => {
     const {
         name = 'switch',
         label = 'label',
-        options = {},        
+        options = {},
         className = 'switch',
     } = attributes;
 
