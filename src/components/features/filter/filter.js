@@ -179,7 +179,7 @@ const Filter = (props) => {
                                 handleChange={handleChangeColumn}
                             />
                             <Select
-                                attributes={orderSelect}
+                                attributes={orderSelect(t)}
                                 value={order.desc ? 'desc' : 'asc'}
                                 handleChange={handleChangeOrder}
                             />

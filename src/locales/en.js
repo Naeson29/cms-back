@@ -120,6 +120,10 @@ export default {
             apply: 'Apply',
             close: closeText,
         },
+        orderSelect: {
+            descending: 'Descending order',
+            ascending: 'Ascending order',
+        },
     },
     modal: {
         buttons: {

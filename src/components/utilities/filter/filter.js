@@ -1,17 +1,17 @@
-const orderSelect = {
+const orderSelect = t => ({
     name: 'order',
     className: 'select-order',
     data: [
         {
-            label: 'Ordre croissant',
+            label: t('orderSelect.ascending'),
             value: 'asc',
         },
         {
-            label: 'Ordre décroissant',
+            label: t('orderSelect.descending'),
             value: 'desc',
         },
     ],
-};
+});
 
 const columnSelect = {
     name: 'column',
