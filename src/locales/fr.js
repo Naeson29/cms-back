@@ -48,6 +48,14 @@ export default {
                 error: 'Vous ne pouvez ajouter qu\'une seule photo',
             },
         },
+        list: {
+            inputSearch: 'Prénom et/ou nom...',
+            selectOrder: {
+                first_name: 'Prénom',
+                last_name: 'Nom',
+                date: 'Date de création',
+            },
+        },
     },
     publication: {
         title: {
@@ -77,6 +85,15 @@ export default {
                 label: 'Photos',
                 complement: 'Ajouter une ou plusieurs photos',
                 error: 'Vous pouvez ajouter 4 photos maximum',
+            },
+        },
+        list: {
+            published: 'Publiée',
+            notPublished: 'Non publiée',
+            inputSearch: 'Titre, contenu...',
+            selectOrder: {
+                title: 'Titre',
+                date: 'Date de création',
             },
         },
     },

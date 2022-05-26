@@ -22,10 +22,7 @@ export default {
         icon: ImUsers,
     },
 
-    list: {
-        ...model.list,
-        ...list,
-    },
+    list,
 
     screens: [
         {

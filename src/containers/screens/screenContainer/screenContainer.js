@@ -150,7 +150,7 @@ export default ({
     const {
         route = '',
         creators = false,
-        list = {},
+        list = () => {},
         renders = {},
     } = model || false;
 

@@ -42,6 +42,7 @@ const List = (props) => {
     } = state;
 
     const { total } = pagination;
+    const paramsList = screenList(t);
 
     const permission = getPermissionModel(current.permissions, model);
     const history = useHistory();
@@ -71,7 +72,7 @@ const List = (props) => {
         history.push(`/${route}/edit/${id}`);
     };
 
-    const hasMore = screenList.pagination === 'scroll' && hasMorePage(pagination);
+    const hasMore = paramsList.pagination === 'scroll' && hasMorePage(pagination);
 
     return (
         <InfiniteScroll
@@ -100,7 +101,7 @@ const List = (props) => {
                     const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role < key.role));
 
                     const hasUpdate = permission.update && permissionUpdate;
-                    const hasDelete = screenList.deletion && (permission.delete && permissionRemove);
+                    const hasDelete = paramsList.deletion && (permission.delete && permissionRemove);
 
                     return (
                         <div

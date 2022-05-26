@@ -31,10 +31,10 @@ const {
 const Filter = (props) => {
     const { state, refresh, closePanel } = props;
     const { params = {}, filters = [], screenList, loadings = {} } = state;
-    const { selectOrder = [], selectFilter = [], inputSearch = {} } = screenList;
+    const { t } = useTranslation('filter');
+    const { selectOrder = [], selectFilter = [], inputSearch = {} } = screenList(t);
     const { columns = [], placeholder = '' } = inputSearch;
     const { order = {}, search = [] } = params;
-    const { t } = useTranslation('filter');
 
     const [filterParams, setParams] = useState({});
     const [searchString, setSearchString] = useState('');

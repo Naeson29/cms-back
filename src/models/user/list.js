@@ -1,4 +1,8 @@
-export default {
+import { model } from '../model';
+
+export default t => ({
+    ...model.list,
+
     parameters: {
         params: {
             limit: 50,
@@ -11,20 +15,20 @@ export default {
         columns: [
             "concat(first_name, ' ', last_name)",
         ],
-        placeholder: 'Prénom et/ou nom...',
+        placeholder: t('user:list.inputSearch'),
     },
     selectOrder: [
         {
-            label: 'Prénom',
+            label: t('user:list.selectOrder.first_name'),
             value: 'first_name',
         },
         {
-            label: 'Nom',
+            label: t('user:list.selectOrder.last_name'),
             value: 'last_name',
         },
         {
-            label: 'Date de création',
+            label: t('user:list.selectOrder.date'),
             value: 'created_at',
         },
     ],
-};
+});

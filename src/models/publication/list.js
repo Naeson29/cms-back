@@ -1,4 +1,8 @@
-export default {
+import { model } from '../model';
+
+export default t => ({
+    ...model.list,
+
     parameters: {
         params: {
             limit: 6,
@@ -9,32 +13,32 @@ export default {
         },
         filters: [
             {
-                label: 'Publiée',
+                label: t('publication:list.published'),
                 value: 1,
             },
             {
-                label: 'Non publiée',
+                label: t('publication:list.notPublished'),
                 value: 2,
             },
         ],
     },
     inputSearch: {
         columns: ['title', 'content'],
-        placeholder: 'Titre, contenu...',
+        placeholder: t('publication:list.inputSearch'),
     },
     selectOrder: [
         {
-            label: 'Titre',
+            label: t('publication:list.selectOrder.title'),
             value: 'title',
         },
         {
-            label: 'Date de création',
+            label: t('publication:list.selectOrder.date'),
             value: 'created_at',
         },
     ],
     selectFilter: [
         {
-            label: 'Publiée',
+            label: t('publication:list.published'),
             value: 1,
             filter: {
                 column: 'published',
@@ -43,7 +47,7 @@ export default {
             },
         },
         {
-            label: 'Non publiée',
+            label: t('publication:list.notPublished'),
             value: 2,
             filter: {
                 column: 'published',
@@ -53,4 +57,4 @@ export default {
         },
     ],
     filter: true,
-};
+});

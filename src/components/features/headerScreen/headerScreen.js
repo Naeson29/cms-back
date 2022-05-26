@@ -32,11 +32,11 @@ const {
 const HeaderScreen = (props) => {
     const { state, current, screen, route, closePanel, openPanel } = props;
     const { model = 'default', detail, list = [], screenList, panel = {} } = state;
-    const { filter, pagination } = screenList;
+    const { t } = useTranslation(model);
+    const { filter, pagination } = screenList(t);
     const { permissions } = current;
     const history = useHistory();
     const permission = getPermissionModel(permissions, model);
-    const { t } = useTranslation(model);
 
     const update = () => {
         history.push(`/${route}/edit/${detail.id}`);

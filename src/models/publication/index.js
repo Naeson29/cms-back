@@ -26,10 +26,7 @@ export default {
         icon: BiNews,
     },
 
-    list: {
-        ...model.list,
-        ...list,
-    },
+    list,
 
     screens: [
         {
