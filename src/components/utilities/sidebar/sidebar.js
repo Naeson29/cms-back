@@ -2,7 +2,7 @@ import { ImHome } from 'react-icons/im';
 
 const rootPath = '/';
 
-const Navs = (models) => {
+const Navs = (models, t) => {
     const items = Object.keys(models).filter(key => !!models[key].menu).map(model => models[model]);
 
     let id = 1;
@@ -11,12 +11,12 @@ const Navs = (models) => {
         {
             id: 1,
             path: rootPath,
-            label: 'Accueil',
+            label: t('home'),
             icon: ImHome,
         },
         ...items.map((item) => {
             const { route, menu } = item;
-            const { label, icon } = menu;
+            const { label, icon } = menu(t);
             id += 1;
             return {
                 id,

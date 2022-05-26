@@ -17,10 +17,10 @@ export default {
 
     creators: userActions(),
 
-    menu: {
-        label: 'Utilisateurs',
+    menu: t => ({
+        label: t('user'),
         icon: ImUsers,
-    },
+    }),
 
     list,
 

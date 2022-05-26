@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { sidebarUtility } from '../../utilities';
 
@@ -16,6 +17,7 @@ const {
 const Sidebar = (props) => {
     const { menuProps, models } = props;
     const { toggle, menu } = menuProps;
+    const { t } = useTranslation('sidebar');
 
     return (
         <div className={`sidebar ${!menu ? 'isClose' : 'isOpen'}`}>
@@ -23,7 +25,7 @@ const Sidebar = (props) => {
                 <nav className="navbar">
                     <ul className="nav navbar-nav">
                         {
-                            Navs(models).map((key) => {
+                            Navs(models, t).map((key) => {
                                 const isActive = () => isRootPath(props);
                                 const Icon = key.icon;
                                 const slash = key.id !== 1 ? '/' : '';

@@ -21,10 +21,10 @@ export default {
 
     creators: defaultActions(name),
 
-    menu: {
-        label: 'Publications',
+    menu: t => ({
+        label: t('publication'),
         icon: BiNews,
-    },
+    }),
 
     list,
 

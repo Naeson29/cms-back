@@ -8,6 +8,11 @@ export default {
     authentication: {
 
     },
+    sidebar: {
+        home: 'Home',
+        user: 'Users',
+        publication: 'Posts',
+    },
     default: {
         title: {
             index: 'Page title',
