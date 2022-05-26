@@ -20,6 +20,34 @@ export default {
             update: 'Modifier l\'utilisateur',
             show: 'Fiche utilisateur',
         },
+        destroy: 'Voulez-vous vraiment supprimer cet utilisateur ?',
+        form: {
+            first_name: {
+                label: 'Prénom',
+                placeholder: 'Pierre...',
+            },
+            last_name: {
+                label: 'Nom',
+                placeholder: 'Richard...',
+            },
+            email: {
+                label: 'Adresse email',
+                placeholder: 'exemple@mail.fr...',
+            },
+            password: {
+                label: 'Mot de passe',
+                placeholder: '*************',
+            },
+            confirmation: {
+                label: 'Confirmation',
+                placeholder: 'Confirmation du mot de passe',
+            },
+            image: {
+                label: 'Photo',
+                complement: 'Ajouter une photo',
+                error: 'Vous ne pouvez ajouter qu\'une seule photo',
+            },
+        },
     },
     publication: {
         title: {
@@ -29,6 +57,28 @@ export default {
             show: 'Détail de la publication',
         },
         destroy: 'Voulez-vous vraiment supprimer cette publication ?',
+        form: {
+            title: {
+                label: 'Titre',
+                placeholder: 'Titre de la publication...',
+            },
+            content: {
+                label: 'Contenu',
+                placeholder: 'Contenu de la publication...',
+            },
+            published: {
+                label: 'Visibilité',
+                options: {
+                    textOn: 'Publiée',
+                    textOff: 'Non publiée',
+                },
+            },
+            images: {
+                label: 'Photos',
+                complement: 'Ajouter une ou plusieurs photos',
+                error: 'Vous pouvez ajouter 4 photos maximum',
+            },
+        },
     },
     unauthorized: {
         title: 'Page non autorisée',

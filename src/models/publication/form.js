@@ -1,11 +1,11 @@
-export default () => ({
+export default t => ({
     columns: 2,
     elements: [
         {
             name: 'title',
             element: 'input',
-            label: 'Titre',
-            placeholder: 'Titre de la publication...',
+            label: t('publication:form.title.label'),
+            placeholder: t('publication:form.title.placeholder'),
             column: 1,
             options: {
                 required: true,
@@ -14,8 +14,8 @@ export default () => ({
         {
             name: 'content',
             element: 'textarea',
-            label: 'Contenu',
-            placeholder: 'Contenu de la publication...',
+            label: t('publication:form.content.label'),
+            placeholder: t('publication:form.content.placeholder'),
             column: 1,
             options: {
                 required: true,
@@ -24,12 +24,12 @@ export default () => ({
         {
             name: 'published',
             element: 'switch',
-            label: 'Visibilité',
+            label: t('publication:form.published.label'),
             value: false,
             column: 1,
             options: {
-                textOn: 'Publiée',
-                textOff: 'Non publiée',
+                textOn: t('publication:form.published.options.textOn'),
+                textOff: t('publication:form.published.options.textOff'),
             },
         },
         {
@@ -42,24 +42,24 @@ export default () => ({
         {
             name: 'images',
             element: 'upload',
-            label: 'Photos',
+            label: t('publication:form.images.label'),
             column: 2,
             options: {
                 removeAll: true,
                 multiple: true,
                 maxNumber: 4,
-                complement: ['Ajouter une ou plusieurs photos'],
-                maxNumberError: 'Vous pouvez ajouter 4 photos maximum',
+                complement: [t('publication:form.images.complement')],
+                maxNumberError: t('publication:form.images.error'),
             },
         },
     ],
     validation: {
         title: {
-            label: 'Titre',
+            label: t('publication:form.title.label'),
             required: true,
         },
         content: {
-            label: 'Contenu',
+            label: t('publication:form.content.label'),
             required: true,
         },
         images: {

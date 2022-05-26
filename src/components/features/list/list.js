@@ -60,7 +60,7 @@ const List = (props) => {
      * @param userMe
      */
     const remove = (key) => {
-        openModal(modalUtility.destroy(key, modals.destroy));
+        openModal(modalUtility.destroy(key, modals.destroy, t));
     };
 
     /**

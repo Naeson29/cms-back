@@ -1,12 +1,12 @@
-export default () => ({
+export default t => ({
     columns: 2,
     elements: [
         {
             name: 'first_name',
             element: 'input',
             type: 'text',
-            label: 'Prénom',
-            placeholder: 'Pierre...',
+            label: t('user:form.first_name.label'),
+            placeholder: t('user:form.first_name.placeholder'),
             column: 1,
             options: {
                 required: true,
@@ -16,8 +16,8 @@ export default () => ({
             name: 'last_name',
             element: 'input',
             type: 'text',
-            label: 'Nom',
-            placeholder: 'Richard...',
+            label: t('user:form.last_name.label'),
+            placeholder: t('user:form.last_name.placeholder'),
             column: 1,
             options: {
                 required: true,
@@ -27,8 +27,8 @@ export default () => ({
             name: 'email',
             element: 'input',
             type: 'text',
-            label: 'Adresse email',
-            placeholder: 'exemple@mail.fr...',
+            label: t('user:form.email.label'),
+            placeholder: t('user:form.email.placeholder'),
             column: 1,
             options: {
                 required: true,
@@ -38,8 +38,8 @@ export default () => ({
             name: 'password',
             element: 'input',
             type: 'password',
-            label: 'Mot de passe',
-            placeholder: '*************',
+            label: t('user:form.password.label'),
+            placeholder: t('user:form.password.placeholder'),
             column: 1,
             options: {
                 required: true,
@@ -49,8 +49,8 @@ export default () => ({
             name: 'confirmation',
             element: 'input',
             type: 'password',
-            label: 'Confirmation',
-            placeholder: 'Confirmation du mot de passe',
+            label: t('user:form.confirmation.label'),
+            placeholder: t('user:form.confirmation.placeholder'),
             column: 1,
             options: {
                 required: true,
@@ -66,32 +66,32 @@ export default () => ({
         {
             name: 'image',
             element: 'upload',
-            label: 'Photo',
+            label: t('publication:form.image.label'),
             column: 2,
             options: {
                 multiple: false,
                 maxNumber: 1,
-                complement: ['Ajouter une photo'],
-                maxNumberError: 'Vous ne pouvez ajouter qu\'une seule photo',
+                complement: [t('user:form.image.complement')],
+                maxNumberError: t('user:form.image.error'),
             },
         },
     ],
     validation: {
         email: {
-            label: 'Adresse email',
+            label: t('user:form.email.label'),
             required: true,
             rule: 'email',
         },
         first_name: {
-            label: 'Prénom',
+            label: t('user:form.first_name.label'),
             required: true,
         },
         last_name: {
-            label: 'Nom',
+            label: t('user:form.last_name.label'),
             required: true,
         },
         password: {
-            label: 'Mot de passe',
+            label: t('user:form.password.label'),
             required: true,
             rule: 'password',
             params: {
@@ -99,7 +99,7 @@ export default () => ({
             },
         },
         confirmation: {
-            label: 'Confirmation',
+            label: t('user:form.confirmation.label'),
             required: true,
         },
         image: {

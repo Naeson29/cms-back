@@ -29,7 +29,7 @@ const Edit = (props) => {
         return null;
     }
 
-    const { elements = [], validation = false, columns = 1 } = form();
+    const { elements = [], validation = false, columns = 1 } = form(t);
 
     const getValue = (item) => {
         let val = '';

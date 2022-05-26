@@ -7,8 +7,8 @@ const createModal = ({ params = {}, title = '', content = null, context = '' } =
 });
 
 export default {
-    destroy: (key, modal) => {
-        const destroy = modal(key);
+    destroy: (key, modal, t) => {
+        const destroy = modal(key, t);
         const { title, content } = destroy;
         return createModal({
             params: {
