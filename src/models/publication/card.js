@@ -7,7 +7,7 @@ import {
     truncate,
 } from '../../utilities/functions';
 
-export default (key) => {
+export default (key, t) => {
     const { title, content, images, created, user, published } = key;
     const date = `${moment(created).format('DD/MM/YYYY')} à ${moment(created).format('HH[h]mm')}`;
     const userdata = user.data;
@@ -18,7 +18,7 @@ export default (key) => {
                 <p className="title">{title}</p>
                 <p className="published">
                     <HiCheckCircle className={`icon ${published ? 'active' : ''}`} />
-                    {!published ? 'Non publiée' : 'Publiée'}
+                    {!published ? t('publication:list.notPublished') : t('publication:list.published')}
                 </p>
             </div>
             <p className="content">{truncate(content, 250)}</p>

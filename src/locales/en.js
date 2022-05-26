@@ -23,11 +23,11 @@ export default {
         destroy: 'Are you sure you want to delete this user ?',
         form: {
             first_name: {
-                label: 'Firstname',
+                label: 'First name',
                 placeholder: 'Peter...',
             },
             last_name: {
-                label: 'Name',
+                label: 'last name',
                 placeholder: 'Richard...',
             },
             email: {
@@ -46,6 +46,14 @@ export default {
                 label: 'Photo',
                 complement: 'Add a picture',
                 error: 'You can only add one photo',
+            },
+        },
+        list: {
+            inputSearch: 'First name and/or last name...',
+            selectOrder: {
+                first_name: 'First name',
+                last_name: 'Last name',
+                date: 'Creation date',
             },
         },
     },
@@ -77,6 +85,15 @@ export default {
                 label: 'Pictures',
                 complement: 'Add one or more photos',
                 error: 'You can add up to 4 photos',
+            },
+        },
+        list: {
+            published: 'Published',
+            notPublished: 'Not published',
+            inputSearch: 'Title, content...',
+            selectOrder: {
+                title: 'Title',
+                date: 'Creation date',
             },
         },
     },

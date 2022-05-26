@@ -110,7 +110,7 @@ const List = (props) => {
                         >
                             <div className="card">
                                 {
-                                    content && content(key)
+                                    content && content(key, t)
                                 }
                                 <div className="action">
                                     <div className="button-container left">
