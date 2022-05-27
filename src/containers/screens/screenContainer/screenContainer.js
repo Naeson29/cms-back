@@ -177,7 +177,7 @@ export default ({
 
         ...setModalFunctions(dispatch),
         ...setPanelFunctions(dispatch),
-        ...setScreenFunctions(dispatch, creators, list.parameters),
+        ...setScreenFunctions(dispatch, creators, list().parameters),
 
         ...renders && {
             ...renders.card && { card: renders.card },

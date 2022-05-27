@@ -1,6 +1,6 @@
 import { model } from '../model';
 
-export default t => ({
+export default (t = () => {}) => ({
     ...model.list,
 
     parameters: {
