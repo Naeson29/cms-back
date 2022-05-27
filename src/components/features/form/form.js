@@ -27,6 +27,8 @@ const Form = (props) => {
         update,
         disabled,
         openPanel,
+        closePanel,
+        state,
     } = props;
 
     const history = useHistory();
@@ -62,11 +64,13 @@ const Form = (props) => {
                                         return (
                                             <Component
                                                 t={t}
+                                                state={state}
                                                 key={`field_${key.name}`}
                                                 attributes={key}
                                                 handleChange={handleChange}
                                                 handleUpload={handleUpload}
                                                 openPanel={openPanel}
+                                                closePanel={closePanel}
                                                 value={value}
                                                 error={(errors && !!errors[key.name]) && errors[key.name]}
                                                 update={update}
@@ -101,12 +105,14 @@ Form.propTypes = {
     handleChange: PropTypes.func,
     handleUpload: PropTypes.func,
     openPanel: PropTypes.func,
+    closePanel: PropTypes.func,
     columns: PropTypes.number,
     update: PropTypes.bool,
     disabled: PropTypes.bool,
     elements: PropTypes.oneOfType([PropTypes.array]),
     errors: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     data: PropTypes.oneOfType([PropTypes.object]),
+    state: PropTypes.oneOfType([PropTypes.object]),
 };
 
 Form.defaultProps = {
@@ -114,9 +120,11 @@ Form.defaultProps = {
     handleChange: () => {},
     handleUpload: () => {},
     openPanel: () => {},
+    closePanel: () => {},
     elements: [],
     errors: false,
     data: {},
+    state: {},
     columns: 1,
     update: false,
     disabled: false,

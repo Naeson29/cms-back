@@ -31,7 +31,7 @@ class Default extends Component {
     }
 
     screen(props) {
-        const { state, card, detail, form, create, update, screen } = props;
+        const { state, card, detail, form, create, update, screen, openPanel, closePanel } = props;
         const { loadings = {}, list = false } = state;
 
         switch (screen) {
@@ -79,6 +79,8 @@ class Default extends Component {
                         state={state}
                         form={form}
                         update={update}
+                        openPanel={openPanel}
+                        closePanel={closePanel}
                     />
                     {
                         loadings.edit && <Loading className="edit" />
