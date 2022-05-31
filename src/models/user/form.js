@@ -149,7 +149,7 @@ export default {
                 },
             },
             {
-                name: 'password',
+                name: 'newPassword',
                 element: 'input',
                 type: 'password',
                 label: t('user:form.newPassword.label'),
@@ -176,7 +176,7 @@ export default {
                 label: t('user:form.oldPassword.label'),
                 required: true,
             },
-            password: {
+            newPassword: {
                 label: t('user:form.newPassword.label'),
                 required: true,
                 rule: 'password',
