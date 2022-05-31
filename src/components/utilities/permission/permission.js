@@ -1,8 +1,17 @@
-const getPermissionModel = (permissions, model, screen = null) => {
+const getPermissionModel = (current, model, screen = null, params = {}) => {
+    const { permissions, role } = current;
+
     let permissionsScreen = {};
 
     if (permissions && permissions.data[model]) {
-        permissionsScreen = (!screen ? permissions.data[model] : permissions.data[model][screen]);
+        permissionsScreen = permissions.data[model];
+
+        if (screen) {
+            permissionsScreen = permissions.data[model][screen];
+            if (role > 1 && model === 'user' && screen === 'update') {
+                permissionsScreen = current.id === Number(params.id);
+            }
+        }
     }
 
     return permissionsScreen;

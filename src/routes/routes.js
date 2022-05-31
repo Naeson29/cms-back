@@ -31,12 +31,8 @@ const routes = (models) => {
                 pathName = `${route}/${label}/:id`;
                 break;
             }
-            case 'create': {
-                pathName = `${route}/${label}`;
-                break;
-            }
             default:
-                pathName = '';
+                pathName = `${route}/${label}`;
             }
 
             routeList.push({

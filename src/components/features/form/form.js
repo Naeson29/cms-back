@@ -26,8 +26,6 @@ const Form = (props) => {
         columns,
         update,
         disabled,
-        openPanel,
-        closePanel,
         state,
     } = props;
 
@@ -69,8 +67,6 @@ const Form = (props) => {
                                                 attributes={key}
                                                 handleChange={handleChange}
                                                 handleUpload={handleUpload}
-                                                openPanel={openPanel}
-                                                closePanel={closePanel}
                                                 value={value}
                                                 error={(errors && !!errors[key.name]) && errors[key.name]}
                                                 update={update}
@@ -104,8 +100,6 @@ Form.propTypes = {
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
     handleUpload: PropTypes.func,
-    openPanel: PropTypes.func,
-    closePanel: PropTypes.func,
     columns: PropTypes.number,
     update: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -119,8 +113,6 @@ Form.defaultProps = {
     handleSubmit: () => {},
     handleChange: () => {},
     handleUpload: () => {},
-    openPanel: () => {},
-    closePanel: () => {},
     elements: [],
     errors: false,
     data: {},

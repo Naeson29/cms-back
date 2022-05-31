@@ -11,8 +11,9 @@ class Default extends Component {
     constructor(props) {
         super(props);
         const { match, screen, current, state } = props;
+        const { params = {} } = match;
         const { model } = state;
-        this.permission = getPermissionModel(current.permissions, model, screen);
+        this.permission = getPermissionModel(current, model, screen, params);
 
         if (this.permission) {
             switch (screen) {
@@ -31,7 +32,7 @@ class Default extends Component {
     }
 
     screen(props) {
-        const { state, card, detail, form, create, update, screen, openPanel, closePanel } = props;
+        const { state, current, card, detail, form, create, update, screen } = props;
         const { loadings = {}, list = false } = state;
 
         switch (screen) {
@@ -63,7 +64,7 @@ class Default extends Component {
                 <div className="screen-content">
                     <Edit
                         state={state}
-                        form={form}
+                        form={form.default}
                         create={create}
                     />
                     {
@@ -76,16 +77,25 @@ class Default extends Component {
             return loadings.detail ? <Loading /> : (
                 <div className="screen-content">
                     <Edit
+                        current={current}
                         state={state}
-                        form={form}
+                        form={form.default}
                         update={update}
-                        openPanel={openPanel}
-                        closePanel={closePanel}
                     />
                     {
                         loadings.edit && <Loading className="edit" />
                     }
                 </div>
+            );
+        }
+
+        case 'password': {
+            return (
+                <Edit
+                    state={state}
+                    update={update}
+                    form={form.password}
+                />
             );
         }
 
@@ -129,7 +139,7 @@ Default.propTypes = {
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     card: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    form: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     screen: PropTypes.string,
 };
 

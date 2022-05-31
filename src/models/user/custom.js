@@ -1,23 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { Button } from '../../components/features';
 
-const cutsom = {
-    passwordButton: (props) => {
-        const { openPanel, closePanel, state } = props;
-        const { panel = {} } = state;
-        const panelOpen = panel.open && panel.password;
 
-        const tooglePassword = () => (panelOpen ? closePanel() : openPanel({
-            open: true,
-            content: <div />,
-            password: true,
-        }));
+const custom = {
+    passwordButton: () => {
+        const history = useHistory();
 
         return (
             <div className="container-field container-buuton">
                 <Button
-                    action={tooglePassword}
+                    action={() => history.push('/users/password')}
                     className="button"
                     text="Changer le mot de passe"
                 />
@@ -26,16 +20,10 @@ const cutsom = {
     },
 };
 
-cutsom.passwordButton.propTypes = {
-    openPanel: PropTypes.func,
-    closePanel: PropTypes.func,
-    state: PropTypes.oneOfType([PropTypes.object]),
+custom.passwordButton.propTypes = {
 };
 
-cutsom.passwordButton.defaultProps = {
-    openPanel: () => {},
-    closePanel: () => {},
-    state: {},
+custom.passwordButton.defaultProps = {
 };
 
-export default cutsom;
+export default custom;

@@ -25,8 +25,8 @@ const Unauthorized = (props) => {
                         icon={HiArrowCircleLeft}
                         className="button add"
                     />
+                    <span>{t('title')}</span>
                 </div>
-                <span>{t('title')}</span>
             </div>
         </div>
     );

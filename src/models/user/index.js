@@ -40,6 +40,10 @@ export default {
             screen: 'update',
             label: 'edit',
         },
+        {
+            screen: 'password',
+            label: 'password',
+        },
     ],
 
     renders: {

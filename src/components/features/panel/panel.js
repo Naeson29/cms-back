@@ -12,17 +12,20 @@ const Panel = (props) => {
     const { panel = {} } = state;
 
     return (
-        <div className={`panel-container right ${panel.open ? 'open' : ''}`}>
-            {
-                panel.open
-                && (
-                    <div className="panel">
-                        <div className="content-panel">
-                            { panel.content }
+        <div>
+            <div className={`overlay-panel ${panel.open ? 'open' : ''}`} />
+            <div className={`panel-container right ${panel.open ? 'open' : ''}`}>
+                {
+                    panel.open
+                    && (
+                        <div className="panel">
+                            <div className="content-panel">
+                                { panel.content }
+                            </div>
                         </div>
-                    </div>
-                )
-            }
+                    )
+                }
+            </div>
         </div>
     );
 };

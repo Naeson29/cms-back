@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 class Authentication extends Component {
@@ -38,7 +37,6 @@ class Authentication extends Component {
     render() {
         const { parameters } = this.state;
         const { username, password } = parameters;
-        const { t } = useTranslation('authentication');
 
         return (
             <div className="container-app-login">

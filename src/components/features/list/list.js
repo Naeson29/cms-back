@@ -44,7 +44,7 @@ const List = (props) => {
     const { total } = pagination;
     const paramsList = screenList(t);
 
-    const permission = getPermissionModel(current.permissions, model);
+    const permission = getPermissionModel(current, model);
     const history = useHistory();
 
     /**
@@ -98,7 +98,7 @@ const List = (props) => {
                 list.map((key, index) => {
                     const userModel = (model === 'user');
                     const permissionRemove = !userModel || (userModel && (current.id !== key.id) && (current.role < key.role));
-                    const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role < key.role));
+                    const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role === 1));
 
                     const hasUpdate = permission.update && permissionUpdate;
                     const hasDelete = paramsList.deletion && (permission.delete && permissionRemove);
@@ -108,7 +108,7 @@ const List = (props) => {
                             className={`card-container ${type}`}
                             key={index.toString()}
                         >
-                            <div className="card">
+                            <div className={`card ${userModel && (current.id === key.id) ? 'current' : ''}`}>
                                 {
                                     content && content(key, t)
                                 }

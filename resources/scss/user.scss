@@ -1,4 +1,10 @@
 .user {
+  .card {
+    &.current {
+      border:1px solid $primary-color;
+      background-color: #fbfbfb;
+    }
+  }
   .card-user {
     display: flex;
     align-items: center;

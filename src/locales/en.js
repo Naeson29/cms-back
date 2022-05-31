@@ -24,6 +24,7 @@ export default {
             create: 'Add a new user',
             update: 'Edit user',
             show: 'User file',
+            password: 'Change password',
         },
         destroy: 'Are you sure you want to delete this user ?',
         form: {

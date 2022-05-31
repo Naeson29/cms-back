@@ -21,15 +21,15 @@ import {
  * @constructor
  */
 const Edit = (props) => {
-    const { form, state, create, update, screen } = props;
+    const { form, state, current, create, update } = props;
     const { loadings = {}, detail } = state;
     const { t } = useTranslation('validator');
 
-    if (!form) {
+    if (!form || !detail.id) {
         return null;
     }
 
-    const { elements = [], validation = false, columns = 1 } = form(t, screen);
+    const { elements = [], validation = false, columns = 1 } = form(t, detail, current);
 
     const getValue = (item) => {
         let val = '';
@@ -117,17 +117,17 @@ const Edit = (props) => {
 Edit.propTypes = {
     form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     state: PropTypes.oneOfType([PropTypes.object]),
+    current: PropTypes.oneOfType([PropTypes.object]),
     create: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     update: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    screen: PropTypes.string,
 };
 
 Edit.defaultProps = {
     form: () => ({}),
     state: {},
+    current: {},
     create: false,
     update: false,
-    screen: '',
 };
 
 export default Edit;
