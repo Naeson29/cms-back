@@ -44,6 +44,12 @@ export default {
                 label: 'Password',
                 placeholder: '*************',
             },
+            newPassword: {
+                label: 'New password',
+            },
+            oldPassword: {
+                label: 'Old password',
+            },
             confirmation: {
                 label: 'Confirmation',
                 placeholder: 'Password confirmation',

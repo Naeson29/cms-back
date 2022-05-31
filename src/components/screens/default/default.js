@@ -23,7 +23,7 @@ class Default extends Component {
             }
             case 'show':
             case 'update': {
-                props.getDetail(match.params.id);
+                props.getDetail(params.id);
                 break;
             }
             default:
@@ -95,6 +95,7 @@ class Default extends Component {
                     state={state}
                     update={update}
                     form={form.password}
+                    id={current.id}
                 />
             );
         }

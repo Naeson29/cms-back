@@ -134,5 +134,60 @@ export default {
             },
         };
     },
-    password: () => ({}),
+    password: t => ({
+        columns: 2,
+        elements: [
+            {
+                name: 'oldPassword',
+                element: 'input',
+                type: 'password',
+                label: t('user:form.oldPassword.label'),
+                placeholder: t('user:form.password.placeholder'),
+                column: 1,
+                options: {
+                    required: true,
+                },
+            },
+            {
+                name: 'password',
+                element: 'input',
+                type: 'password',
+                label: t('user:form.newPassword.label'),
+                placeholder: t('user:form.password.placeholder'),
+                column: 1,
+                options: {
+                    required: true,
+                },
+            },
+            {
+                name: 'confirmation',
+                element: 'input',
+                type: 'password',
+                label: t('user:form.confirmation.label'),
+                placeholder: t('user:form.confirmation.placeholder'),
+                column: 1,
+                options: {
+                    required: true,
+                },
+            },
+        ],
+        validation: {
+            oldPassword: {
+                label: t('user:form.oldPassword.label'),
+                required: true,
+            },
+            password: {
+                label: t('user:form.newPassword.label'),
+                required: true,
+                rule: 'password',
+                params: {
+                    confirmation: 'confirmation',
+                },
+            },
+            confirmation: {
+                label: t('user:form.confirmation.label'),
+                required: true,
+            },
+        },
+    }),
 };

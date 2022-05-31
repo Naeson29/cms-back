@@ -24,7 +24,7 @@ export default {
             create: 'Ajouter un nouvel utilisateur',
             update: 'Modifier l\'utilisateur',
             show: 'Fiche utilisateur',
-            password: 'Modification de mot de passe',
+            password: 'Modification du mot de passe',
         },
         destroy: 'Voulez-vous vraiment supprimer cet utilisateur ?',
         form: {
@@ -43,6 +43,12 @@ export default {
             password: {
                 label: 'Mot de passe',
                 placeholder: '*************',
+            },
+            newPassword: {
+                label: 'Nouveau mot de passe',
+            },
+            oldPassword: {
+                label: 'Ancien mot de passe',
             },
             confirmation: {
                 label: 'Confirmation',
