@@ -1,10 +1,10 @@
 import custom from './custom';
 
 export default {
-    default: (t, detail, current) => {
+    default: ({ t, data, current }) => {
         let password = [];
 
-        if (!detail.id) {
+        if (!data.id) {
             password = [
                 {
                     name: 'password',
@@ -29,7 +29,7 @@ export default {
                     },
                 },
             ];
-        } else if (detail.id === current.id) {
+        } else if (data.id === current.id) {
             password = [
                 {
                     element: 'custom',
@@ -134,7 +134,7 @@ export default {
             },
         };
     },
-    password: t => ({
+    password: ({ t }) => ({
         columns: 2,
         elements: [
             {

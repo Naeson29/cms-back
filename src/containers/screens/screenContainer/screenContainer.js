@@ -159,9 +159,15 @@ export default ({
 
     const { GetCurrent } = getScreenSelector('user');
 
+    const constructor = action => ({
+        list: action === 'index',
+        detail: action === 'show' || action === 'update',
+    });
+
     const mapStateToProps = state => ({
 
         current: GetCurrent(state),
+        actions: constructor(screen),
         screen,
         route,
 

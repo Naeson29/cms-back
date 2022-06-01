@@ -23,31 +23,29 @@ import {
  * @constructor
  */
 const Edit = (props) => {
-    const { form, state, current, create, update, id } = props;
-    const { loadings = {}, detail, errors } = state;
+    const { form, state, current, data, create, update, id } = props;
+    const { loadings = {}, errors } = state;
     const { t } = useTranslation('validator');
 
-    if (id) {
-        detail.id = id;
-    }
-
-    if (!form || !detail.id) {
+    if (!form || (update && !id)) {
         return null;
     }
 
-    const { elements = [], validation = false, columns = 1 } = form(t, detail, current);
+    const { elements = [], validation = false, columns = 1 } = form({
+        t, data, current,
+    });
 
     const getValue = (item) => {
         let val = '';
         if (update) {
-            val = detail[item.name] === undefined ? val : detail[item.name];
+            val = data[item.name] === undefined ? val : data[item.name];
         } else if ('value' in item) {
             val = item.value;
         }
         return val;
     };
 
-    const [data, setData] = useState(elements.reduce((obj, item) => ({
+    const [stateData, setData] = useState(elements.reduce((obj, item) => ({
         ...obj,
         [item.name]: getValue(item),
     }), {}));
@@ -62,7 +60,7 @@ const Edit = (props) => {
 
         const validator = validation ? validatorUtility({
             t,
-            data,
+            data: stateData,
             validation,
         }) : { success: true };
 
@@ -70,8 +68,8 @@ const Edit = (props) => {
             setErrors(validator.errors);
         }
         if (validator.success) {
-            if (update) update(detail.id, data);
-            else create(data);
+            if (update) update(id, stateData);
+            else create(stateData);
         }
         if (update) {
             setModified(false);
@@ -84,7 +82,7 @@ const Edit = (props) => {
             setErrors(errorsObject);
         }
         setData({
-            ...data,
+            ...stateData,
             [key]: value,
         });
         if (update) {
@@ -94,7 +92,7 @@ const Edit = (props) => {
 
     const handleUpload = (key, imageList) => {
         setData({
-            ...data,
+            ...stateData,
             [key]: imageList,
         });
         if (update && imageList.length > 0) {
@@ -114,7 +112,7 @@ const Edit = (props) => {
     return (
         <Form
             {...props}
-            data={data}
+            data={stateData}
             elements={elements}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
@@ -130,19 +128,21 @@ const Edit = (props) => {
 Edit.propTypes = {
     form: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     state: PropTypes.oneOfType([PropTypes.object]),
+    data: PropTypes.oneOfType([PropTypes.object]),
     current: PropTypes.oneOfType([PropTypes.object]),
     create: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     update: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    id: PropTypes.oneOfType([PropTypes.number]),
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 Edit.defaultProps = {
     form: () => ({}),
     state: {},
+    data: {},
     current: {},
     create: false,
     update: false,
-    id: null,
+    id: false,
 };
 
 export default Edit;

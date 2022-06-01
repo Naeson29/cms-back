@@ -1,5 +1,5 @@
 export default {
-    default: t => ({
+    default: ({ t }) => ({
         columns: 2,
         elements: [
             {

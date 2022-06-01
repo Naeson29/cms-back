@@ -10,23 +10,17 @@ const { getPermissionModel } = permissionUtility;
 class Default extends Component {
     constructor(props) {
         super(props);
-        const { match, screen, current, state } = props;
+        const { match, actions, screen, current, state } = props;
         const { params = {} } = match;
         const { model } = state;
         this.permission = getPermissionModel(current, model, screen, params);
 
         if (this.permission) {
-            switch (screen) {
-            case 'index': {
+            if (actions.list) {
                 props.getList();
-                break;
             }
-            case 'show':
-            case 'update': {
+            if (actions.detail) {
                 props.getDetail(params.id);
-                break;
-            }
-            default:
             }
         }
     }
@@ -80,7 +74,9 @@ class Default extends Component {
                         current={current}
                         state={state}
                         form={form.default}
+                        data={state.detail}
                         update={update}
+                        id={state.detail.id}
                     />
                     {
                         loadings.edit && <Loading className="edit" />
@@ -140,6 +136,7 @@ Default.propTypes = {
     getList: PropTypes.func,
     getDetail: PropTypes.func,
     current: PropTypes.oneOfType([PropTypes.object]),
+    actions: PropTypes.oneOfType([PropTypes.object]),
     match: PropTypes.oneOfType([PropTypes.object]),
     state: PropTypes.oneOfType([PropTypes.object]),
     panels: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
@@ -154,6 +151,7 @@ Default.defaultProps = {
     getList: () => {},
     getDetail: () => {},
     current: {},
+    actions: {},
     match: {},
     state: {},
     panels: false,
