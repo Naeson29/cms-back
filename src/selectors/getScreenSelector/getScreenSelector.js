@@ -59,6 +59,11 @@ export default (model) => {
         ({ loading = false }) => loading,
     );
 
+    const ErrorEdit = createSelector(
+        createModelEditViewSelector(model),
+        ({ error = false }) => error,
+    );
+
     return {
         GetCurrent,
         List,
@@ -70,5 +75,6 @@ export default (model) => {
         LoadingDetail,
         LoadingDestroy,
         LoadingEdit,
+        ErrorEdit,
     };
 };

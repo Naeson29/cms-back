@@ -50,7 +50,7 @@ const setPanelState = (state, selector) => {
  * @returns {{current, pagination, detail, list, loadings: {edit, destroy, detail, list}}}
  */
 const setScreenState = (state, selectors) => {
-    const { List, Detail, Pagination, LoadingDestroy, LoadingDetail, LoadingList, LoadingEdit, ParamsList, FilterList } = selectors;
+    const { List, Detail, Pagination, LoadingDestroy, LoadingDetail, LoadingList, LoadingEdit, ParamsList, FilterList, ErrorEdit } = selectors;
     return {
         params: ParamsList(state),
         filters: FilterList(state),
@@ -62,6 +62,9 @@ const setScreenState = (state, selectors) => {
             detail: LoadingDetail(state),
             destroy: LoadingDestroy(state),
             edit: LoadingEdit(state),
+        },
+        errors: {
+            edit: ErrorEdit(state),
         },
     };
 };
