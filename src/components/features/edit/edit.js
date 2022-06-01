@@ -24,7 +24,7 @@ import {
  */
 const Edit = (props) => {
     const { form, state, current, data, create, update, id } = props;
-    const { loadings = {}, errors } = state;
+    const { loadings, errors } = state;
     const { t } = useTranslation('validator');
 
     if (!form || (update && !id)) {
