@@ -91,12 +91,17 @@ class Default extends Component {
 
         case 'password': {
             return (
-                <Edit
-                    state={state}
-                    update={update}
-                    form={form.password}
-                    id={current.id}
-                />
+                <div className="screen-content">
+                    <Edit
+                        state={state}
+                        update={update}
+                        form={form.password}
+                        id={current.id}
+                    />
+                    {
+                        loadings.edit && <Loading className="edit" />
+                    }
+                </div>
             );
         }
 
