@@ -176,4 +176,7 @@ export default {
         selectSomeItems: 'Sélectionner...',
         create: 'Créer',
     },
+    errors: {
+        oldPassword: 'L\'ancien mot de passe est incorrect',
+    },
 };

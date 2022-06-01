@@ -1,5 +1,6 @@
 import React, {
     useState,
+    useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -7,6 +8,7 @@ import PropTypes from 'prop-types';
 // Utils
 import {
     validatorUtility,
+    errorsUtility,
 } from '../../utilities';
 
 
@@ -22,7 +24,7 @@ import {
  */
 const Edit = (props) => {
     const { form, state, current, create, update, id } = props;
-    const { loadings = {}, detail } = state;
+    const { loadings = {}, detail, errors } = state;
     const { t } = useTranslation('validator');
 
     if (id) {
@@ -51,7 +53,7 @@ const Edit = (props) => {
     }), {}));
 
     const [modified, setModified] = useState(false);
-    const [errors, setErrors] = useState(false);
+    const [errorsObject, setErrors] = useState(false);
 
     const handleSubmit = () => {
         if (loadings.edit) {
@@ -77,9 +79,9 @@ const Edit = (props) => {
     };
 
     const handleChange = (key, value) => {
-        if (errors[key]) {
-            delete errors[key];
-            setErrors(errors);
+        if (errorsObject[key]) {
+            delete errorsObject[key];
+            setErrors(errorsObject);
         }
         setData({
             ...data,
@@ -100,6 +102,13 @@ const Edit = (props) => {
         }
     };
 
+    useEffect(() => {
+        if (errors.edit) {
+            const errorEdit = errorsUtility(errors.edit, t);
+            setErrors(errorEdit);
+        }
+    }, [errors]);
+
     const disabled = (update && !modified);
 
     return (
@@ -110,7 +119,7 @@ const Edit = (props) => {
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             handleUpload={handleUpload}
-            errors={errors}
+            errors={errorsObject}
             columns={columns}
             update={!!update}
             disabled={disabled}

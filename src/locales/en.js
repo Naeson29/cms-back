@@ -172,4 +172,7 @@ export default {
         selectSomeItems: 'To select...',
         create: 'Create',
     },
+    errors: {
+        oldPassword: 'The old password is incorrect',
+    },
 };
