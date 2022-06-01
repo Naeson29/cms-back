@@ -51,6 +51,7 @@ const Edit = (props) => {
     }), {}));
 
     const [modified, setModified] = useState(false);
+    const [submited, setSubmited] = useState(false);
     const [errorsObject, setErrors] = useState(false);
 
     const handleSubmit = () => {
@@ -68,11 +69,15 @@ const Edit = (props) => {
             setErrors(validator.errors);
         }
         if (validator.success) {
-            if (update) update(id, stateData);
-            else create(stateData);
-        }
-        if (update) {
-            setModified(false);
+            setErrors(false);
+            setSubmited(true);
+
+            if (update) {
+                update(id, stateData);
+                setModified(false);
+            } else {
+                create(stateData);
+            }
         }
     };
 
@@ -101,11 +106,11 @@ const Edit = (props) => {
     };
 
     useEffect(() => {
-        if (errors.edit) {
+        if (submited && errors.edit) {
             const errorEdit = errorsUtility(errors.edit, t);
             setErrors(errorEdit);
         }
-    }, [errors]);
+    }, [errors.edit]);
 
     const disabled = (update && !modified);
 
