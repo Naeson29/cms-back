@@ -111,8 +111,8 @@
 
     .body, .options {
       flex:1;
-      padding:1.8rem;
-      margin:1rem 0;
+      padding:1rem 1.8rem;
+      margin:2.5rem 0;
 
       .title {
         display: flex;
@@ -136,7 +136,7 @@
     }
 
     .body {
-      border-right: 1px solid rgba(0,0,0,0.2);
+      border-right: 1px solid rgba(0,0,0,0.1);
     }
 
     @media (max-width: 1024px) {

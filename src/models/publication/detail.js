@@ -21,7 +21,6 @@ export default (key) => {
                 {
                     images && (
                         <div>
-                            <p className="title">Médias</p>
                             <Slider images={images} className="slide-publication" />
                         </div>
                     )

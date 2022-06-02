@@ -15,7 +15,7 @@ class Default extends Component {
         const { model } = state;
         this.permission = getPermissionModel(current, model, screen, params);
 
-        if (this.permission) {
+        if (this.permission[screen]) {
             if (actions.list) {
                 props.getList();
             }
@@ -127,7 +127,8 @@ class Default extends Component {
     }
 
     render() {
-        return !this.permission ? <Unauthorized /> : this.renderScreen(this.props);
+        const { screen } = this.props;
+        return !this.permission[screen] ? <Unauthorized /> : this.renderScreen(this.props);
     }
 }
 

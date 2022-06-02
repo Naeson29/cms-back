@@ -54,13 +54,13 @@ const Form = (props) => {
                         columnArray.map((col, index) => (
                             <div className={classNames[columns]} key={`column_${index.toString()}`}>
                                 {
-                                    col.map((key) => {
+                                    col.map((key, i) => {
                                         const { element, render = null, label = '' } = key;
 
                                         switch (element) {
                                         case 'title': {
                                             return (
-                                                <p className="title-form">{label}</p>
+                                                <p key={`title_${i.toString()}`} className="title-form">{label}</p>
                                             );
                                         }
                                         case 'custom':

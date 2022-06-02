@@ -21,7 +21,7 @@ export default (key, t) => {
                     {!published ? t('publication:list.notPublished') : t('publication:list.published')}
                 </p>
             </div>
-            <p className="content">{truncate(content, 250)}</p>
+            <p className="content">{truncate(content, 120)}</p>
             {
                 images && (
                     <div

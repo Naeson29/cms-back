@@ -30,12 +30,13 @@ const {
  * @constructor
  */
 const HeaderScreen = (props) => {
-    const { state, current, screen, route, closePanel, openPanel } = props;
+    const { state, match, current, screen, route, closePanel, openPanel } = props;
+    const { params = {} } = match;
     const { model = 'default', detail, list = [], screenList, panel = {} } = state;
     const { t } = useTranslation(model);
     const { filter, pagination } = screenList(t);
     const history = useHistory();
-    const permission = getPermissionModel(current, model);
+    const permission = getPermissionModel(current, model, screen, params);
 
     const update = () => {
         history.push(`/${route}/edit/${detail.id}`);
@@ -98,6 +99,7 @@ HeaderScreen.propTypes = {
     screen: PropTypes.string,
     route: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
+    match: PropTypes.oneOfType([PropTypes.object]),
     current: PropTypes.oneOfType([PropTypes.object]),
     openPanel: PropTypes.func,
     closePanel: PropTypes.func,
@@ -107,6 +109,7 @@ HeaderScreen.defaultProps = {
     screen: '',
     route: '',
     state: {},
+    match: {},
     current: {},
     openPanel: () => {},
     closePanel: () => {},
