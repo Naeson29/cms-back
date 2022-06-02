@@ -292,7 +292,7 @@ body {
                   }            
                 }              
               }
-              &.button-apply, &.button-edit {
+              &.button-edit {
                 background-color: $primary-color; 
                 border-radius: 4px;  
                 @media (min-width: 1025px) {
@@ -306,8 +306,8 @@ body {
                 }
                 .icon {
                   fill : $white;    
-                  width:80%;
-                  height:80%;            
+                  width:60%;
+                  height:60%;            
                 }
               }
               &.button-apply {    

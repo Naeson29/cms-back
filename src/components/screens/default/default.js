@@ -5,7 +5,7 @@ import {
     HeaderScreen, List, Panel, Modal, Loading, Show, Edit, Unauthorized,
 } from '../../features';
 
-const { getPermissionModel } = permissionUtility;
+const { getPermissionScreen } = permissionUtility;
 
 class Default extends Component {
     constructor(props) {
@@ -13,9 +13,9 @@ class Default extends Component {
         const { match, actions, screen, current, state } = props;
         const { params = {} } = match;
         const { model } = state;
-        this.permission = getPermissionModel(current, model, screen, params);
+        this.permission = getPermissionScreen(current, model, screen, params);
 
-        if (this.permission[screen]) {
+        if (this.permission) {
             if (actions.list) {
                 props.getList();
             }
@@ -127,8 +127,7 @@ class Default extends Component {
     }
 
     render() {
-        const { screen } = this.props;
-        return !this.permission[screen] ? <Unauthorized /> : this.renderScreen(this.props);
+        return this.permission ? this.renderScreen(this.props) : <Unauthorized />;
     }
 }
 

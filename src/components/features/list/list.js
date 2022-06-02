@@ -21,7 +21,7 @@ import {
 import { Button } from '..';
 
 const {
-    getPermissionModel,
+    getPermissionButton,
 } = permissionUtility;
 
 /**
@@ -44,7 +44,7 @@ const List = (props) => {
     const { total } = pagination;
     const paramsList = screenList(t);
 
-    const permission = getPermissionModel(current, model);
+    const permission = getPermissionButton(current, model);
     const history = useHistory();
 
     /**

@@ -20,7 +20,7 @@ import {
 } from '../../utilities';
 
 const {
-    getPermissionModel,
+    getPermissionButton,
 } = permissionUtility;
 
 /**
@@ -36,7 +36,7 @@ const HeaderScreen = (props) => {
     const { t } = useTranslation(model);
     const { filter, pagination } = screenList(t);
     const history = useHistory();
-    const permission = getPermissionModel(current, model, screen, params);
+    const permission = getPermissionButton(current, model);
 
     const update = () => {
         history.push(`/${route}/edit/${detail.id}`);
@@ -46,10 +46,18 @@ const HeaderScreen = (props) => {
         history.push(`/${route}/create`);
     };
 
+    const userModel = (model === 'user');
     const index = screen === 'index';
     const show = screen === 'show';
     const paginationButton = (index && list.length > 0 && pagination === 'button');
-    const buttonEdit = show && permission.update;
+
+
+    let buttonEdit;
+
+    if (show && permission.update) {
+        buttonEdit = !userModel || (userModel && (current.id === Number(params.id) || current.role === 1));
+    }
+
     const filterOpen = panel.open && panel.filter;
 
     const toogleFilter = () => (filterOpen ? closePanel() : openPanel({

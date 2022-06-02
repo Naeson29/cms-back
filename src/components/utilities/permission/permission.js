@@ -1,21 +1,32 @@
-const getPermissionModel = (current, model, screen = null, params = {}) => {
+const getPermissionScreen = (current, model, screen, params = {}) => {
     const { permissions, role } = current;
+
+    let permission = true;
+
+    if (permissions.data[model] && permissions.data[model][screen]) {
+        permission = permissions.data[model][screen];
+
+        if (model === 'user' && screen === 'update') {
+            permission = current.id === Number(params.id) || role === 1;
+        }
+    }
+
+    return permission;
+};
+
+const getPermissionButton = (current, model) => {
+    const { permissions } = current;
 
     let permissionsScreen = {};
 
-    if (permissions && permissions.data[model]) {
+    if (permissions.data[model]) {
         permissionsScreen = permissions.data[model];
-
-        if (model === 'user') {
-            if (role > 1 && (screen === 'update' || screen === 'show')) {
-                permissionsScreen.update = current.id === Number(params.id);
-            }
-        }
     }
 
     return permissionsScreen;
 };
 
 export default {
-    getPermissionModel,
+    getPermissionScreen,
+    getPermissionButton,
 };
