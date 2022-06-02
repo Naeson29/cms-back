@@ -32,12 +32,12 @@ export default ({ t, data, validation }) => {
 
     validationData.map((key) => {
         const { name, value, validator } = key;
-        const { label, required = false, rule = false, params = {} } = validator;
+        const { required = false, rule = false, params = {} } = validator;
 
         if (!value && required) {
             errors = {
                 ...errors,
-                [name]: t('required', { label }),
+                [name]: t('required'),
             };
             return errors;
         }

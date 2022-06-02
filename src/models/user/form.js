@@ -44,6 +44,11 @@ export default {
             columns: 2,
             elements: [
                 {
+                    element: 'title',
+                    label: t('user:form.titles.informations'),
+                    column: 1,
+                },
+                {
                     name: 'first_name',
                     element: 'input',
                     type: 'text',
@@ -66,6 +71,11 @@ export default {
                     },
                 },
                 {
+                    element: 'title',
+                    label: t('user:form.titles.identifiers'),
+                    column: 1,
+                },
+                {
                     name: 'email',
                     element: 'input',
                     type: 'text',
@@ -85,9 +95,13 @@ export default {
                     column: 1,
                 },
                 {
+                    element: 'title',
+                    label: t('user:form.titles.medias'),
+                    column: 2,
+                },
+                {
                     name: 'image',
                     element: 'upload',
-                    label: t('user:form.image.label'),
                     column: 2,
                     options: {
                         multiple: false,

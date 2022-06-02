@@ -42,7 +42,7 @@ const SwitchComponent = (props) => {
                     height={height}
                     width={width}
                 />
-                <p className="label-value">{!value ? textOff : textOn}</p>
+                <p className={`label-value ${value ? 'on' : 'off'}`}>{!value ? textOff : textOn}</p>
             </div>
         </div>
     );

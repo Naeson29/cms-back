@@ -55,23 +55,33 @@ const Form = (props) => {
                             <div className={classNames[columns]} key={`column_${index.toString()}`}>
                                 {
                                     col.map((key) => {
-                                        const { element, render } = key;
-                                        const Component = element !== 'custom' ? formUtility(element) : render;
-                                        const value = data[key.name];
+                                        const { element, render = null, label = '' } = key;
 
-                                        return (
-                                            <Component
-                                                t={t}
-                                                state={state}
-                                                key={`field_${key.name}`}
-                                                attributes={key}
-                                                handleChange={handleChange}
-                                                handleUpload={handleUpload}
-                                                value={value}
-                                                error={(errors && !!errors[key.name]) && errors[key.name]}
-                                                update={update}
-                                            />
-                                        );
+                                        switch (element) {
+                                        case 'title': {
+                                            return (
+                                                <p className="title-form">{label}</p>
+                                            );
+                                        }
+                                        case 'custom':
+                                        default: {
+                                            const Component = element !== 'custom' ? formUtility(element) : render;
+                                            const value = data[key.name];
+                                            return (
+                                                <Component
+                                                    t={t}
+                                                    state={state}
+                                                    key={`field_${key.name}`}
+                                                    attributes={key}
+                                                    handleChange={handleChange}
+                                                    handleUpload={handleUpload}
+                                                    value={value}
+                                                    error={(errors && !!errors[key.name]) && errors[key.name]}
+                                                    update={update}
+                                                />
+                                            );
+                                        }
+                                        }
                                     })
                                 }
                             </div>

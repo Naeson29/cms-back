@@ -28,6 +28,11 @@ export default {
         },
         destroy: 'Voulez-vous vraiment supprimer cet utilisateur ?',
         form: {
+            titles: {
+                informations: 'Informations',
+                identifiers: 'Indentifiants',
+                medias: 'Médias',
+            },
             first_name: {
                 label: 'Prénom',
                 placeholder: 'Pierre...',
@@ -55,7 +60,6 @@ export default {
                 placeholder: 'Confirmation du mot de passe',
             },
             image: {
-                label: 'Photo',
                 complement: 'Ajouter une photo',
                 error: 'Vous ne pouvez ajouter qu\'une seule photo',
             },
@@ -78,13 +82,18 @@ export default {
         },
         destroy: 'Voulez-vous vraiment supprimer cette publication ?',
         form: {
+            titles: {
+                content: 'Contenu',
+                parameters: 'Paramètres',
+                medias: 'Médias',
+            },
             title: {
                 label: 'Titre',
                 placeholder: 'Titre de la publication...',
             },
             content: {
-                label: 'Contenu',
-                placeholder: 'Contenu de la publication...',
+                label: 'Texte',
+                placeholder: 'Texte de la publication...',
             },
             published: {
                 label: 'Visibilité',
@@ -94,7 +103,6 @@ export default {
                 },
             },
             images: {
-                label: 'Photos',
                 complement: 'Ajouter une ou plusieurs photos',
                 error: 'Vous pouvez ajouter 4 photos maximum',
             },
@@ -154,7 +162,7 @@ export default {
         },
     },
     validator: {
-        required: 'Le champ "{{label}}" est obligatoire',
+        required: 'Le champ est obligatoire',
         email: 'L\'adresse email invalide',
         password: {
             length: 'Minimum 8 caractères pour le mot de passe',

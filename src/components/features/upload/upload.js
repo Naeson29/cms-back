@@ -17,7 +17,7 @@ const Upload = (props) => {
     const { attributes, handleUpload, handleChange, value, update } = props;
     const {
         name = 'image',
-        label = 'Images',
+        label = false,
         options = {},
     } = attributes;
     const { t } = useTranslation('upload');
@@ -116,7 +116,11 @@ const Upload = (props) => {
                 errors,
             }) => (
                 <div className="upload-image">
-                    <p className="label">{label}</p>
+                    {
+                        label && (
+                            <p className="label">{label}</p>
+                        )
+                    }
                     <button type="button" className={`button-upload ${isDragging ? 'isDragging' : ''}`} onClick={onImageUpload} {...dragProps}>
                         <div className="icon" />
                         <div className="info">

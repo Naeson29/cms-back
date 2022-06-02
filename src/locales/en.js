@@ -28,6 +28,11 @@ export default {
         },
         destroy: 'Are you sure you want to delete this user ?',
         form: {
+            titles: {
+                informations: 'Informations',
+                identifiers: 'Identifiers',
+                medias: 'Medias',
+            },
             first_name: {
                 label: 'First name',
                 placeholder: 'Peter...',
@@ -55,7 +60,6 @@ export default {
                 placeholder: 'Password confirmation',
             },
             image: {
-                label: 'Photo',
                 complement: 'Add a picture',
                 error: 'You can only add one photo',
             },
@@ -78,13 +82,18 @@ export default {
         },
         destroy: 'Are you sure you want to delete this post ?',
         form: {
+            titles: {
+                content: 'Content',
+                parameters: 'Parameters',
+                medias: 'Medias',
+            },
             title: {
                 label: 'Title',
                 placeholder: 'Publication title...',
             },
             content: {
-                label: 'Content',
-                placeholder: 'Publication content...',
+                label: 'Text',
+                placeholder: 'Publication text...',
             },
             published: {
                 label: 'Visibility',
@@ -94,7 +103,6 @@ export default {
                 },
             },
             images: {
-                label: 'Pictures',
                 complement: 'Add one or more photos',
                 error: 'You can add up to 4 photos',
             },
@@ -150,7 +158,7 @@ export default {
         },
     },
     validator: {
-        required: 'The {label} field is required',
+        required: 'The field is required',
         email: 'Invalid email address',
         password: {
             length: 'Minimum 8 characters for the password',
