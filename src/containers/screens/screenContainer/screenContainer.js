@@ -154,14 +154,15 @@ export default ({
         route = '',
         creators = false,
         list = () => ({}),
+        actions = {},
         renders = {},
     } = model || false;
 
     const { GetCurrent } = getScreenSelector('user');
 
     const constructor = action => ({
-        list: action === 'index',
-        detail: action === 'show' || action === 'update',
+        list: actions.list && action === 'index',
+        detail: actions.detail && (action === 'show' || action === 'update'),
     });
 
     const mapStateToProps = state => ({

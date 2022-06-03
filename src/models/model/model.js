@@ -24,5 +24,10 @@ export default {
 
     screens: [],
 
+    actions: {
+        list: true,
+        detail: true,
+    },
+
     renders: {},
 };

@@ -1,4 +1,4 @@
-import { BiNews } from 'react-icons/bi';
+import { BiCalendar } from 'react-icons/bi';
 import { model } from '../model';
 
 const name = 'planning';
@@ -13,7 +13,7 @@ export default {
 
     menu: t => ({
         label: t('planning'),
-        icon: BiNews,
+        icon: BiCalendar,
     }),
 
     screens: [
@@ -21,6 +21,10 @@ export default {
             screen: 'index',
         },
     ],
+
+    actions: {
+        planning: true,
+    },
 
     renders: {
     },
