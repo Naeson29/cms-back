@@ -3,11 +3,6 @@ export default {
         columns: 2,
         elements: [
             {
-                element: 'title',
-                label: t('publication:form.titles.content'),
-                column: 1,
-            },
-            {
                 name: 'title',
                 element: 'input',
                 label: t('publication:form.title.label'),
@@ -28,11 +23,6 @@ export default {
                 },
             },
             {
-                element: 'title',
-                label: t('publication:form.titles.parameters'),
-                column: 1,
-            },
-            {
                 name: 'published',
                 element: 'switch',
                 label: t('publication:form.published.label'),
@@ -49,11 +39,6 @@ export default {
                 type: 'hidden',
                 value: 1,
                 column: 1,
-            },
-            {
-                element: 'title',
-                label: t('publication:form.titles.medias'),
-                column: 2,
             },
             {
                 name: 'images',
