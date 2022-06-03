@@ -6,6 +6,11 @@ const scrollBody = lock => (lock ? document.body.classList.add('lock') : documen
 
 /**
  *
+ */
+const scrollTop = () => window.scrollTo(0, 0);
+
+/**
+ *
  * @param pagination
  * @returns {boolean}
  */
@@ -52,6 +57,7 @@ const initials = str => str.substring(0, 1);
 
 export {
     scrollBody,
+    scrollTop,
     hasMorePage,
     parseJson,
     getImage,

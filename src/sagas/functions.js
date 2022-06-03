@@ -11,6 +11,7 @@ import {
 
 import toasts from './toast';
 import { getScreenSelector } from '../selectors';
+import { scrollTop } from '../utilities/functions';
 
 const { defaultErrors, defaultSuccess, success } = toasts;
 const getState = state => state;
@@ -53,6 +54,7 @@ function* destroyFailure() {
 }
 
 function* onRefresh() {
+    yield call(() => scrollTop());
     yield put(panelActions().creators.close.do());
 }
 
