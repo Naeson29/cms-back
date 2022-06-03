@@ -102,8 +102,12 @@
       padding: 1.8rem;
       border-radius: 6px;
 
+      @media (max-width: 768px) {
+        margin:0 .6rem;
+      }
+
       @media (max-width: 568px) {
-        padding: 1rem;
+        margin:0;
       }
       background-color: $white;
       border : $grey-border;

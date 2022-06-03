@@ -27,10 +27,9 @@ const Header = (props) => {
                     <div
                         onClick={() => toggle(false)}
                         role="presentation"
+                        className="logo"
                     >
-                        <NavLink to="/" className="navbar-brand" replace>
-                            <img src="./img/logo.png" alt="Logo" />
-                        </NavLink>
+                        <NavLink to="/" className="navbar-brand" replace />
                     </div>
                     <Button
                         action={() => toggle(!menu)}

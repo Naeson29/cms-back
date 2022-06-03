@@ -21,6 +21,10 @@
     .navbar-nav-left {
       display: flex;
 
+      @media (max-width: 568px) {
+        margin-left : .8rem;
+      }
+
       .navbar-brand {
         display: flex;
         height       : 100%;
@@ -85,6 +89,12 @@
           height : 30px;
         }
       }
+
+      @media (max-width: 568px) {
+        .logo {
+          display: none;
+        }
+      }
     }
 
     .navbar-nav-right {
@@ -92,9 +102,13 @@
       display      : flex;
       align-items  : center;
 
+      @media (max-width: 568px) {
+        margin-right : .8rem;
+      }
+
       .button, a {
         cursor      : pointer;
-        margin-left : .5rem;
+        margin-left : 1.5rem;
         padding: .4rem;
         background-color: transparent;
 

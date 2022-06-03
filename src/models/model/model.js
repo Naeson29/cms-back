@@ -12,7 +12,7 @@ export default {
         icon: null,
     },
 
-    list: {
+    list: () => ({
         parameters: {},
         searches: {},
         orders: [],
@@ -20,7 +20,7 @@ export default {
         filter: false,
         deletion: true,
         pagination: paginations[0],
-    },
+    }),
 
     screens: [],
 

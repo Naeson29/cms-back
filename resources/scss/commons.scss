@@ -205,6 +205,10 @@ body {
               padding : 0 3%;
               width: 100%;
             }
+
+            @media (max-width: 568px) {
+              padding: 0;
+            }
   
             .content {
               height: 100%;
@@ -232,6 +236,12 @@ body {
                   margin:0 1.5rem;
                   font-size: 15px;
                   color:$black_text;
+
+                  @media (max-width: 568px) {
+                    .page {
+                      display: none;
+                    }
+                  }
                 }
   
                 .pagination-nav {
@@ -266,12 +276,17 @@ body {
               &.add {
                 font-size: 14px;
                 color: $white;
-                padding:.4rem .5rem;
+                padding:0 .5rem;
+                height: 32px;
                 width:6.5rem;
                 border-radius: 5px;
                 margin-right: 4rem;
                 margin-left: .8rem;
                 background-color: $primary-color;
+
+                @media (max-width: 568px) {
+                  margin-right: 1rem;
+                }
   
                 .icon {
                   fill : $white;
@@ -289,6 +304,9 @@ body {
               }   
               &.button-filter {
                 margin-right: 2rem;
+                @media (max-width: 568px) {
+                  margin-right: 1rem;
+                }
                 .icon {
                   fill : $primary-color;   
                   @media (min-width: 1025px) {
@@ -304,16 +322,11 @@ body {
               }
               &.button-edit {
                 background-color: $primary-color; 
+                margin-right: .8rem;
                 border-radius: 4px;  
-                @media (min-width: 1025px) {
-                  height: 30px;
-                  width: 30px;
-                }
-  
-                @media (max-width: 1024px) {
-                  height: 28px;
-                  width: 28px;
-                }
+                height: 32px;
+                width: 32px;
+               
                 .icon {
                   fill : $white;    
                   width:60%;

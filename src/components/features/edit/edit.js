@@ -71,10 +71,10 @@ const Edit = (props) => {
         if (validator.success) {
             setErrors(false);
             setSubmited(true);
+            setModified(false);
 
             if (update) {
                 update(id, stateData);
-                setModified(false);
             } else {
                 create(stateData);
             }
@@ -90,9 +90,7 @@ const Edit = (props) => {
             ...stateData,
             [key]: value,
         });
-        if (update) {
-            setModified(true);
-        }
+        setModified(true);
     };
 
     const handleUpload = (key, imageList) => {
@@ -100,7 +98,7 @@ const Edit = (props) => {
             ...stateData,
             [key]: imageList,
         });
-        if (update && imageList.length > 0) {
+        if (imageList.length > 0) {
             setModified(true);
         }
     };
@@ -111,8 +109,6 @@ const Edit = (props) => {
             setErrors(errorEdit);
         }
     }, [errors.edit]);
-
-    const disabled = (update && !modified);
 
     return (
         <Form
@@ -125,7 +121,7 @@ const Edit = (props) => {
             errors={errorsObject}
             columns={columns}
             update={!!update}
-            disabled={disabled}
+            disabled={!modified}
         />
     );
 };

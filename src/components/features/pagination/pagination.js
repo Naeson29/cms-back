@@ -48,7 +48,7 @@ const Pagination = (props) => {
             </div>
             <div className="pagination-current">
                 <p>
-                    {'Page '}
+                    <span className="page">{'Page '}</span>
                     {pagination.current_page}
                     {' / '}
                     {pagination.last_page}

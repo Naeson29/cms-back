@@ -162,7 +162,7 @@ List.propTypes = {
     route: PropTypes.string,
     state: PropTypes.oneOfType([PropTypes.object]),
     current: PropTypes.oneOfType([PropTypes.object]),
-    modals: PropTypes.oneOfType([PropTypes.object]),
+    modals: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     loading: PropTypes.element,
 };
 

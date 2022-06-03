@@ -16,6 +16,7 @@ export default {
         home: 'Home',
         user: 'Users',
         publication: 'Posts',
+        planning: 'Planning',
     },
     default: {
         title: {
@@ -25,7 +26,7 @@ export default {
     user: {
         title: {
             index: 'Users',
-            create: 'Add a new user',
+            create: 'New user',
             update: 'Edit user',
             show: 'User file',
             password: 'Change password',
@@ -33,9 +34,6 @@ export default {
         destroy: 'Are you sure you want to delete this user ?',
         form: {
             titles: {
-                informations: 'Informations',
-                identifiers: 'Identifiers',
-                medias: 'Medias',
             },
             first_name: {
                 label: 'First name',
@@ -87,9 +85,6 @@ export default {
         destroy: 'Are you sure you want to delete this post ?',
         form: {
             titles: {
-                content: 'Content',
-                parameters: 'Parameters',
-                medias: 'Medias',
             },
             title: {
                 label: 'Title',

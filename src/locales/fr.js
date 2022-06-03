@@ -16,6 +16,7 @@ export default {
         home: 'Accueil',
         user: 'Utilisateurs',
         publication: 'Publications',
+        planning: 'Planning',
     },
     default: {
         title: {
@@ -25,7 +26,7 @@ export default {
     user: {
         title: {
             index: 'Utilisateurs',
-            create: 'Ajouter un nouvel utilisateur',
+            create: 'Nouvel utilisateur',
             update: 'Modifier l\'utilisateur',
             show: 'Fiche utilisateur',
             password: 'Modification du mot de passe',
@@ -33,9 +34,6 @@ export default {
         destroy: 'Voulez-vous vraiment supprimer cet utilisateur ?',
         form: {
             titles: {
-                informations: 'Informations',
-                identifiers: 'Indentifiants',
-                medias: 'Médias',
             },
             first_name: {
                 label: 'Prénom',
@@ -87,9 +85,6 @@ export default {
         destroy: 'Voulez-vous vraiment supprimer cette publication ?',
         form: {
             titles: {
-                content: 'Contenu',
-                parameters: 'Paramètres',
-                medias: 'Médias',
             },
             title: {
                 label: 'Titre',
