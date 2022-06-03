@@ -19,12 +19,12 @@
       .numberMore {
         background-color: $primary-color;
         position: absolute;
-        top: -15px;
-        right: -15px;
+        top: -10px;
+        right: -10px;
         z-index: 1;
         color:$white;
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -58,8 +58,8 @@
         .icon {
           margin-right: .5rem;
           color:$gray;
-          width: 1.5rem;
-          height: 1.5rem;
+          width: 1.7rem;
+          height: 1.7rem;
 
           &.active {
             color:$primary-color;

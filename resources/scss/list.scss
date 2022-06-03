@@ -22,7 +22,10 @@
   .list-result {
     width:100%;
     flex: none;
-    padding: 1rem 1.2rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    padding-right: 2rem;
     p {
       font-size: 15px;
       color: $black-text;
@@ -39,7 +42,7 @@
   }
 
   .card-container {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     display: flex;
     min-height : 12rem;
     background-color: transparent;
@@ -94,8 +97,8 @@
       display: flex;
       justify-content: space-between;
       flex-direction: column;
-      margin:0 .8rem;
-      padding: 1.5rem;
+      margin:0 1rem;
+      padding: 1.8rem;
       border-radius: 6px;
 
       @media (max-width: 568px) {

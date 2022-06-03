@@ -5,6 +5,10 @@ const closeText = 'Fermer';
 const deleteText = 'Supprimer';
 
 export default {
+    commons: {
+        add: 'Ajouter',
+        back: 'Retour',
+    },
     authentication: {
 
     },
@@ -76,7 +80,7 @@ export default {
     publication: {
         title: {
             index: 'Publications',
-            create: 'Ajouter une publication',
+            create: 'Nouvelle publication',
             update: 'Modifier la publication',
             show: 'Détail de la publication',
         },

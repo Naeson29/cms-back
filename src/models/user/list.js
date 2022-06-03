@@ -5,7 +5,7 @@ export default (t = () => {}) => ({
 
     parameters: {
         params: {
-            limit: 50,
+            limit: 6,
             order: {
                 column: 'first_name',
             },

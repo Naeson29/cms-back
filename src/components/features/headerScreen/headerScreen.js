@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
-    HiPlusCircle, HiPencil, HiArrowCircleLeft,
+    HiPlus, HiPencil, HiArrowLeft,
 } from 'react-icons/hi';
 import { BsFilterSquareFill } from 'react-icons/bs';
 
@@ -50,6 +50,7 @@ const HeaderScreen = (props) => {
     const index = screen === 'index';
     const show = screen === 'show';
     const paginationButton = (index && list.length > 0 && pagination === 'button');
+    const filterButton = (index && list.length > 0) && filter;
 
 
     let buttonEdit;
@@ -71,17 +72,14 @@ const HeaderScreen = (props) => {
             <div className="content left">
                 <Button
                     action={index ? create : () => history.goBack()}
-                    icon={index ? HiPlusCircle : HiArrowCircleLeft}
+                    icon={index ? HiPlus : HiArrowLeft}
                     className="button add"
+                    text={t(`commons:${index ? 'add' : 'back'}`)}
                 />
-                <span>{t(`title.${screen}`)}</span>
-                {
-                    paginationButton && <Pagination {...props} />
-                }
             </div>
             <div className="content right">
                 {
-                    (index && filter) && (
+                    filterButton && (
                         <Button
                             action={toogleFilter}
                             className="button button-filter"
@@ -97,6 +95,9 @@ const HeaderScreen = (props) => {
                             icon={HiPencil}
                         />
                     )
+                }
+                {
+                    paginationButton && <Pagination {...props} />
                 }
             </div>
         </div>
