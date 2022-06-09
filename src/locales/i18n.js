@@ -6,7 +6,9 @@ import en from './en';
 i18n
     .use(initReactI18next)
     .init({
-        resources: { fr, en },
+        resources: {
+            fr, en,
+        },
         lng: 'fr',
         fallbackLng: 'fr',
         debug: true,

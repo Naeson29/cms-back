@@ -1,2 +1,2 @@
 export { default as authenticationContainer } from './authentication';
-export { default as screenContainer } from './screenContainer';
+export { default as modelContainer } from './modelContainer';

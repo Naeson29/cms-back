@@ -1,47 +1,17 @@
-//Google Fonts
 @import url('http://fonts.googleapis.com/css?family=Roboto');
-
-//fonts
-@import "fonts";
-
-//variables
-@import "variables";
-
-//Mixins
-@import "mixins";
-
-// commons
-@import "commons";
-
-//login
-@import "login";
-
-//sidebar
-@import "sidebar";
-
-// header
-@import "header";
-
-//Forms
-@import "form";
-
-//List
-@import "list";
-
-//panel
-@import "panels";
-
-//modal
-@import "modal";
-
-//dashboard
-@import "dashboard";
-
-//Users
-@import "user";
-
-//Publications
-@import "publication";
-
-
 @import "../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css";
+@import "fonts";
+@import "variables";
+@import "mixins";
+@import "commons";
+@import "login";
+@import "sidebar";
+@import "header";
+@import "form";
+@import "list";
+@import "panels";
+@import "modal";
+@import "dashboard";
+@import "user";
+@import "publication";
+@import "planning";

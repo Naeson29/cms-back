@@ -21,8 +21,8 @@ const Select = (props) => {
                 onChange={e => handleChange(name, e.target.value)}
             >
                 {
-                    data.map((option, index) => (
-                        <option key={index.toString()} value={option.value}>{option.label}</option>
+                    data.map(option => (
+                        <option key={option.value.toString()} value={option.value}>{option.label}</option>
                     ))
                 }
             </select>

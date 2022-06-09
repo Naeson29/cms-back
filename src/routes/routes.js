@@ -1,4 +1,4 @@
-import { screenContainer } from '../containers';
+import { modelContainer } from '../containers';
 
 const routes = (models) => {
     const modelRoutes = Object.keys(models).map(model => models[model]);
@@ -9,7 +9,7 @@ const routes = (models) => {
         exact: true,
         path: '/',
         name: 'dashboard',
-        component: screenContainer(),
+        component: modelContainer(),
         id,
     }];
 
@@ -39,7 +39,7 @@ const routes = (models) => {
                 exact: true,
                 path: `/${pathName}`,
                 name: `${route}-${screen}`,
-                component: screenContainer({
+                component: modelContainer({
                     model,
                     screen,
                 }),

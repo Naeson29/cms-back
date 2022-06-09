@@ -145,7 +145,6 @@ const setScreenFunctions = (dispatch, { creators }, params) => (!creators ? {} :
 
 export default ({
     model,
-    component = defaultScreen,
     screen = 'index',
     mapDispatch,
     mapState,
@@ -156,6 +155,7 @@ export default ({
         list = () => ({}),
         actions = {},
         renders = {},
+        component = defaultScreen,
     } = model || false;
 
     const { GetCurrent } = getScreenSelector('user');

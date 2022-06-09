@@ -1,5 +1,6 @@
 import { BiCalendar } from 'react-icons/bi';
 import { model } from '../model';
+import { planning } from '../../components';
 
 const name = 'planning';
 
@@ -28,4 +29,6 @@ export default {
 
     renders: {
     },
+
+    component: planning,
 };

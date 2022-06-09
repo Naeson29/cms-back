@@ -95,7 +95,7 @@ const List = (props) => {
                 )
             }
             {
-                list.map((key, index) => {
+                list.map((key) => {
                     const userModel = (model === 'user');
                     const permissionRemove = !userModel || (userModel && (current.id !== key.id) && (current.role < key.role));
                     const permissionUpdate = !userModel || (userModel && (current.id === key.id || current.role === 1));
@@ -106,7 +106,7 @@ const List = (props) => {
                     return (
                         <div
                             className={`card-container ${type}`}
-                            key={index.toString()}
+                            key={key.id.toString()}
                         >
                             <div className={`card ${userModel && (current.id === key.id) ? 'current' : ''}`}>
                                 {

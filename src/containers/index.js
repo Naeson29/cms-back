@@ -2,7 +2,7 @@ export { default as appContainer } from './app';
 
 export {
     authenticationContainer,
-    screenContainer,
+    modelContainer,
 } from './screens';
 
 export {

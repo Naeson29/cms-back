@@ -30,7 +30,7 @@ import {
 } from './components';
 
 moment.locale('fr');
-require('moment/locale/fr.js');
+require('moment/locale/fr');
 
 /**
  *
