@@ -1,7 +1,7 @@
 import { model } from '../model';
 
 export default (t = () => {}) => ({
-    ...model.list,
+    ...model.list(),
 
     parameters: {
         params: {
