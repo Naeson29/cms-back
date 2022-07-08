@@ -2,11 +2,6 @@
 
 Cms React JS
 
-
-## Clone du projet
-
-git clone git@gitlab.beable.fr:amzair/connect.git
-
 ## Mise en place de l'environnement local
 
 ### Docker configuration  
