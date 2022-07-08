@@ -1,6 +1,6 @@
 # Connect
 
-Nouvelle version du backoffice Amzair. Gestion des gts et des autres ressources.
+Cms React JS
 
 
 ## Clone du projet
